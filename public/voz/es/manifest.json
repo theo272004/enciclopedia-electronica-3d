@@ -1,0 +1,1053 @@
+{
+  "idioma": "es",
+  "escenas": [
+    {
+      "id": "intro",
+      "archivo": "voz/es/intro.mp3",
+      "duracion": 11.935057,
+      "hash": "f7461b8b4d7849e353f4cab38e9b7ab9ad10da70",
+      "palabras": [
+        {
+          "texto": "Este",
+          "inicio": 0,
+          "fin": 0.267
+        },
+        {
+          "texto": "pequeño",
+          "inicio": 0.313,
+          "fin": 0.662
+        },
+        {
+          "texto": "componente",
+          "inicio": 0.697,
+          "fin": 1.254
+        },
+        {
+          "texto": "cambió",
+          "inicio": 1.324,
+          "fin": 1.776
+        },
+        {
+          "texto": "el",
+          "inicio": 1.834,
+          "fin": 1.904
+        },
+        {
+          "texto": "mundo.",
+          "inicio": 1.974,
+          "fin": 2.566
+        },
+        {
+          "texto": "Está",
+          "inicio": 3.007,
+          "fin": 3.297
+        },
+        {
+          "texto": "dentro",
+          "inicio": 3.367,
+          "fin": 3.692
+        },
+        {
+          "texto": "de",
+          "inicio": 3.738,
+          "fin": 3.796
+        },
+        {
+          "texto": "tu",
+          "inicio": 3.831,
+          "fin": 3.924
+        },
+        {
+          "texto": "celular,",
+          "inicio": 3.971,
+          "fin": 4.598
+        },
+        {
+          "texto": "tu",
+          "inicio": 4.714,
+          "fin": 4.818
+        },
+        {
+          "texto": "computador",
+          "inicio": 4.888,
+          "fin": 5.584
+        },
+        {
+          "texto": "y",
+          "inicio": 5.968,
+          "fin": 6.084
+        },
+        {
+          "texto": "casi",
+          "inicio": 6.165,
+          "fin": 6.397
+        },
+        {
+          "texto": "todo",
+          "inicio": 6.467,
+          "fin": 6.676
+        },
+        {
+          "texto": "lo",
+          "inicio": 6.711,
+          "fin": 6.78
+        },
+        {
+          "texto": "que",
+          "inicio": 6.827,
+          "fin": 6.908
+        },
+        {
+          "texto": "funciona",
+          "inicio": 6.954,
+          "fin": 7.454
+        },
+        {
+          "texto": "con",
+          "inicio": 7.5,
+          "fin": 7.639
+        },
+        {
+          "texto": "electricidad.",
+          "inicio": 7.686,
+          "fin": 8.626
+        },
+        {
+          "texto": "Es",
+          "inicio": 9.578,
+          "fin": 9.834
+        },
+        {
+          "texto": "el",
+          "inicio": 9.903,
+          "fin": 9.985
+        },
+        {
+          "texto": "transistor.",
+          "inicio": 10.054,
+          "fin": 11.935
+        }
+      ]
+    },
+    {
+      "id": "autopsia",
+      "archivo": "voz/es/autopsia.mp3",
+      "duracion": 22.987755,
+      "hash": "5dec089dc3810709ff8a96f5d6a325f9fa6a7469",
+      "palabras": [
+        {
+          "texto": "Si",
+          "inicio": 0,
+          "fin": 0.174
+        },
+        {
+          "texto": "abrimos",
+          "inicio": 0.232,
+          "fin": 0.592
+        },
+        {
+          "texto": "el",
+          "inicio": 0.65,
+          "fin": 0.708
+        },
+        {
+          "texto": "encapsulado",
+          "inicio": 0.743,
+          "fin": 1.3
+        },
+        {
+          "texto": "de",
+          "inicio": 1.335,
+          "fin": 1.393
+        },
+        {
+          "texto": "resina",
+          "inicio": 1.474,
+          "fin": 1.858
+        },
+        {
+          "texto": "de",
+          "inicio": 1.916,
+          "fin": 1.985
+        },
+        {
+          "texto": "un",
+          "inicio": 2.078,
+          "fin": 2.206
+        },
+        {
+          "texto": "2N2222A,",
+          "inicio": 2.287,
+          "fin": 4.18
+        },
+        {
+          "texto": "vemos",
+          "inicio": 4.377,
+          "fin": 4.737
+        },
+        {
+          "texto": "su",
+          "inicio": 4.748,
+          "fin": 4.865
+        },
+        {
+          "texto": "secreto:",
+          "inicio": 4.923,
+          "fin": 5.596
+        },
+        {
+          "texto": "un",
+          "inicio": 6.177,
+          "fin": 6.269
+        },
+        {
+          "texto": "cristal",
+          "inicio": 6.316,
+          "fin": 6.676
+        },
+        {
+          "texto": "de",
+          "inicio": 6.722,
+          "fin": 6.78
+        },
+        {
+          "texto": "silicio",
+          "inicio": 6.838,
+          "fin": 7.256
+        },
+        {
+          "texto": "con",
+          "inicio": 7.314,
+          "fin": 7.442
+        },
+        {
+          "texto": "tres",
+          "inicio": 7.488,
+          "fin": 7.697
+        },
+        {
+          "texto": "capas",
+          "inicio": 7.779,
+          "fin": 8.162
+        },
+        {
+          "texto": "dopadas,",
+          "inicio": 8.197,
+          "fin": 8.928
+        },
+        {
+          "texto": "Emisor",
+          "inicio": 9.23,
+          "fin": 9.776
+        },
+        {
+          "texto": "N-plus,",
+          "inicio": 9.845,
+          "fin": 10.716
+        },
+        {
+          "texto": "una",
+          "inicio": 10.855,
+          "fin": 11.041
+        },
+        {
+          "texto": "Base",
+          "inicio": 11.088,
+          "fin": 11.378
+        },
+        {
+          "texto": "P",
+          "inicio": 11.447,
+          "fin": 11.529
+        },
+        {
+          "texto": "ultra-delgada",
+          "inicio": 11.691,
+          "fin": 12.539
+        },
+        {
+          "texto": "y",
+          "inicio": 12.632,
+          "fin": 12.69
+        },
+        {
+          "texto": "el",
+          "inicio": 12.806,
+          "fin": 12.899
+        },
+        {
+          "texto": "Colector",
+          "inicio": 12.98,
+          "fin": 13.502
+        },
+        {
+          "texto": "N,",
+          "inicio": 13.595,
+          "fin": 13.99
+        },
+        {
+          "texto": "unidas",
+          "inicio": 14.199,
+          "fin": 14.559
+        },
+        {
+          "texto": "a",
+          "inicio": 14.617,
+          "fin": 14.64
+        },
+        {
+          "texto": "las",
+          "inicio": 14.687,
+          "fin": 14.803
+        },
+        {
+          "texto": "patas",
+          "inicio": 14.872,
+          "fin": 15.232
+        },
+        {
+          "texto": "por",
+          "inicio": 15.302,
+          "fin": 15.465
+        },
+        {
+          "texto": "hilos",
+          "inicio": 15.499,
+          "fin": 15.766
+        },
+        {
+          "texto": "de",
+          "inicio": 15.801,
+          "fin": 15.871
+        },
+        {
+          "texto": "oro",
+          "inicio": 15.941,
+          "fin": 16.091
+        },
+        {
+          "texto": "puro.",
+          "inicio": 16.161,
+          "fin": 16.695
+        },
+        {
+          "texto": "Sin",
+          "inicio": 17.299,
+          "fin": 17.496
+        },
+        {
+          "texto": "al",
+          "inicio": 17.554,
+          "fin": 17.624
+        },
+        {
+          "texto": "menos",
+          "inicio": 17.67,
+          "fin": 17.961
+        },
+        {
+          "texto": "0.7",
+          "inicio": 18.03,
+          "fin": 18.739
+        },
+        {
+          "texto": "voltios",
+          "inicio": 18.855,
+          "fin": 19.249
+        },
+        {
+          "texto": "en",
+          "inicio": 19.307,
+          "fin": 19.365
+        },
+        {
+          "texto": "la",
+          "inicio": 19.412,
+          "fin": 19.47
+        },
+        {
+          "texto": "base,",
+          "inicio": 19.528,
+          "fin": 20.016
+        },
+        {
+          "texto": "su",
+          "inicio": 20.19,
+          "fin": 20.329
+        },
+        {
+          "texto": "barrera",
+          "inicio": 20.399,
+          "fin": 20.701
+        },
+        {
+          "texto": "interna",
+          "inicio": 20.747,
+          "fin": 21.177
+        },
+        {
+          "texto": "bloquea",
+          "inicio": 21.223,
+          "fin": 21.711
+        },
+        {
+          "texto": "el",
+          "inicio": 21.757,
+          "fin": 21.838
+        },
+        {
+          "texto": "paso.",
+          "inicio": 21.92,
+          "fin": 22.988
+        }
+      ]
+    },
+    {
+      "id": "partes",
+      "archivo": "voz/es/partes.mp3",
+      "duracion": 11.795737,
+      "hash": "e1bdb171828624f01fe89570dcadfe79ab84ef07",
+      "palabras": [
+        {
+          "texto": "Un",
+          "inicio": 0,
+          "fin": 0.186
+        },
+        {
+          "texto": "transistor",
+          "inicio": 0.221,
+          "fin": 0.755
+        },
+        {
+          "texto": "tiene",
+          "inicio": 0.813,
+          "fin": 1.022
+        },
+        {
+          "texto": "tres",
+          "inicio": 1.068,
+          "fin": 1.277
+        },
+        {
+          "texto": "patas:",
+          "inicio": 1.358,
+          "fin": 1.95
+        },
+        {
+          "texto": "la",
+          "inicio": 2.032,
+          "fin": 2.136
+        },
+        {
+          "texto": "base,",
+          "inicio": 2.194,
+          "fin": 2.705
+        },
+        {
+          "texto": "el",
+          "inicio": 2.786,
+          "fin": 2.949
+        },
+        {
+          "texto": "colector",
+          "inicio": 3.019,
+          "fin": 3.553
+        },
+        {
+          "texto": "y",
+          "inicio": 3.704,
+          "fin": 3.796
+        },
+        {
+          "texto": "el",
+          "inicio": 3.878,
+          "fin": 3.959
+        },
+        {
+          "texto": "emisor.",
+          "inicio": 4.005,
+          "fin": 4.725
+        },
+        {
+          "texto": "La",
+          "inicio": 5.422,
+          "fin": 5.538
+        },
+        {
+          "texto": "base",
+          "inicio": 5.584,
+          "fin": 5.805
+        },
+        {
+          "texto": "funciona",
+          "inicio": 5.863,
+          "fin": 6.316
+        },
+        {
+          "texto": "como",
+          "inicio": 6.385,
+          "fin": 6.594
+        },
+        {
+          "texto": "una",
+          "inicio": 6.653,
+          "fin": 6.803
+        },
+        {
+          "texto": "llave:",
+          "inicio": 6.827,
+          "fin": 7.361
+        },
+        {
+          "texto": "controla",
+          "inicio": 7.605,
+          "fin": 8.092
+        },
+        {
+          "texto": "cuánta",
+          "inicio": 8.15,
+          "fin": 8.51
+        },
+        {
+          "texto": "corriente",
+          "inicio": 8.568,
+          "fin": 9.056
+        },
+        {
+          "texto": "pasa",
+          "inicio": 9.125,
+          "fin": 9.416
+        },
+        {
+          "texto": "del",
+          "inicio": 9.474,
+          "fin": 9.601
+        },
+        {
+          "texto": "colector",
+          "inicio": 9.671,
+          "fin": 10.252
+        },
+        {
+          "texto": "al",
+          "inicio": 10.368,
+          "fin": 10.53
+        },
+        {
+          "texto": "emisor.",
+          "inicio": 10.588,
+          "fin": 11.796
+        }
+      ]
+    },
+    {
+      "id": "circuito",
+      "archivo": "voz/es/circuito.mp3",
+      "duracion": 13.467574,
+      "hash": "9bffa9375e42a53e44ad9cff76294dc15d0a12de",
+      "palabras": [
+        {
+          "texto": "Mira",
+          "inicio": 0,
+          "fin": 0.325
+        },
+        {
+          "texto": "este",
+          "inicio": 0.383,
+          "fin": 0.58
+        },
+        {
+          "texto": "circuito.",
+          "inicio": 0.615,
+          "fin": 1.382
+        },
+        {
+          "texto": "Sin",
+          "inicio": 1.591,
+          "fin": 1.834
+        },
+        {
+          "texto": "corriente",
+          "inicio": 1.892,
+          "fin": 2.368
+        },
+        {
+          "texto": "en",
+          "inicio": 2.415,
+          "fin": 2.461
+        },
+        {
+          "texto": "la",
+          "inicio": 2.519,
+          "fin": 2.589
+        },
+        {
+          "texto": "base,",
+          "inicio": 2.635,
+          "fin": 3.088
+        },
+        {
+          "texto": "el",
+          "inicio": 3.204,
+          "fin": 3.344
+        },
+        {
+          "texto": "LED",
+          "inicio": 3.402,
+          "fin": 3.611
+        },
+        {
+          "texto": "está",
+          "inicio": 3.692,
+          "fin": 3.959
+        },
+        {
+          "texto": "apagado.",
+          "inicio": 4.017,
+          "fin": 4.702
+        },
+        {
+          "texto": "Pero",
+          "inicio": 5.027,
+          "fin": 5.224
+        },
+        {
+          "texto": "cuando",
+          "inicio": 5.271,
+          "fin": 5.492
+        },
+        {
+          "texto": "aplicamos",
+          "inicio": 5.526,
+          "fin": 6.037
+        },
+        {
+          "texto": "una",
+          "inicio": 6.107,
+          "fin": 6.223
+        },
+        {
+          "texto": "pequeña",
+          "inicio": 6.281,
+          "fin": 6.769
+        },
+        {
+          "texto": "corriente",
+          "inicio": 6.827,
+          "fin": 7.303
+        },
+        {
+          "texto": "a",
+          "inicio": 7.338,
+          "fin": 7.361
+        },
+        {
+          "texto": "la",
+          "inicio": 7.396,
+          "fin": 7.465
+        },
+        {
+          "texto": "base...",
+          "inicio": 7.523,
+          "fin": 8.057
+        },
+        {
+          "texto": "el",
+          "inicio": 8.754,
+          "fin": 8.87
+        },
+        {
+          "texto": "transistor",
+          "inicio": 8.916,
+          "fin": 9.404
+        },
+        {
+          "texto": "se",
+          "inicio": 9.462,
+          "fin": 9.555
+        },
+        {
+          "texto": "abre,",
+          "inicio": 9.636,
+          "fin": 10.124
+        },
+        {
+          "texto": "y",
+          "inicio": 10.298,
+          "fin": 10.333
+        },
+        {
+          "texto": "una",
+          "inicio": 10.403,
+          "fin": 10.53
+        },
+        {
+          "texto": "corriente",
+          "inicio": 10.588,
+          "fin": 11.006
+        },
+        {
+          "texto": "mucho",
+          "inicio": 11.053,
+          "fin": 11.32
+        },
+        {
+          "texto": "mayor",
+          "inicio": 11.366,
+          "fin": 11.68
+        },
+        {
+          "texto": "enciende",
+          "inicio": 11.738,
+          "fin": 12.307
+        },
+        {
+          "texto": "el",
+          "inicio": 12.341,
+          "fin": 12.388
+        },
+        {
+          "texto": "LED.",
+          "inicio": 12.457,
+          "fin": 13.468
+        }
+      ]
+    },
+    {
+      "id": "regiones",
+      "archivo": "voz/es/regiones.mp3",
+      "duracion": 20.015601,
+      "hash": "56aec5611fa278b361905634123fa26e25d88a0f",
+      "palabras": [
+        {
+          "texto": "Según",
+          "inicio": 0,
+          "fin": 0.418
+        },
+        {
+          "texto": "su",
+          "inicio": 0.464,
+          "fin": 0.569
+        },
+        {
+          "texto": "hoja",
+          "inicio": 0.615,
+          "fin": 0.848
+        },
+        {
+          "texto": "de",
+          "inicio": 0.906,
+          "fin": 0.975
+        },
+        {
+          "texto": "datos,",
+          "inicio": 1.033,
+          "fin": 1.672
+        },
+        {
+          "texto": "este",
+          "inicio": 2.183,
+          "fin": 2.45
+        },
+        {
+          "texto": "transistor",
+          "inicio": 2.496,
+          "fin": 3.019
+        },
+        {
+          "texto": "opera",
+          "inicio": 3.065,
+          "fin": 3.355
+        },
+        {
+          "texto": "en",
+          "inicio": 3.402,
+          "fin": 3.471
+        },
+        {
+          "texto": "tres",
+          "inicio": 3.529,
+          "fin": 3.773
+        },
+        {
+          "texto": "regiones:",
+          "inicio": 3.889,
+          "fin": 4.644
+        },
+        {
+          "texto": "en",
+          "inicio": 4.888,
+          "fin": 5.027
+        },
+        {
+          "texto": "Corte",
+          "inicio": 5.108,
+          "fin": 5.573
+        },
+        {
+          "texto": "bloquea",
+          "inicio": 5.689,
+          "fin": 6.153
+        },
+        {
+          "texto": "hasta",
+          "inicio": 6.177,
+          "fin": 6.432
+        },
+        {
+          "texto": "40",
+          "inicio": 6.548,
+          "fin": 6.931
+        },
+        {
+          "texto": "voltios",
+          "inicio": 7.047,
+          "fin": 7.477
+        },
+        {
+          "texto": "abierto;",
+          "inicio": 7.546,
+          "fin": 8.185
+        },
+        {
+          "texto": "en",
+          "inicio": 8.696,
+          "fin": 8.824
+        },
+        {
+          "texto": "Saturación",
+          "inicio": 8.882,
+          "fin": 9.543
+        },
+        {
+          "texto": "cierra",
+          "inicio": 9.601,
+          "fin": 9.927
+        },
+        {
+          "texto": "el",
+          "inicio": 9.973,
+          "fin": 10.031
+        },
+        {
+          "texto": "paso",
+          "inicio": 10.101,
+          "fin": 10.426
+        },
+        {
+          "texto": "cayendo",
+          "inicio": 10.484,
+          "fin": 10.913
+        },
+        {
+          "texto": "apenas",
+          "inicio": 10.96,
+          "fin": 11.389
+        },
+        {
+          "texto": "0.3",
+          "inicio": 11.517,
+          "fin": 12.341
+        },
+        {
+          "texto": "voltios;",
+          "inicio": 12.457,
+          "fin": 13.131
+        },
+        {
+          "texto": "y",
+          "inicio": 13.735,
+          "fin": 13.793
+        },
+        {
+          "texto": "en",
+          "inicio": 13.886,
+          "fin": 13.932
+        },
+        {
+          "texto": "la",
+          "inicio": 13.978,
+          "fin": 14.025
+        },
+        {
+          "texto": "Región",
+          "inicio": 14.095,
+          "fin": 14.408
+        },
+        {
+          "texto": "Activa",
+          "inicio": 14.455,
+          "fin": 14.826
+        },
+        {
+          "texto": "multiplica",
+          "inicio": 14.884,
+          "fin": 15.5
+        },
+        {
+          "texto": "la",
+          "inicio": 15.546,
+          "fin": 15.604
+        },
+        {
+          "texto": "corriente",
+          "inicio": 15.662,
+          "fin": 16.092
+        },
+        {
+          "texto": "de",
+          "inicio": 16.15,
+          "fin": 16.22
+        },
+        {
+          "texto": "base",
+          "inicio": 16.266,
+          "fin": 16.568
+        },
+        {
+          "texto": "por",
+          "inicio": 16.638,
+          "fin": 16.788
+        },
+        {
+          "texto": "su",
+          "inicio": 16.835,
+          "fin": 16.928
+        },
+        {
+          "texto": "ganancia",
+          "inicio": 16.986,
+          "fin": 17.473
+        },
+        {
+          "texto": "Beta",
+          "inicio": 17.555,
+          "fin": 17.891
+        },
+        {
+          "texto": "de",
+          "inicio": 17.949,
+          "fin": 18.019
+        },
+        {
+          "texto": "hasta",
+          "inicio": 18.054,
+          "fin": 18.275
+        },
+        {
+          "texto": "300",
+          "inicio": 18.391,
+          "fin": 18.902
+        },
+        {
+          "texto": "veces.",
+          "inicio": 18.994,
+          "fin": 20.016
+        }
+      ]
+    },
+    {
+      "id": "cierre",
+      "archivo": "voz/es/cierre.mp3",
+      "duracion": 8.823583,
+      "hash": "c442e5c2ab02d815fcea8e24604a16aaee1bbd84",
+      "palabras": [
+        {
+          "texto": "Por",
+          "inicio": 0,
+          "fin": 0.244
+        },
+        {
+          "texto": "eso",
+          "inicio": 0.302,
+          "fin": 0.464
+        },
+        {
+          "texto": "el",
+          "inicio": 0.499,
+          "fin": 0.546
+        },
+        {
+          "texto": "transistor",
+          "inicio": 0.592,
+          "fin": 1.115
+        },
+        {
+          "texto": "funciona",
+          "inicio": 1.173,
+          "fin": 1.637
+        },
+        {
+          "texto": "como",
+          "inicio": 1.695,
+          "fin": 1.892
+        },
+        {
+          "texto": "interruptor",
+          "inicio": 1.939,
+          "fin": 2.694
+        },
+        {
+          "texto": "y",
+          "inicio": 2.81,
+          "fin": 2.902
+        },
+        {
+          "texto": "como",
+          "inicio": 3.019,
+          "fin": 3.262
+        },
+        {
+          "texto": "amplificador.",
+          "inicio": 3.309,
+          "fin": 4.307
+        },
+        {
+          "texto": "Miles",
+          "inicio": 4.911,
+          "fin": 5.271
+        },
+        {
+          "texto": "de",
+          "inicio": 5.306,
+          "fin": 5.352
+        },
+        {
+          "texto": "millones",
+          "inicio": 5.41,
+          "fin": 5.863
+        },
+        {
+          "texto": "de",
+          "inicio": 5.909,
+          "fin": 5.979
+        },
+        {
+          "texto": "ellos",
+          "inicio": 6.06,
+          "fin": 6.351
+        },
+        {
+          "texto": "forman",
+          "inicio": 6.42,
+          "fin": 6.827
+        },
+        {
+          "texto": "cada",
+          "inicio": 6.92,
+          "fin": 7.221
+        },
+        {
+          "texto": "procesador",
+          "inicio": 7.279,
+          "fin": 7.883
+        },
+        {
+          "texto": "moderno.",
+          "inicio": 7.953,
+          "fin": 8.824
+        }
+      ]
+    }
+  ]
+}

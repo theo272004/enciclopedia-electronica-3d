@@ -1,0 +1,15 @@
+(kicad_sch
+  (version 20231120)
+  (generator "videos-electronica")
+  (generator_version "9.0")
+  (uuid "8e442222-1111-4444-8888-222222222222")
+  (paper "A4")
+  (title_block
+    (title "Circuito de Conmutacion y Saturacion BJT NPN 2N2222A")
+    (date "2026-11-15")
+    (rev "1.0")
+    (company "Canal de Electronica — 100% Codigo")
+    (comment 1 "Datasheet: ON Semiconductor P2N2222A / 2N2222A (Vceo=40V, Ic=800mA, Pd=625mW)")
+    (comment 2 "Calculo de Saturacion: Vcc=9V, Rb=1k, Ib=8.3mA, Vce(sat)=0.3V, Ic=20mA")
+  )
+)

@@ -1,0 +1,1078 @@
+{
+  "idioma": "en",
+  "escenas": [
+    {
+      "id": "intro",
+      "archivo": "voz/en/intro.mp3",
+      "duracion": 9.520181,
+      "hash": "a515b09ab32b904dafaf55cc3d8e00f92eba79a0",
+      "palabras": [
+        {
+          "texto": "This",
+          "inicio": 0,
+          "fin": 0.232
+        },
+        {
+          "texto": "tiny",
+          "inicio": 0.302,
+          "fin": 0.639
+        },
+        {
+          "texto": "component",
+          "inicio": 0.708,
+          "fin": 1.289
+        },
+        {
+          "texto": "changed",
+          "inicio": 1.358,
+          "fin": 1.741
+        },
+        {
+          "texto": "the",
+          "inicio": 1.788,
+          "fin": 1.858
+        },
+        {
+          "texto": "world.",
+          "inicio": 1.904,
+          "fin": 2.334
+        },
+        {
+          "texto": "It's",
+          "inicio": 2.508,
+          "fin": 2.717
+        },
+        {
+          "texto": "inside",
+          "inicio": 2.775,
+          "fin": 3.286
+        },
+        {
+          "texto": "your",
+          "inicio": 3.32,
+          "fin": 3.448
+        },
+        {
+          "texto": "phone,",
+          "inicio": 3.506,
+          "fin": 3.994
+        },
+        {
+          "texto": "your",
+          "inicio": 4.203,
+          "fin": 4.342
+        },
+        {
+          "texto": "computer,",
+          "inicio": 4.4,
+          "fin": 5.074
+        },
+        {
+          "texto": "and",
+          "inicio": 5.317,
+          "fin": 5.457
+        },
+        {
+          "texto": "almost",
+          "inicio": 5.515,
+          "fin": 5.828
+        },
+        {
+          "texto": "everything",
+          "inicio": 5.944,
+          "fin": 6.385
+        },
+        {
+          "texto": "that",
+          "inicio": 6.42,
+          "fin": 6.525
+        },
+        {
+          "texto": "runs",
+          "inicio": 6.571,
+          "fin": 6.78
+        },
+        {
+          "texto": "on",
+          "inicio": 6.827,
+          "fin": 6.896
+        },
+        {
+          "texto": "electricity.",
+          "inicio": 6.954,
+          "fin": 7.732
+        },
+        {
+          "texto": "It's",
+          "inicio": 7.976,
+          "fin": 8.162
+        },
+        {
+          "texto": "the",
+          "inicio": 8.208,
+          "fin": 8.278
+        },
+        {
+          "texto": "transistor.",
+          "inicio": 8.336,
+          "fin": 9.52
+        }
+      ]
+    },
+    {
+      "id": "autopsia",
+      "archivo": "voz/en/autopsia.mp3",
+      "duracion": 20.805079,
+      "hash": "d2b01256739fbd8e9f8f6e57260a820c34703d42",
+      "palabras": [
+        {
+          "texto": "If",
+          "inicio": 0,
+          "fin": 0.151
+        },
+        {
+          "texto": "we",
+          "inicio": 0.197,
+          "fin": 0.29
+        },
+        {
+          "texto": "slice",
+          "inicio": 0.36,
+          "fin": 0.778
+        },
+        {
+          "texto": "open",
+          "inicio": 0.824,
+          "fin": 1.057
+        },
+        {
+          "texto": "the",
+          "inicio": 1.091,
+          "fin": 1.161
+        },
+        {
+          "texto": "epoxy",
+          "inicio": 1.207,
+          "fin": 1.683
+        },
+        {
+          "texto": "body",
+          "inicio": 1.753,
+          "fin": 2.067
+        },
+        {
+          "texto": "of",
+          "inicio": 2.136,
+          "fin": 2.194
+        },
+        {
+          "texto": "a",
+          "inicio": 2.241,
+          "fin": 2.276
+        },
+        {
+          "texto": "2N2222A,",
+          "inicio": 2.357,
+          "fin": 4.11
+        },
+        {
+          "texto": "we",
+          "inicio": 4.319,
+          "fin": 4.447
+        },
+        {
+          "texto": "reveal",
+          "inicio": 4.516,
+          "fin": 4.795
+        },
+        {
+          "texto": "its",
+          "inicio": 4.853,
+          "fin": 4.946
+        },
+        {
+          "texto": "secret:",
+          "inicio": 4.981,
+          "fin": 5.48
+        },
+        {
+          "texto": "a",
+          "inicio": 5.863,
+          "fin": 5.921
+        },
+        {
+          "texto": "three-layer",
+          "inicio": 6.014,
+          "fin": 6.513
+        },
+        {
+          "texto": "doped",
+          "inicio": 6.594,
+          "fin": 6.861
+        },
+        {
+          "texto": "silicon",
+          "inicio": 6.978,
+          "fin": 7.488
+        },
+        {
+          "texto": "die—an",
+          "inicio": 7.546,
+          "fin": 8.452
+        },
+        {
+          "texto": "N-plus",
+          "inicio": 8.475,
+          "fin": 8.998
+        },
+        {
+          "texto": "Emitter,",
+          "inicio": 9.056,
+          "fin": 9.613
+        },
+        {
+          "texto": "an",
+          "inicio": 9.787,
+          "fin": 9.927
+        },
+        {
+          "texto": "ultra-thin",
+          "inicio": 9.985,
+          "fin": 10.484
+        },
+        {
+          "texto": "P",
+          "inicio": 10.565,
+          "fin": 10.635
+        },
+        {
+          "texto": "Base,",
+          "inicio": 10.786,
+          "fin": 11.273
+        },
+        {
+          "texto": "and",
+          "inicio": 11.447,
+          "fin": 11.61
+        },
+        {
+          "texto": "an",
+          "inicio": 11.668,
+          "fin": 11.738
+        },
+        {
+          "texto": "N",
+          "inicio": 11.807,
+          "fin": 11.958
+        },
+        {
+          "texto": "Collector—connected",
+          "inicio": 12.016,
+          "fin": 13.235
+        },
+        {
+          "texto": "to",
+          "inicio": 13.282,
+          "fin": 13.34
+        },
+        {
+          "texto": "the",
+          "inicio": 13.41,
+          "fin": 13.479
+        },
+        {
+          "texto": "leads",
+          "inicio": 13.549,
+          "fin": 13.862
+        },
+        {
+          "texto": "by",
+          "inicio": 13.909,
+          "fin": 14.025
+        },
+        {
+          "texto": "pure",
+          "inicio": 14.106,
+          "fin": 14.408
+        },
+        {
+          "texto": "gold",
+          "inicio": 14.466,
+          "fin": 14.71
+        },
+        {
+          "texto": "bond",
+          "inicio": 14.745,
+          "fin": 14.965
+        },
+        {
+          "texto": "wires.",
+          "inicio": 15.023,
+          "fin": 15.546
+        },
+        {
+          "texto": "Below",
+          "inicio": 16.057,
+          "fin": 16.417
+        },
+        {
+          "texto": "0.7",
+          "inicio": 16.533,
+          "fin": 17.276
+        },
+        {
+          "texto": "volts",
+          "inicio": 17.357,
+          "fin": 17.601
+        },
+        {
+          "texto": "at",
+          "inicio": 17.636,
+          "fin": 17.694
+        },
+        {
+          "texto": "the",
+          "inicio": 17.729,
+          "fin": 17.798
+        },
+        {
+          "texto": "base,",
+          "inicio": 17.845,
+          "fin": 18.297
+        },
+        {
+          "texto": "its",
+          "inicio": 18.576,
+          "fin": 18.762
+        },
+        {
+          "texto": "internal",
+          "inicio": 18.808,
+          "fin": 19.203
+        },
+        {
+          "texto": "barrier",
+          "inicio": 19.261,
+          "fin": 19.575
+        },
+        {
+          "texto": "blocks",
+          "inicio": 19.633,
+          "fin": 19.923
+        },
+        {
+          "texto": "the",
+          "inicio": 19.958,
+          "fin": 20.027
+        },
+        {
+          "texto": "current.",
+          "inicio": 20.062,
+          "fin": 20.805
+        }
+      ]
+    },
+    {
+      "id": "partes",
+      "archivo": "voz/en/partes.mp3",
+      "duracion": 11.470658,
+      "hash": "ede28a8b0e9051fd017cee5ead83beab8ff9b32f",
+      "palabras": [
+        {
+          "texto": "A",
+          "inicio": 0,
+          "fin": 0.139
+        },
+        {
+          "texto": "transistor",
+          "inicio": 0.197,
+          "fin": 0.871
+        },
+        {
+          "texto": "has",
+          "inicio": 0.94,
+          "fin": 1.103
+        },
+        {
+          "texto": "three",
+          "inicio": 1.173,
+          "fin": 1.393
+        },
+        {
+          "texto": "legs:",
+          "inicio": 1.451,
+          "fin": 1.997
+        },
+        {
+          "texto": "the",
+          "inicio": 2.322,
+          "fin": 2.426
+        },
+        {
+          "texto": "base,",
+          "inicio": 2.485,
+          "fin": 2.984
+        },
+        {
+          "texto": "the",
+          "inicio": 3.309,
+          "fin": 3.402
+        },
+        {
+          "texto": "collector,",
+          "inicio": 3.46,
+          "fin": 4.087
+        },
+        {
+          "texto": "and",
+          "inicio": 4.145,
+          "fin": 4.296
+        },
+        {
+          "texto": "the",
+          "inicio": 4.331,
+          "fin": 4.4
+        },
+        {
+          "texto": "emitter.",
+          "inicio": 4.447,
+          "fin": 4.934
+        },
+        {
+          "texto": "The",
+          "inicio": 5.259,
+          "fin": 5.399
+        },
+        {
+          "texto": "base",
+          "inicio": 5.48,
+          "fin": 5.793
+        },
+        {
+          "texto": "works",
+          "inicio": 5.828,
+          "fin": 6.06
+        },
+        {
+          "texto": "like",
+          "inicio": 6.095,
+          "fin": 6.246
+        },
+        {
+          "texto": "a",
+          "inicio": 6.269,
+          "fin": 6.293
+        },
+        {
+          "texto": "tap:",
+          "inicio": 6.351,
+          "fin": 6.85
+        },
+        {
+          "texto": "it",
+          "inicio": 7.175,
+          "fin": 7.303
+        },
+        {
+          "texto": "controls",
+          "inicio": 7.361,
+          "fin": 7.86
+        },
+        {
+          "texto": "how",
+          "inicio": 7.93,
+          "fin": 8.046
+        },
+        {
+          "texto": "much",
+          "inicio": 8.104,
+          "fin": 8.266
+        },
+        {
+          "texto": "current",
+          "inicio": 8.324,
+          "fin": 8.638
+        },
+        {
+          "texto": "flows",
+          "inicio": 8.696,
+          "fin": 9.009
+        },
+        {
+          "texto": "from",
+          "inicio": 9.056,
+          "fin": 9.183
+        },
+        {
+          "texto": "the",
+          "inicio": 9.23,
+          "fin": 9.3
+        },
+        {
+          "texto": "collector",
+          "inicio": 9.346,
+          "fin": 9.822
+        },
+        {
+          "texto": "to",
+          "inicio": 9.938,
+          "fin": 10.066
+        },
+        {
+          "texto": "the",
+          "inicio": 10.136,
+          "fin": 10.205
+        },
+        {
+          "texto": "emitter.",
+          "inicio": 10.252,
+          "fin": 11.471
+        }
+      ]
+    },
+    {
+      "id": "circuito",
+      "archivo": "voz/en/circuito.mp3",
+      "duracion": 12.631655,
+      "hash": "5d066ec21a50048b9a0624e5ee4d51bb75f9bdee",
+      "palabras": [
+        {
+          "texto": "Look",
+          "inicio": 0,
+          "fin": 0.221
+        },
+        {
+          "texto": "at",
+          "inicio": 0.267,
+          "fin": 0.313
+        },
+        {
+          "texto": "this",
+          "inicio": 0.348,
+          "fin": 0.453
+        },
+        {
+          "texto": "circuit.",
+          "inicio": 0.511,
+          "fin": 1.01
+        },
+        {
+          "texto": "With",
+          "inicio": 1.335,
+          "fin": 1.533
+        },
+        {
+          "texto": "no",
+          "inicio": 1.649,
+          "fin": 1.834
+        },
+        {
+          "texto": "current",
+          "inicio": 1.916,
+          "fin": 2.206
+        },
+        {
+          "texto": "at",
+          "inicio": 2.241,
+          "fin": 2.299
+        },
+        {
+          "texto": "the",
+          "inicio": 2.334,
+          "fin": 2.403
+        },
+        {
+          "texto": "base,",
+          "inicio": 2.461,
+          "fin": 2.972
+        },
+        {
+          "texto": "the",
+          "inicio": 3.181,
+          "fin": 3.297
+        },
+        {
+          "texto": "LED",
+          "inicio": 3.448,
+          "fin": 3.738
+        },
+        {
+          "texto": "stays",
+          "inicio": 3.889,
+          "fin": 4.168
+        },
+        {
+          "texto": "off.",
+          "inicio": 4.238,
+          "fin": 4.679
+        },
+        {
+          "texto": "But",
+          "inicio": 5.062,
+          "fin": 5.213
+        },
+        {
+          "texto": "when",
+          "inicio": 5.248,
+          "fin": 5.387
+        },
+        {
+          "texto": "we",
+          "inicio": 5.433,
+          "fin": 5.526
+        },
+        {
+          "texto": "apply",
+          "inicio": 5.573,
+          "fin": 5.875
+        },
+        {
+          "texto": "a",
+          "inicio": 5.944,
+          "fin": 5.968
+        },
+        {
+          "texto": "small",
+          "inicio": 6.049,
+          "fin": 6.374
+        },
+        {
+          "texto": "current",
+          "inicio": 6.455,
+          "fin": 6.745
+        },
+        {
+          "texto": "to",
+          "inicio": 6.78,
+          "fin": 6.827
+        },
+        {
+          "texto": "the",
+          "inicio": 6.885,
+          "fin": 6.954
+        },
+        {
+          "texto": "base...",
+          "inicio": 7.001,
+          "fin": 7.5
+        },
+        {
+          "texto": "the",
+          "inicio": 7.883,
+          "fin": 7.988
+        },
+        {
+          "texto": "transistor",
+          "inicio": 8.034,
+          "fin": 8.812
+        },
+        {
+          "texto": "opens",
+          "inicio": 8.905,
+          "fin": 9.265
+        },
+        {
+          "texto": "up,",
+          "inicio": 9.334,
+          "fin": 9.671
+        },
+        {
+          "texto": "and",
+          "inicio": 9.822,
+          "fin": 9.973
+        },
+        {
+          "texto": "a",
+          "inicio": 10.019,
+          "fin": 10.054
+        },
+        {
+          "texto": "much",
+          "inicio": 10.147,
+          "fin": 10.356
+        },
+        {
+          "texto": "larger",
+          "inicio": 10.437,
+          "fin": 10.762
+        },
+        {
+          "texto": "current",
+          "inicio": 10.82,
+          "fin": 11.134
+        },
+        {
+          "texto": "lights",
+          "inicio": 11.204,
+          "fin": 11.436
+        },
+        {
+          "texto": "the",
+          "inicio": 11.482,
+          "fin": 11.564
+        },
+        {
+          "texto": "LED.",
+          "inicio": 11.645,
+          "fin": 12.632
+        }
+      ]
+    },
+    {
+      "id": "regiones",
+      "archivo": "voz/en/regiones.mp3",
+      "duracion": 16.811247,
+      "hash": "664bd77a4e1f4926d2a15eb0756f8f84f3a089f0",
+      "palabras": [
+        {
+          "texto": "According",
+          "inicio": 0,
+          "fin": 0.418
+        },
+        {
+          "texto": "to",
+          "inicio": 0.464,
+          "fin": 0.511
+        },
+        {
+          "texto": "its",
+          "inicio": 0.592,
+          "fin": 0.697
+        },
+        {
+          "texto": "datasheet,",
+          "inicio": 0.766,
+          "fin": 1.463
+        },
+        {
+          "texto": "this",
+          "inicio": 1.521,
+          "fin": 1.695
+        },
+        {
+          "texto": "transistor",
+          "inicio": 1.741,
+          "fin": 2.357
+        },
+        {
+          "texto": "works",
+          "inicio": 2.415,
+          "fin": 2.647
+        },
+        {
+          "texto": "in",
+          "inicio": 2.682,
+          "fin": 2.752
+        },
+        {
+          "texto": "three",
+          "inicio": 2.81,
+          "fin": 3.019
+        },
+        {
+          "texto": "regions:",
+          "inicio": 3.077,
+          "fin": 3.646
+        },
+        {
+          "texto": "in",
+          "inicio": 3.971,
+          "fin": 4.098
+        },
+        {
+          "texto": "Cutoff",
+          "inicio": 4.168,
+          "fin": 4.621
+        },
+        {
+          "texto": "it",
+          "inicio": 4.772,
+          "fin": 4.899
+        },
+        {
+          "texto": "blocks",
+          "inicio": 4.946,
+          "fin": 5.236
+        },
+        {
+          "texto": "up",
+          "inicio": 5.283,
+          "fin": 5.364
+        },
+        {
+          "texto": "to",
+          "inicio": 5.41,
+          "fin": 5.457
+        },
+        {
+          "texto": "40",
+          "inicio": 5.538,
+          "fin": 5.782
+        },
+        {
+          "texto": "volts;",
+          "inicio": 5.84,
+          "fin": 6.351
+        },
+        {
+          "texto": "in",
+          "inicio": 6.734,
+          "fin": 6.85
+        },
+        {
+          "texto": "Saturation",
+          "inicio": 6.908,
+          "fin": 7.663
+        },
+        {
+          "texto": "it",
+          "inicio": 7.732,
+          "fin": 7.825
+        },
+        {
+          "texto": "acts",
+          "inicio": 7.883,
+          "fin": 8.081
+        },
+        {
+          "texto": "as",
+          "inicio": 8.127,
+          "fin": 8.208
+        },
+        {
+          "texto": "a",
+          "inicio": 8.266,
+          "fin": 8.29
+        },
+        {
+          "texto": "closed",
+          "inicio": 8.348,
+          "fin": 8.673
+        },
+        {
+          "texto": "switch",
+          "inicio": 8.696,
+          "fin": 8.998
+        },
+        {
+          "texto": "dropping",
+          "inicio": 9.033,
+          "fin": 9.358
+        },
+        {
+          "texto": "just",
+          "inicio": 9.404,
+          "fin": 9.567
+        },
+        {
+          "texto": "0.3",
+          "inicio": 9.625,
+          "fin": 10.426
+        },
+        {
+          "texto": "volts;",
+          "inicio": 10.495,
+          "fin": 10.995
+        },
+        {
+          "texto": "and",
+          "inicio": 11.32,
+          "fin": 11.447
+        },
+        {
+          "texto": "in",
+          "inicio": 11.505,
+          "fin": 11.564
+        },
+        {
+          "texto": "the",
+          "inicio": 11.587,
+          "fin": 11.668
+        },
+        {
+          "texto": "Active",
+          "inicio": 11.737,
+          "fin": 12.063
+        },
+        {
+          "texto": "Region",
+          "inicio": 12.097,
+          "fin": 12.422
+        },
+        {
+          "texto": "it",
+          "inicio": 12.492,
+          "fin": 12.585
+        },
+        {
+          "texto": "multiplies",
+          "inicio": 12.655,
+          "fin": 13.224
+        },
+        {
+          "texto": "base",
+          "inicio": 13.282,
+          "fin": 13.502
+        },
+        {
+          "texto": "current",
+          "inicio": 13.549,
+          "fin": 13.851
+        },
+        {
+          "texto": "by",
+          "inicio": 13.897,
+          "fin": 14.001
+        },
+        {
+          "texto": "its",
+          "inicio": 14.059,
+          "fin": 14.164
+        },
+        {
+          "texto": "Beta",
+          "inicio": 14.222,
+          "fin": 14.443
+        },
+        {
+          "texto": "gain",
+          "inicio": 14.489,
+          "fin": 14.721
+        },
+        {
+          "texto": "of",
+          "inicio": 14.93,
+          "fin": 15.058
+        },
+        {
+          "texto": "up",
+          "inicio": 15.116,
+          "fin": 15.197
+        },
+        {
+          "texto": "to",
+          "inicio": 15.255,
+          "fin": 15.313
+        },
+        {
+          "texto": "300",
+          "inicio": 15.406,
+          "fin": 15.94
+        },
+        {
+          "texto": "times.",
+          "inicio": 15.987,
+          "fin": 16.811
+        }
+      ]
+    },
+    {
+      "id": "cierre",
+      "archivo": "voz/en/cierre.mp3",
+      "duracion": 6.919546,
+      "hash": "246b75312367726f86abcdd17d1bba55ecd3f75e",
+      "palabras": [
+        {
+          "texto": "That's",
+          "inicio": 0,
+          "fin": 0.29
+        },
+        {
+          "texto": "why",
+          "inicio": 0.325,
+          "fin": 0.453
+        },
+        {
+          "texto": "the",
+          "inicio": 0.511,
+          "fin": 0.58
+        },
+        {
+          "texto": "transistor",
+          "inicio": 0.627,
+          "fin": 1.242
+        },
+        {
+          "texto": "works",
+          "inicio": 1.3,
+          "fin": 1.556
+        },
+        {
+          "texto": "as",
+          "inicio": 1.602,
+          "fin": 1.683
+        },
+        {
+          "texto": "both",
+          "inicio": 1.741,
+          "fin": 1.916
+        },
+        {
+          "texto": "a",
+          "inicio": 1.962,
+          "fin": 1.985
+        },
+        {
+          "texto": "switch",
+          "inicio": 2.055,
+          "fin": 2.392
+        },
+        {
+          "texto": "and",
+          "inicio": 2.473,
+          "fin": 2.763
+        },
+        {
+          "texto": "an",
+          "inicio": 2.821,
+          "fin": 2.891
+        },
+        {
+          "texto": "amplifier.",
+          "inicio": 2.937,
+          "fin": 3.634
+        },
+        {
+          "texto": "Billions",
+          "inicio": 4.075,
+          "fin": 4.528
+        },
+        {
+          "texto": "of",
+          "inicio": 4.574,
+          "fin": 4.632
+        },
+        {
+          "texto": "them",
+          "inicio": 4.69,
+          "fin": 4.853
+        },
+        {
+          "texto": "make",
+          "inicio": 4.923,
+          "fin": 5.097
+        },
+        {
+          "texto": "up",
+          "inicio": 5.143,
+          "fin": 5.236
+        },
+        {
+          "texto": "every",
+          "inicio": 5.329,
+          "fin": 5.608
+        },
+        {
+          "texto": "modern",
+          "inicio": 5.666,
+          "fin": 5.944
+        },
+        {
+          "texto": "processor.",
+          "inicio": 5.979,
+          "fin": 6.92
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enciclopedia 3D de Electrónica — Guía Técnica, Esquemáticos y Modelos CAD</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --bg: #070b12;
+      --bg-card: rgba(12, 19, 31, 0.88);
+      --bg-card-2: rgba(16, 26, 42, 0.75);
+      --grid: #111e32;
+      --texto: #e8f1ff;
+      --tenue: #8a9db8;
+      --cian: #3de0ff;
+      --ambar: #ffb547;
+      --rojo: #ff5c5c;
+      --verde: #2ee59d;
+      --borde: rgba(61, 224, 255, 0.22);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(circle at 50% 0%, rgba(61, 224, 255, 0.10), transparent 55%),
+        linear-gradient(to right, var(--grid) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+      background-size: 100% 100%, 44px 44px, 44px 44px;
+      color: var(--texto);
+      font-family: 'Inter', system-ui, sans-serif;
+      line-height: 1.6;
+    }
+    code, pre, .mono { font-family: 'JetBrains Mono', monospace; }
+    a { color: var(--cian); text-decoration: none; }
+
+    /* Barra superior y selector de episodios */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(7, 11, 18, 0.86);
+      border-bottom: 1px solid var(--borde);
+      padding: 14px 28px;
+    }
+    .nav-wrap {
+      max-width: 1380px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: -0.5px;
+    }
+    .brand-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--cian);
+      box-shadow: 0 0 14px var(--cian);
+    }
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .nav-pill {
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--texto);
+      background: rgba(61, 224, 255, 0.08);
+      border: 1px solid rgba(61, 224, 255, 0.2);
+      transition: all 0.2s;
+    }
+    .nav-pill:hover, .nav-pill.active {
+      background: rgba(61, 224, 255, 0.2);
+      border-color: var(--cian);
+      box-shadow: 0 0 16px rgba(61, 224, 255, 0.25);
+    }
+
+    .container {
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: 36px 24px 90px;
+    }
+
+    /* Barra de episodios del canal */
+    .ep-bar {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      margin-bottom: 32px;
+    }
+    .ep-chip {
+      flex-shrink: 0;
+      padding: 10px 18px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      background: var(--bg-card);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--tenue);
+    }
+    .ep-chip.activo {
+      border-color: var(--cian);
+      color: var(--texto);
+      background: linear-gradient(135deg, rgba(61,224,255,0.16), rgba(12,19,31,0.92));
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: center;
+      margin-bottom: 48px;
+    }
+    @media (max-width: 980px) {
+      .hero, .grid-2, .visor-layout { grid-template-columns: 1fr !important; }
+    }
+    .tag-ep {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--cian);
+      background: rgba(61, 224, 255, 0.1);
+      border: 1px solid rgba(61, 224, 255, 0.3);
+      padding: 5px 12px;
+      border-radius: 8px;
+      margin-bottom: 14px;
+    }
+    h1 {
+      font-size: clamp(2.1rem, 4vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -1.2px;
+      line-height: 1.12;
+      margin-bottom: 16px;
+    }
+    .hero-p {
+      color: var(--tenue);
+      font-size: 1.06rem;
+      margin-bottom: 22px;
+    }
+    .specs-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+      gap: 12px;
+    }
+    .spec-box {
+      background: var(--bg-card);
+      border: 1px solid var(--borde);
+      padding: 12px 14px;
+      border-radius: 12px;
+    }
+    .spec-label {
+      font-size: 0.74rem;
+      color: var(--tenue);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .spec-val {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--ambar);
+      font-family: 'JetBrains Mono', monospace;
+      margin-top: 2px;
+    }
+    .hero-img-card {
+      background: var(--bg-card);
+      border: 1px solid var(--borde);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.55);
+    }
+    .hero-img-card img {
+      width: 100%;
+      display: block;
+    }
+    .hero-img-cap {
+      padding: 12px 18px;
+      font-size: 0.84rem;
+      color: var(--tenue);
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+
+    /* Títulos de sección */
+    .sec-header {
+      margin: 56px 0 24px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 12px;
+      border-bottom: 1px solid rgba(61, 224, 255, 0.18);
+      padding-bottom: 14px;
+    }
+    .sec-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+    }
+    .sec-sub {
+      color: var(--cian);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    /* Visor 3D Interactivo + Ficha Dinámica */
+    .visor-layout {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 24px;
+    }
+    .canvas-card {
+      background: #04070b;
+      border: 1px solid var(--borde);
+      border-radius: 22px;
+      overflow: hidden;
+      position: relative;
+      min-height: 520px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.6);
+    }
+    .visor-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 14px 16px;
+      background: rgba(7, 11, 18, 0.9);
+      border-bottom: 1px solid rgba(61, 224, 255, 0.16);
+      z-index: 5;
+    }
+    .btn-3d {
+      cursor: pointer;
+      padding: 8px 13px;
+      border-radius: 10px;
+      border: 1px solid rgba(61, 224, 255, 0.25);
+      background: rgba(14, 23, 38, 0.85);
+      color: var(--texto);
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.83rem;
+      transition: all 0.18s;
+    }
+    .btn-3d:hover, .btn-3d.active {
+      background: rgba(61, 224, 255, 0.22);
+      border-color: var(--cian);
+      color: #fff;
+      box-shadow: 0 0 14px rgba(61, 224, 255, 0.3);
+    }
+    #three-mount {
+      flex: 1;
+      width: 100%;
+      min-height: 410px;
+      cursor: grab;
+    }
+    #three-mount:active { cursor: grabbing; }
+    .visor-controls-bottom {
+      padding: 12px 18px;
+      background: rgba(7, 11, 18, 0.92);
+      border-top: 1px solid rgba(61, 224, 255, 0.16);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      font-size: 0.84rem;
+    }
+    .slider-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    input[type="range"] {
+      accent-color: var(--cian);
+      cursor: pointer;
+    }
+
+    /* Ficha lateral del componente seleccionado en el visor 3D */
+    .info-3d-card {
+      background: var(--bg-card);
+      border: 1px solid var(--borde);
+      border-radius: 22px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .info-3d-img {
+      width: 100%;
+      height: 175px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .info-3d-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--cian);
+    }
+    .info-3d-desc {
+      font-size: 0.93rem;
+      color: var(--texto);
+    }
+    .pinout-box {
+      background: rgba(4, 7, 11, 0.75);
+      border-left: 3px solid var(--ambar);
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      color: var(--texto);
+    }
+
+    /* Galería de Guía de Componentes (Foto + Descripción + Aplicación) */
+    .comp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 24px;
+    }
+    @media (max-width: 500px) {
+      .comp-grid { grid-template-columns: 1fr; }
+    }
+    .comp-card {
+      background: var(--bg-card);
+      border: 1px solid var(--borde);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .comp-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--cian);
+    }
+    .comp-card img {
+      width: 100%;
+      height: 215px;
+      object-fit: cover;
+      border-bottom: 1px solid rgba(61, 224, 255, 0.15);
+    }
+    .comp-body {
+      padding: 22px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .comp-badge-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.76rem;
+    }
+    .badge-pkg {
+      background: rgba(61, 224, 255, 0.14);
+      color: var(--cian);
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-weight: 700;
+    }
+    .badge-val {
+      color: var(--ambar);
+      font-weight: 700;
+    }
+    .comp-body h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+    .comp-body p {
+      font-size: 0.92rem;
+      color: var(--tenue);
+    }
+    .comp-list {
+      list-style: none;
+      font-size: 0.86rem;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 4px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .comp-list li strong { color: var(--texto); }
+
+    /* Laboratorio de Simulación + Esquemático */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .panel {
+      background: var(--bg-card);
+      border: 1px solid var(--borde);
+      border-radius: 20px;
+      padding: 24px;
+    }
+    .sim-row {
+      margin-bottom: 14px;
+    }
+    .sim-row label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .sim-row input[type="range"] {
+      width: 100%;
+    }
+    .sim-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .metric-pill {
+      background: rgba(4, 7, 11, 0.8);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 12px;
+      border-radius: 12px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .metric-pill .k { font-size: 0.75rem; color: var(--tenue); }
+    .metric-pill .v { font-size: 1.15rem; font-weight: 700; color: var(--cian); margin-top: 2px; }
+    .region-banner {
+      margin-top: 16px;
+      padding: 14px 18px;
+      border-radius: 12px;
+      font-weight: 800;
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.95rem;
+    }
+
+    /* Descargas Multiplataforma */
+    .dl-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 18px;
+    }
+    .dl-card {
+      background: var(--bg-card);
+      border: 1px solid var(--borde);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+    }
+    .dl-platform {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.76rem;
+      color: var(--ambar);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .dl-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-top: 2px;
+    }
+    .dl-desc {
+      font-size: 0.86rem;
+      color: var(--tenue);
+    }
+    .dl-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .btn-dl {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 9px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      background: rgba(61, 224, 255, 0.14);
+      border: 1px solid rgba(61, 224, 255, 0.35);
+      color: var(--texto);
+      transition: all 0.18s;
+    }
+    .btn-dl:hover {
+      background: var(--cian);
+      color: #04070b;
+    }
+
+    footer {
+      text-align: center;
+      padding: 36px 20px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: var(--tenue);
+      font-size: 0.88rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-wrap">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        <span>ENCICLOPEDIA 3D DE ELECTRÓNICA</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#visor-3d" class="nav-pill active">Visor 3D y Autopsia</a>
+        <a href="#guia-componentes" class="nav-pill">Guía con Fotos y Pinout</a>
+        <a href="#simulador" class="nav-pill">Esquemático y Calculadora</a>
+        <a href="#descargas" class="nav-pill">Modelos CAD / KiCad / SPICE</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Selector de Episodios del Canal -->
+    <div class="ep-bar">
+      <div class="ep-chip activo"><strong>EP. 01</strong> · El Transistor BJT (2N2222A / SOT-23 / TO-220)</div>
+      <div class="ep-chip"><strong>EP. 02 (Próximo)</strong> · El Relé Electromecánico vs. SSR (+ Diodo Flyback)</div>
+      <div class="ep-chip"><strong>EP. 03 (Próximo)</strong> · BJT vs. MOSFET de Potencia (IRFZ44N)</div>
+      <div class="ep-chip"><strong>EP. 04 (Próximo)</strong> · Capacitores MLCC, Electrolíticos y Tántalo por Dentro</div>
+      <div class="ep-chip"><strong>EP. 05 (Próximo)</strong> · El Timer NE555 a Nivel de Comparadores</div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <span class="tag-ep">Episodio #01 · Guía Oficial + Archivos CAD 3D</span>
+        <h1>El Transistor BJT (<span class="mono" style="color:var(--cian)">2N2222A</span>): Física, Autopsia 3D y Diseño Real</h1>
+        <p class="hero-p">
+          Un transistor bipolar de unión (<strong>BJT NPN</strong>) es una válvula electrónica de estado sólido sin piezas móviles.
+          Inyectando una corriente pequeña en su capa central ultra-delgada (<strong>Base</strong>, superando la barrera de potencial de <span class="mono">0.7 V</span>),
+          controlamos una corriente hasta <strong>300 veces mayor</strong> entre el <strong>Colector</strong> y el <strong>Emisor</strong>.
+        </p>
+        <div class="specs-bar">
+          <div class="spec-box">
+            <div class="spec-label">MODELO REFERENCIA</div>
+            <div class="spec-val">2N2222A</div>
+          </div>
+          <div class="spec-box">
+            <div class="spec-label">TENSIÓN V_CEO(máx)</div>
+            <div class="spec-val">40 V</div>
+          </div>
+          <div class="spec-box">
+            <div class="spec-label">CORRIENTE I_C(máx)</div>
+            <div class="spec-val">800 mA</div>
+          </div>
+          <div class="spec-box">
+            <div class="spec-label">POTENCIA P_D (TO-92)</div>
+            <div class="spec-val">625 mW</div>
+          </div>
+          <div class="spec-box">
+            <div class="spec-label">GANANCIA h_FE (β)</div>
+            <div class="spec-val">100 – 300</div>
+          </div>
+          <div class="spec-box">
+            <div class="spec-label">SATURACIÓN V_CE(sat)</div>
+            <div class="spec-val">0.3 V</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-img-card">
+        <img src="img/02_autopsia_blender.png" alt="Autopsia interna 3D de un transistor TO-92 2N2222A en Blender 5.0" />
+        <div class="hero-img-cap">
+          <span>Corte Booleano en Blender 5.0 + Modelos Oficiales KiCad 9.0</span>
+          <span class="mono" style="color:var(--cian)">Silicio Planar N⁺-P-N</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 1: VISOR 3D INTERACTIVO EN TIEMPO REAL -->
+    <div id="visor-3d" class="sec-header">
+      <div>
+        <div class="sec-sub">Inspección Interactiva WebGL · Modelos CAD Exactos en Milímetros</div>
+        <h2 class="sec-title">1. Laboratorio 3D en Vivo: Autopsia y Encapsulados Reales</h2>
+      </div>
+      <div class="mono" style="font-size:0.84rem;color:var(--tenue)">Arrastra para rotar · Rueda para zoom · Clic derecho para desplazar</div>
+    </div>
+
+    <section class="visor-layout">
+      <div class="canvas-card">
+        <div class="visor-toolbar">
+          <button class="btn-3d active" data-model="to92_autopsia">🔍 Autopsia TO-92 (Silicio N-P-N)</button>
+          <button class="btn-3d" data-model="to92">📦 TO-92 (2N2222A THT)</button>
+          <button class="btn-3d" data-model="sot23">🔬 SOT-23 (MMBT2222A SMD)</button>
+          <button class="btn-3d" data-model="to220">⚡ TO-220 (TIP31C Potencia)</button>
+          <button class="btn-3d" data-model="resistencia_axial">🟧 Resistencia 1 kΩ</button>
+          <button class="btn-3d" data-model="led5mm">🔴 LED 5 mm</button>
+          <button class="btn-3d" data-model="pulsador_6mm">🔘 Pulsador Omron 6 mm</button>
+        </div>
+
+        <div id="three-mount"></div>
+
+        <div class="visor-controls-bottom">
+          <div class="slider-group" id="autopsia-slider-wrap">
+            <label for="slider-apertura" class="mono" style="color:var(--cian)">Apertura de Carcasa Epóxica:</label>
+            <input type="range" id="slider-apertura" min="0" max="100" value="85" />
+            <span id="label-apertura" class="mono">85%</span>
+          </div>
+          <div class="slider-group">
+            <label style="cursor:pointer;display:flex;align-items:center;gap:6px;">
+              <input type="checkbox" id="chk-autorotate" checked />
+              <span>Rotación automática</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel derecho dinámico que cambia según el modelo 3D activo -->
+      <div class="info-3d-card">
+        <div>
+          <img id="info-3d-img" class="info-3d-img" src="img/02_autopsia_blender.png" alt="Vista previa del modelo seleccionado" />
+          <div style="margin-top:14px;" class="mono" id="info-3d-sub" style="color:var(--ambar);font-size:0.78rem;">CORTE BOOLEANO BLENDER 5.0 · ESCALA 1:1 mm</div>
+          <h3 class="info-3d-title" id="info-3d-title" style="margin-top:4px;">Autopsia Interna 2N2222A (TO-92)</h3>
+          <p class="info-3d-desc" id="info-3d-desc" style="margin-top:8px;">
+            Dentro del encapsulado epóxico negro descansa la paleta central del Colector (cobre estañado). Sobre ella se suelda el cristal de silicio planar epitaxial con 3 capas: Colector N (abajo), Base P ultra-delgada (medio) y Emisor N⁺ fuertemente dopado (arriba). Dos hilos de oro de 25 µm unen el chip a las patas de Base y Emisor.
+          </p>
+        </div>
+
+        <div class="pinout-box" id="info-3d-pinout">
+          <strong>Anatomía Interna:</strong><br/>
+          • <span style="color:#3de0ff">Capa Superior (N⁺):</span> Emisor de alta concentración de electrones.<br/>
+          • <span style="color:#ffb547">Capa Media (P):</span> Base de ~1 µm (barrera de 0.7 V).<br/>
+          • <span style="color:#2b95ff">Capa Inferior (N):</span> Sustrato Colector unido al leadframe.<br/>
+          • <span style="color:#ffd166">Hilos Au (25 µm):</span> Soldadura ultrasónica thermosonic.
+        </div>
+
+        <div class="dl-btns" id="info-3d-links">
+          <a class="btn-dl" href="descargas/01-transistor/to92_autopsia.glb" download>⬇ Descargar .GLB (Web/Blender)</a>
+          <a class="btn-dl" href="descargas/01-transistor/TO-92_Autopsia_Imprimible_3D.stl" download>⬇ Descargar .STL (Impresión 3D)</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: GUÍA VISUAL DE CADA COMPONENTE Y SUS VARIACIONES -->
+    <div id="guia-componentes" class="sec-header">
+      <div>
+        <div class="sec-sub">Enciclopedia Visual · Qué es cada pieza, cómo identificarla y cómo no quemarla</div>
+        <h2 class="sec-title">2. Guía Fotográfica y Técnica de Componentes y Encapsulados</h2>
+      </div>
+    </div>
+
+    <section class="comp-grid">
+      <!-- Card 1: Transistor TO-92 2N2222A -->
+      <article class="comp-card">
+        <img src="img/01_intro_to92.png" alt="Transistor TO-92 2N2222A en placa PCB" />
+        <div class="comp-body">
+          <div class="comp-badge-row">
+            <span class="badge-pkg">ENCAPSULADO TO-92 (THT)</span>
+            <span class="badge-val">2N2222A / P2N2222A</span>
+          </div>
+          <h3>Transistor Bipolar NPN de Señal y Conmutación</h3>
+          <p>
+            El estándar universal para prototipos en protoboard y placas de agujero pasante (Through-Hole). Permite conmutar cargas de hasta <strong>800 mA</strong> (relés, tiras de LEDs pequeñas, buzzers, motores DC pequeños) desde un microcontrolador de 3.3 V o 5 V.
+          </p>
+          <ul class="comp-list">
+            <li><strong>⚠️ Trampa clásica de Pinout:</strong> Mirando la cara plana de frente con las patas hacia abajo, el <code>2N2222A</code> / <code>PN2222A</code> estándar es <strong>1: Emisor · 2: Base · 3: Colector (E-B-C)</strong>, mientras que el <code>P2N2222A</code> o el <code>BC547</code> son <strong>C-B-E</strong>. Verifica siempre con el multímetro en modo diodo.</li>
+            <li><strong>Prueba con Multímetro:</strong> Punta roja en Base y negra en Emisor o Colector debe marcar <code>~0.65 V – 0.72 V</code>.</li>
+            <li><strong>Límite térmico:</strong> <code>625 mW</code> máx. al aire libre ($R_{\theta JA} = 200\,^\circ\text{C/W}$).</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Card 2: Autopsia del Silicio N-P-N -->
+      <article class="comp-card">
+        <img src="img/02_autopsia_blender.png" alt="Estructura interna del cristal de silicio N-P-N" />
+        <div class="comp-body">
+          <div class="comp-badge-row">
+            <span class="badge-pkg">FÍSICA DE SEMICONDUCTORES</span>
+            <span class="badge-val">UNIÓN N⁺ – P – N</span>
+          </div>
+          <h3>¿Por qué amplifica? El Secreto de la Base Delgada</h3>
+          <p>
+            Un transistor NPN <strong>no son simplemente dos diodos unidos espalda con espalda</strong>. Su funcionamiento depende de una asimetría física deliberada en el cristal de silicio:
+          </p>
+          <ul class="comp-list">
+            <li><strong>1. Emisor fuertemente dopado ($N^+$):</strong> Inyecta una avalancha masiva de electrones libres cuando la unión Base-Emisor supera <code>0.7 V</code>.</li>
+            <li><strong>2. Base ultra-delgada y débilmente dopada ($P$):</strong> Al medir apenas micras de espesor, menos del <code>1%</code> de los electrones se recombinan en la base ($I_B$ pequeña).</li>
+            <li><strong>3. Colector amplio ($N$):</strong> El <code>99%</code> restante de los electrones es barrido por el campo eléctrico hacia el colector ($I_C = \beta \cdot I_B$).</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Card 3: Variaciones TO-92 vs SOT-23 vs TO-220 -->
+      <article class="comp-card">
+        <img src="img/frame_cierre.png" alt="Comparativa de encapsulados TO-92, SOT-23 y TO-220" />
+        <div class="comp-body">
+          <div class="comp-badge-row">
+            <span class="badge-pkg">FAMILIA DE ENCAPSULADOS</span>
+            <span class="badge-val">THT · SMD · POTENCIA</span>
+          </div>
+          <h3>Variaciones Reales: ¿Cuál elegir en tu PCB?</h3>
+          <p>
+            El mismo principio físico se fabrica en tres formatos mecánicos según la disipación de calor y el método de ensamblaje:
+          </p>
+          <ul class="comp-list">
+            <li><strong><code>TO-92</code> (2N2222A):</strong> Montaje THT para prototipos manuales. Soporta <code>800 mA</code> y <code>625 mW</code>.</li>
+            <li><strong><code>SOT-23</code> (MMBT2222A):</strong> Contiene exactamente la misma pastilla de silicio que el 2N2222A pero en montaje superficial (SMD, código <code>1P</code>). Ideal para PCBs compactas (<code>350 mW</code>).</li>
+            <li><strong><code>TO-220</code> (TIP31C / TIP120 / IRFZ44N):</strong> Incorpora una aleta metálica conectada al Colector para atornillar a un disipador de aluminio y manejar varios amperios.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Card 4: Circuito Práctico y Componentes Auxiliares -->
+      <article class="comp-card">
+        <img src="img/frame_circuito.png" alt="Circuito práctico de conmutación con 2N2222A, resistencia 1k, pulsador y LED" />
+        <div class="comp-body">
+          <div class="comp-badge-row">
+            <span class="badge-pkg">DISEÑO DE CIRCUITO</span>
+            <span class="badge-val">R1 1 kΩ · LED 5mm · SW1</span>
+          </div>
+          <h3>Componentes del Circuito de Conmutación</h3>
+          <p>
+            Para usar el transistor como un interruptor perfecto que no se caliente, cada componente cumple una misión exacta:
+          </p>
+          <ul class="comp-list">
+            <li><strong>Resistencia de Base ($R_1 = 1\text{ k}\Omega$, Marrón-Negro-Rojo-Oro):</strong> Limita la corriente que entra a la base ($I_B = (9\text{ V} - 0.7\text{ V})/1\text{ k}\Omega = 8.3\text{ mA}$). <strong>Sin ella, la unión Base-Emisor actúa como un diodo en cortocircuito y se funde al instante.</strong></li>
+            <li><strong>LED Rojo $5\text{ mm}$ ($V_F \approx 2.0\text{ V}$, $I_F = 20\text{ mA}$):</strong> Carga visual en el colector.</li>
+            <li><strong>Pulsador Táctil $6\times 6\text{ mm}$ (Omron B3F):</strong> Cierra el lazo de control hacia la base.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Card 5: Las 3 Regiones del Datasheet -->
+      <article class="comp-card">
+        <img src="img/frame_regiones.png" alt="Curvas del datasheet Ic vs Vce mostrando Corte, Saturación y Región Activa" />
+        <div class="comp-body">
+          <div class="comp-badge-row">
+            <span class="badge-pkg">LECTURA DE DATASHEET</span>
+            <span class="badge-val">CURVAS I_C vs V_CE</span>
+          </div>
+          <h3>Corte, Saturación y Región Activa</h3>
+          <p>
+            Todo ingeniero debe distinguir en qué zona de las curvas del datasheet está trabajando su transistor:
+          </p>
+          <ul class="comp-list">
+            <li><strong>1. Corte ($V_{BE} &lt; 0.7\text{ V}$):</strong> $I_B = 0$, interruptor abierto. El colector soporta hasta $V_{CEO} = 40\text{ V}$ sin conducir.</li>
+            <li><strong>2. Saturación ($I_B \ge I_C / 10$):</strong> Interruptor totalmente cerrado. La caída Colector-Emisor baja a $V_{CE(\text{sat})} \approx 0.2\text{–}0.3\text{ V}$, por lo que casi no disipa calor ($P_D = V_{CE} \cdot I_C$).</li>
+            <li><strong>3. Región Activa ($I_C = \beta \cdot I_B$):</strong> Zona de amplificación lineal (audio/sensores). ¡Cuidado! Aquí $V_{CE}$ e $I_C$ son altos a la vez y el transistor se calienta.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Card 6: Símbolo Esquemático y Reglas de Protección -->
+      <article class="comp-card">
+        <img src="img/03_simbolo_partes.png" alt="Símbolo esquemático NPN con Base, Colector y Emisor" />
+        <div class="comp-body">
+          <div class="comp-badge-row">
+            <span class="badge-pkg">SIMBOLOGÍA Y PROTECCIÓN</span>
+            <span class="badge-val">ESTÁNDAR IEEE / IEC</span>
+          </div>
+          <h3>Cómo Leer el Símbolo y Proteger el Colector</h3>
+          <p>
+            En el símbolo esquemático, <strong>la flecha siempre está en el Emisor</strong> y apunta en el sentido convencional de la corriente cuando la unión conduce:
+          </p>
+          <ul class="comp-list">
+            <li><strong>NPN (Flecha sale — "No Penetra"):</strong> La carga se coloca entre $+V_{CC}$ y el Colector (configuración <em>Low-Side Switch</em>), con el Emisor directo a GND.</li>
+            <li><strong>Regla del Diodo Flyback:</strong> Si conmutas un relé, solenoide o motor, coloca un diodo <code>1N4007</code> o <code>1N5819</code> en antiparalelo con la bobina; de lo contrario, el pico de extra-corriente al apagar superará los <code>40 V</code> y perforará el silicio.</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <!-- SECCIÓN 3: ESQUEMÁTICO Y CALCULADORA INTERACTIVA EN VIVO -->
+    <div id="simulador" class="sec-header">
+      <div>
+        <div class="sec-sub">Diseño Asistido · Ecuaciones Reales de la Hoja de Datos 2N2222A</div>
+        <h2 class="sec-title">3. Calculadora y Simulador Interactivo de Punto de Operación (Q)</h2>
+      </div>
+    </div>
+
+    <section class="grid-2">
+      <div class="panel">
+        <h3 style="margin-bottom:14px;">Ajusta los Valores de tu Circuito</h3>
+
+        <div class="sim-row">
+          <label><span>Voltaje de Fuente ($V_{CC}$)</span><span id="val-vcc" class="mono" style="color:var(--cian)">9.0 V</span></label>
+          <input type="range" id="sim-vcc" min="3.3" max="24" step="0.1" value="9.0" />
+        </div>
+
+        <div class="sim-row">
+          <label><span>Voltaje de Control en Base ($V_{IN}$ / GPIO)</span><span id="val-vin" class="mono" style="color:var(--cian)">5.0 V</span></label>
+          <input type="range" id="sim-vin" min="0" max="12" step="0.1" value="5.0" />
+        </div>
+
+        <div class="sim-row">
+          <label><span>Resistencia de Base ($R_B$)</span><span id="val-rb" class="mono" style="color:var(--ambar)">1000 Ω (1.0 kΩ)</span></label>
+          <input type="range" id="sim-rb" min="220" max="47000" step="100" value="1000" />
+        </div>
+
+        <div class="sim-row">
+          <label><span>Resistencia de Carga en Colector ($R_C$)</span><span id="val-rc" class="mono" style="color:var(--ambar)">330 Ω</span></label>
+          <input type="range" id="sim-rc" min="47" max="4700" step="10" value="330" />
+        </div>
+
+        <div class="sim-row">
+          <label><span>Ganancia DC $\beta$ ($h_{FE}$ del lote)</span><span id="val-beta" class="mono">180</span></label>
+          <input type="range" id="sim-beta" min="80" max="300" step="5" value="180" />
+        </div>
+
+        <div class="sim-metrics">
+          <div class="metric-pill">
+            <div class="k">CORRIENTE DE BASE (I_B)</div>
+            <div class="v" id="out-ib">4.30 mA</div>
+          </div>
+          <div class="metric-pill">
+            <div class="k">CORRIENTE COLECTOR (I_C)</div>
+            <div class="v" id="out-ic" style="color:var(--ambar)">26.36 mA</div>
+          </div>
+          <div class="metric-pill">
+            <div class="k">TENSIÓN COLECTOR-EMISOR (V_CE)</div>
+            <div class="v" id="out-vce">0.30 V</div>
+          </div>
+          <div class="metric-pill">
+            <div class="k">POTENCIA DISIPADA (P_D)</div>
+            <div class="v" id="out-pd">7.9 mW / 625 mW</div>
+          </div>
+        </div>
+
+        <div id="out-region" class="region-banner">
+          ESTADO: SATURACIÓN (Interruptor Cerrado Eficiente · V_CE(sat) ≈ 0.3 V)
+        </div>
+      </div>
+
+      <!-- Esquemático SVG Interactivo con valores en vivo -->
+      <div class="panel" style="display:flex;flex-direction:column;justify-content:space-between;">
+        <h3 style="margin-bottom:10px;">Esquemático Dinámico (Low-Side NPN Switch)</h3>
+        <svg viewBox="0 0 600 420" width="100%" style="background:#05080e;border-radius:14px;border:1px solid rgba(61,224,255,0.16);">
+          <!-- Alimentación +VCC -->
+          <circle cx="380" cy="40" r="6" fill="#ffb547" />
+          <text x="395" y="45" fill="#ffb547" font-family="JetBrains Mono" font-weight="700" font-size="16" id="svg-vcc">+VCC = 9.0 V</text>
+          <line x1="380" y1="46" x2="380" y2="85" stroke="#8a9db8" stroke-width="3.5" />
+
+          <!-- Resistencia de Colector R_C -->
+          <rect x="364" y="85" width="32" height="70" rx="4" fill="#121e30" stroke="#ffb547" stroke-width="3" />
+          <text x="408" y="125" fill="#e8f1ff" font-family="JetBrains Mono" font-size="14" id="svg-rc">R_C = 330 Ω</text>
+
+          <!-- Línea hacia Colector -->
+          <line x1="380" y1="155" x2="380" y2="210" stroke="#ffb547" stroke-width="3.5" />
+          <text x="392" y="192" fill="#ffb547" font-family="JetBrains Mono" font-size="13" id="svg-ic">I_C ↓</text>
+
+          <!-- Símbolo NPN Q1 -->
+          <circle cx="355" cy="250" r="46" fill="rgba(61,224,255,0.05)" stroke="#3de0ff" stroke-width="2.5" />
+          <line x1="335" y1="220" x2="335" y2="280" stroke="#e8f1ff" stroke-width="6" />
+          <line x1="335" y1="236" x2="380" y2="210" stroke="#e8f1ff" stroke-width="3.5" />
+          <line x1="335" y1="264" x2="380" y2="292" stroke="#e8f1ff" stroke-width="3.5" />
+          <polygon points="380,292 365,289 372,278" fill="#3de0ff" />
+          <text x="412" y="255" fill="#3de0ff" font-family="JetBrains Mono" font-weight="700" font-size="15">Q1 2N2222A</text>
+
+          <!-- Rama de Base y R_B -->
+          <line x1="250" y1="250" x2="335" y2="250" stroke="#3de0ff" stroke-width="3.5" />
+          <rect x="160" y="234" width="90" height="32" rx="4" fill="#121e30" stroke="#3de0ff" stroke-width="3" />
+          <text x="165" y="222" fill="#e8f1ff" font-family="JetBrains Mono" font-size="14" id="svg-rb">R_B = 1.0 kΩ</text>
+          <line x1="90" y1="250" x2="160" y2="250" stroke="#3de0ff" stroke-width="3.5" />
+          <circle cx="90" cy="250" r="6" fill="#3de0ff" />
+          <text x="35" y="280" fill="#3de0ff" font-family="JetBrains Mono" font-weight="700" font-size="15" id="svg-vin">V_IN = 5.0 V</text>
+
+          <!-- Emisor a GND -->
+          <line x1="380" y1="292" x2="380" y2="355" stroke="#8a9db8" stroke-width="3.5" />
+          <line x1="356" y1="355" x2="404" y2="355" stroke="#e8f1ff" stroke-width="3.5" />
+          <line x1="364" y1="364" x2="396" y2="364" stroke="#e8f1ff" stroke-width="3" />
+          <line x1="372" y1="373" x2="388" y2="373" stroke="#e8f1ff" stroke-width="2.5" />
+          <text x="412" y="368" fill="#8a9db8" font-family="JetBrains Mono" font-size="14">GND (0 V)</text>
+        </svg>
+        <div class="mono" style="font-size:0.8rem;color:var(--tenue);margin-top:10px;">
+          Fórmula de Saturación Segura: <strong>R_B ≤ (V_IN − 0.7 V) / (I_C / 10)</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 4: DESCARGAS MULTIPLATAFORMA -->
+    <div id="descargas" class="sec-header">
+      <div>
+        <div class="sec-sub">Archivos Listos para Producción · CAD, Simulación y Código</div>
+        <h2 class="sec-title">4. Descargas para las Plataformas Más Populares</h2>
+      </div>
+    </div>
+
+    <section class="dl-grid">
+      <div class="dl-card">
+        <div>
+          <div class="dl-platform">KiCad 9.0 / Altium / EasyEDA / Fusion 360</div>
+          <div class="dl-title">Modelos CAD .STEP (ISO-10303) y .WRL</div>
+          <p class="dl-desc">Geometría CAD exacta en milímetros para asignar a footprints en diseño de PCBs profesionales y ensambles mecánicos.</p>
+        </div>
+        <div class="dl-btns">
+          <a class="btn-dl" href="descargas/01-transistor/TO-92_2N2222A.step" download>⬇ TO-92 (.STEP)</a>
+          <a class="btn-dl" href="descargas/01-transistor/SOT-23_MMBT2222A.step" download>⬇ SOT-23 (.STEP)</a>
+          <a class="btn-dl" href="descargas/01-transistor/TO-220_TIP31C.step" download>⬇ TO-220 (.STEP)</a>
+          <a class="btn-dl" href="descargas/01-transistor/Circuito_2N2222A_KiCad9.kicad_sch" download>⬇ Esquemático KiCad 9</a>
+        </div>
+      </div>
+
+      <div class="dl-card">
+        <div>
+          <div class="dl-platform">Blender 5.0 / Three.js / Unreal / Impresión 3D</div>
+          <div class="dl-title">Modelos 3D PBR (.GLB) + Autopsia (.STL)</div>
+          <p class="dl-desc">Incluye el modelo con corte booleano de la pastilla de silicio N-P-N e hilos de oro, más versión STL lista para impresora 3D.</p>
+        </div>
+        <div class="dl-btns">
+          <a class="btn-dl" href="descargas/01-transistor/to92_autopsia.glb" download>⬇ Autopsia (.GLB)</a>
+          <a class="btn-dl" href="descargas/01-transistor/TO-92_Autopsia_Imprimible_3D.stl" download>⬇ Autopsia (.STL 3D Print)</a>
+          <a class="btn-dl" href="descargas/01-transistor/to92.glb" download>⬇ TO-92 (.GLB)</a>
+          <a class="btn-dl" href="descargas/01-transistor/sot23.glb" download>⬇ SOT-23 (.GLB)</a>
+          <a class="btn-dl" href="descargas/01-transistor/to220.glb" download>⬇ TO-220 (.GLB)</a>
+        </div>
+      </div>
+
+      <div class="dl-card">
+        <div>
+          <div class="dl-platform">LTspice / Proteus / Multisim / Ngspice</div>
+          <div class="dl-title">Simulación SPICE Oficial ON Semiconductor</div>
+          <p class="dl-desc">Esquemático nativo de LTspice (<code>.asc</code>) listo para ejecutar simulación transitoria y librería <code>.MODEL Q2N2222A</code>.</p>
+        </div>
+        <div class="dl-btns">
+          <a class="btn-dl" href="descargas/01-transistor/Circuito_2N2222A_LTspice.asc" download>⬇ Circuito LTspice (.ASC)</a>
+          <a class="btn-dl" href="descargas/01-transistor/2N2222A_ON_Semi.lib" download>⬇ Modelo SPICE (.LIB)</a>
+        </div>
+      </div>
+
+      <div class="dl-card">
+        <div>
+          <div class="dl-platform">Arduino / ESP32 / STM32 / Raspberry Pi Pico</div>
+          <div class="dl-title">Código de Conmutación y PWM (C++ / MicroPython)</div>
+          <p class="dl-desc">Ejemplos documentados con cálculo de resistencia de base para lógica de 3.3 V y 5 V y control PWM a 20 kHz.</p>
+        </div>
+        <div class="dl-btns">
+          <a class="btn-dl" href="descargas/01-transistor/Control_2N2222A_Arduino_ESP32.ino" download>⬇ Arduino / ESP32 (.INO)</a>
+          <a class="btn-dl" href="descargas/01-transistor/Control_2N2222A_MicroPython.py" download>⬇ MicroPython (.PY)</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Enciclopedia Interactiva 3D de Electrónica · Generada 100 % con Código (KiCad 9.0 + Blender 5.0 + Three.js + Remotion) · Datos verificados con Datasheet ON Semiconductor 2N2222A
+  </footer>
+
+  <!-- Script del Visor 3D Interactivo (Three.js + GLTFLoader + OrbitControls) y Simulador -->
+  <script type="module">
+    import * as THREE from "three";
+    import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+    import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+
+    const CATALOGO_INFO = {
+      to92_autopsia: {
+        sub: "CORTE BOOLEANO BLENDER 5.0 · ESCALA 1:1 mm",
+        title: "Autopsia Interna 2N2222A (TO-92)",
+        desc: "Dentro del encapsulado epóxico negro descansa la paleta central del Colector (cobre estañado). Sobre ella se suelda el cristal de silicio planar epitaxial con 3 capas: Colector N (abajo), Base P ultra-delgada (medio) y Emisor N⁺ fuertemente dopado (arriba). Dos hilos de oro de 25 µm unen el chip a las patas.",
+        pinout: "<strong>Anatomía Interna:</strong><br/>• <span style='color:#3de0ff'>Capa Superior (N⁺):</span> Emisor de alta concentración.<br/>• <span style='color:#ffb547'>Capa Media (P):</span> Base de ~1 µm (barrera 0.7 V).<br/>• <span style='color:#2b95ff'>Capa Inferior (N):</span> Sustrato Colector.<br/>• <span style='color:#ffd166'>Hilos Au (25 µm):</span> Enlace a pines E y B.",
+        img: "img/02_autopsia_blender.png",
+        escala: 0.42,
+        links: [
+          { txt: "⬇ Autopsia (.GLB)", href: "descargas/01-transistor/to92_autopsia.glb" },
+          { txt: "⬇ Imprimible 3D (.STL)", href: "descargas/01-transistor/TO-92_Autopsia_Imprimible_3D.stl" },
+        ],
+      },
+      to92: {
+        sub: "ENCAPSULADO THROUGH-HOLE · PASO 1.27 mm / 2.54 mm",
+        title: "Encapsulado TO-92 (2N2222A / PN2222A)",
+        desc: "Encapsulado clásico moldeado en resina epóxica para montaje de agujero pasante (THT). Ideal para protoboards, aprendizaje y conmutación de hasta 800 mA y 625 mW.",
+        pinout: "<strong>Pinout (Cara plana de frente, patas abajo):</strong><br/>• <strong>2N2222A / PN2222A:</strong> 1: Emisor · 2: Base · 3: Colector<br/>• <strong>P2N2222A / BC547:</strong> 1: Colector · 2: Base · 3: Emisor",
+        img: "img/01_intro_to92.png",
+        escala: 0.42,
+        links: [
+          { txt: "⬇ Modelo CAD (.STEP)", href: "descargas/01-transistor/TO-92_2N2222A.step" },
+          { txt: "⬇ Modelo KiCad (.WRL)", href: "descargas/01-transistor/TO-92_2N2222A.wrl" },
+          { txt: "⬇ Modelo Web (.GLB)", href: "descargas/01-transistor/to92.glb" },
+        ],
+      },
+      sot23: {
+        sub: "MONTAJE SUPERFICIAL (SMD) · 2.9 × 1.3 × 1.0 mm",
+        title: "Encapsulado SMD SOT-23 (MMBT2222A)",
+        desc: "Aloja exactamente el mismo chip de silicio que el 2N2222A pero en una fracción de su volumen para soldadura superficial automatizada en PCBs modernas.",
+        pinout: "<strong>Pinout Estándar SOT-23 (Marca 1P):</strong><br/>• <strong>Pin 1 (Izquierda abajo):</strong> Base (B)<br/>• <strong>Pin 2 (Derecha abajo):</strong> Emisor (E)<br/>• <strong>Pin 3 (Arriba centro):</strong> Colector (C) · P_D(máx) = 350 mW",
+        img: "img/frame_cierre.png",
+        escala: 1.15,
+        links: [
+          { txt: "⬇ Modelo CAD (.STEP)", href: "descargas/01-transistor/SOT-23_MMBT2222A.step" },
+          { txt: "⬇ Modelo KiCad (.WRL)", href: "descargas/01-transistor/SOT-23_MMBT2222A.wrl" },
+          { txt: "⬇ Modelo Web (.GLB)", href: "descargas/01-transistor/sot23.glb" },
+        ],
+      },
+      to220: {
+        sub: "ENCAPSULADO DE POTENCIA · DISIPADOR METÁLICO",
+        title: "Encapsulado TO-220-3 (TIP31C / IRFZ44N)",
+        desc: "Diseñado para corrientes de varios amperios y alta disipación térmica. La lengüeta metálica trasera transfiere el calor directamente a un disipador de aluminio.",
+        pinout: "<strong>Pinout TO-220 BJT (Frente hacia ti):</strong><br/>• <strong>Pin 1:</strong> Base (B) · <strong>Pin 2:</strong> Colector (C) · <strong>Pin 3:</strong> Emisor (E)<br/>• ⚠️ <strong>Aleta metálica:</strong> Conectada eléctricamente al Pin 2 (Colector).",
+        img: "img/frame_cierre.png",
+        escala: 0.19,
+        links: [
+          { txt: "⬇ Modelo CAD (.STEP)", href: "descargas/01-transistor/TO-220_TIP31C.step" },
+          { txt: "⬇ Modelo KiCad (.WRL)", href: "descargas/01-transistor/TO-220_TIP31C.wrl" },
+          { txt: "⬇ Modelo Web (.GLB)", href: "descargas/01-transistor/to220.glb" },
+        ],
+      },
+      resistencia_axial: {
+        sub: "RESISTENCIA AXIAL DIN0207 · 1/4 W (±5%)",
+        title: "Resistencia Limitadora de Base (1 kΩ)",
+        desc: "Componente pasivo indispensable en la base de todo transistor BJT para fijar la corriente I_B según la Ley de Ohm y evitar que la unión Base-Emisor se destruya.",
+        pinout: "<strong>Código de 4 Bandas (1 kΩ):</strong><br/>• 1ª Banda: Marrón (1) · 2ª Banda: Negro (0)<br/>• Multiplicador: Rojo (×100) · Tolerancia: Dorado (±5%)",
+        img: "img/frame_circuito.png",
+        escala: 0.36,
+        links: [
+          { txt: "⬇ Modelo 3D con Bandas (.GLB)", href: "descargas/01-transistor/resistencia_axial.glb" },
+        ],
+      },
+      led5mm: {
+        sub: "OPTOELECTRÓNICA · DIODO EMISOR DE LUZ THT 5 mm",
+        title: "Diodo LED Rojo Difuso de 5 mm",
+        desc: "Emite luz monocromática cuando se polariza en directa superando su tensión umbral (V_F ≈ 1.8 V – 2.1 V para color rojo). Corriente nominal de prueba: 15 a 20 mA.",
+        pinout: "<strong>Identificación de Polaridad:</strong><br/>• <strong>Ánodo (+):</strong> Pata más larga.<br/>• <strong>Cátodo (−):</strong> Pata más corta y chaflán plano en la base del lente.",
+        img: "img/frame_circuito.png",
+        escala: 0.30,
+        links: [
+          { txt: "⬇ Modelo 3D (.GLB)", href: "descargas/01-transistor/led5mm.glb" },
+        ],
+      },
+      pulsador_6mm: {
+        sub: "INTERRUPTOR MOMÉNTANEO TÁCTIL · 6 × 6 × 5 mm",
+        title: "Pulsador Táctil Omron B3F (SPST-NO)",
+        desc: "Interruptor mecánico normalmente abierto (NO) de acción momentánea. Al presionar el émbolo central, una lámina metálica tipo domo cierra el contacto con un clic táctil.",
+        pinout: "<strong>Conexión Interna de 4 Pines:</strong><br/>• Los pines están puenteados internamente por pares (1 con 2, y 3 con 4). Conectar en esquinas opuestas garantiza usar siempre el contacto conmutado.",
+        img: "img/frame_circuito.png",
+        escala: 0.42,
+        links: [
+          { txt: "⬇ Modelo 3D (.GLB)", href: "descargas/01-transistor/pulsador_6mm.glb" },
+        ],
+      },
+    };
+
+    const mount = document.getElementById("three-mount");
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color("#04070b");
+
+    const camera = new THREE.PerspectiveCamera(35, mount.clientWidth / mount.clientHeight, 0.1, 100);
+    camera.position.set(3.2, 2.8, 4.8);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(mount.clientWidth, mount.clientHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.25;
+    mount.appendChild(renderer.domElement);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.target.set(0, 1.2, 0);
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 1.6;
+
+    // Iluminación de estudio (borde cian + ámbar + luz principal)
+    scene.add(new THREE.AmbientLight("#ffffff", 0.6));
+    const dirLight = new THREE.DirectionalLight("#ffffff", 2.8);
+    dirLight.position.set(-4, 8, 6);
+    scene.add(dirLight);
+    const cyanSpot = new THREE.PointLight("#3de0ff", 18, 20);
+    cyanSpot.position.set(5, 4, -5);
+    scene.add(cyanSpot);
+    const amberSpot = new THREE.PointLight("#ffb547", 14, 20);
+    amberSpot.position.set(-5, 3, -4);
+    scene.add(amberSpot);
+
+    // Base tipo PCB de referencia
+    const grid = new THREE.GridHelper(10, 20, "#3de0ff", "#112238");
+    scene.add(grid);
+
+    const loader = new GLTFLoader();
+    let grupoActual = null;
+    let mallaTapaAutopsia = null;
+
+    const matCobre = new THREE.MeshStandardMaterial({ color: "#c7834a", metalness: 0.95, roughness: 0.25 });
+    const matEstano = new THREE.MeshStandardMaterial({ color: "#d9dee5", metalness: 0.95, roughness: 0.22 });
+    const matEpoxi = new THREE.MeshStandardMaterial({ color: "#151922", metalness: 0.1, roughness: 0.36 });
+    const matTapa = new THREE.MeshPhysicalMaterial({ color: "#181d26", roughness: 0.3, transparent: true, opacity: 0.35 });
+    const matSilicioN = new THREE.MeshStandardMaterial({ color: "#1f9eff", emissive: "#0d6efd", emissiveIntensity: 0.7, roughness: 0.2 });
+    const matSilicioP = new THREE.MeshStandardMaterial({ color: "#ff9f1c", emissive: "#ff8c00", emissiveIntensity: 0.9, roughness: 0.2 });
+    const matSilicioNPlus = new THREE.MeshStandardMaterial({ color: "#3de0ff", emissive: "#00e5ff", emissiveIntensity: 1.1, roughness: 0.18 });
+    const matOro = new THREE.MeshStandardMaterial({ color: "#ffd166", metalness: 1, roughness: 0.15, emissive: "#ffb703", emissiveIntensity: 0.35 });
+
+    function actualizarTapaAutopsia(apertura01) {
+      if (!mallaTapaAutopsia) return;
+      mallaTapaAutopsia.position.set(apertura01 * 2.1, apertura01 * 0.65, apertura01 * 2.6);
+      mallaTapaAutopsia.rotation.set(apertura01 * -0.18, apertura01 * 0.32, 0);
+      matTapa.opacity = Math.max(0.18, 1 - apertura01 * 0.72);
+    }
+
+    function cargarModelo(id) {
+      const info = CATALOGO_INFO[id];
+      if (!info) return;
+
+      document.getElementById("info-3d-sub").textContent = info.sub;
+      document.getElementById("info-3d-title").textContent = info.title;
+      document.getElementById("info-3d-desc").textContent = info.desc;
+      document.getElementById("info-3d-pinout").innerHTML = info.pinout;
+      document.getElementById("info-3d-img").src = info.img;
+      document.getElementById("autopsia-slider-wrap").style.display = id === "to92_autopsia" ? "flex" : "none";
+
+      const linksEl = document.getElementById("info-3d-links");
+      linksEl.innerHTML = info.links
+        .map((l) => `<a class="btn-dl" href="${l.href}" download>${l.txt}</a>`)
+        .join("");
+
+      if (grupoActual) {
+        scene.remove(grupoActual);
+        grupoActual = null;
+        mallaTapaAutopsia = null;
+      }
+
+      loader.load(`modelos/${id}.glb`, (gltf) => {
+        const root = gltf.scene;
+        root.scale.setScalar(info.escala);
+        root.traverse((ch) => {
+          if (!ch.isMesh) return;
+          const n = ch.name;
+          if (n === "Carcasa_Corte") {
+            ch.material = matTapa;
+            mallaTapaAutopsia = ch;
+          } else if (n === "Carcasa_Base" || n.startsWith("Encapsulado")) {
+            ch.material = matEpoxi;
+          } else if (n.startsWith("Pines")) {
+            ch.material = matEstano;
+          } else if (n.startsWith("Leadframe")) {
+            ch.material = matCobre;
+          } else if (n === "Die_Colector_N") {
+            ch.material = matSilicioN;
+          } else if (n === "Die_Base_P") {
+            ch.material = matSilicioP;
+          } else if (n === "Die_Emisor_NPlus") {
+            ch.material = matSilicioNPlus;
+          } else if (n.startsWith("Hilo_Oro")) {
+            ch.material = matOro;
+          }
+        });
+
+        grupoActual = root;
+        scene.add(root);
+
+        if (id === "to92_autopsia") {
+          const val = Number(document.getElementById("slider-apertura").value) / 100;
+          actualizarTapaAutopsia(val);
+        }
+      });
+    }
+
+    document.querySelectorAll(".btn-3d").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".btn-3d").forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        cargarModelo(btn.dataset.model);
+      });
+    });
+
+    const sliderApertura = document.getElementById("slider-apertura");
+    sliderApertura.addEventListener("input", (e) => {
+      const v = Number(e.target.value);
+      document.getElementById("label-apertura").textContent = `${v}%`;
+      actualizarTapaAutopsia(v / 100);
+    });
+
+    document.getElementById("chk-autorotate").addEventListener("change", (e) => {
+      controls.autoRotate = e.target.checked;
+    });
+
+    window.addEventListener("resize", () => {
+      camera.aspect = mount.clientWidth / mount.clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(mount.clientWidth, mount.clientHeight);
+    });
+
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    cargarModelo("to92_autopsia");
+    animate();
+
+    // ---------- Simulador de Punto de Operación Q (2N2222A) ----------
+    const inputs = ["sim-vcc", "sim-vin", "sim-rb", "sim-rc", "sim-beta"].map((id) => document.getElementById(id));
+    function recalcularSimulador() {
+      const vcc = Number(document.getElementById("sim-vcc").value);
+      const vin = Number(document.getElementById("sim-vin").value);
+      const rb = Number(document.getElementById("sim-rb").value);
+      const rc = Number(document.getElementById("sim-rc").value);
+      const beta = Number(document.getElementById("sim-beta").value);
+
+      document.getElementById("val-vcc").textContent = `${vcc.toFixed(1)} V`;
+      document.getElementById("val-vin").textContent = `${vin.toFixed(1)} V`;
+      document.getElementById("val-rb").textContent = `${rb} Ω (${(rb / 1000).toFixed(2)} kΩ)`;
+      document.getElementById("val-rc").textContent = `${rc} Ω`;
+      document.getElementById("val-beta").textContent = `${beta}`;
+
+      document.getElementById("svg-vcc").textContent = `+VCC = ${vcc.toFixed(1)} V`;
+      document.getElementById("svg-vin").textContent = `V_IN = ${vin.toFixed(1)} V`;
+      document.getElementById("svg-rb").textContent = `R_B = ${(rb / 1000).toFixed(2)} kΩ`;
+      document.getElementById("svg-rc").textContent = `R_C = ${rc} Ω`;
+
+      const vbe = 0.7;
+      const vceSat = 0.3;
+      let ib = 0;
+      let ic = 0;
+      let vce = vcc;
+      let estado = "";
+      let bgEstado = "";
+      let colorEstado = "";
+
+      if (vin < vbe) {
+        ib = 0;
+        ic = 0;
+        vce = vcc;
+        estado = "ESTADO: CORTE (V_IN < 0.7 V → Interruptor Abierto, I_C = 0 mA)";
+        bgEstado = "rgba(255, 92, 92, 0.16)";
+        colorEstado = "#ff5c5c";
+      } else {
+        ib = (vin - vbe) / rb; // Amperios
+        const icActiva = beta * ib;
+        const icMaxSat = (vcc - vceSat) / rc;
+        if (icActiva >= icMaxSat) {
+          ic = icMaxSat;
+          vce = vceSat;
+          estado = "ESTADO: SATURACIÓN (Interruptor Cerrado Eficiente · V_CE(sat) ≈ 0.3 V)";
+          bgEstado = "rgba(61, 224, 255, 0.16)";
+          colorEstado = "#3de0ff";
+        } else {
+          ic = icActiva;
+          vce = vcc - ic * rc;
+          estado = "ESTADO: REGIÓN ACTIVA (Amplificador Lineal · I_C = β · I_B)";
+          bgEstado = "rgba(255, 181, 71, 0.16)";
+          colorEstado = "#ffb547";
+        }
+      }
+
+      const pdMw = vce * ic * 1000;
+      document.getElementById("out-ib").textContent = `${(ib * 1000).toFixed(2)} mA`;
+      document.getElementById("out-ic").textContent = `${(ic * 1000).toFixed(2)} mA`;
+      document.getElementById("out-vce").textContent = `${vce.toFixed(2)} V`;
+      document.getElementById("out-pd").textContent = `${pdMw.toFixed(1)} mW / 625 mW`;
+      document.getElementById("out-pd").style.color = pdMw > 625 ? "#ff5c5c" : "#2ee59d";
+
+      const banner = document.getElementById("out-region");
+      if (pdMw > 625) {
+        banner.textContent = `⚠️ PELIGRO TÉRMICO: P_D = ${pdMw.toFixed(0)} mW supera el límite de 625 mW del TO-92`;
+        banner.style.background = "rgba(255, 92, 92, 0.25)";
+        banner.style.color = "#ff5c5c";
+        banner.style.border = "1px solid #ff5c5c";
+      } else {
+        banner.textContent = estado;
+        banner.style.background = bgEstado;
+        banner.style.color = colorEstado;
+        banner.style.border = `1px solid ${colorEstado}`;
+      }
+    }
+
+    inputs.forEach((el) => el.addEventListener("input", recalcularSimulador));
+    recalcularSimulador();
+  </script>
+</body>
+</html>

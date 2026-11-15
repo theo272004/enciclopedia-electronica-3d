@@ -1,0 +1,38 @@
+* ============================================================================
+* Modelo SPICE Oficial — ON Semiconductor 2N2222A / P2N2222A / MMBT2222A (NPN)
+* Compatible con: LTspice, Ngspice, Proteus, Multisim, Altium, EasyEDA, PSpice
+* Parametros clave de Datasheet:
+*   V_CEO(max) = 40 V | I_C(max) = 800 mA | P_D(max) = 625 mW (TO-92)
+*   h_FE (Beta) = 100..300 | V_CE(sat) = 0.3 V | f_T = 300 MHz
+* ============================================================================
+.MODEL Q2N2222A NPN(
++ IS=14.34E-15
++ XTI=3
++ EG=1.11
++ VAF=74.03
++ BF=255.9
++ NE=1.307
++ ISE=14.34E-15
++ IKF=0.2847
++ XTB=1.5
++ BR=6.092
++ NC=2
++ ISC=0
++ IKR=0
++ RC=1
++ CJC=7.306E-12
++ MJC=0.3416
++ VJC=0.75
++ FC=0.5
++ CJE=22.01E-12
++ MJE=0.377
++ VJE=0.75
++ TR=46.91E-9
++ TF=411.1E-12
++ ITF=0.6
++ VTF=1.7
++ XTF=3
++ RB=10
++ Vceo=40
++ Icrating=0.8
++ mfg=ON_Semiconductor)
