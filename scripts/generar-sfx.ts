@@ -96,7 +96,38 @@ function genChispa() {
   escribirWav("chispa_electrica.wav", buf);
 }
 
+// 5. Corte láser / mecánico limpio al abrir la autopsia 3D
+function genCorteLaser() {
+  const dur = 0.32;
+  const n = Math.floor(SAMPLE_RATE * dur);
+  const buf = new Float32Array(n);
+  for (let i = 0; i < n; i++) {
+    const t = i / SAMPLE_RATE;
+    const f = 1400 - 950 * Math.min(1, t / 0.18);
+    const env = Math.exp(-t * 14) * (1 - Math.exp(-t * 260));
+    const aire = (Math.random() * 2 - 1) * Math.exp(-t * 22) * 0.25;
+    buf[i] = (Math.sin(2 * Math.PI * f * t) * 0.5 + aire) * env * 0.65;
+  }
+  escribirWav("corte_laser.wav", buf);
+}
+
+// 6. Zumbido eléctrico grave sutil (hum de 60/120 Hz al energizar el circuito)
+function genHumElectrico() {
+  const dur = 1.2;
+  const n = Math.floor(SAMPLE_RATE * dur);
+  const buf = new Float32Array(n);
+  for (let i = 0; i < n; i++) {
+    const t = i / SAMPLE_RATE;
+    const fade = Math.min(1, t / 0.12) * Math.min(1, (dur - t) / 0.25);
+    const sig = Math.sin(2 * Math.PI * 60 * t) * 0.45 + Math.sin(2 * Math.PI * 120 * t) * 0.35 + Math.sin(2 * Math.PI * 180 * t) * 0.15;
+    buf[i] = sig * fade * 0.28;
+  }
+  escribirWav("hum_electrico.wav", buf);
+}
+
 genClickMecanico();
 genCotaPop();
 genWhoosh();
 genChispa();
+genCorteLaser();
+genHumElectrico();

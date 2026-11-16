@@ -26,29 +26,32 @@ const COMPONENTES: Record<EscenaId, React.FC<EscenaProps>> = {
   cierre: Cierre,
 };
 
-export const Video: React.FC<VideoProps> = ({ idioma, escenas }) => (
-  <AbsoluteFill>
-    <Fondo />
-    <TransitionSeries>
-      {escenas.map((plan, i) => {
-        const Escena = COMPONENTES[plan.id];
-        return (
-          <React.Fragment key={plan.id}>
-            {i > 0 && (
-              <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: TRANS })} />
-            )}
-            <TransitionSeries.Sequence durationInFrames={plan.frames}>
-              <Escena plan={plan} idioma={idioma} />
-              {plan.audio && (
-                <Sequence from={PRE}>
-                  <Audio src={staticFile(plan.audio)} />
-                </Sequence>
+export const Video: React.FC<VideoProps> = ({ idioma, formato, escenas }) => {
+  const esVertical = formato === "9:16";
+  return (
+    <AbsoluteFill>
+      <Fondo />
+      <TransitionSeries>
+        {escenas.map((plan, i) => {
+          const Escena = COMPONENTES[plan.id];
+          return (
+            <React.Fragment key={plan.id}>
+              {i > 0 && (
+                <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: TRANS })} />
               )}
-              <Subtitulos palabras={plan.palabras} desdeFrame={PRE} />
-            </TransitionSeries.Sequence>
-          </React.Fragment>
-        );
-      })}
-    </TransitionSeries>
-  </AbsoluteFill>
-);
+              <TransitionSeries.Sequence durationInFrames={plan.frames}>
+                <Escena plan={plan} idioma={idioma} />
+                {plan.audio && (
+                  <Sequence from={PRE}>
+                    <Audio src={staticFile(plan.audio)} />
+                  </Sequence>
+                )}
+                {esVertical && <Subtitulos palabras={plan.palabras} desdeFrame={PRE} />}
+              </TransitionSeries.Sequence>
+            </React.Fragment>
+          );
+        })}
+      </TransitionSeries>
+    </AbsoluteFill>
+  );
+};

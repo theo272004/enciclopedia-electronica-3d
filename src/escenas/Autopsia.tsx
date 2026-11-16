@@ -1,6 +1,8 @@
+import { Audio } from "@remotion/media";
 import { ThreeCanvas } from "@remotion/three";
 import React from "react";
-import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, interpolate, Sequence, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { CotaSenal } from "../componentes/HudIngenieria";
 import { C, clamp, INTER, MONO } from "../estilo";
 import { DATASHEET_2N2222A, MARCAS, TEXTOS } from "../guion";
 import { Camara } from "../three/Camara";
@@ -21,13 +23,16 @@ export const Autopsia: React.FC<EscenaProps> = ({ plan, idioma }) => {
   const hilosF = marcaFrame(plan, M.hilos, Math.round(plan.frames * 0.58));
   const barreraF = marcaFrame(plan, M.barrera, Math.round(plan.frames * 0.75));
 
-  const apertura = spring({ frame: frame - abrirF, fps, config: { damping: 18, stiffness: 85 } });
+  const apertura = spring({ frame: frame - abrirF, fps, config: { damping: 16, stiffness: 95 } });
+  const zoomSilicio = spring({ frame: frame - silicioF, fps, config: { damping: 16, stiffness: 110 } });
+  const zoomBarrera = spring({ frame: frame - barreraF, fps, config: { damping: 15, stiffness: 120 } });
   const sSilicio = spring({ frame: frame - silicioF, fps, config: { damping: 16 } });
   const sHilos = spring({ frame: frame - hilosF, fps, config: { damping: 16 } });
   const sBarrera = spring({ frame: frame - barreraF, fps, config: { damping: 16 } });
 
   const avance = frame / plan.frames;
-  const pulso = 0.5 + 0.5 * Math.sin((frame / fps) * Math.PI * 3);
+  // Antes de 0.7V la barrera P está gruesa bloqueando (pulso ~0.05); tras barreraF se encoge y avalancha!
+  const pulso = frame >= barreraF ? 0.65 + 0.35 * Math.sin((frame / fps) * Math.PI * 6) : 0.05;
 
   let resaltar: CapaAutopsia = "todas";
   if (frame >= barreraF) resaltar = "base";
@@ -41,8 +46,24 @@ export const Autopsia: React.FC<EscenaProps> = ({ plan, idioma }) => {
     { txt: T.capaHilos, color: "#ffd166", s: sHilos },
   ];
 
+  const radioBase = esVertical ? 8.5 : 6.8;
+  const radioCam = radioBase - zoomSilicio * 1.4 - zoomBarrera * 0.9;
+
   return (
     <AbsoluteFill>
+      <Sequence from={abrirF} durationInFrames={22}>
+        <Audio src={staticFile("sfx/corte_laser.wav")} volume={0.38} />
+      </Sequence>
+      <Sequence from={silicioF} durationInFrames={18}>
+        <Audio src={staticFile("sfx/whoosh_camara.wav")} volume={0.28} />
+      </Sequence>
+      <Sequence from={hilosF} durationInFrames={14}>
+        <Audio src={staticFile("sfx/cota_pop.wav")} volume={0.28} />
+      </Sequence>
+      <Sequence from={barreraF} durationInFrames={14}>
+        <Audio src={staticFile("sfx/cota_pop.wav")} volume={0.32} />
+      </Sequence>
+
       <ThreeCanvas
         width={width}
         height={height}
@@ -51,13 +72,13 @@ export const Autopsia: React.FC<EscenaProps> = ({ plan, idioma }) => {
         gl={{ antialias: false, powerPreference: "high-performance" }}
       >
         <Camara
-          angulo={interpolate(avance, [0, 1], [-0.42, 0.38])}
-          radio={esVertical ? interpolate(apertura, [0, 1], [8.5, 6.8]) : interpolate(apertura, [0, 1], [6.8, 5.5])}
-          altura={interpolate(apertura, [0, 1], [2.8, 2.35])}
-          objetivo={[esVertical ? 0 : -0.45, esVertical ? 2.1 : 2.35, 0]}
-          fov={esVertical ? 38 : 32}
+          angulo={interpolate(avance, [0, 1], [-0.46, 0.42])}
+          radio={radioCam}
+          altura={interpolate(zoomSilicio, [0, 1], [2.9, 2.25])}
+          objetivo={[esVertical ? 0 : -0.15, esVertical ? 2.1 : 2.35, 0]}
+          fov={esVertical ? 36 : 30}
         />
-        <Estudio bloom={1.35} />
+        <Estudio bloom={0.6} />
         <Placa ancho={10} fondo={8} />
         <TransistorAutopsia
           posicion={[0, 0.08, 0]}
@@ -125,50 +146,48 @@ export const Autopsia: React.FC<EscenaProps> = ({ plan, idioma }) => {
           )}
         </div>
 
-        {/* Leyenda de Capas del Cristal de Silicio */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 12,
-            alignSelf: esVertical ? "stretch" : "flex-end",
-            marginBottom: esVertical ? 210 : 110,
-            maxWidth: esVertical ? "100%" : 560,
-          }}
-        >
-          {capas.map(({ txt, color, s }) => (
-            <div
-              key={txt}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 14,
-                padding: esVertical ? "12px 18px" : "12px 20px",
-                borderRadius: 14,
-                background: "rgba(7,11,18,0.82)",
-                border: `1px solid ${color}66`,
-                fontFamily: INTER,
-                fontWeight: 600,
-                fontSize: esVertical ? 25 : 24,
-                color: C.texto,
-                opacity: interpolate(s, [0, 1], [0, 1], clamp),
-                transform: `translateX(${(1 - s) * 35}px)`,
-              }}
-            >
-              <span
+        {/* En 16:9: Cotas ancladas directamente al 3D (estilo Mentalidad de Ingeniería); en 9:16 compacto */}
+        {!esVertical ? (
+          <>
+            <CotaSenal x={985} y={485} dx={220} dy={-70} titulo="Cristal N⁺ – P – N" detalle="Barrera Base P: 0.7 V (1 µm)" color={C.ambar} desdeFrame={silicioF} />
+            <CotaSenal x={935} y={440} dx={-240} dy={-55} titulo="Hilos Au 25 µm" detalle="Conexión a Base y Emisor" color="#ffd166" desdeFrame={hilosF} />
+            <CotaSenal x={965} y={540} dx={230} dy={75} titulo="Paleta Colector (Cu)" detalle="Disipación térmica 625 mW" color="#2b95ff" desdeFrame={barreraF} />
+          </>
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 10,
+              alignSelf: "stretch",
+              marginBottom: 210,
+            }}
+          >
+            {capas.map(({ txt, color, s }) => (
+              <div
+                key={txt}
                 style={{
-                  width: 14,
-                  height: 14,
-                  borderRadius: 7,
-                  background: color,
-                  boxShadow: `0 0 14px ${color}`,
-                  flexShrink: 0,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 12,
+                  padding: "10px 16px",
+                  borderRadius: 12,
+                  background: "rgba(7,11,18,0.84)",
+                  border: `1px solid ${color}66`,
+                  fontFamily: INTER,
+                  fontWeight: 600,
+                  fontSize: 23,
+                  color: C.texto,
+                  opacity: interpolate(s, [0, 1], [0, 1], clamp),
+                  transform: `translateX(${(1 - s) * 35}px)`,
                 }}
-              />
-              <span>{txt}</span>
-            </div>
-          ))}
-        </div>
+              >
+                <span style={{ width: 12, height: 12, borderRadius: 6, background: color, flexShrink: 0 }} />
+                <span>{txt}</span>
+              </div>
+            ))}
+          </div>
+        )}
       </AbsoluteFill>
     </AbsoluteFill>
   );

@@ -4,14 +4,88 @@ import { staticFile } from "remotion";
 import * as THREE from "three";
 import { texturaTexto } from "./textura-texto";
 
+// ---------- Texturas Procedurales de Hardware Real (Epóxico con micro-grano + PCB FR4) ----------
+function crearBumpEpoxi(): THREE.CanvasTexture | null {
+  if (typeof document === "undefined") return null;
+  const c = document.createElement("canvas");
+  c.width = 128;
+  c.height = 128;
+  const ctx = c.getContext("2d");
+  if (!ctx) return null;
+  const img = ctx.createImageData(128, 128);
+  for (let i = 0; i < img.data.length; i += 4) {
+    const v = 110 + ((Math.sin(i * 12.9898) * 43758.5453) % 1) * 45;
+    img.data[i] = img.data[i + 1] = img.data[i + 2] = v;
+    img.data[i + 3] = 255;
+  }
+  ctx.putImageData(img, 0, 0);
+  const tex = new THREE.CanvasTexture(c);
+  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+  tex.repeat.set(6, 6);
+  return tex;
+}
+
+function crearTexturaPCB(colorBase = "#0a3622"): THREE.CanvasTexture | null {
+  if (typeof document === "undefined") return null;
+  const c = document.createElement("canvas");
+  c.width = 256;
+  c.height = 256;
+  const ctx = c.getContext("2d");
+  if (!ctx) return null;
+  ctx.fillStyle = colorBase;
+  ctx.fillRect(0, 0, 256, 256);
+  // Trama sutil de fibra de vidrio FR4
+  ctx.strokeStyle = "rgba(255,255,255,0.035)";
+  ctx.lineWidth = 1;
+  for (let i = 0; i < 256; i += 8) {
+    ctx.beginPath();
+    ctx.moveTo(i, 0);
+    ctx.lineTo(i, 256);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(0, i);
+    ctx.lineTo(256, i);
+    ctx.stroke();
+  }
+  // Vías metálicas de estaño sutiles en la cuadrícula
+  ctx.fillStyle = "rgba(215, 224, 232, 0.22)";
+  for (let x = 32; x < 256; x += 64) {
+    for (let y = 32; y < 256; y += 64) {
+      ctx.beginPath();
+      ctx.arc(x, y, 2.5, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+  const tex = new THREE.CanvasTexture(c);
+  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+  tex.repeat.set(4, 3);
+  return tex;
+}
+
+const bumpEpoxi = crearBumpEpoxi();
+const texPcbDefecto = crearTexturaPCB("#0a3622");
+
 // ---------- Materiales PBR de Estudio ----------
 export const MAT = {
-  cobre: new THREE.MeshPhysicalMaterial({ color: "#c7834a", metalness: 1, roughness: 0.26, clearcoat: 0.4 }),
-  oro: new THREE.MeshPhysicalMaterial({ color: "#f2c45a", metalness: 1, roughness: 0.2, clearcoat: 0.5 }),
-  estano: new THREE.MeshStandardMaterial({ color: "#d9dee5", metalness: 1, roughness: 0.22 }),
+  cobre: new THREE.MeshPhysicalMaterial({ color: "#c7834a", metalness: 1, roughness: 0.24, clearcoat: 0.4 }),
+  oro: new THREE.MeshPhysicalMaterial({ color: "#f2c45a", metalness: 1, roughness: 0.18, clearcoat: 0.5 }),
+  estano: new THREE.MeshStandardMaterial({ color: "#d9dee5", metalness: 1, roughness: 0.24 }),
   aluminio: new THREE.MeshPhysicalMaterial({ color: "#c4cbd4", metalness: 0.95, roughness: 0.28 }),
-  placa: new THREE.MeshLambertMaterial({ color: "#0b2633" }),
-  resina: new THREE.MeshPhysicalMaterial({ color: "#121418", roughness: 0.38, clearcoat: 0.25 }),
+  placa: new THREE.MeshStandardMaterial({
+    color: "#0b3d24",
+    map: texPcbDefecto ?? undefined,
+    bumpMap: bumpEpoxi ?? undefined,
+    bumpScale: 0.008,
+    roughness: 0.42,
+    metalness: 0.08,
+  }),
+  resina: new THREE.MeshPhysicalMaterial({
+    color: "#14171c",
+    roughness: 0.52,
+    clearcoat: 0.12,
+    bumpMap: bumpEpoxi ?? undefined,
+    bumpScale: 0.015,
+  }),
   ceramica: new THREE.MeshPhysicalMaterial({ color: "#d8c49b", roughness: 0.42, clearcoat: 0.4 }),
   negro: new THREE.MeshStandardMaterial({ color: "#0c0d10", roughness: 0.55 }),
 };
@@ -28,7 +102,11 @@ export const Placa: React.FC<{ ancho: number; fondo: number; x?: number; z?: num
   color,
 }) => (
   <RoundedBox args={[ancho, 0.16, fondo]} radius={0.06} smoothness={4} position={[x, 0, z]} receiveShadow>
-    {color ? <meshLambertMaterial color={color} /> : <primitive object={MAT.placa} attach="material" />}
+    {color ? (
+      <meshStandardMaterial color={color} map={texPcbDefecto ?? undefined} bumpMap={bumpEpoxi ?? undefined} bumpScale={0.008} roughness={0.42} />
+    ) : (
+      <primitive object={MAT.placa} attach="material" />
+    )}
   </RoundedBox>
 );
 
@@ -87,9 +165,9 @@ export const crearRuta = (puntos: P2[], y = ALTO_PLACA + 0.09) => {
   return ruta;
 };
 
-const geoElectron = new THREE.SphereGeometry(1, 16, 12);
+const geoElectron = new THREE.CapsuleGeometry(0.45, 2.2, 6, 10);
 
-// Partículas emisivas (brillan con bloom) recorriendo una ruta. `t` = segundos.
+// Haces de energía direccionales con motion-stretch (sustituye las esferas uniformes).
 export const Electrones: React.FC<{
   ruta: THREE.CurvePath<THREE.Vector3>;
   n: number;
@@ -99,7 +177,7 @@ export const Electrones: React.FC<{
   radio: number;
   visible: number;
   brillo?: number;
-}> = ({ ruta, n, t, velocidad, color, radio, visible, brillo = 6 }) => {
+}> = ({ ruta, n, t, velocidad, color, radio, visible, brillo = 3.6 }) => {
   const mat = useMemo(
     () => new THREE.MeshBasicMaterial({ color: new THREE.Color(color).multiplyScalar(brillo), toneMapped: false }),
     [color, brillo],
@@ -111,7 +189,9 @@ export const Electrones: React.FC<{
       {Array.from({ length: n }).map((_, i) => {
         const u = (((t * velocidad) / largo + i / n) % 1 + 1) % 1;
         const p = ruta.getPointAt(u);
-        return <mesh key={i} geometry={geoElectron} material={mat} position={p} scale={radio * visible} />;
+        const tan = ruta.getTangentAt(u).normalize();
+        const quat = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), tan);
+        return <mesh key={i} geometry={geoElectron} material={mat} position={p} quaternion={quat} scale={radio * visible} />;
       })}
     </>
   );
@@ -287,7 +367,7 @@ export const TransistorAutopsia: React.FC<{
         (k) => partes[k] && <mesh key={k} geometry={partes[k]} material={MAT.cobre} castShadow />,
       )}
 
-      {/* Pastilla de silicio N-P-N en 3 capas */}
+      {/* Pastilla de silicio N-P-N en 3 capas con barrera P animada sin desplazar su posición */}
       {partes.Die_Colector_N && <mesh geometry={partes.Die_Colector_N} material={matSilicioN} />}
       {partes.Die_Base_P && <mesh geometry={partes.Die_Base_P} material={matSilicioP} />}
       {partes.Die_Emisor_NPlus && <mesh geometry={partes.Die_Emisor_NPlus} material={matSilicioNPlus} />}
@@ -666,16 +746,17 @@ export const Led: React.FC<{ posicion: [number, number, number]; encendido: numb
   const matLente = useMemo(
     () =>
       new THREE.MeshPhysicalMaterial({
-        color: "#ff3b3b",
+        color: "#d61f2c",
         roughness: 0.1,
-        transmission: 0.6,
-        thickness: 0.5,
+        transparent: true,
+        opacity: 0.52,
+        clearcoat: 0.9,
         ior: 1.5,
-        emissive: new THREE.Color("#ff2a2a"),
+        emissive: new THREE.Color("#b91c1c"),
       }),
     [],
   );
-  matLente.emissiveIntensity = 0.06 + encendido * 9.5;
+  matLente.emissiveIntensity = 0.04 + encendido * 0.75;
   const escala = 0.16;
 
   return (
@@ -684,7 +765,20 @@ export const Led: React.FC<{ posicion: [number, number, number]; encendido: numb
         {mallas.pines && <mesh geometry={mallas.pines} material={MAT.estano} castShadow />}
         {mallas.lente && <mesh geometry={mallas.lente} material={matLente} castShadow />}
       </group>
-      <pointLight position={[0, 1.1, 0]} color="#ff3030" intensity={encendido * 14} distance={7} decay={2} />
+      {/* Die semiconductor interno y copa reflectora visibles dentro de la resina */}
+      <mesh position={[0, 0.72, 0]} material={MAT.aluminio}>
+        <cylinderGeometry args={[0.14, 0.08, 0.09, 16]} />
+      </mesh>
+      <mesh position={[0, 0.78, 0]}>
+        <boxGeometry args={[0.09, 0.06, 0.09]} />
+        <meshStandardMaterial
+          color="#ff3b3b"
+          emissive="#ff2424"
+          emissiveIntensity={0.25 + encendido * 4.2}
+          toneMapped={false}
+        />
+      </mesh>
+      <pointLight position={[0, 1.1, 0]} color="#ff3030" intensity={encendido * 10} distance={7} decay={2} />
     </group>
   );
 };

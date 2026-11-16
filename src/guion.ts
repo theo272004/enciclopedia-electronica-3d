@@ -29,7 +29,7 @@ export const DATASHEET_2N2222A = {
 export const GUION: Record<Idioma, Record<EscenaId, string>> = {
   es: {
     intro:
-      "Este pequeño componente cambió el mundo. Está dentro de tu celular, tu computador y casi todo lo que funciona con electricidad. Es el transistor.",
+      "Adentro de este plástico negro de cinco centavos hay oro puro... y una trampa microscópica que decide si tu celular funciona o se quema. Es el transistor.",
     autopsia:
       "Si abrimos el encapsulado de resina de un 2N2222A, vemos su secreto: un cristal de silicio con tres capas dopadas, Emisor N-plus, una Base P ultra-delgada y el Colector N, unidas a las patas por hilos de oro puro. Sin al menos 0.7 voltios en la base, su barrera interna bloquea el paso.",
     partes:
@@ -102,7 +102,7 @@ export const TEXTOS = {
     titulo: "El transistor",
     subtitulo: "Datasheet 2N2222A · Arquitectura y Física Real",
     autopsiaTitulo: "Autopsia Interna · Encapsulado TO-92",
-    autopsiaSub: "Corte Booleano en Blender 5.0 · Silicio Planar Epitaxial",
+    autopsiaSub: "Anatomía Semiconductora · Silicio Planar Epitaxial NPN",
     capaEmisor: "Emisor (Silicio N⁺ fuertemente dopado)",
     capaBase: "Base (Silicio P ultra-delgado · Barrera 0.7 V)",
     capaColector: "Colector (Sustrato N sobre paleta de cobre)",
@@ -122,7 +122,7 @@ export const TEXTOS = {
     regActivaDesc: "I_C = β · I_B (h_FE = 100–300) · Límite P_D = 625 mW",
     interruptor: "Interruptor",
     amplificador: "Amplificador",
-    chip: "Variaciones Reales en KiCad 9.0 y Escala VLSI",
+    chip: "Encapsulados de Producción (THT vs SMD) y Escala VLSI",
     pkgTo92: "TO-92 (2N2222A) · THT 625 mW",
     pkgSot23: "SOT-23 (MMBT2222A) · SMD 350 mW",
     pkgTo220: "TO-220 (TIP31C) · Potencia > 2 A",

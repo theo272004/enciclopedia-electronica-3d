@@ -1,5 +1,6 @@
+import { Audio } from "@remotion/media";
 import { ThreeCanvas } from "@remotion/three";
-import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, interpolate, Sequence, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { C, clamp, INTER, MONO } from "../estilo";
 import { MARCAS, TEXTOS } from "../guion";
 import { Camara } from "../three/Camara";
@@ -52,6 +53,12 @@ export const Circuito: React.FC<EscenaProps> = ({ plan, idioma }) => {
 
   return (
     <AbsoluteFill>
+      <Sequence from={onF} durationInFrames={16}>
+        <Audio src={staticFile("sfx/click_mecanico.wav")} volume={0.45} />
+      </Sequence>
+      <Sequence from={onF + 20} durationInFrames={70}>
+        <Audio src={staticFile("sfx/hum_electrico.wav")} volume={0.22} />
+      </Sequence>
       <ThreeCanvas width={width} height={height} shadows dpr={1} gl={{ antialias: false, powerPreference: "high-performance" }}>
         <Camara
           angulo={interpolate(avance, [0, 1], [-0.32, 0.22])}
@@ -60,7 +67,7 @@ export const Circuito: React.FC<EscenaProps> = ({ plan, idioma }) => {
           objetivo={objetivo}
           fov={esVertical ? 42 : 38}
         />
-        <Estudio bloom={1.2} sombraTam={10} />
+        <Estudio bloom={0.58} sombraTam={10} />
         <Placa ancho={16} fondo={10.5} x={-0.9} />
         <Pista puntos={COLECTOR} />
         <Pista puntos={EMISOR} />
@@ -73,18 +80,21 @@ export const Circuito: React.FC<EscenaProps> = ({ plan, idioma }) => {
         <Cable puntos={CABLE_ROJO} color="#c62828" />
         <Cable puntos={CABLE_NEGRO} color="#15171b" />
         <Led posicion={[2.4, 0, -2.4]} encendido={fuerte} />
+        <Resistencia desde={[-1.8, -3.8]} hasta={[0.2, -3.8]} />
         <Resistencia desde={[-1.7, 2.2]} hasta={[0.3, 2.2]} />
         <Pulsador p={[-2.5, -0.8]} presion={on} />
         <Transistor posicion={[3, 0, 0.5]} />
 
         <Serigrafia texto="+9V" p={[-4.0, -2.4]} tam={0.36} />
+        <Serigrafia texto="R2 330Ω" p={[-0.8, -4.45]} tam={0.34} />
         <Serigrafia texto="D1 LED" p={[1.2, -2.4]} tam={0.34} />
         <Serigrafia texto="SW1" p={[-1.5, -0.8]} tam={0.36} />
         <Serigrafia texto="R1 1kΩ" p={[-0.7, 2.85]} tam={0.36} />
         <Serigrafia texto="Q1 2N2222A" p={[4.7, 1.2]} tam={0.32} />
 
-        <Electrones ruta={RAMA_BASE} n={10} t={t} velocidad={2.2} color={C.cian} radio={0.07} visible={on} />
-        <Electrones ruta={MALLA} n={42} t={t} velocidad={4.2} color={C.ambar} radio={0.1} visible={fuerte} />
+        {/* Flujo proporcional: hilo delgado lento en Base (8.3 mA) vs torrente denso en Colector (20 mA) */}
+        <Electrones ruta={RAMA_BASE} n={6} t={t} velocidad={1.6} color={C.cian} radio={0.052} visible={on} />
+        <Electrones ruta={MALLA} n={32} t={t} velocidad={4.6} color={C.ambar} radio={0.085} visible={fuerte} />
       </ThreeCanvas>
 
       <AbsoluteFill style={{ padding: esVertical ? "68px 46px" : 60, gap: 14, alignItems: "flex-start", pointerEvents: "none" }}>
