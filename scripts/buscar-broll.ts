@@ -113,11 +113,15 @@ if (proveedor === "wikimedia") {
   if (omitidas) console.log(`  (${omitidas} omitidas por tamaño < 1200 px o licencia no libre${permitirSA ? "" : "/BY-SA; usa --sa para incluir BY-SA"})`);
 } else if (proveedor === "pixabay") {
   const base = tipo === "videos" ? "https://pixabay.com/api/videos/" : "https://pixabay.com/api/";
-  const data = await pedirJson(`${base}?key=${CLAVES.pixabay}&q=${q}&per_page=${Math.max(cantidad, 3)}&safesearch=true`);
+  // Solo fotos reales (sin ilustraciones ni vectores) y en buena resolución
+  const filtros = tipo === "videos" ? "&video_type=film" : "&image_type=photo&min_width=1920";
+  const data = await pedirJson(`${base}?key=${CLAVES.pixabay}&q=${q}&per_page=${Math.max(cantidad, 3)}&safesearch=true${filtros}`);
   for (const h of (data.hits ?? []).slice(0, cantidad)) {
     const pixabay = { fuente: "Pixabay" as const, autor: h.user, perfil: `https://pixabay.com/users/${h.user}-${h.user_id}/`, pagina: h.pageURL, licencia: "Pixabay Content License" };
     if (tipo === "videos") {
-      const v = h.videos?.large?.url ? h.videos.large : h.videos?.medium;
+      // Preferir ~1080p: el 4K de "large" infla el render sin aportar nada a 1080p
+      const opciones = [h.videos?.medium, h.videos?.large, h.videos?.small].filter((x: any) => x?.url && x.width);
+      const v = opciones.sort((a: any, b: any) => Math.abs(a.width - 1920) - Math.abs(b.width - 1920))[0];
       if (!v?.url) continue;
       const archivo = `pixabay-${h.id}.mp4`;
       registrar({ archivo, ...pixabay }, await descargar(v.url, archivo), `${v.width}×${v.height} · ${h.duration}s`);
