@@ -263,11 +263,137 @@ def construir_to92_autopsia():
     print(f"✔ Modelo TO-92 con autopsia interna N-P-N exportado: {out_path}")
 
 
+def construir_rele_autopsia():
+    """
+    Toma el modelo real Omron G5LE-1 SPDT de KiCad 9.0, talla una ventana booleana
+    en su carcasa y modela el mecanismo electromecánico interno:
+    - Bobina_Cobre (devanado electromagnético)
+    - Nucleo_Hierro y Yugo_Hierro (circuito magnético)
+    - Armadura_Movil (palanca móvil que bascula al energizar la bobina)
+    - Contacto_NC y Contacto_NO (contactos fijos con remaches de plata AgSnO2)
+    """
+    partes = importar_y_normalizar_kicad("rele_spdt.glb", (0.0, -8.7))
+    carcasa = next(p for p in partes if p.name.startswith("Encapsulado"))
+    pines = next(p for p in partes if p.name.startswith("Pines"))
+    carcasa.name = "Carcasa_Base"
+    carcasa.data.name = "Carcasa_Base"
+    pines.name = "Pines_Metal"
+    pines.data.name = "Pines_Metal"
+
+    mat_azul_omron = crear_material_pbr("Policarbonato_Omron", (0.06, 0.22, 0.42, 1.0), metalness=0.05, roughness=0.32)
+    carcasa.data.materials[0] = mat_azul_omron
+
+    carcasa_tapa = carcasa.copy()
+    carcasa_tapa.data = carcasa.data.copy()
+    carcasa_tapa.name = "Carcasa_Corte"
+    carcasa_tapa.data.name = "Carcasa_Corte"
+    bpy.context.collection.objects.link(carcasa_tapa)
+
+    # Volumen cortador para abrir el frente y lateral derecho del relé (16.5 x 22.5 x 19 mm)
+    bpy.ops.mesh.primitive_cube_add(size=1.0, location=(1.2, -2.5, 10.2))
+    cavidad = bpy.context.active_object
+    cavidad.scale = (14.2, 18.5, 15.8)
+    bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+
+    mod_diff = carcasa.modifiers.new(name="Cavidad_Rele", type="BOOLEAN")
+    mod_diff.operation = "DIFFERENCE"
+    mod_diff.solver = "FLOAT"
+    mod_diff.object = cavidad
+    bpy.context.view_layer.objects.active = carcasa
+    bpy.ops.object.modifier_apply(modifier=mod_diff.name)
+
+    mod_int = carcasa_tapa.modifiers.new(name="Tapa_Rele", type="BOOLEAN")
+    mod_int.operation = "INTERSECT"
+    mod_int.solver = "FLOAT"
+    mod_int.object = cavidad
+    bpy.context.view_layer.objects.active = carcasa_tapa
+    bpy.ops.object.modifier_apply(modifier=mod_int.name)
+
+    bpy.data.objects.remove(cavidad, do_unlink=True)
+
+    mat_bobina = crear_material_pbr("Cobre_Bobina", (0.85, 0.45, 0.18, 1.0), metalness=0.92, roughness=0.22, emissive=(0.65, 0.28, 0.05), emissive_strength=0.25)
+    mat_hierro = crear_material_pbr("Hierro_Nucleo", (0.45, 0.48, 0.52, 1.0), metalness=0.95, roughness=0.35)
+    mat_plata = crear_material_pbr("Plata_Contacto", (0.95, 0.96, 0.98, 1.0), metalness=1.0, roughness=0.14)
+    mat_cobre_lamina = crear_material_pbr("Cobre_Berilio_Armadura", (0.92, 0.68, 0.35, 1.0), metalness=0.95, roughness=0.2)
+
+    # 1. Núcleo ferromagnético central (hierro dulce)
+    bpy.ops.mesh.primitive_cylinder_add(vertices=32, radius=1.9, depth=12.2, location=(0.0, -2.2, 8.2))
+    nucleo = bpy.context.active_object
+    bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+    nucleo.name = "Nucleo_Hierro"
+    nucleo.data.name = "Nucleo_Hierro"
+    nucleo.data.materials.append(mat_hierro)
+
+    # 2. Bobina electromagnética de cobre esmaltado
+    bpy.ops.mesh.primitive_cylinder_add(vertices=40, radius=4.1, depth=9.8, location=(0.0, -2.2, 8.2))
+    bobina = bpy.context.active_object
+    bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+    bobina.name = "Bobina_Cobre"
+    bobina.data.name = "Bobina_Cobre"
+    bobina.data.materials.append(mat_bobina)
+
+    # 3. Yugo magnético en L (conduce el flujo magnético hacia el pivote superior)
+    bpy.ops.mesh.primitive_cube_add(size=1.0, location=(0.0, 3.2, 8.5))
+    yugo = bpy.context.active_object
+    yugo.scale = (4.6, 0.9, 12.6)
+    bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+    yugo.name = "Yugo_Hierro"
+    yugo.data.name = "Yugo_Hierro"
+    yugo.data.materials.append(mat_hierro)
+
+    # 4. Armadura móvil (placa superior + lámina vertical con contacto móvil COM)
+    bpy.ops.mesh.primitive_cube_add(size=1.0, location=(0.0, -0.6, 15.2))
+    arm_top = bpy.context.active_object
+    arm_top.scale = (4.4, 8.2, 0.8)
+    bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+
+    bpy.ops.mesh.primitive_cube_add(size=1.0, location=(0.0, -5.2, 10.6))
+    arm_leaf = bpy.context.active_object
+    arm_leaf.scale = (2.6, 0.45, 9.2)
+    bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+
+    bpy.ops.object.select_all(action="DESELECT")
+    arm_top.select_set(True)
+    arm_leaf.select_set(True)
+    bpy.context.view_layer.objects.active = arm_top
+    bpy.ops.object.join()
+    armadura = bpy.context.active_object
+    armadura.name = "Armadura_Movil"
+    armadura.data.name = "Armadura_Movil"
+    armadura.data.materials.append(mat_cobre_lamina)
+
+    # 5. Contactos fijos NC (Normalmente Cerrado) y NO (Normalmente Abierto)
+    bpy.ops.mesh.primitive_cube_add(size=1.0, location=(-2.4, -6.6, 6.2))
+    c_nc = bpy.context.active_object
+    c_nc.scale = (1.6, 0.8, 8.8)
+    bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+    c_nc.name = "Contacto_NC"
+    c_nc.data.name = "Contacto_NC"
+    c_nc.data.materials.append(mat_plata)
+
+    bpy.ops.mesh.primitive_cube_add(size=1.0, location=(2.4, -3.8, 6.2))
+    c_no = bpy.context.active_object
+    c_no.scale = (1.6, 0.8, 8.8)
+    bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+    c_no.name = "Contacto_NO"
+    c_no.data.name = "Contacto_NO"
+    c_no.data.materials.append(mat_plata)
+
+    out_path = os.path.join(MODELOS_DIR, "rele_autopsia.glb")
+    bpy.ops.export_scene.gltf(filepath=out_path, export_format="GLB", export_apply=True)
+    print(f"✔ Modelo Relé Omron G5LE-1 con autopsia interna exportado: {out_path}")
+
+
 if __name__ == "__main__":
     importar_y_normalizar_kicad("to92.glb", (1.27, 0.0), "to92.glb")
     importar_y_normalizar_kicad("to220.glb", (2.54, 0.0), "to220.glb")
     importar_y_normalizar_kicad("sot23.glb", (0.0, 0.0), "sot23.glb")
     importar_y_normalizar_kicad("led5mm.glb", (1.27, 0.0), "led5mm.glb")
     importar_y_normalizar_kicad("pulsador_6mm.glb", (3.25, -2.25), "pulsador_6mm.glb")
+    importar_y_normalizar_kicad("rele_spdt.glb", (0.0, -8.7), "rele_spdt.glb")
+    importar_y_normalizar_kicad("rele_dpdt.glb", (11.5, -3.75), "rele_dpdt.glb")
+    importar_y_normalizar_kicad("rele_smd.glb", (0.0, 0.0), "rele_smd.glb")
+    importar_y_normalizar_kicad("diodo_1n4007.glb", (5.08, 0.0), "diodo_1n4007.glb")
     agregar_bandas_resistencia()
     construir_to92_autopsia()
+    construir_rele_autopsia()

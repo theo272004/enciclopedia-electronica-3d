@@ -298,9 +298,18 @@ export const TransistorAutopsia: React.FC<{
   );
 };
 
-// ---------- Encapsulados Reales de KiCad 9.0 (TO-92, SOT-23, TO-220) ----------
+// ---------- Encapsulados Reales de KiCad 9.0 (TO-92, SOT-23, TO-220, Relés y Diodo) ----------
+export type TipoModeloKiCad =
+  | "to92"
+  | "sot23"
+  | "to220"
+  | "rele_spdt"
+  | "rele_dpdt"
+  | "rele_smd"
+  | "diodo_1n4007";
+
 export const EncapsuladoKiCad: React.FC<{
-  tipo: "to92" | "sot23" | "to220";
+  tipo: TipoModeloKiCad;
   posicion: [number, number, number];
   escala?: number;
   rotacionY?: number;
@@ -316,15 +325,177 @@ export const EncapsuladoKiCad: React.FC<{
     return lista;
   }, [gltf]);
 
+  const matAzulRele = useMemo(
+    () => new THREE.MeshPhysicalMaterial({ color: "#0e4d8a", roughness: 0.25, clearcoat: 0.5, transmission: tipo === "rele_dpdt" ? 0.45 : 0 }),
+    [tipo],
+  );
+
   return (
     <group position={posicion} scale={escala} rotation-y={rotacionY}>
+      {mallas.map((m) => {
+        let mat: THREE.Material = MAT.resina;
+        if (m.name.startsWith("Pines")) mat = MAT.estano;
+        else if (m.name.startsWith("Lente")) mat = MAT.cobre;
+        else if (tipo === "rele_spdt" || tipo === "rele_dpdt") mat = matAzulRele;
+        return <mesh key={m.name} geometry={m.geometry} material={mat} castShadow receiveShadow />;
+      })}
+    </group>
+  );
+};
+
+// ---------- Autopsia 3D del Relé Electromecánico (Omron G5LE-1 en Blender 5.0) ----------
+export type CapaRele = "todas" | "bobina" | "nucleo" | "armadura" | "contactos";
+
+export const ReleAutopsia: React.FC<{
+  posicion?: [number, number, number];
+  escala?: number;
+  apertura: number; // 0 = cerrado, 1 = carcasa abierta
+  activado: number; // 0 = reposo en NC, 1 = energizado en NO
+  resaltar?: CapaRele;
+}> = ({ posicion = [0, 0, 0], escala = 0.16, apertura, activado, resaltar = "todas" }) => {
+  const gltf = useGLTF(staticFile("modelos/rele_autopsia.glb"));
+  const partes = useMemo(() => {
+    const mapa: Record<string, THREE.BufferGeometry> = {};
+    gltf.scene.traverse((child) => {
+      if ((child as THREE.Mesh).isMesh) {
+        mapa[child.name] = (child as THREE.Mesh).geometry;
+      }
+    });
+    return mapa;
+  }, [gltf]);
+
+  const matCarcasa = useMemo(
+    () => new THREE.MeshPhysicalMaterial({ color: "#0b3b6e", roughness: 0.28, clearcoat: 0.45 }),
+    [],
+  );
+  const matTapa = useMemo(
+    () =>
+      new THREE.MeshPhysicalMaterial({
+        color: "#0e4d8a",
+        roughness: 0.25,
+        clearcoat: 0.5,
+        transparent: true,
+        opacity: Math.max(0.15, 1 - apertura * 0.78),
+      }),
+    [apertura],
+  );
+  const matBobina = useMemo(
+    () =>
+      new THREE.MeshPhysicalMaterial({
+        color: "#d97736",
+        metalness: 0.9,
+        roughness: 0.22,
+        emissive: new THREE.Color("#ff8c00"),
+        emissiveIntensity: (resaltar === "bobina" ? 1.8 : 0.2) + activado * 1.6,
+      }),
+    [resaltar, activado],
+  );
+  const matNucleo = useMemo(
+    () =>
+      new THREE.MeshPhysicalMaterial({
+        color: "#7c8594",
+        metalness: 0.95,
+        roughness: 0.3,
+        emissive: new THREE.Color("#3de0ff"),
+        emissiveIntensity: resaltar === "nucleo" ? 1.6 : activado * 0.7,
+      }),
+    [resaltar, activado],
+  );
+  const matArmadura = useMemo(
+    () =>
+      new THREE.MeshPhysicalMaterial({
+        color: "#f2c45a",
+        metalness: 0.95,
+        roughness: 0.18,
+        emissive: new THREE.Color("#ffb547"),
+        emissiveIntensity: resaltar === "armadura" ? 2.0 : 0.25,
+      }),
+    [resaltar],
+  );
+  const matContactos = useMemo(
+    () =>
+      new THREE.MeshPhysicalMaterial({
+        color: "#f8fafc",
+        metalness: 1,
+        roughness: 0.12,
+        emissive: new THREE.Color("#3de0ff"),
+        emissiveIntensity: resaltar === "contactos" ? 2.4 : activado * 1.2,
+      }),
+    [resaltar, activado],
+  );
+
+  return (
+    <group position={posicion} scale={escala}>
+      {partes.Pines_Metal && <mesh geometry={partes.Pines_Metal} material={MAT.estano} castShadow />}
+      {partes.Carcasa_Base && <mesh geometry={partes.Carcasa_Base} material={matCarcasa} castShadow receiveShadow />}
+      {partes.Carcasa_Corte && (
+        <mesh
+          geometry={partes.Carcasa_Corte}
+          material={matTapa}
+          position={[apertura * 6.5, apertura * 2.2, apertura * 8.5]}
+          rotation={[apertura * -0.15, apertura * 0.28, 0]}
+        />
+      )}
+      {partes.Nucleo_Hierro && <mesh geometry={partes.Nucleo_Hierro} material={matNucleo} />}
+      {partes.Yugo_Hierro && <mesh geometry={partes.Yugo_Hierro} material={matNucleo} />}
+      {partes.Bobina_Cobre && <mesh geometry={partes.Bobina_Cobre} material={matBobina} />}
+      {partes.Armadura_Movil && (
+        <mesh
+          geometry={partes.Armadura_Movil}
+          material={matArmadura}
+          position={[(activado - 0.5) * 1.4, -activado * 0.35, 0]}
+          rotation={[0, 0, (activado - 0.5) * -0.09]}
+        />
+      )}
+      {partes.Contacto_NC && <mesh geometry={partes.Contacto_NC} material={matContactos} />}
+      {partes.Contacto_NO && <mesh geometry={partes.Contacto_NO} material={matContactos} />}
+    </group>
+  );
+};
+
+// ---------- Diodo Rectificador Flyback 1N4007 (Modelo KiCad DO-41) ----------
+export const DiodoFlyback: React.FC<{
+  desde: P2;
+  hasta: P2;
+  pulso?: number; // 0..1 brilla cuando absorbe el pico inductivo
+}> = ({ desde, hasta, pulso = 0 }) => {
+  const gltf = useGLTF(staticFile("modelos/diodo_1n4007.glb"));
+  const mallas = useMemo(() => {
+    const lista: { name: string; geometry: THREE.BufferGeometry }[] = [];
+    gltf.scene.traverse((child) => {
+      if ((child as THREE.Mesh).isMesh) {
+        lista.push({ name: child.name, geometry: (child as THREE.Mesh).geometry });
+      }
+    });
+    return lista;
+  }, [gltf]);
+
+  const cx = (desde[0] + hasta[0]) / 2;
+  const cz = (desde[1] + hasta[1]) / 2;
+  const largo = Math.hypot(hasta[0] - desde[0], hasta[1] - desde[1]);
+  const ang = -Math.atan2(hasta[1] - desde[1], hasta[0] - desde[0]);
+  const escala = largo / 10.16;
+
+  const matCuerpo = useMemo(
+    () =>
+      new THREE.MeshPhysicalMaterial({
+        color: "#14171c",
+        roughness: 0.35,
+        clearcoat: 0.4,
+        emissive: new THREE.Color("#3de0ff"),
+        emissiveIntensity: pulso * 2.5,
+      }),
+    [pulso],
+  );
+
+  return (
+    <group position={[cx, ALTO_PLACA, cz]} rotation-y={ang} scale={escala}>
       {mallas.map((m) => (
         <mesh
           key={m.name}
           geometry={m.geometry}
-          material={m.name.startsWith("Pines") ? MAT.estano : MAT.resina}
+          material={m.name.startsWith("Pines") ? MAT.estano : matCuerpo}
           castShadow
-          receiveShadow
         />
       ))}
     </group>
@@ -486,3 +657,8 @@ useGLTF.preload(staticFile("modelos/sot23.glb"));
 useGLTF.preload(staticFile("modelos/led5mm.glb"));
 useGLTF.preload(staticFile("modelos/resistencia_axial.glb"));
 useGLTF.preload(staticFile("modelos/pulsador_6mm.glb"));
+useGLTF.preload(staticFile("modelos/rele_spdt.glb"));
+useGLTF.preload(staticFile("modelos/rele_autopsia.glb"));
+useGLTF.preload(staticFile("modelos/rele_dpdt.glb"));
+useGLTF.preload(staticFile("modelos/rele_smd.glb"));
+useGLTF.preload(staticFile("modelos/diodo_1n4007.glb"));

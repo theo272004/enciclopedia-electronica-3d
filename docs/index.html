@@ -850,9 +850,11 @@
               <button class="seg-btn" data-model="to92">TO-92 (THT)</button>
               <button class="seg-btn" data-model="sot23">SOT-23 (SMD)</button>
               <button class="seg-btn" data-model="to220">TO-220 (Potencia)</button>
+              <button class="seg-btn" data-model="rele_autopsia">Autopsia Relé G5LE</button>
+              <button class="seg-btn" data-model="rele_dpdt">Relé Industrial DPDT</button>
+              <button class="seg-btn" data-model="diodo_1n4007">Diodo 1N4007</button>
               <button class="seg-btn" data-model="resistencia_axial">Resistencia 1 kΩ</button>
               <button class="seg-btn" data-model="led5mm">LED 5 mm</button>
-              <button class="seg-btn" data-model="pulsador_6mm">Pulsador 6 mm</button>
             </div>
 
             <div id="three-mount"></div>
@@ -1360,6 +1362,42 @@
           { txt: "Descargar .GLB", href: "descargas/01-transistor/pulsador_6mm.glb", primary: true },
         ],
       },
+      rele_autopsia: {
+        sub: "EPISODIO 02 · AUTOPSIA RELÉ OMRON G5LE-1 (BLENDER 5.0)",
+        title: "Relé Electromecánico SPDT Abierto",
+        desc: "Corte booleano del relé Omron G5LE-1 mostrando su bobina de cobre (5 VDC, 70 Ω), núcleo de hierro dulce, yugo magnético en L, armadura móvil y contactos de plata AgSnO2 de 10 A @ 250 VAC.",
+        pinout: "<strong>5 Terminales SPDT:</strong><br>• <strong>A1 y A2:</strong> Bobina (70 Ω, 71,4 mA)<br>• <strong>COM:</strong> Contacto móvil común<br>• <strong>NC y NO:</strong> Normalmente Cerrado / Abierto (Aislamiento 2.000 VAC)",
+        img: "img/rele_02_autopsia.png",
+        escala: 0.14,
+        links: [
+          { txt: "Autopsia Relé (.GLB)", href: "descargas/02-rele/rele_autopsia.glb", primary: true },
+          { txt: "Modelo CAD (.STEP)", href: "descargas/02-rele/Relay_SPDT_Omron_G5LE-1.step", primary: false },
+        ],
+      },
+      rele_dpdt: {
+        sub: "EPISODIO 02 · RELÉ INDUSTRIAL DOBLE POLO FINDER 40.52",
+        title: "Relé Industrial DPDT (8 Pines)",
+        desc: "Relé de potencia de doble polo y doble tiro (DPDT) con cubierta translúcida que deja ver el devanado de cobre y las láminas de contacto.",
+        pinout: "<strong>Especificaciones Finder 40.52:</strong><br>• <strong>Configuración:</strong> 2 Polos Conmutados (DPDT)<br>• <strong>Capacidad:</strong> 8 A @ 250 VAC",
+        img: "img/rele_06_cierre.png",
+        escala: 0.11,
+        links: [
+          { txt: "Modelo CAD (.STEP)", href: "descargas/02-rele/Relay_DPDT_Finder_40_52.step", primary: true },
+          { txt: "Modelo Web (.GLB)", href: "descargas/02-rele/rele_dpdt.glb", primary: false },
+        ],
+      },
+      diodo_1n4007: {
+        sub: "EPISODIO 02 · PROTECCIÓN FLYBACK DO-41 (1000 V / 1 A)",
+        title: "Diodo Rectificador 1N4007",
+        desc: "Colocado en antiparalelo con la bobina del relé, absorbe el pico inductivo inverso (> 300 V) al apagar el transistor, clampeando el voltaje a solo VCC + 0,7 V.",
+        pinout: "<strong>Conexión Flyback (Rueda Libre):</strong><br>• <strong>Cátodo (Banda plateada):</strong> Conectado a +VCC.<br>• <strong>Ánodo:</strong> Conectado al Colector del transistor NPN.",
+        img: "img/rele_05_regiones.png",
+        escala: 0.36,
+        links: [
+          { txt: "Modelo CAD (.STEP)", href: "descargas/02-rele/Diodo_DO-41_1N4007.step", primary: true },
+          { txt: "Modelo Web (.GLB)", href: "descargas/02-rele/diodo_1n4007.glb", primary: false },
+        ],
+      },
     };
 
     const mount = document.getElementById("three-mount");
@@ -1425,7 +1463,8 @@
       document.getElementById("info-3d-desc").textContent = info.desc;
       document.getElementById("info-3d-pinout").innerHTML = info.pinout;
       document.getElementById("info-3d-img").src = info.img;
-      document.getElementById("autopsia-slider-wrap").style.display = id === "to92_autopsia" ? "flex" : "none";
+      document.getElementById("autopsia-slider-wrap").style.display =
+        id === "to92_autopsia" || id === "rele_autopsia" ? "flex" : "none";
 
       const linksEl = document.getElementById("info-3d-links");
       linksEl.innerHTML = info.links
@@ -1449,17 +1488,19 @@
             mallaTapaAutopsia = ch;
           } else if (n === "Carcasa_Base" || n.startsWith("Encapsulado")) {
             ch.material = matEpoxi;
-          } else if (n.startsWith("Pines")) {
+          } else if (n.startsWith("Pines") || n.startsWith("Contacto")) {
             ch.material = matEstano;
-          } else if (n.startsWith("Leadframe")) {
+          } else if (n.startsWith("Leadframe") || n === "Bobina_Cobre") {
             ch.material = matCobre;
+          } else if (n === "Nucleo_Hierro" || n === "Yugo_Hierro") {
+            ch.material = matEstano;
           } else if (n === "Die_Colector_N") {
             ch.material = matSilicioN;
           } else if (n === "Die_Base_P") {
             ch.material = matSilicioP;
           } else if (n === "Die_Emisor_NPlus") {
             ch.material = matSilicioNPlus;
-          } else if (n.startsWith("Hilo_Oro")) {
+          } else if (n.startsWith("Hilo_Oro") || n === "Armadura_Movil") {
             ch.material = matOro;
           }
         });
@@ -1467,7 +1508,7 @@
         grupoActual = root;
         scene.add(root);
 
-        if (id === "to92_autopsia") {
+        if (id === "to92_autopsia" || id === "rele_autopsia") {
           const val = Number(document.getElementById("slider-apertura").value) / 100;
           actualizarTapaAutopsia(val);
         }

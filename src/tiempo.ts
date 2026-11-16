@@ -57,6 +57,7 @@ export const construirEscenas = (
   idioma: Idioma,
   manifest: Manifest | null,
   formato: FormatoVideo = "16:9",
+  guionCustom: Record<Idioma, Record<EscenaId, string>> = GUION,
 ): EscenaPlan[] => {
   const lista = formato === "9:16" ? ESCENAS_SHORT : ESCENAS_LARGO;
   const extra = formato === "9:16" ? EXTRA_SHORT : EXTRA_LARGO;
@@ -64,7 +65,7 @@ export const construirEscenas = (
 
   return lista.map((id) => {
     const real = manifest?.escenas.find((e) => e.id === id);
-    const { duracion, palabras } = real ?? estimarPalabras(GUION[idioma][id]);
+    const { duracion, palabras } = real ?? estimarPalabras(guionCustom[idioma][id]);
     return {
       id,
       frames: PRE + Math.ceil(duracion * FPS) + postFrames + (extra[id] ?? 0),

@@ -13,8 +13,9 @@ export type ModeloKiCad = {
   descripcion: string;
 };
 
-// Catálogo inicial de encapsulados reales de KiCad 9.0
+// Catálogo de encapsulados reales de KiCad 9.0 (Episodio 01 + Episodio 02)
 export const CATALOGO_KICAD: ModeloKiCad[] = [
+  // Episodio 01: Transistor BJT
   {
     id: "to92",
     rutaRelativa: "Package_TO_SOT_THT.3dshapes/TO-92_Inline.step",
@@ -44,6 +45,27 @@ export const CATALOGO_KICAD: ModeloKiCad[] = [
     id: "pulsador_6mm",
     rutaRelativa: "Button_Switch_THT.3dshapes/SW_PUSH_6mm_H5mm.step",
     descripcion: "Pulsador táctil THT 6x6 mm H=5 mm (Omron B3F)",
+  },
+  // Episodio 02: Relé Electromecánico + Diodo Flyback 1N4007
+  {
+    id: "rele_spdt",
+    rutaRelativa: "Relay_THT.3dshapes/Relay_SPDT_Omron-G5LE-1.step",
+    descripcion: "Relé electromecánico SPDT 5 pines Omron G5LE-1 (10A 250VAC, bobina 5V/12V)",
+  },
+  {
+    id: "rele_dpdt",
+    rutaRelativa: "Relay_THT.3dshapes/Relay_DPDT_Finder_40.52.step",
+    descripcion: "Relé industrial DPDT 8 pines Finder Serie 40.52 (8A 250VAC)",
+  },
+  {
+    id: "rele_smd",
+    rutaRelativa: "Relay_SMD.3dshapes/Relay_DPDT_Omron_G6K-2F-Y.step",
+    descripcion: "Micro-relé SMD DPDT de señal Omron G6K-2F-Y",
+  },
+  {
+    id: "diodo_1n4007",
+    rutaRelativa: "Diode_THT.3dshapes/D_DO-41_SOD81_P10.16mm_Horizontal.step",
+    descripcion: "Diodo rectificador flyback 1N4007 en encapsulado axial DO-41 (1000V 1A)",
   },
 ];
 
@@ -116,4 +138,3 @@ if (fs.existsSync(BLENDER_EXE)) {
   console.log("⚙ Procesando materiales PBR y cortes booleanos en Blender 5.0…");
   execFileSync(BLENDER_EXE, ["-b", "-P", "scripts/procesar-modelos-blender.py"], { stdio: "inherit" });
 }
-

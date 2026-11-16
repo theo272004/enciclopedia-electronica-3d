@@ -13,6 +13,11 @@
     "render:en": "remotion render Transistor-EN out/transistor-en.mp4",
     "render:short:es": "remotion render Transistor-Short-ES out/transistor-short-es.mp4",
     "render:short:en": "remotion render Transistor-Short-EN out/transistor-short-en.mp4",
+    "render:rele:es": "remotion render Rele-ES out/rele-es.mp4",
+    "render:rele:en": "remotion render Rele-EN out/rele-en.mp4",
+    "render:rele:short:es": "remotion render Rele-Short-ES out/rele-short-es.mp4",
+    "render:rele:short:en": "remotion render Rele-Short-EN out/rele-short-en.mp4",
+    "youtube:kit": "tsx scripts/generar-kit-youtube.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

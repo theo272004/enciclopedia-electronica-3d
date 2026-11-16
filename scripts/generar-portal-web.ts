@@ -8,11 +8,13 @@ const BLENDER_EXE = "C:\\Program Files\\Blender Foundation\\Blender 5.0\\blender
 const DOCS_DIR = path.resolve("docs");
 const MODELOS_WEB_DIR = path.join(DOCS_DIR, "modelos");
 const DESCARGAS_DIR = path.join(DOCS_DIR, "descargas", "01-transistor");
+const DESCARGAS_RELE_DIR = path.join(DOCS_DIR, "descargas", "02-rele");
 
 fs.mkdirSync(MODELOS_WEB_DIR, { recursive: true });
 fs.mkdirSync(DESCARGAS_DIR, { recursive: true });
+fs.mkdirSync(DESCARGAS_RELE_DIR, { recursive: true });
 
-// 1. Copiar modelos GLB optimizados para el visor 3D web y para descarga (Blender / Three.js / Unreal / Unity)
+// 1. Copiar modelos GLB optimizados para el visor 3D web y para descarga
 const glbs = [
   "to92_autopsia.glb",
   "to92.glb",
@@ -21,30 +23,41 @@ const glbs = [
   "led5mm.glb",
   "resistencia_axial.glb",
   "pulsador_6mm.glb",
+  "rele_autopsia.glb",
+  "rele_spdt.glb",
+  "rele_dpdt.glb",
+  "rele_smd.glb",
+  "diodo_1n4007.glb",
 ];
 
 for (const archivo of glbs) {
   const origen = path.resolve("public/modelos", archivo);
   if (fs.existsSync(origen)) {
     fs.copyFileSync(origen, path.join(MODELOS_WEB_DIR, archivo));
-    fs.copyFileSync(origen, path.join(DESCARGAS_DIR, archivo));
+    const destCarpeta = archivo.startsWith("rele") || archivo.startsWith("diodo") ? DESCARGAS_RELE_DIR : DESCARGAS_DIR;
+    fs.copyFileSync(origen, path.join(destCarpeta, archivo));
   }
 }
 
-// 2. Copiar modelos CAD originales (.STEP ISO-10303 y .WRL VRML 2.0) para KiCad, Altium, EasyEDA, Fusion 360 y SolidWorks
+// 2. Copiar modelos CAD originales (.STEP ISO-10303 y .WRL VRML 2.0)
 const cadFiles = [
-  { orig: "Package_TO_SOT_THT.3dshapes/TO-92_Inline.step", dest: "TO-92_2N2222A.step" },
-  { orig: "Package_TO_SOT_THT.3dshapes/TO-92_Inline.wrl", dest: "TO-92_2N2222A.wrl" },
-  { orig: "Package_TO_SOT_SMD.3dshapes/SOT-23.step", dest: "SOT-23_MMBT2222A.step" },
-  { orig: "Package_TO_SOT_SMD.3dshapes/SOT-23.wrl", dest: "SOT-23_MMBT2222A.wrl" },
-  { orig: "Package_TO_SOT_THT.3dshapes/TO-220-3_Vertical.step", dest: "TO-220_TIP31C.step" },
-  { orig: "Package_TO_SOT_THT.3dshapes/TO-220-3_Vertical.wrl", dest: "TO-220_TIP31C.wrl" },
+  { orig: "Package_TO_SOT_THT.3dshapes/TO-92_Inline.step", dest: path.join(DESCARGAS_DIR, "TO-92_2N2222A.step") },
+  { orig: "Package_TO_SOT_THT.3dshapes/TO-92_Inline.wrl", dest: path.join(DESCARGAS_DIR, "TO-92_2N2222A.wrl") },
+  { orig: "Package_TO_SOT_SMD.3dshapes/SOT-23.step", dest: path.join(DESCARGAS_DIR, "SOT-23_MMBT2222A.step") },
+  { orig: "Package_TO_SOT_SMD.3dshapes/SOT-23.wrl", dest: path.join(DESCARGAS_DIR, "SOT-23_MMBT2222A.wrl") },
+  { orig: "Package_TO_SOT_THT.3dshapes/TO-220-3_Vertical.step", dest: path.join(DESCARGAS_DIR, "TO-220_TIP31C.step") },
+  { orig: "Package_TO_SOT_THT.3dshapes/TO-220-3_Vertical.wrl", dest: path.join(DESCARGAS_DIR, "TO-220_TIP31C.wrl") },
+  // Episodio 02: Relés y Diodo 1N4007
+  { orig: "Relay_THT.3dshapes/Relay_SPDT_Omron-G5LE-1.step", dest: path.join(DESCARGAS_RELE_DIR, "Relay_SPDT_Omron_G5LE-1.step") },
+  { orig: "Relay_THT.3dshapes/Relay_DPDT_Finder_40.52.step", dest: path.join(DESCARGAS_RELE_DIR, "Relay_DPDT_Finder_40_52.step") },
+  { orig: "Relay_SMD.3dshapes/Relay_DPDT_Omron_G6K-2F-Y.step", dest: path.join(DESCARGAS_RELE_DIR, "Relay_SMD_Omron_G6K.step") },
+  { orig: "Diode_THT.3dshapes/D_DO-41_SOD81_P10.16mm_Horizontal.step", dest: path.join(DESCARGAS_RELE_DIR, "Diodo_DO-41_1N4007.step") },
 ];
 
 for (const c of cadFiles) {
   const ruta = path.join(KICAD_3D_DIR, c.orig);
   if (fs.existsSync(ruta)) {
-    fs.copyFileSync(ruta, path.join(DESCARGAS_DIR, c.dest));
+    fs.copyFileSync(ruta, c.dest);
   }
 }
 
