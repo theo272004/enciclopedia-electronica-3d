@@ -1,0 +1,1483 @@
+{
+  "idioma": "es",
+  "escenas": [
+    {
+      "id": "intro",
+      "archivo": "voz-inductor/es/intro.mp3",
+      "duracion": 17.414966,
+      "hash": "4f4805d224e8e11b14768708f77551ed106df191",
+      "palabras": [
+        {
+          "texto": "Mientras",
+          "inicio": 0,
+          "fin": 0.476
+        },
+        {
+          "texto": "el",
+          "inicio": 0.534,
+          "fin": 0.592
+        },
+        {
+          "texto": "capacitor",
+          "inicio": 0.639,
+          "fin": 1.196
+        },
+        {
+          "texto": "almacena",
+          "inicio": 1.242,
+          "fin": 1.718
+        },
+        {
+          "texto": "energía",
+          "inicio": 1.753,
+          "fin": 2.264
+        },
+        {
+          "texto": "en",
+          "inicio": 2.299,
+          "fin": 2.357
+        },
+        {
+          "texto": "un",
+          "inicio": 2.45,
+          "fin": 2.519
+        },
+        {
+          "texto": "campo",
+          "inicio": 2.577,
+          "fin": 2.902
+        },
+        {
+          "texto": "eléctrico",
+          "inicio": 2.949,
+          "fin": 3.587
+        },
+        {
+          "texto": "y",
+          "inicio": 3.704,
+          "fin": 3.762
+        },
+        {
+          "texto": "odia",
+          "inicio": 3.878,
+          "fin": 4.133
+        },
+        {
+          "texto": "los",
+          "inicio": 4.18,
+          "fin": 4.307
+        },
+        {
+          "texto": "cambios",
+          "inicio": 4.365,
+          "fin": 4.69
+        },
+        {
+          "texto": "bruscos",
+          "inicio": 4.748,
+          "fin": 5.178
+        },
+        {
+          "texto": "de",
+          "inicio": 5.213,
+          "fin": 5.259
+        },
+        {
+          "texto": "voltaje,",
+          "inicio": 5.317,
+          "fin": 6.107
+        },
+        {
+          "texto": "su",
+          "inicio": 6.385,
+          "fin": 6.525
+        },
+        {
+          "texto": "hermano",
+          "inicio": 6.571,
+          "fin": 6.92
+        },
+        {
+          "texto": "gemelo",
+          "inicio": 6.978,
+          "fin": 7.338
+        },
+        {
+          "texto": "magnético",
+          "inicio": 7.396,
+          "fin": 8.081
+        },
+        {
+          "texto": "hace",
+          "inicio": 8.231,
+          "fin": 8.545
+        },
+        {
+          "texto": "exactamente",
+          "inicio": 8.603,
+          "fin": 9.52
+        },
+        {
+          "texto": "lo",
+          "inicio": 9.567,
+          "fin": 9.671
+        },
+        {
+          "texto": "opuesto:",
+          "inicio": 9.706,
+          "fin": 10.461
+        },
+        {
+          "texto": "el",
+          "inicio": 11.064,
+          "fin": 11.18
+        },
+        {
+          "texto": "inductor",
+          "inicio": 11.25,
+          "fin": 11.622
+        },
+        {
+          "texto": "almacena",
+          "inicio": 11.656,
+          "fin": 12.098
+        },
+        {
+          "texto": "energía",
+          "inicio": 12.132,
+          "fin": 12.643
+        },
+        {
+          "texto": "en",
+          "inicio": 12.678,
+          "fin": 12.725
+        },
+        {
+          "texto": "un",
+          "inicio": 12.817,
+          "fin": 12.875
+        },
+        {
+          "texto": "campo",
+          "inicio": 12.934,
+          "fin": 13.201
+        },
+        {
+          "texto": "magnético",
+          "inicio": 13.247,
+          "fin": 13.967
+        },
+        {
+          "texto": "y",
+          "inicio": 14.292,
+          "fin": 14.385
+        },
+        {
+          "texto": "se",
+          "inicio": 14.501,
+          "fin": 14.582
+        },
+        {
+          "texto": "opone",
+          "inicio": 14.629,
+          "fin": 14.988
+        },
+        {
+          "texto": "a",
+          "inicio": 15.023,
+          "fin": 15.058
+        },
+        {
+          "texto": "cualquier",
+          "inicio": 15.116,
+          "fin": 15.522
+        },
+        {
+          "texto": "cambio",
+          "inicio": 15.592,
+          "fin": 15.882
+        },
+        {
+          "texto": "brusco",
+          "inicio": 15.917,
+          "fin": 16.3
+        },
+        {
+          "texto": "de",
+          "inicio": 16.347,
+          "fin": 16.416
+        },
+        {
+          "texto": "corriente.",
+          "inicio": 16.474,
+          "fin": 17.415
+        }
+      ]
+    },
+    {
+      "id": "autopsia",
+      "archivo": "voz-inductor/es/autopsia.mp3",
+      "duracion": 22.894875,
+      "hash": "9caf73f34176d1cb6711c1d7a29e2eadf729036b",
+      "palabras": [
+        {
+          "texto": "Si",
+          "inicio": 0,
+          "fin": 0.209
+        },
+        {
+          "texto": "abrimos",
+          "inicio": 0.267,
+          "fin": 0.755
+        },
+        {
+          "texto": "un",
+          "inicio": 0.871,
+          "fin": 0.94
+        },
+        {
+          "texto": "inductor",
+          "inicio": 0.998,
+          "fin": 1.44
+        },
+        {
+          "texto": "de",
+          "inicio": 1.498,
+          "fin": 1.556
+        },
+        {
+          "texto": "potencia",
+          "inicio": 1.614,
+          "fin": 2.09
+        },
+        {
+          "texto": "blindado",
+          "inicio": 2.136,
+          "fin": 2.577
+        },
+        {
+          "texto": "Bourns",
+          "inicio": 2.647,
+          "fin": 3.181
+        },
+        {
+          "texto": "de",
+          "inicio": 3.297,
+          "fin": 3.402
+        },
+        {
+          "texto": "33",
+          "inicio": 3.495,
+          "fin": 4.11
+        },
+        {
+          "texto": "microhenrios,",
+          "inicio": 4.203,
+          "fin": 5.213
+        },
+        {
+          "texto": "vemos",
+          "inicio": 5.596,
+          "fin": 5.875
+        },
+        {
+          "texto": "una",
+          "inicio": 5.956,
+          "fin": 6.072
+        },
+        {
+          "texto": "bobina",
+          "inicio": 6.118,
+          "fin": 6.478
+        },
+        {
+          "texto": "de",
+          "inicio": 6.525,
+          "fin": 6.594
+        },
+        {
+          "texto": "cobre",
+          "inicio": 6.664,
+          "fin": 6.954
+        },
+        {
+          "texto": "grueso",
+          "inicio": 7.001,
+          "fin": 7.372
+        },
+        {
+          "texto": "enrollada",
+          "inicio": 7.419,
+          "fin": 7.976
+        },
+        {
+          "texto": "sobre",
+          "inicio": 8.034,
+          "fin": 8.301
+        },
+        {
+          "texto": "un",
+          "inicio": 8.348,
+          "fin": 8.406
+        },
+        {
+          "texto": "tambor",
+          "inicio": 8.475,
+          "fin": 8.847
+        },
+        {
+          "texto": "de",
+          "inicio": 8.905,
+          "fin": 8.975
+        },
+        {
+          "texto": "ferrita",
+          "inicio": 9.033,
+          "fin": 9.567
+        },
+        {
+          "texto": "y",
+          "inicio": 9.683,
+          "fin": 9.776
+        },
+        {
+          "texto": "rodeada",
+          "inicio": 9.892,
+          "fin": 10.321
+        },
+        {
+          "texto": "por",
+          "inicio": 10.379,
+          "fin": 10.495
+        },
+        {
+          "texto": "un",
+          "inicio": 10.553,
+          "fin": 10.612
+        },
+        {
+          "texto": "escudo",
+          "inicio": 10.67,
+          "fin": 11.064
+        },
+        {
+          "texto": "magnético.",
+          "inicio": 11.122,
+          "fin": 11.993
+        },
+        {
+          "texto": "Cuando",
+          "inicio": 12.597,
+          "fin": 12.875
+        },
+        {
+          "texto": "pasa",
+          "inicio": 12.934,
+          "fin": 13.189
+        },
+        {
+          "texto": "corriente,",
+          "inicio": 13.247,
+          "fin": 13.932
+        },
+        {
+          "texto": "las",
+          "inicio": 14.048,
+          "fin": 14.257
+        },
+        {
+          "texto": "líneas",
+          "inicio": 14.327,
+          "fin": 14.71
+        },
+        {
+          "texto": "de",
+          "inicio": 14.756,
+          "fin": 14.803
+        },
+        {
+          "texto": "flujo",
+          "inicio": 14.872,
+          "fin": 15.186
+        },
+        {
+          "texto": "magnético",
+          "inicio": 15.244,
+          "fin": 15.917
+        },
+        {
+          "texto": "se",
+          "inicio": 15.975,
+          "fin": 16.057
+        },
+        {
+          "texto": "concentran",
+          "inicio": 16.115,
+          "fin": 16.718
+        },
+        {
+          "texto": "en",
+          "inicio": 16.776,
+          "fin": 16.823
+        },
+        {
+          "texto": "la",
+          "inicio": 16.881,
+          "fin": 16.939
+        },
+        {
+          "texto": "ferrita",
+          "inicio": 17.009,
+          "fin": 17.473
+        },
+        {
+          "texto": "acumulando",
+          "inicio": 17.52,
+          "fin": 18.158
+        },
+        {
+          "texto": "energía",
+          "inicio": 18.193,
+          "fin": 18.727
+        },
+        {
+          "texto": "sin",
+          "inicio": 18.785,
+          "fin": 18.948
+        },
+        {
+          "texto": "apenas",
+          "inicio": 19.006,
+          "fin": 19.342
+        },
+        {
+          "texto": "perder",
+          "inicio": 19.412,
+          "fin": 19.749
+        },
+        {
+          "texto": "calor",
+          "inicio": 19.807,
+          "fin": 20.12
+        },
+        {
+          "texto": "gracias",
+          "inicio": 20.178,
+          "fin": 20.561
+        },
+        {
+          "texto": "a",
+          "inicio": 20.619,
+          "fin": 20.643
+        },
+        {
+          "texto": "sus",
+          "inicio": 20.689,
+          "fin": 20.852
+        },
+        {
+          "texto": "39",
+          "inicio": 20.91,
+          "fin": 21.467
+        },
+        {
+          "texto": "miliohmios.",
+          "inicio": 21.618,
+          "fin": 22.895
+        }
+      ]
+    },
+    {
+      "id": "partes",
+      "archivo": "voz-inductor/es/partes.mp3",
+      "duracion": 21.873197,
+      "hash": "1a7a50c7bccbc35cfd0225d229cce6af9c20eb21",
+      "palabras": [
+        {
+          "texto": "Su",
+          "inicio": 0,
+          "fin": 0.186
+        },
+        {
+          "texto": "símbolo",
+          "inicio": 0.244,
+          "fin": 0.604
+        },
+        {
+          "texto": "esquemático",
+          "inicio": 0.65,
+          "fin": 1.37
+        },
+        {
+          "texto": "representa",
+          "inicio": 1.44,
+          "fin": 1.95
+        },
+        {
+          "texto": "las",
+          "inicio": 1.985,
+          "fin": 2.113
+        },
+        {
+          "texto": "espiras",
+          "inicio": 2.194,
+          "fin": 2.659
+        },
+        {
+          "texto": "del",
+          "inicio": 2.705,
+          "fin": 2.81
+        },
+        {
+          "texto": "alambre",
+          "inicio": 2.856,
+          "fin": 3.309
+        },
+        {
+          "texto": "y",
+          "inicio": 3.402,
+          "fin": 3.518
+        },
+        {
+          "texto": "el",
+          "inicio": 3.634,
+          "fin": 3.715
+        },
+        {
+          "texto": "núcleo.",
+          "inicio": 3.785,
+          "fin": 4.447
+        },
+        {
+          "texto": "Dos",
+          "inicio": 4.83,
+          "fin": 5.05
+        },
+        {
+          "texto": "parámetros",
+          "inicio": 5.12,
+          "fin": 5.689
+        },
+        {
+          "texto": "de",
+          "inicio": 5.735,
+          "fin": 5.793
+        },
+        {
+          "texto": "su",
+          "inicio": 5.84,
+          "fin": 5.944
+        },
+        {
+          "texto": "hoja",
+          "inicio": 6.002,
+          "fin": 6.2
+        },
+        {
+          "texto": "de",
+          "inicio": 6.246,
+          "fin": 6.316
+        },
+        {
+          "texto": "datos",
+          "inicio": 6.362,
+          "fin": 6.78
+        },
+        {
+          "texto": "son",
+          "inicio": 6.861,
+          "fin": 7.094
+        },
+        {
+          "texto": "sagrados:",
+          "inicio": 7.163,
+          "fin": 7.964
+        },
+        {
+          "texto": "la",
+          "inicio": 8.568,
+          "fin": 8.649
+        },
+        {
+          "texto": "corriente",
+          "inicio": 8.707,
+          "fin": 9.16
+        },
+        {
+          "texto": "efectiva",
+          "inicio": 9.183,
+          "fin": 9.671
+        },
+        {
+          "texto": "térmica",
+          "inicio": 9.729,
+          "fin": 10.252
+        },
+        {
+          "texto": "y",
+          "inicio": 10.577,
+          "fin": 10.67
+        },
+        {
+          "texto": "la",
+          "inicio": 10.762,
+          "fin": 10.82
+        },
+        {
+          "texto": "corriente",
+          "inicio": 10.89,
+          "fin": 11.343
+        },
+        {
+          "texto": "de",
+          "inicio": 11.389,
+          "fin": 11.459
+        },
+        {
+          "texto": "saturación.",
+          "inicio": 11.494,
+          "fin": 12.341
+        },
+        {
+          "texto": "Si",
+          "inicio": 13.038,
+          "fin": 13.201
+        },
+        {
+          "texto": "superas",
+          "inicio": 13.259,
+          "fin": 13.653
+        },
+        {
+          "texto": "la",
+          "inicio": 13.711,
+          "fin": 13.77
+        },
+        {
+          "texto": "corriente",
+          "inicio": 13.828,
+          "fin": 14.28
+        },
+        {
+          "texto": "de",
+          "inicio": 14.327,
+          "fin": 14.385
+        },
+        {
+          "texto": "saturación,",
+          "inicio": 14.431,
+          "fin": 15.221
+        },
+        {
+          "texto": "el",
+          "inicio": 15.465,
+          "fin": 15.581
+        },
+        {
+          "texto": "núcleo",
+          "inicio": 15.639,
+          "fin": 15.952
+        },
+        {
+          "texto": "de",
+          "inicio": 16.01,
+          "fin": 16.068
+        },
+        {
+          "texto": "ferrita",
+          "inicio": 16.115,
+          "fin": 16.591
+        },
+        {
+          "texto": "se",
+          "inicio": 16.649,
+          "fin": 16.73
+        },
+        {
+          "texto": "satura,",
+          "inicio": 16.777,
+          "fin": 17.403
+        },
+        {
+          "texto": "la",
+          "inicio": 17.578,
+          "fin": 17.659
+        },
+        {
+          "texto": "inductancia",
+          "inicio": 17.705,
+          "fin": 18.309
+        },
+        {
+          "texto": "cae",
+          "inicio": 18.379,
+          "fin": 18.657
+        },
+        {
+          "texto": "a",
+          "inicio": 18.692,
+          "fin": 18.739
+        },
+        {
+          "texto": "cero",
+          "inicio": 18.797,
+          "fin": 19.122
+        },
+        {
+          "texto": "y",
+          "inicio": 19.203,
+          "fin": 19.273
+        },
+        {
+          "texto": "actúa",
+          "inicio": 19.354,
+          "fin": 19.737
+        },
+        {
+          "texto": "como",
+          "inicio": 19.795,
+          "fin": 20.004
+        },
+        {
+          "texto": "un",
+          "inicio": 20.062,
+          "fin": 20.12
+        },
+        {
+          "texto": "cortocircuito.",
+          "inicio": 20.19,
+          "fin": 21.873
+        }
+      ]
+    },
+    {
+      "id": "circuito",
+      "archivo": "voz-inductor/es/circuito.mp3",
+      "duracion": 25.40263,
+      "hash": "361f2facaf349ddd5763d49d1ba07e2cbcba531e",
+      "palabras": [
+        {
+          "texto": "Su",
+          "inicio": 0,
+          "fin": 0.186
+        },
+        {
+          "texto": "aplicación",
+          "inicio": 0.244,
+          "fin": 0.755
+        },
+        {
+          "texto": "estrella",
+          "inicio": 0.801,
+          "fin": 1.231
+        },
+        {
+          "texto": "es",
+          "inicio": 1.3,
+          "fin": 1.382
+        },
+        {
+          "texto": "el",
+          "inicio": 1.474,
+          "fin": 1.556
+        },
+        {
+          "texto": "convertidor",
+          "inicio": 1.625,
+          "fin": 2.403
+        },
+        {
+          "texto": "Buck",
+          "inicio": 2.519,
+          "fin": 2.798
+        },
+        {
+          "texto": "que",
+          "inicio": 3.309,
+          "fin": 3.425
+        },
+        {
+          "texto": "baja",
+          "inicio": 3.483,
+          "fin": 3.796
+        },
+        {
+          "texto": "12",
+          "inicio": 3.855,
+          "fin": 4.063
+        },
+        {
+          "texto": "voltios",
+          "inicio": 4.18,
+          "fin": 4.632
+        },
+        {
+          "texto": "a",
+          "inicio": 4.725,
+          "fin": 4.76
+        },
+        {
+          "texto": "5",
+          "inicio": 4.876,
+          "fin": 5.085
+        },
+        {
+          "texto": "voltios",
+          "inicio": 5.236,
+          "fin": 5.735
+        },
+        {
+          "texto": "sin",
+          "inicio": 5.817,
+          "fin": 6.026
+        },
+        {
+          "texto": "quemar",
+          "inicio": 6.084,
+          "fin": 6.385
+        },
+        {
+          "texto": "energía:",
+          "inicio": 6.432,
+          "fin": 7.187
+        },
+        {
+          "texto": "cuando",
+          "inicio": 7.57,
+          "fin": 7.883
+        },
+        {
+          "texto": "el",
+          "inicio": 7.906,
+          "fin": 7.953
+        },
+        {
+          "texto": "transistor",
+          "inicio": 7.999,
+          "fin": 8.568
+        },
+        {
+          "texto": "conmuta",
+          "inicio": 8.638,
+          "fin": 9.172
+        },
+        {
+          "texto": "a",
+          "inicio": 9.218,
+          "fin": 9.253
+        },
+        {
+          "texto": "150",
+          "inicio": 9.323,
+          "fin": 10.043
+        },
+        {
+          "texto": "kilohercios,",
+          "inicio": 10.136,
+          "fin": 10.971
+        },
+        {
+          "texto": "el",
+          "inicio": 11.18,
+          "fin": 11.331
+        },
+        {
+          "texto": "inductor",
+          "inicio": 11.401,
+          "fin": 11.831
+        },
+        {
+          "texto": "absorbe",
+          "inicio": 11.877,
+          "fin": 12.318
+        },
+        {
+          "texto": "el",
+          "inicio": 12.341,
+          "fin": 12.411
+        },
+        {
+          "texto": "exceso",
+          "inicio": 12.481,
+          "fin": 12.899
+        },
+        {
+          "texto": "de",
+          "inicio": 12.957,
+          "fin": 13.026
+        },
+        {
+          "texto": "voltaje",
+          "inicio": 13.073,
+          "fin": 13.677
+        },
+        {
+          "texto": "inflando",
+          "inicio": 13.758,
+          "fin": 14.281
+        },
+        {
+          "texto": "su",
+          "inicio": 14.327,
+          "fin": 14.443
+        },
+        {
+          "texto": "campo",
+          "inicio": 14.501,
+          "fin": 14.826
+        },
+        {
+          "texto": "magnético;",
+          "inicio": 14.884,
+          "fin": 15.743
+        },
+        {
+          "texto": "y",
+          "inicio": 15.987,
+          "fin": 16.045
+        },
+        {
+          "texto": "cuando",
+          "inicio": 16.161,
+          "fin": 16.428
+        },
+        {
+          "texto": "el",
+          "inicio": 16.463,
+          "fin": 16.51
+        },
+        {
+          "texto": "transistor",
+          "inicio": 16.556,
+          "fin": 17.102
+        },
+        {
+          "texto": "se",
+          "inicio": 17.16,
+          "fin": 17.23
+        },
+        {
+          "texto": "apaga,",
+          "inicio": 17.264,
+          "fin": 17.915
+        },
+        {
+          "texto": "el",
+          "inicio": 18.356,
+          "fin": 18.495
+        },
+        {
+          "texto": "inductor",
+          "inicio": 18.576,
+          "fin": 18.983
+        },
+        {
+          "texto": "descarga",
+          "inicio": 19.041,
+          "fin": 19.505
+        },
+        {
+          "texto": "esa",
+          "inicio": 19.563,
+          "fin": 19.737
+        },
+        {
+          "texto": "energía",
+          "inicio": 19.772,
+          "fin": 20.318
+        },
+        {
+          "texto": "a",
+          "inicio": 20.341,
+          "fin": 20.364
+        },
+        {
+          "texto": "través",
+          "inicio": 20.422,
+          "fin": 20.759
+        },
+        {
+          "texto": "del",
+          "inicio": 20.794,
+          "fin": 20.91
+        },
+        {
+          "texto": "diodo",
+          "inicio": 20.968,
+          "fin": 21.247
+        },
+        {
+          "texto": "Schottky",
+          "inicio": 21.328,
+          "fin": 21.862
+        },
+        {
+          "texto": "manteniendo",
+          "inicio": 22.071,
+          "fin": 22.733
+        },
+        {
+          "texto": "5",
+          "inicio": 22.86,
+          "fin": 23.104
+        },
+        {
+          "texto": "voltios",
+          "inicio": 23.255,
+          "fin": 23.72
+        },
+        {
+          "texto": "continuos.",
+          "inicio": 23.778,
+          "fin": 25.403
+        }
+      ]
+    },
+    {
+      "id": "regiones",
+      "archivo": "voz-inductor/es/regiones.mp3",
+      "duracion": 22.987755,
+      "hash": "6590f6a283cae7a97462e3b6bfa7594545da8693",
+      "palabras": [
+        {
+          "texto": "Mira",
+          "inicio": 0,
+          "fin": 0.279
+        },
+        {
+          "texto": "en",
+          "inicio": 0.337,
+          "fin": 0.372
+        },
+        {
+          "texto": "las",
+          "inicio": 0.418,
+          "fin": 0.546
+        },
+        {
+          "texto": "gráficas",
+          "inicio": 0.592,
+          "fin": 1.126
+        },
+        {
+          "texto": "por",
+          "inicio": 1.173,
+          "fin": 1.324
+        },
+        {
+          "texto": "qué",
+          "inicio": 1.393,
+          "fin": 1.509
+        },
+        {
+          "texto": "un",
+          "inicio": 1.567,
+          "fin": 1.614
+        },
+        {
+          "texto": "convertidor",
+          "inicio": 1.672,
+          "fin": 2.287
+        },
+        {
+          "texto": "Buck",
+          "inicio": 2.38,
+          "fin": 2.624
+        },
+        {
+          "texto": "con",
+          "inicio": 2.74,
+          "fin": 2.902
+        },
+        {
+          "texto": "inductor",
+          "inicio": 2.972,
+          "fin": 3.495
+        },
+        {
+          "texto": "reemplaza",
+          "inicio": 3.692,
+          "fin": 4.226
+        },
+        {
+          "texto": "al",
+          "inicio": 4.272,
+          "fin": 4.354
+        },
+        {
+          "texto": "viejo",
+          "inicio": 4.4,
+          "fin": 4.679
+        },
+        {
+          "texto": "regulador",
+          "inicio": 4.737,
+          "fin": 5.201
+        },
+        {
+          "texto": "lineal",
+          "inicio": 5.248,
+          "fin": 5.654
+        },
+        {
+          "texto": "7805:",
+          "inicio": 5.793,
+          "fin": 7.396
+        },
+        {
+          "texto": "para",
+          "inicio": 7.895,
+          "fin": 8.081
+        },
+        {
+          "texto": "bajar",
+          "inicio": 8.127,
+          "fin": 8.429
+        },
+        {
+          "texto": "de",
+          "inicio": 8.487,
+          "fin": 8.568
+        },
+        {
+          "texto": "12",
+          "inicio": 8.626,
+          "fin": 8.847
+        },
+        {
+          "texto": "a",
+          "inicio": 8.998,
+          "fin": 9.044
+        },
+        {
+          "texto": "5",
+          "inicio": 9.16,
+          "fin": 9.369
+        },
+        {
+          "texto": "voltios",
+          "inicio": 9.474,
+          "fin": 9.915
+        },
+        {
+          "texto": "a",
+          "inicio": 9.996,
+          "fin": 10.019
+        },
+        {
+          "texto": "2",
+          "inicio": 10.136,
+          "fin": 10.217
+        },
+        {
+          "texto": "amperios,",
+          "inicio": 10.321,
+          "fin": 11.041
+        },
+        {
+          "texto": "el",
+          "inicio": 11.273,
+          "fin": 11.413
+        },
+        {
+          "texto": "regulador",
+          "inicio": 11.494,
+          "fin": 11.97
+        },
+        {
+          "texto": "lineal",
+          "inicio": 12.016,
+          "fin": 12.376
+        },
+        {
+          "texto": "quema",
+          "inicio": 12.434,
+          "fin": 12.701
+        },
+        {
+          "texto": "14",
+          "inicio": 12.725,
+          "fin": 13.166
+        },
+        {
+          "texto": "vatios",
+          "inicio": 13.27,
+          "fin": 13.653
+        },
+        {
+          "texto": "en",
+          "inicio": 13.735,
+          "fin": 13.804
+        },
+        {
+          "texto": "calor",
+          "inicio": 13.862,
+          "fin": 14.199
+        },
+        {
+          "texto": "con",
+          "inicio": 14.466,
+          "fin": 14.663
+        },
+        {
+          "texto": "solo",
+          "inicio": 14.721,
+          "fin": 14.919
+        },
+        {
+          "texto": "41",
+          "inicio": 15.035,
+          "fin": 15.592
+        },
+        {
+          "texto": "por",
+          "inicio": 15.685,
+          "fin": 15.836
+        },
+        {
+          "texto": "ciento",
+          "inicio": 15.894,
+          "fin": 16.242
+        },
+        {
+          "texto": "de",
+          "inicio": 16.3,
+          "fin": 16.37
+        },
+        {
+          "texto": "eficiencia,",
+          "inicio": 16.393,
+          "fin": 17.299
+        },
+        {
+          "texto": "mientras",
+          "inicio": 17.473,
+          "fin": 17.856
+        },
+        {
+          "texto": "el",
+          "inicio": 17.914,
+          "fin": 17.972
+        },
+        {
+          "texto": "inductor",
+          "inicio": 18.03,
+          "fin": 18.46
+        },
+        {
+          "texto": "en",
+          "inicio": 18.506,
+          "fin": 18.553
+        },
+        {
+          "texto": "un",
+          "inicio": 18.669,
+          "fin": 18.738
+        },
+        {
+          "texto": "Buck",
+          "inicio": 18.797,
+          "fin": 19.087
+        },
+        {
+          "texto": "logra",
+          "inicio": 19.331,
+          "fin": 19.69
+        },
+        {
+          "texto": "más",
+          "inicio": 19.749,
+          "fin": 19.981
+        },
+        {
+          "texto": "del",
+          "inicio": 20.004,
+          "fin": 20.12
+        },
+        {
+          "texto": "90",
+          "inicio": 20.19,
+          "fin": 20.55
+        },
+        {
+          "texto": "por",
+          "inicio": 20.666,
+          "fin": 20.828
+        },
+        {
+          "texto": "ciento",
+          "inicio": 20.886,
+          "fin": 21.223
+        },
+        {
+          "texto": "de",
+          "inicio": 21.281,
+          "fin": 21.339
+        },
+        {
+          "texto": "eficiencia.",
+          "inicio": 21.362,
+          "fin": 22.988
+        }
+      ]
+    },
+    {
+      "id": "cierre",
+      "archivo": "voz-inductor/es/cierre.mp3",
+      "duracion": 12.770975,
+      "hash": "c11c0732ca962fa81847bb7d196ffaaa8500273c",
+      "palabras": [
+        {
+          "texto": "Desde",
+          "inicio": 0,
+          "fin": 0.348
+        },
+        {
+          "texto": "el",
+          "inicio": 0.372,
+          "fin": 0.418
+        },
+        {
+          "texto": "inductor",
+          "inicio": 0.488,
+          "fin": 0.906
+        },
+        {
+          "texto": "radial",
+          "inicio": 0.94,
+          "fin": 1.242
+        },
+        {
+          "texto": "de",
+          "inicio": 1.277,
+          "fin": 1.335
+        },
+        {
+          "texto": "tambor",
+          "inicio": 1.382,
+          "fin": 1.811
+        },
+        {
+          "texto": "y",
+          "inicio": 1.985,
+          "fin": 2.055
+        },
+        {
+          "texto": "el",
+          "inicio": 2.125,
+          "fin": 2.183
+        },
+        {
+          "texto": "inductor",
+          "inicio": 2.241,
+          "fin": 2.682
+        },
+        {
+          "texto": "SMD",
+          "inicio": 2.752,
+          "fin": 3.204
+        },
+        {
+          "texto": "blindado",
+          "inicio": 3.32,
+          "fin": 3.82
+        },
+        {
+          "texto": "para",
+          "inicio": 3.878,
+          "fin": 4.063
+        },
+        {
+          "texto": "fuentes",
+          "inicio": 4.122,
+          "fin": 4.528
+        },
+        {
+          "texto": "conmutadas,",
+          "inicio": 4.598,
+          "fin": 5.492
+        },
+        {
+          "texto": "hasta",
+          "inicio": 5.735,
+          "fin": 6.049
+        },
+        {
+          "texto": "el",
+          "inicio": 6.095,
+          "fin": 6.153
+        },
+        {
+          "texto": "toroide",
+          "inicio": 6.211,
+          "fin": 6.594
+        },
+        {
+          "texto": "de",
+          "inicio": 6.653,
+          "fin": 6.722
+        },
+        {
+          "texto": "filtro",
+          "inicio": 6.792,
+          "fin": 7.245
+        },
+        {
+          "texto": "EMI:",
+          "inicio": 7.338,
+          "fin": 7.988
+        },
+        {
+          "texto": "dominar",
+          "inicio": 8.498,
+          "fin": 8.998
+        },
+        {
+          "texto": "el",
+          "inicio": 9.044,
+          "fin": 9.091
+        },
+        {
+          "texto": "inductor",
+          "inicio": 9.149,
+          "fin": 9.648
+        },
+        {
+          "texto": "es",
+          "inicio": 9.776,
+          "fin": 9.973
+        },
+        {
+          "texto": "dominar",
+          "inicio": 10.008,
+          "fin": 10.403
+        },
+        {
+          "texto": "la",
+          "inicio": 10.461,
+          "fin": 10.53
+        },
+        {
+          "texto": "electrónica",
+          "inicio": 10.565,
+          "fin": 11.169
+        },
+        {
+          "texto": "de",
+          "inicio": 11.215,
+          "fin": 11.285
+        },
+        {
+          "texto": "potencia",
+          "inicio": 11.343,
+          "fin": 11.842
+        },
+        {
+          "texto": "moderna.",
+          "inicio": 11.889,
+          "fin": 12.771
+        }
+      ]
+    }
+  ]
+}

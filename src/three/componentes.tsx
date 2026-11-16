@@ -308,7 +308,14 @@ export type TipoModeloKiCad =
   | "rele_smd"
   | "diodo_1n4007"
   | "dpak"
-  | "disipador_to220";
+  | "disipador_to220"
+  | "cap_electrolitico"
+  | "cap_ceramico"
+  | "cap_tantalo"
+  | "diodo_zener"
+  | "inductor_radial"
+  | "inductor_smd"
+  | "inductor_toroidal";
 
 export const EncapsuladoKiCad: React.FC<{
   tipo: TipoModeloKiCad;
@@ -328,8 +335,24 @@ export const EncapsuladoKiCad: React.FC<{
   }, [gltf]);
 
   const matAzulRele = useMemo(
-    () => new THREE.MeshPhysicalMaterial({ color: "#0e4d8a", roughness: 0.25, clearcoat: 0.5, transmission: tipo === "rele_dpdt" ? 0.45 : 0 }),
+    () =>
+      new THREE.MeshPhysicalMaterial({
+        color: "#0968b8",
+        roughness: 0.22,
+        clearcoat: 0.6,
+        transmission: tipo === "rele_dpdt" ? 0.55 : 0.12,
+      }),
     [tipo],
+  );
+  const marcaRele = useMemo(
+    () =>
+      texturaTexto(["OMRON G5LE-1", "5VDC · 10A 250VAC~", "COIL: 1-2 | 3-4-5"], {
+        ancho: 512,
+        alto: 256,
+        tam: 48,
+        color: "#e2f1ff",
+      }),
+    [],
   );
 
   return (
@@ -339,8 +362,21 @@ export const EncapsuladoKiCad: React.FC<{
         if (m.name.startsWith("Pines") || tipo === "disipador_to220") mat = MAT.estano;
         else if (m.name.startsWith("Lente")) mat = MAT.cobre;
         else if (tipo === "rele_spdt" || tipo === "rele_dpdt") mat = matAzulRele;
+        else if (tipo === "cap_tantalo" || tipo === "cap_ceramico") mat = MAT.ceramica;
         return <mesh key={m.name} geometry={m.geometry} material={mat} castShadow receiveShadow />;
       })}
+      {tipo === "rele_spdt" && (
+        <>
+          <mesh position={[0, 19.15, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+            <planeGeometry args={[14.5, 10.5]} />
+            <meshStandardMaterial map={marcaRele} transparent roughness={0.4} depthWrite={false} />
+          </mesh>
+          <mesh position={[0, 10.2, 11.32]}>
+            <planeGeometry args={[14.2, 12.0]} />
+            <meshStandardMaterial map={marcaRele} transparent roughness={0.4} depthWrite={false} />
+          </mesh>
+        </>
+      )}
     </group>
   );
 };
@@ -462,17 +498,26 @@ export const ReleAutopsia: React.FC<{
   }, [gltf]);
 
   const matCarcasa = useMemo(
-    () => new THREE.MeshPhysicalMaterial({ color: "#0b3b6e", roughness: 0.28, clearcoat: 0.45 }),
+    () =>
+      new THREE.MeshPhysicalMaterial({
+        color: "#c8e6ff",
+        roughness: 0.08,
+        transmission: 0.78,
+        thickness: 0.8,
+        ior: 1.48,
+        transparent: true,
+        opacity: 0.42,
+      }),
     [],
   );
   const matTapa = useMemo(
     () =>
       new THREE.MeshPhysicalMaterial({
-        color: "#0e4d8a",
-        roughness: 0.25,
-        clearcoat: 0.5,
+        color: "#c8e6ff",
+        roughness: 0.08,
+        transmission: 0.82,
         transparent: true,
-        opacity: Math.max(0.15, 1 - apertura * 0.78),
+        opacity: Math.max(0.08, 0.45 - apertura * 0.36),
       }),
     [apertura],
   );
@@ -524,7 +569,8 @@ export const ReleAutopsia: React.FC<{
   return (
     <group position={posicion} scale={escala}>
       {partes.Pines_Metal && <mesh geometry={partes.Pines_Metal} material={MAT.estano} castShadow />}
-      {partes.Carcasa_Base && <mesh geometry={partes.Carcasa_Base} material={matCarcasa} castShadow receiveShadow />}
+      {partes.Base_Carrete_Negro && <mesh geometry={partes.Base_Carrete_Negro} material={MAT.negro} castShadow receiveShadow />}
+      {partes.Carcasa_Base && <mesh geometry={partes.Carcasa_Base} material={matCarcasa} />}
       {partes.Carcasa_Corte && (
         <mesh
           geometry={partes.Carcasa_Corte}
@@ -535,13 +581,13 @@ export const ReleAutopsia: React.FC<{
       )}
       {partes.Nucleo_Hierro && <mesh geometry={partes.Nucleo_Hierro} material={matNucleo} />}
       {partes.Yugo_Hierro && <mesh geometry={partes.Yugo_Hierro} material={matNucleo} />}
-      {partes.Bobina_Cobre && <mesh geometry={partes.Bobina_Cobre} material={matBobina} />}
+      {partes.Bobina_Cobre && <mesh geometry={partes.Bobina_Cobre} material={matBobina} castShadow />}
       {partes.Armadura_Movil && (
         <mesh
           geometry={partes.Armadura_Movil}
           material={matArmadura}
-          position={[(activado - 0.5) * 1.4, -activado * 0.35, 0]}
-          rotation={[0, 0, (activado - 0.5) * -0.09]}
+          position={[(activado - 0.5) * 1.35, -activado * 0.25, 0]}
+          rotation={[0, 0, (activado - 0.5) * -0.07]}
         />
       )}
       {partes.Contacto_NC && <mesh geometry={partes.Contacto_NC} material={matContactos} />}
@@ -747,6 +793,171 @@ export const Cable: React.FC<{ puntos: [number, number, number][]; color: string
   );
 };
 
+// ---------- Autopsia 3D del Capacitor Electrolítico (Blender 5.0) ----------
+export const CapAutopsia: React.FC<{
+  posicion?: [number, number, number];
+  escala?: number;
+  apertura: number;
+  voltaje: number; // 0..1
+}> = ({ posicion = [0, 0, 0], escala = 0.34, apertura, voltaje }) => {
+  const gltf = useGLTF(staticFile("modelos/cap_autopsia.glb"));
+  const partes = useMemo(() => {
+    const mapa: Record<string, THREE.BufferGeometry> = {};
+    gltf.scene.traverse((child) => {
+      if ((child as THREE.Mesh).isMesh) mapa[child.name] = (child as THREE.Mesh).geometry;
+    });
+    return mapa;
+  }, [gltf]);
+
+  const matTapa = useMemo(
+    () => new THREE.MeshPhysicalMaterial({ color: "#121822", roughness: 0.3, transparent: true, opacity: Math.max(0.15, 1 - apertura * 0.78) }),
+    [apertura],
+  );
+  const matDielectrico = useMemo(
+    () =>
+      new THREE.MeshPhysicalMaterial({
+        color: "#3de0ff",
+        roughness: 0.15,
+        emissive: new THREE.Color("#00b4d8"),
+        emissiveIntensity: 0.5 + voltaje * 2.2,
+      }),
+    [voltaje],
+  );
+  const matPapel = useMemo(
+    () =>
+      new THREE.MeshPhysicalMaterial({
+        color: "#e2b15c",
+        roughness: 0.45,
+        emissive: new THREE.Color("#ff9f1c"),
+        emissiveIntensity: 0.25 + voltaje * 0.8,
+      }),
+    [voltaje],
+  );
+
+  return (
+    <group position={posicion} scale={escala}>
+      {partes.Pines_Metal && <mesh geometry={partes.Pines_Metal} material={MAT.estano} castShadow />}
+      {partes.Carcasa_Base && <mesh geometry={partes.Carcasa_Base} material={MAT.resina} castShadow />}
+      {partes.Encapsulado_2 && <mesh geometry={partes.Encapsulado_2} material={MAT.aluminio} />}
+      {partes.Encapsulado_3 && <mesh geometry={partes.Encapsulado_3} material={MAT.negro} />}
+      {partes.Carcasa_Corte && (
+        <mesh geometry={partes.Carcasa_Corte} material={matTapa} position={[apertura * 3.8, apertura * 1.1, apertura * 3.8]} />
+      )}
+      {partes.Rollo_Anodo_Al && <mesh geometry={partes.Rollo_Anodo_Al} material={MAT.aluminio} />}
+      {partes.Capa_Dielectrico_Al2O3 && <mesh geometry={partes.Capa_Dielectrico_Al2O3} material={matDielectrico} />}
+      {partes.Rollo_Papel_Electrolito && <mesh geometry={partes.Rollo_Papel_Electrolito} material={matPapel} />}
+      {partes.Nucleo_Catodo_Al && <mesh geometry={partes.Nucleo_Catodo_Al} material={MAT.aluminio} />}
+    </group>
+  );
+};
+
+// ---------- Autopsia 3D del Diodo P-N DO-41 1N4007 (Blender 5.0) ----------
+export const DiodoAutopsia: React.FC<{
+  posicion?: [number, number, number];
+  escala?: number;
+  apertura: number;
+  polarizacion: number; // 0 = bloqueo/barrera ancha, 1 = conducción directa 0.7V
+}> = ({ posicion = [0, 1.4, 0], escala = 0.65, apertura, polarizacion }) => {
+  const gltf = useGLTF(staticFile("modelos/diodo_autopsia.glb"));
+  const partes = useMemo(() => {
+    const mapa: Record<string, THREE.BufferGeometry> = {};
+    gltf.scene.traverse((child) => {
+      if ((child as THREE.Mesh).isMesh) mapa[child.name] = (child as THREE.Mesh).geometry;
+    });
+    return mapa;
+  }, [gltf]);
+
+  const matTapa = useMemo(
+    () => new THREE.MeshPhysicalMaterial({ color: "#151920", roughness: 0.3, transparent: true, opacity: Math.max(0.15, 1 - apertura * 0.8) }),
+    [apertura],
+  );
+  const matP = useMemo(
+    () => new THREE.MeshPhysicalMaterial({ color: "#ff9f1c", roughness: 0.2, emissive: new THREE.Color("#ff8c00"), emissiveIntensity: 0.6 + polarizacion * 1.6 }),
+    [polarizacion],
+  );
+  const matN = useMemo(
+    () => new THREE.MeshPhysicalMaterial({ color: "#3de0ff", roughness: 0.2, emissive: new THREE.Color("#00b4d8"), emissiveIntensity: 0.6 + polarizacion * 1.6 }),
+    [polarizacion],
+  );
+  const matBarrera = useMemo(
+    () =>
+      new THREE.MeshPhysicalMaterial({
+        color: polarizacion > 0.5 ? "#2ee59d" : "#ff5c5c",
+        roughness: 0.15,
+        emissive: new THREE.Color(polarizacion > 0.5 ? "#10b981" : "#ef4444"),
+        emissiveIntensity: 1.8,
+      }),
+    [polarizacion],
+  );
+
+  return (
+    <group position={posicion} scale={escala}>
+      {partes.Pines_0 && <mesh geometry={partes.Pines_0} material={MAT.estano} castShadow />}
+      {partes.Pines_1 && <mesh geometry={partes.Pines_1} material={MAT.aluminio} />}
+      {partes.Carcasa_Base && <mesh geometry={partes.Carcasa_Base} material={MAT.resina} castShadow />}
+      {partes.Carcasa_Corte && (
+        <mesh geometry={partes.Carcasa_Corte} material={matTapa} position={[0, apertura * 1.2, apertura * 2.5]} />
+      )}
+      {partes.Slug_Cobre_Catodo && <mesh geometry={partes.Slug_Cobre_Catodo} material={MAT.cobre} />}
+      {partes.Slug_Cobre_Anodo && <mesh geometry={partes.Slug_Cobre_Anodo} material={MAT.cobre} />}
+      {partes.Silicio_N_Catodo && <mesh geometry={partes.Silicio_N_Catodo} material={matN} />}
+      {partes.Silicio_P_Anodo && <mesh geometry={partes.Silicio_P_Anodo} material={matP} />}
+      {partes.Barrera_Agotamiento && (
+        <mesh geometry={partes.Barrera_Agotamiento} material={matBarrera} scale={[1 - polarizacion * 0.55, 1, 1]} />
+      )}
+    </group>
+  );
+};
+
+// ---------- Autopsia 3D del Inductor de Potencia Bourns SRR1260 (Blender 5.0) ----------
+export const InductorAutopsia: React.FC<{
+  posicion?: [number, number, number];
+  escala?: number;
+  apertura: number;
+  corriente: number; // 0..1 expande y brilla el campo magnético
+}> = ({ posicion = [0, 0.08, 0], escala = 0.34, apertura, corriente }) => {
+  const gltf = useGLTF(staticFile("modelos/inductor_autopsia.glb"));
+  const partes = useMemo(() => {
+    const mapa: Record<string, THREE.BufferGeometry> = {};
+    gltf.scene.traverse((child) => {
+      if ((child as THREE.Mesh).isMesh) mapa[child.name] = (child as THREE.Mesh).geometry;
+    });
+    return mapa;
+  }, [gltf]);
+
+  const matTapa = useMemo(
+    () => new THREE.MeshPhysicalMaterial({ color: "#1c2026", roughness: 0.38, transparent: true, opacity: Math.max(0.15, 1 - apertura * 0.8) }),
+    [apertura],
+  );
+  const matCampo = useMemo(
+    () =>
+      new THREE.MeshPhysicalMaterial({
+        color: "#3de0ff",
+        roughness: 0.1,
+        transparent: true,
+        opacity: 0.25 + corriente * 0.65,
+        emissive: new THREE.Color("#00e5ff"),
+        emissiveIntensity: 0.8 + corriente * 2.6,
+      }),
+    [corriente],
+  );
+
+  return (
+    <group position={posicion} scale={escala}>
+      {partes.Pines_0 && <mesh geometry={partes.Pines_0} material={MAT.estano} castShadow />}
+      {partes.Carcasa_Base && <mesh geometry={partes.Carcasa_Base} material={MAT.resina} castShadow />}
+      {partes.Carcasa_Corte && (
+        <mesh geometry={partes.Carcasa_Corte} material={matTapa} position={[apertura * 5.2, apertura * 1.8, apertura * 5.2]} />
+      )}
+      {partes.Nucleo_Ferrita && <mesh geometry={partes.Nucleo_Ferrita} material={MAT.negro} />}
+      {partes.Bobina_Cobre && <mesh geometry={partes.Bobina_Cobre} material={MAT.cobre} castShadow />}
+      {partes.Campo_Magnetico && (
+        <mesh geometry={partes.Campo_Magnetico} material={matCampo} scale={0.85 + corriente * 0.22} />
+      )}
+    </group>
+  );
+};
+
 useGLTF.preload(staticFile("modelos/to92.glb"));
 useGLTF.preload(staticFile("modelos/to92_autopsia.glb"));
 useGLTF.preload(staticFile("modelos/to220.glb"));
@@ -762,3 +973,13 @@ useGLTF.preload(staticFile("modelos/diodo_1n4007.glb"));
 useGLTF.preload(staticFile("modelos/mosfet_autopsia.glb"));
 useGLTF.preload(staticFile("modelos/dpak.glb"));
 useGLTF.preload(staticFile("modelos/disipador_to220.glb"));
+useGLTF.preload(staticFile("modelos/cap_electrolitico.glb"));
+useGLTF.preload(staticFile("modelos/cap_ceramico.glb"));
+useGLTF.preload(staticFile("modelos/cap_tantalo.glb"));
+useGLTF.preload(staticFile("modelos/cap_autopsia.glb"));
+useGLTF.preload(staticFile("modelos/diodo_zener.glb"));
+useGLTF.preload(staticFile("modelos/diodo_autopsia.glb"));
+useGLTF.preload(staticFile("modelos/inductor_radial.glb"));
+useGLTF.preload(staticFile("modelos/inductor_smd.glb"));
+useGLTF.preload(staticFile("modelos/inductor_toroidal.glb"));
+useGLTF.preload(staticFile("modelos/inductor_autopsia.glb"));

@@ -21,6 +21,12 @@
     "render:mosfet:en": "remotion render Mosfet-EN out/mosfet-en.mp4",
     "render:mosfet:short:es": "remotion render Mosfet-Short-ES out/mosfet-short-es.mp4",
     "render:mosfet:short:en": "remotion render Mosfet-Short-EN out/mosfet-short-en.mp4",
+    "render:capacitor:es": "remotion render Capacitor-ES out/capacitor-es.mp4",
+    "render:capacitor:short:es": "remotion render Capacitor-Short-ES out/capacitor-short-es.mp4",
+    "render:diodo:es": "remotion render Diodo-ES out/diodo-es.mp4",
+    "render:diodo:short:es": "remotion render Diodo-Short-ES out/diodo-short-es.mp4",
+    "render:inductor:es": "remotion render Inductor-ES out/inductor-es.mp4",
+    "render:inductor:short:es": "remotion render Inductor-Short-ES out/inductor-short-es.mp4",
     "youtube:kit": "tsx scripts/generar-kit-youtube.ts",
     "typecheck": "tsc --noEmit"
   },

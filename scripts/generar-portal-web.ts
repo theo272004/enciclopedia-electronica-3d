@@ -10,11 +10,17 @@ const MODELOS_WEB_DIR = path.join(DOCS_DIR, "modelos");
 const DESCARGAS_DIR = path.join(DOCS_DIR, "descargas", "01-transistor");
 const DESCARGAS_RELE_DIR = path.join(DOCS_DIR, "descargas", "02-rele");
 const DESCARGAS_MOSFET_DIR = path.join(DOCS_DIR, "descargas", "03-mosfet");
+const DESCARGAS_CAP_DIR = path.join(DOCS_DIR, "descargas", "04-capacitor");
+const DESCARGAS_DIODO_DIR = path.join(DOCS_DIR, "descargas", "05-diodo");
+const DESCARGAS_INDUCTOR_DIR = path.join(DOCS_DIR, "descargas", "06-inductor");
 
 fs.mkdirSync(MODELOS_WEB_DIR, { recursive: true });
 fs.mkdirSync(DESCARGAS_DIR, { recursive: true });
 fs.mkdirSync(DESCARGAS_RELE_DIR, { recursive: true });
 fs.mkdirSync(DESCARGAS_MOSFET_DIR, { recursive: true });
+fs.mkdirSync(DESCARGAS_CAP_DIR, { recursive: true });
+fs.mkdirSync(DESCARGAS_DIODO_DIR, { recursive: true });
+fs.mkdirSync(DESCARGAS_INDUCTOR_DIR, { recursive: true });
 
 // 1. Copiar modelos GLB optimizados para el visor 3D web y para descarga
 const glbs = [
@@ -33,6 +39,16 @@ const glbs = [
   "mosfet_autopsia.glb",
   "dpak.glb",
   "disipador_to220.glb",
+  "cap_autopsia.glb",
+  "cap_electrolitico.glb",
+  "cap_ceramico.glb",
+  "cap_tantalo.glb",
+  "diodo_autopsia.glb",
+  "diodo_zener.glb",
+  "inductor_autopsia.glb",
+  "inductor_radial.glb",
+  "inductor_smd.glb",
+  "inductor_toroidal.glb",
 ];
 
 for (const archivo of glbs) {
@@ -42,9 +58,15 @@ for (const archivo of glbs) {
     const destCarpeta =
       archivo.startsWith("mosfet") || archivo === "dpak.glb" || archivo === "disipador_to220.glb"
         ? DESCARGAS_MOSFET_DIR
-        : archivo.startsWith("rele") || archivo.startsWith("diodo")
-          ? DESCARGAS_RELE_DIR
-          : DESCARGAS_DIR;
+        : archivo.startsWith("cap_")
+          ? DESCARGAS_CAP_DIR
+          : archivo === "diodo_autopsia.glb" || archivo === "diodo_zener.glb"
+            ? DESCARGAS_DIODO_DIR
+            : archivo.startsWith("inductor_")
+              ? DESCARGAS_INDUCTOR_DIR
+              : archivo.startsWith("rele") || archivo.startsWith("diodo")
+                ? DESCARGAS_RELE_DIR
+                : DESCARGAS_DIR;
     fs.copyFileSync(origen, path.join(destCarpeta, archivo));
   }
 }
@@ -62,6 +84,17 @@ const cadFiles = [
   { orig: "Relay_THT.3dshapes/Relay_DPDT_Finder_40.52.step", dest: path.join(DESCARGAS_RELE_DIR, "Relay_DPDT_Finder_40_52.step") },
   { orig: "Relay_SMD.3dshapes/Relay_DPDT_Omron_G6K-2F-Y.step", dest: path.join(DESCARGAS_RELE_DIR, "Relay_SMD_Omron_G6K.step") },
   { orig: "Diode_THT.3dshapes/D_DO-41_SOD81_P10.16mm_Horizontal.step", dest: path.join(DESCARGAS_RELE_DIR, "Diodo_DO-41_1N4007.step") },
+  // Episodio 04: Capacitores
+  { orig: "Capacitor_THT.3dshapes/CP_Radial_D8.0mm_P3.50mm.step", dest: path.join(DESCARGAS_CAP_DIR, "CP_Radial_8mm_Nichicon_100uF.step") },
+  { orig: "Capacitor_SMD.3dshapes/C_0805_2012Metric.step", dest: path.join(DESCARGAS_CAP_DIR, "C_0805_MLCC_Murata_100nF.step") },
+  { orig: "Capacitor_Tantalum_SMD.3dshapes/CP_EIA-3216-18_Kemet-A.step", dest: path.join(DESCARGAS_CAP_DIR, "CP_Tantalo_Kemet_CaseA_10uF.step") },
+  // Episodio 05: Diodos
+  { orig: "Diode_THT.3dshapes/D_DO-41_SOD81_P10.16mm_Horizontal.step", dest: path.join(DESCARGAS_DIODO_DIR, "D_DO-41_1N4007_1N5819.step") },
+  { orig: "Diode_THT.3dshapes/D_DO-35_SOD27_P10.16mm_Horizontal.step", dest: path.join(DESCARGAS_DIODO_DIR, "D_DO-35_Zener_1N4733A.step") },
+  // Episodio 06: Inductores
+  { orig: "Inductor_SMD.3dshapes/L_Bourns_SRR1260.step", dest: path.join(DESCARGAS_INDUCTOR_DIR, "L_Bourns_SRR1260_33uH.step") },
+  { orig: "Inductor_THT.3dshapes/L_Radial_D8.7mm_P5.00mm_Fastron_07HCP.step", dest: path.join(DESCARGAS_INDUCTOR_DIR, "L_Radial_Fastron_07HCP.step") },
+  { orig: "Inductor_THT.3dshapes/L_Toroid_Vertical_L14.0mm_W7.0mm_P5.58mm_EPCOS_B82622.step", dest: path.join(DESCARGAS_INDUCTOR_DIR, "L_Toroid_EPCOS_B82622.step") },
 ];
 
 for (const c of cadFiles) {

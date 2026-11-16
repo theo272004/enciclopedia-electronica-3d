@@ -1,0 +1,1378 @@
+{
+  "idioma": "es",
+  "escenas": [
+    {
+      "id": "intro",
+      "archivo": "voz-capacitor/es/intro.mp3",
+      "duracion": 15.51093,
+      "hash": "0bee3b1ca15bc4bec203cfa1e2ea756bf1b60e54",
+      "palabras": [
+        {
+          "texto": "Parece",
+          "inicio": 0,
+          "fin": 0.43
+        },
+        {
+          "texto": "una",
+          "inicio": 0.464,
+          "fin": 0.604
+        },
+        {
+          "texto": "pequeña",
+          "inicio": 0.662,
+          "fin": 1.173
+        },
+        {
+          "texto": "batería,",
+          "inicio": 1.231,
+          "fin": 1.974
+        },
+        {
+          "texto": "pero",
+          "inicio": 2.148,
+          "fin": 2.345
+        },
+        {
+          "texto": "puede",
+          "inicio": 2.392,
+          "fin": 2.624
+        },
+        {
+          "texto": "entregar",
+          "inicio": 2.659,
+          "fin": 3.077
+        },
+        {
+          "texto": "toda",
+          "inicio": 3.158,
+          "fin": 3.425
+        },
+        {
+          "texto": "su",
+          "inicio": 3.471,
+          "fin": 3.553
+        },
+        {
+          "texto": "energía",
+          "inicio": 3.587,
+          "fin": 4.075
+        },
+        {
+          "texto": "en",
+          "inicio": 4.133,
+          "fin": 4.191
+        },
+        {
+          "texto": "microsegundos",
+          "inicio": 4.249,
+          "fin": 5.178
+        },
+        {
+          "texto": "o",
+          "inicio": 5.387,
+          "fin": 5.503
+        },
+        {
+          "texto": "explotar",
+          "inicio": 5.55,
+          "fin": 6.06
+        },
+        {
+          "texto": "si",
+          "inicio": 6.13,
+          "fin": 6.223
+        },
+        {
+          "texto": "inviertes",
+          "inicio": 6.269,
+          "fin": 6.78
+        },
+        {
+          "texto": "sus",
+          "inicio": 6.803,
+          "fin": 6.978
+        },
+        {
+          "texto": "patas.",
+          "inicio": 7.059,
+          "fin": 7.686
+        },
+        {
+          "texto": "Es",
+          "inicio": 8.011,
+          "fin": 8.197
+        },
+        {
+          "texto": "el",
+          "inicio": 8.255,
+          "fin": 8.313
+        },
+        {
+          "texto": "capacitor,",
+          "inicio": 8.371,
+          "fin": 9.172
+        },
+        {
+          "texto": "el",
+          "inicio": 9.346,
+          "fin": 9.474
+        },
+        {
+          "texto": "componente",
+          "inicio": 9.543,
+          "fin": 10.043
+        },
+        {
+          "texto": "que",
+          "inicio": 10.101,
+          "fin": 10.182
+        },
+        {
+          "texto": "estabiliza",
+          "inicio": 10.205,
+          "fin": 10.82
+        },
+        {
+          "texto": "cada",
+          "inicio": 10.879,
+          "fin": 11.088
+        },
+        {
+          "texto": "fuente",
+          "inicio": 11.157,
+          "fin": 11.494
+        },
+        {
+          "texto": "de",
+          "inicio": 11.54,
+          "fin": 11.61
+        },
+        {
+          "texto": "poder",
+          "inicio": 11.656,
+          "fin": 12.005
+        },
+        {
+          "texto": "y",
+          "inicio": 12.249,
+          "fin": 12.365
+        },
+        {
+          "texto": "filtra",
+          "inicio": 12.481,
+          "fin": 12.922
+        },
+        {
+          "texto": "el",
+          "inicio": 12.957,
+          "fin": 13.015
+        },
+        {
+          "texto": "ruido",
+          "inicio": 13.096,
+          "fin": 13.386
+        },
+        {
+          "texto": "de",
+          "inicio": 13.444,
+          "fin": 13.514
+        },
+        {
+          "texto": "todos",
+          "inicio": 13.584,
+          "fin": 13.978
+        },
+        {
+          "texto": "tus",
+          "inicio": 14.048,
+          "fin": 14.199
+        },
+        {
+          "texto": "circuitos.",
+          "inicio": 14.222,
+          "fin": 15.511
+        }
+      ]
+    },
+    {
+      "id": "autopsia",
+      "archivo": "voz-capacitor/es/autopsia.mp3",
+      "duracion": 25.031111,
+      "hash": "4c0d59925fda40e2fa2449b6ba33cef1630bc3f9",
+      "palabras": [
+        {
+          "texto": "Si",
+          "inicio": 0,
+          "fin": 0.186
+        },
+        {
+          "texto": "abrimos",
+          "inicio": 0.232,
+          "fin": 0.592
+        },
+        {
+          "texto": "un",
+          "inicio": 0.673,
+          "fin": 0.731
+        },
+        {
+          "texto": "capacitor",
+          "inicio": 0.778,
+          "fin": 1.324
+        },
+        {
+          "texto": "electrolítico",
+          "inicio": 1.358,
+          "fin": 2.136
+        },
+        {
+          "texto": "de",
+          "inicio": 2.194,
+          "fin": 2.264
+        },
+        {
+          "texto": "100",
+          "inicio": 2.345,
+          "fin": 2.566
+        },
+        {
+          "texto": "microfaradios,",
+          "inicio": 2.659,
+          "fin": 3.82
+        },
+        {
+          "texto": "vemos",
+          "inicio": 4.145,
+          "fin": 4.435
+        },
+        {
+          "texto": "dos",
+          "inicio": 4.458,
+          "fin": 4.598
+        },
+        {
+          "texto": "láminas",
+          "inicio": 4.656,
+          "fin": 5.016
+        },
+        {
+          "texto": "de",
+          "inicio": 5.05,
+          "fin": 5.097
+        },
+        {
+          "texto": "aluminio",
+          "inicio": 5.12,
+          "fin": 5.55
+        },
+        {
+          "texto": "enrolladas",
+          "inicio": 5.596,
+          "fin": 6.188
+        },
+        {
+          "texto": "como",
+          "inicio": 6.258,
+          "fin": 6.455
+        },
+        {
+          "texto": "un",
+          "inicio": 6.525,
+          "fin": 6.571
+        },
+        {
+          "texto": "pergamino",
+          "inicio": 6.641,
+          "fin": 7.245
+        },
+        {
+          "texto": "y",
+          "inicio": 7.326,
+          "fin": 7.396
+        },
+        {
+          "texto": "separadas",
+          "inicio": 7.488,
+          "fin": 7.964
+        },
+        {
+          "texto": "por",
+          "inicio": 8.022,
+          "fin": 8.162
+        },
+        {
+          "texto": "papel",
+          "inicio": 8.231,
+          "fin": 8.591
+        },
+        {
+          "texto": "impregnado",
+          "inicio": 8.661,
+          "fin": 9.311
+        },
+        {
+          "texto": "en",
+          "inicio": 9.346,
+          "fin": 9.404
+        },
+        {
+          "texto": "electrolito.",
+          "inicio": 9.462,
+          "fin": 10.333
+        },
+        {
+          "texto": "El",
+          "inicio": 11.029,
+          "fin": 11.192
+        },
+        {
+          "texto": "secreto",
+          "inicio": 11.25,
+          "fin": 11.691
+        },
+        {
+          "texto": "está",
+          "inicio": 11.749,
+          "fin": 11.935
+        },
+        {
+          "texto": "en",
+          "inicio": 11.981,
+          "fin": 12.028
+        },
+        {
+          "texto": "su",
+          "inicio": 12.086,
+          "fin": 12.191
+        },
+        {
+          "texto": "capa",
+          "inicio": 12.249,
+          "fin": 12.504
+        },
+        {
+          "texto": "microscópica",
+          "inicio": 12.55,
+          "fin": 13.328
+        },
+        {
+          "texto": "de",
+          "inicio": 13.386,
+          "fin": 13.456
+        },
+        {
+          "texto": "óxido",
+          "inicio": 13.526,
+          "fin": 13.897
+        },
+        {
+          "texto": "aislante:",
+          "inicio": 13.932,
+          "fin": 14.71
+        },
+        {
+          "texto": "si",
+          "inicio": 15.221,
+          "fin": 15.348
+        },
+        {
+          "texto": "conectas",
+          "inicio": 15.407,
+          "fin": 15.906
+        },
+        {
+          "texto": "el",
+          "inicio": 15.987,
+          "fin": 16.045
+        },
+        {
+          "texto": "voltaje",
+          "inicio": 16.091,
+          "fin": 16.626
+        },
+        {
+          "texto": "al",
+          "inicio": 16.695,
+          "fin": 16.765
+        },
+        {
+          "texto": "revés,",
+          "inicio": 16.846,
+          "fin": 17.415
+        },
+        {
+          "texto": "una",
+          "inicio": 17.659,
+          "fin": 17.821
+        },
+        {
+          "texto": "reacción",
+          "inicio": 17.891,
+          "fin": 18.251
+        },
+        {
+          "texto": "química",
+          "inicio": 18.321,
+          "fin": 18.704
+        },
+        {
+          "texto": "destruye",
+          "inicio": 18.762,
+          "fin": 19.331
+        },
+        {
+          "texto": "ese",
+          "inicio": 19.377,
+          "fin": 19.54
+        },
+        {
+          "texto": "óxido,",
+          "inicio": 19.621,
+          "fin": 20.236
+        },
+        {
+          "texto": "hierve",
+          "inicio": 20.445,
+          "fin": 20.817
+        },
+        {
+          "texto": "el",
+          "inicio": 20.852,
+          "fin": 20.91
+        },
+        {
+          "texto": "electrolito",
+          "inicio": 20.956,
+          "fin": 21.641
+        },
+        {
+          "texto": "y",
+          "inicio": 21.734,
+          "fin": 21.804
+        },
+        {
+          "texto": "el",
+          "inicio": 21.873,
+          "fin": 21.943
+        },
+        {
+          "texto": "gas",
+          "inicio": 22.013,
+          "fin": 22.314
+        },
+        {
+          "texto": "revienta",
+          "inicio": 22.489,
+          "fin": 22.918
+        },
+        {
+          "texto": "la",
+          "inicio": 22.965,
+          "fin": 23.023
+        },
+        {
+          "texto": "válvula",
+          "inicio": 23.081,
+          "fin": 23.487
+        },
+        {
+          "texto": "superior.",
+          "inicio": 23.545,
+          "fin": 25.031
+        }
+      ]
+    },
+    {
+      "id": "partes",
+      "archivo": "voz-capacitor/es/partes.mp3",
+      "duracion": 17.600726,
+      "hash": "6516694a0c36ae947930d4ad1f9e7da02e369a58",
+      "palabras": [
+        {
+          "texto": "En",
+          "inicio": 0,
+          "fin": 0.174
+        },
+        {
+          "texto": "el",
+          "inicio": 0.244,
+          "fin": 0.313
+        },
+        {
+          "texto": "símbolo",
+          "inicio": 0.372,
+          "fin": 0.72
+        },
+        {
+          "texto": "esquemático,",
+          "inicio": 0.755,
+          "fin": 1.567
+        },
+        {
+          "texto": "la",
+          "inicio": 1.66,
+          "fin": 1.753
+        },
+        {
+          "texto": "placa",
+          "inicio": 1.8,
+          "fin": 2.09
+        },
+        {
+          "texto": "recta",
+          "inicio": 2.183,
+          "fin": 2.496
+        },
+        {
+          "texto": "es",
+          "inicio": 2.554,
+          "fin": 2.635
+        },
+        {
+          "texto": "el",
+          "inicio": 2.717,
+          "fin": 2.786
+        },
+        {
+          "texto": "positivo",
+          "inicio": 2.856,
+          "fin": 3.541
+        },
+        {
+          "texto": "y",
+          "inicio": 3.924,
+          "fin": 4.005
+        },
+        {
+          "texto": "la",
+          "inicio": 4.122,
+          "fin": 4.191
+        },
+        {
+          "texto": "curva",
+          "inicio": 4.249,
+          "fin": 4.679
+        },
+        {
+          "texto": "o",
+          "inicio": 4.772,
+          "fin": 4.83
+        },
+        {
+          "texto": "marcada",
+          "inicio": 4.899,
+          "fin": 5.399
+        },
+        {
+          "texto": "es",
+          "inicio": 5.468,
+          "fin": 5.561
+        },
+        {
+          "texto": "el",
+          "inicio": 5.654,
+          "fin": 5.724
+        },
+        {
+          "texto": "negativo.",
+          "inicio": 5.77,
+          "fin": 6.536
+        },
+        {
+          "texto": "Físicamente,",
+          "inicio": 7.14,
+          "fin": 8.127
+        },
+        {
+          "texto": "el",
+          "inicio": 8.173,
+          "fin": 8.313
+        },
+        {
+          "texto": "capacitor",
+          "inicio": 8.371,
+          "fin": 8.893
+        },
+        {
+          "texto": "electrolítico",
+          "inicio": 8.94,
+          "fin": 9.718
+        },
+        {
+          "texto": "indica",
+          "inicio": 9.764,
+          "fin": 10.182
+        },
+        {
+          "texto": "el",
+          "inicio": 10.217,
+          "fin": 10.263
+        },
+        {
+          "texto": "negativo",
+          "inicio": 10.31,
+          "fin": 10.855
+        },
+        {
+          "texto": "con",
+          "inicio": 10.937,
+          "fin": 11.064
+        },
+        {
+          "texto": "una",
+          "inicio": 11.122,
+          "fin": 11.25
+        },
+        {
+          "texto": "franja",
+          "inicio": 11.308,
+          "fin": 11.668
+        },
+        {
+          "texto": "clara",
+          "inicio": 11.738,
+          "fin": 12.109
+        },
+        {
+          "texto": "y",
+          "inicio": 12.237,
+          "fin": 12.318
+        },
+        {
+          "texto": "la",
+          "inicio": 12.434,
+          "fin": 12.504
+        },
+        {
+          "texto": "pata",
+          "inicio": 12.562,
+          "fin": 12.841
+        },
+        {
+          "texto": "más",
+          "inicio": 12.899,
+          "fin": 13.061
+        },
+        {
+          "texto": "corta,",
+          "inicio": 13.13,
+          "fin": 13.676
+        },
+        {
+          "texto": "mientras",
+          "inicio": 14.117,
+          "fin": 14.512
+        },
+        {
+          "texto": "que",
+          "inicio": 14.559,
+          "fin": 14.628
+        },
+        {
+          "texto": "los",
+          "inicio": 14.675,
+          "fin": 14.802
+        },
+        {
+          "texto": "cerámicos",
+          "inicio": 14.826,
+          "fin": 15.429
+        },
+        {
+          "texto": "no",
+          "inicio": 15.511,
+          "fin": 15.603
+        },
+        {
+          "texto": "tienen",
+          "inicio": 15.685,
+          "fin": 16.033
+        },
+        {
+          "texto": "polaridad.",
+          "inicio": 16.103,
+          "fin": 17.6
+        }
+      ]
+    },
+    {
+      "id": "circuito",
+      "archivo": "voz-capacitor/es/circuito.mp3",
+      "duracion": 21.919637,
+      "hash": "9d22305e1efe4e792c1938f626a30eb5914d4885",
+      "palabras": [
+        {
+          "texto": "Mira",
+          "inicio": 0,
+          "fin": 0.255
+        },
+        {
+          "texto": "por",
+          "inicio": 0.313,
+          "fin": 0.453
+        },
+        {
+          "texto": "qué",
+          "inicio": 0.511,
+          "fin": 0.615
+        },
+        {
+          "texto": "en",
+          "inicio": 0.673,
+          "fin": 0.72
+        },
+        {
+          "texto": "las",
+          "inicio": 0.766,
+          "fin": 0.894
+        },
+        {
+          "texto": "placas",
+          "inicio": 0.94,
+          "fin": 1.347
+        },
+        {
+          "texto": "reales",
+          "inicio": 1.463,
+          "fin": 1.892
+        },
+        {
+          "texto": "siempre",
+          "inicio": 2.101,
+          "fin": 2.554
+        },
+        {
+          "texto": "ves",
+          "inicio": 2.601,
+          "fin": 2.74
+        },
+        {
+          "texto": "un",
+          "inicio": 2.856,
+          "fin": 2.914
+        },
+        {
+          "texto": "capacitor",
+          "inicio": 2.961,
+          "fin": 3.529
+        },
+        {
+          "texto": "electrolítico",
+          "inicio": 3.576,
+          "fin": 4.319
+        },
+        {
+          "texto": "grande",
+          "inicio": 4.365,
+          "fin": 4.795
+        },
+        {
+          "texto": "junto",
+          "inicio": 5.004,
+          "fin": 5.422
+        },
+        {
+          "texto": "a",
+          "inicio": 5.468,
+          "fin": 5.492
+        },
+        {
+          "texto": "uno",
+          "inicio": 5.55,
+          "fin": 5.735
+        },
+        {
+          "texto": "cerámico",
+          "inicio": 5.77,
+          "fin": 6.258
+        },
+        {
+          "texto": "diminuto",
+          "inicio": 6.316,
+          "fin": 6.803
+        },
+        {
+          "texto": "de",
+          "inicio": 6.861,
+          "fin": 6.954
+        },
+        {
+          "texto": "100",
+          "inicio": 7.036,
+          "fin": 7.291
+        },
+        {
+          "texto": "nanofaradios:",
+          "inicio": 7.384,
+          "fin": 8.557
+        },
+        {
+          "texto": "el",
+          "inicio": 9.16,
+          "fin": 9.276
+        },
+        {
+          "texto": "electrolítico",
+          "inicio": 9.334,
+          "fin": 10.066
+        },
+        {
+          "texto": "actúa",
+          "inicio": 10.112,
+          "fin": 10.449
+        },
+        {
+          "texto": "como",
+          "inicio": 10.507,
+          "fin": 10.716
+        },
+        {
+          "texto": "un",
+          "inicio": 10.786,
+          "fin": 10.855
+        },
+        {
+          "texto": "tanque",
+          "inicio": 10.948,
+          "fin": 11.32
+        },
+        {
+          "texto": "que",
+          "inicio": 11.401,
+          "fin": 11.494
+        },
+        {
+          "texto": "sostiene",
+          "inicio": 11.54,
+          "fin": 11.935
+        },
+        {
+          "texto": "el",
+          "inicio": 11.958,
+          "fin": 12.028
+        },
+        {
+          "texto": "voltaje",
+          "inicio": 12.086,
+          "fin": 12.678
+        },
+        {
+          "texto": "ante",
+          "inicio": 12.736,
+          "fin": 12.968
+        },
+        {
+          "texto": "caídas",
+          "inicio": 13.026,
+          "fin": 13.607
+        },
+        {
+          "texto": "lentas,",
+          "inicio": 13.723,
+          "fin": 14.373
+        },
+        {
+          "texto": "mientras",
+          "inicio": 14.756,
+          "fin": 15.128
+        },
+        {
+          "texto": "que",
+          "inicio": 15.174,
+          "fin": 15.244
+        },
+        {
+          "texto": "el",
+          "inicio": 15.279,
+          "fin": 15.337
+        },
+        {
+          "texto": "cerámico",
+          "inicio": 15.383,
+          "fin": 15.859
+        },
+        {
+          "texto": "de",
+          "inicio": 15.906,
+          "fin": 15.975
+        },
+        {
+          "texto": "baja",
+          "inicio": 16.022,
+          "fin": 16.242
+        },
+        {
+          "texto": "resistencia",
+          "inicio": 16.312,
+          "fin": 16.904
+        },
+        {
+          "texto": "interna",
+          "inicio": 16.951,
+          "fin": 17.485
+        },
+        {
+          "texto": "absorbe",
+          "inicio": 17.868,
+          "fin": 18.344
+        },
+        {
+          "texto": "los",
+          "inicio": 18.379,
+          "fin": 18.506
+        },
+        {
+          "texto": "picos",
+          "inicio": 18.576,
+          "fin": 18.913
+        },
+        {
+          "texto": "rápidos",
+          "inicio": 19.029,
+          "fin": 19.47
+        },
+        {
+          "texto": "de",
+          "inicio": 19.516,
+          "fin": 19.574
+        },
+        {
+          "texto": "alta",
+          "inicio": 19.633,
+          "fin": 19.842
+        },
+        {
+          "texto": "frecuencia",
+          "inicio": 19.9,
+          "fin": 20.468
+        },
+        {
+          "texto": "junto",
+          "inicio": 20.515,
+          "fin": 20.805
+        },
+        {
+          "texto": "al",
+          "inicio": 20.84,
+          "fin": 20.91
+        },
+        {
+          "texto": "chip.",
+          "inicio": 20.979,
+          "fin": 21.92
+        }
+      ]
+    },
+    {
+      "id": "regiones",
+      "archivo": "voz-capacitor/es/regiones.mp3",
+      "duracion": 18.715283,
+      "hash": "e973e1d0caa7223284eac59751f50179c965745a",
+      "palabras": [
+        {
+          "texto": "En",
+          "inicio": 0,
+          "fin": 0.163
+        },
+        {
+          "texto": "el",
+          "inicio": 0.221,
+          "fin": 0.279
+        },
+        {
+          "texto": "osciloscopio",
+          "inicio": 0.348,
+          "fin": 1.057
+        },
+        {
+          "texto": "vemos",
+          "inicio": 1.103,
+          "fin": 1.358
+        },
+        {
+          "texto": "su",
+          "inicio": 1.382,
+          "fin": 1.463
+        },
+        {
+          "texto": "efecto",
+          "inicio": 1.498,
+          "fin": 1.904
+        },
+        {
+          "texto": "tras",
+          "inicio": 1.962,
+          "fin": 2.159
+        },
+        {
+          "texto": "un",
+          "inicio": 2.276,
+          "fin": 2.345
+        },
+        {
+          "texto": "rectificador:",
+          "inicio": 2.426,
+          "fin": 3.413
+        },
+        {
+          "texto": "sin",
+          "inicio": 3.796,
+          "fin": 4.005
+        },
+        {
+          "texto": "capacitor,",
+          "inicio": 4.04,
+          "fin": 4.876
+        },
+        {
+          "texto": "el",
+          "inicio": 5.027,
+          "fin": 5.178
+        },
+        {
+          "texto": "voltaje",
+          "inicio": 5.236,
+          "fin": 5.689
+        },
+        {
+          "texto": "cae",
+          "inicio": 5.77,
+          "fin": 6.037
+        },
+        {
+          "texto": "a",
+          "inicio": 6.072,
+          "fin": 6.13
+        },
+        {
+          "texto": "cero",
+          "inicio": 6.188,
+          "fin": 6.455
+        },
+        {
+          "texto": "cien",
+          "inicio": 6.502,
+          "fin": 6.757
+        },
+        {
+          "texto": "veces",
+          "inicio": 6.827,
+          "fin": 7.21
+        },
+        {
+          "texto": "por",
+          "inicio": 7.279,
+          "fin": 7.419
+        },
+        {
+          "texto": "segundo;",
+          "inicio": 7.477,
+          "fin": 8.139
+        },
+        {
+          "texto": "al",
+          "inicio": 8.742,
+          "fin": 8.858
+        },
+        {
+          "texto": "conectar",
+          "inicio": 8.916,
+          "fin": 9.334
+        },
+        {
+          "texto": "el",
+          "inicio": 9.381,
+          "fin": 9.427
+        },
+        {
+          "texto": "capacitor,",
+          "inicio": 9.485,
+          "fin": 10.333
+        },
+        {
+          "texto": "este",
+          "inicio": 10.542,
+          "fin": 10.786
+        },
+        {
+          "texto": "se",
+          "inicio": 10.844,
+          "fin": 10.937
+        },
+        {
+          "texto": "carga",
+          "inicio": 10.995,
+          "fin": 11.297
+        },
+        {
+          "texto": "en",
+          "inicio": 11.331,
+          "fin": 11.378
+        },
+        {
+          "texto": "las",
+          "inicio": 11.436,
+          "fin": 11.575
+        },
+        {
+          "texto": "crestas",
+          "inicio": 11.633,
+          "fin": 12.167
+        },
+        {
+          "texto": "y",
+          "inicio": 12.411,
+          "fin": 12.504
+        },
+        {
+          "texto": "se",
+          "inicio": 12.574,
+          "fin": 12.655
+        },
+        {
+          "texto": "descarga",
+          "inicio": 12.713,
+          "fin": 13.177
+        },
+        {
+          "texto": "suavemente",
+          "inicio": 13.223,
+          "fin": 13.908
+        },
+        {
+          "texto": "en",
+          "inicio": 13.932,
+          "fin": 13.978
+        },
+        {
+          "texto": "los",
+          "inicio": 14.036,
+          "fin": 14.187
+        },
+        {
+          "texto": "valles,",
+          "inicio": 14.257,
+          "fin": 14.86
+        },
+        {
+          "texto": "reduciendo",
+          "inicio": 15.069,
+          "fin": 15.592
+        },
+        {
+          "texto": "el",
+          "inicio": 15.638,
+          "fin": 15.685
+        },
+        {
+          "texto": "rizado",
+          "inicio": 15.766,
+          "fin": 16.207
+        },
+        {
+          "texto": "a",
+          "inicio": 16.265,
+          "fin": 16.289
+        },
+        {
+          "texto": "una",
+          "inicio": 16.358,
+          "fin": 16.544
+        },
+        {
+          "texto": "línea",
+          "inicio": 16.602,
+          "fin": 16.939
+        },
+        {
+          "texto": "continua",
+          "inicio": 17.008,
+          "fin": 17.6
+        },
+        {
+          "texto": "estable.",
+          "inicio": 17.624,
+          "fin": 18.715
+        }
+      ]
+    },
+    {
+      "id": "cierre",
+      "archivo": "voz-capacitor/es/cierre.mp3",
+      "duracion": 15.32517,
+      "hash": "d003ecfb3e05949be3ec8248d5426ad0f4ae058a",
+      "palabras": [
+        {
+          "texto": "Desde",
+          "inicio": 0,
+          "fin": 0.337
+        },
+        {
+          "texto": "el",
+          "inicio": 0.36,
+          "fin": 0.406
+        },
+        {
+          "texto": "electrolítico",
+          "inicio": 0.441,
+          "fin": 1.161
+        },
+        {
+          "texto": "de",
+          "inicio": 1.207,
+          "fin": 1.265
+        },
+        {
+          "texto": "aluminio",
+          "inicio": 1.289,
+          "fin": 1.776
+        },
+        {
+          "texto": "para",
+          "inicio": 1.834,
+          "fin": 2.02
+        },
+        {
+          "texto": "fuentes",
+          "inicio": 2.067,
+          "fin": 2.461
+        },
+        {
+          "texto": "de",
+          "inicio": 2.485,
+          "fin": 2.531
+        },
+        {
+          "texto": "poder",
+          "inicio": 2.589,
+          "fin": 2.937
+        },
+        {
+          "texto": "y",
+          "inicio": 3.262,
+          "fin": 3.344
+        },
+        {
+          "texto": "el",
+          "inicio": 3.437,
+          "fin": 3.518
+        },
+        {
+          "texto": "cerámico",
+          "inicio": 3.564,
+          "fin": 4.052
+        },
+        {
+          "texto": "multicapa",
+          "inicio": 4.098,
+          "fin": 4.841
+        },
+        {
+          "texto": "MLCC",
+          "inicio": 4.992,
+          "fin": 5.631
+        },
+        {
+          "texto": "para",
+          "inicio": 5.747,
+          "fin": 5.944
+        },
+        {
+          "texto": "desacoplo",
+          "inicio": 5.991,
+          "fin": 6.594
+        },
+        {
+          "texto": "digital,",
+          "inicio": 6.641,
+          "fin": 7.314
+        },
+        {
+          "texto": "hasta",
+          "inicio": 7.523,
+          "fin": 7.79
+        },
+        {
+          "texto": "el",
+          "inicio": 7.825,
+          "fin": 7.872
+        },
+        {
+          "texto": "capacitor",
+          "inicio": 7.93,
+          "fin": 8.487
+        },
+        {
+          "texto": "de",
+          "inicio": 8.545,
+          "fin": 8.615
+        },
+        {
+          "texto": "tántalo",
+          "inicio": 8.684,
+          "fin": 9.195
+        },
+        {
+          "texto": "de",
+          "inicio": 9.253,
+          "fin": 9.311
+        },
+        {
+          "texto": "alta",
+          "inicio": 9.369,
+          "fin": 9.578
+        },
+        {
+          "texto": "densidad:",
+          "inicio": 9.625,
+          "fin": 10.333
+        },
+        {
+          "texto": "combinarlos",
+          "inicio": 10.774,
+          "fin": 11.459
+        },
+        {
+          "texto": "correctamente",
+          "inicio": 11.517,
+          "fin": 12.341
+        },
+        {
+          "texto": "es",
+          "inicio": 12.55,
+          "fin": 12.759
+        },
+        {
+          "texto": "la",
+          "inicio": 12.829,
+          "fin": 12.899
+        },
+        {
+          "texto": "base",
+          "inicio": 12.957,
+          "fin": 13.235
+        },
+        {
+          "texto": "de",
+          "inicio": 13.305,
+          "fin": 13.375
+        },
+        {
+          "texto": "toda",
+          "inicio": 13.456,
+          "fin": 13.723
+        },
+        {
+          "texto": "electrónica",
+          "inicio": 13.758,
+          "fin": 14.431
+        },
+        {
+          "texto": "estable.",
+          "inicio": 14.466,
+          "fin": 15.325
+        }
+      ]
+    }
+  ]
+}

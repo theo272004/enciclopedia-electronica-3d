@@ -1,0 +1,1433 @@
+{
+  "idioma": "es",
+  "escenas": [
+    {
+      "id": "intro",
+      "archivo": "voz-diodo/es/intro.mp3",
+      "duracion": 19.040363,
+      "hash": "3260e883fc1c98aa7eef15e133c680cb9633c45a",
+      "palabras": [
+        {
+          "texto": "Es",
+          "inicio": 0,
+          "fin": 0.197
+        },
+        {
+          "texto": "la",
+          "inicio": 0.255,
+          "fin": 0.325
+        },
+        {
+          "texto": "válvula",
+          "inicio": 0.372,
+          "fin": 0.766
+        },
+        {
+          "texto": "antirretorno",
+          "inicio": 0.789,
+          "fin": 1.602
+        },
+        {
+          "texto": "de",
+          "inicio": 1.66,
+          "fin": 1.73
+        },
+        {
+          "texto": "la",
+          "inicio": 1.776,
+          "fin": 1.823
+        },
+        {
+          "texto": "electrónica:",
+          "inicio": 1.858,
+          "fin": 2.775
+        },
+        {
+          "texto": "deja",
+          "inicio": 3.216,
+          "fin": 3.506
+        },
+        {
+          "texto": "fluir",
+          "inicio": 3.553,
+          "fin": 3.878
+        },
+        {
+          "texto": "la",
+          "inicio": 3.936,
+          "fin": 4.005
+        },
+        {
+          "texto": "corriente",
+          "inicio": 4.063,
+          "fin": 4.551
+        },
+        {
+          "texto": "en",
+          "inicio": 4.574,
+          "fin": 4.621
+        },
+        {
+          "texto": "un",
+          "inicio": 4.714,
+          "fin": 4.783
+        },
+        {
+          "texto": "sentido",
+          "inicio": 4.83,
+          "fin": 5.399
+        },
+        {
+          "texto": "y",
+          "inicio": 5.782,
+          "fin": 5.898
+        },
+        {
+          "texto": "levanta",
+          "inicio": 5.991,
+          "fin": 6.385
+        },
+        {
+          "texto": "un",
+          "inicio": 6.432,
+          "fin": 6.478
+        },
+        {
+          "texto": "muro",
+          "inicio": 6.548,
+          "fin": 6.827
+        },
+        {
+          "texto": "de",
+          "inicio": 6.885,
+          "fin": 6.954
+        },
+        {
+          "texto": "hasta",
+          "inicio": 6.989,
+          "fin": 7.221
+        },
+        {
+          "texto": "mil",
+          "inicio": 7.291,
+          "fin": 7.5
+        },
+        {
+          "texto": "voltios",
+          "inicio": 7.57,
+          "fin": 8.046
+        },
+        {
+          "texto": "en",
+          "inicio": 8.104,
+          "fin": 8.162
+        },
+        {
+          "texto": "el",
+          "inicio": 8.22,
+          "fin": 8.278
+        },
+        {
+          "texto": "sentido",
+          "inicio": 8.324,
+          "fin": 8.893
+        },
+        {
+          "texto": "contrario.",
+          "inicio": 8.963,
+          "fin": 9.694
+        },
+        {
+          "texto": "Es",
+          "inicio": 10.298,
+          "fin": 10.519
+        },
+        {
+          "texto": "el",
+          "inicio": 10.588,
+          "fin": 10.67
+        },
+        {
+          "texto": "diodo",
+          "inicio": 10.728,
+          "fin": 11.006
+        },
+        {
+          "texto": "semiconductor,",
+          "inicio": 11.076,
+          "fin": 12.19
+        },
+        {
+          "texto": "y",
+          "inicio": 12.574,
+          "fin": 12.643
+        },
+        {
+          "texto": "sin",
+          "inicio": 12.759,
+          "fin": 12.957
+        },
+        {
+          "texto": "él",
+          "inicio": 13.038,
+          "fin": 13.247
+        },
+        {
+          "texto": "sería",
+          "inicio": 13.688,
+          "fin": 14.036
+        },
+        {
+          "texto": "imposible",
+          "inicio": 14.071,
+          "fin": 14.547
+        },
+        {
+          "texto": "convertir",
+          "inicio": 14.594,
+          "fin": 15.105
+        },
+        {
+          "texto": "la",
+          "inicio": 15.163,
+          "fin": 15.244
+        },
+        {
+          "texto": "corriente",
+          "inicio": 15.302,
+          "fin": 15.79
+        },
+        {
+          "texto": "alterna",
+          "inicio": 15.836,
+          "fin": 16.289
+        },
+        {
+          "texto": "de",
+          "inicio": 16.336,
+          "fin": 16.405
+        },
+        {
+          "texto": "tu",
+          "inicio": 16.452,
+          "fin": 16.533
+        },
+        {
+          "texto": "enchufe",
+          "inicio": 16.579,
+          "fin": 17.102
+        },
+        {
+          "texto": "en",
+          "inicio": 17.16,
+          "fin": 17.288
+        },
+        {
+          "texto": "corriente",
+          "inicio": 17.346,
+          "fin": 17.868
+        },
+        {
+          "texto": "continua.",
+          "inicio": 17.926,
+          "fin": 19.041
+        }
+      ]
+    },
+    {
+      "id": "autopsia",
+      "archivo": "voz-diodo/es/autopsia.mp3",
+      "duracion": 25.49551,
+      "hash": "dc9c0ea1b2bd80b0bab399f2a2c95b0e1605e07f",
+      "palabras": [
+        {
+          "texto": "Si",
+          "inicio": 0,
+          "fin": 0.151
+        },
+        {
+          "texto": "abrimos",
+          "inicio": 0.197,
+          "fin": 0.592
+        },
+        {
+          "texto": "un",
+          "inicio": 0.708,
+          "fin": 0.778
+        },
+        {
+          "texto": "diodo",
+          "inicio": 0.824,
+          "fin": 1.196
+        },
+        {
+          "texto": "1N4007,",
+          "inicio": 1.347,
+          "fin": 2.995
+        },
+        {
+          "texto": "encontramos",
+          "inicio": 3.32,
+          "fin": 3.936
+        },
+        {
+          "texto": "una",
+          "inicio": 4.005,
+          "fin": 4.122
+        },
+        {
+          "texto": "pastilla",
+          "inicio": 4.168,
+          "fin": 4.574
+        },
+        {
+          "texto": "de",
+          "inicio": 4.632,
+          "fin": 4.702
+        },
+        {
+          "texto": "silicio",
+          "inicio": 4.748,
+          "fin": 5.213
+        },
+        {
+          "texto": "con",
+          "inicio": 5.259,
+          "fin": 5.375
+        },
+        {
+          "texto": "una",
+          "inicio": 5.433,
+          "fin": 5.561
+        },
+        {
+          "texto": "mitad",
+          "inicio": 5.608,
+          "fin": 5.956
+        },
+        {
+          "texto": "tipo",
+          "inicio": 6.026,
+          "fin": 6.374
+        },
+        {
+          "texto": "P",
+          "inicio": 6.49,
+          "fin": 6.56
+        },
+        {
+          "texto": "y",
+          "inicio": 7.001,
+          "fin": 7.129
+        },
+        {
+          "texto": "otra",
+          "inicio": 7.245,
+          "fin": 7.512
+        },
+        {
+          "texto": "mitad",
+          "inicio": 7.57,
+          "fin": 7.93
+        },
+        {
+          "texto": "tipo",
+          "inicio": 8.022,
+          "fin": 8.406
+        },
+        {
+          "texto": "N",
+          "inicio": 8.522,
+          "fin": 8.649
+        },
+        {
+          "texto": "comprimida",
+          "inicio": 8.766,
+          "fin": 9.392
+        },
+        {
+          "texto": "entre",
+          "inicio": 9.439,
+          "fin": 9.683
+        },
+        {
+          "texto": "dos",
+          "inicio": 9.718,
+          "fin": 9.868
+        },
+        {
+          "texto": "cabezales",
+          "inicio": 9.927,
+          "fin": 10.542
+        },
+        {
+          "texto": "de",
+          "inicio": 10.588,
+          "fin": 10.646
+        },
+        {
+          "texto": "cobre",
+          "inicio": 10.716,
+          "fin": 11.041
+        },
+        {
+          "texto": "que",
+          "inicio": 11.111,
+          "fin": 11.204
+        },
+        {
+          "texto": "disipan",
+          "inicio": 11.262,
+          "fin": 11.773
+        },
+        {
+          "texto": "el",
+          "inicio": 11.831,
+          "fin": 11.889
+        },
+        {
+          "texto": "calor.",
+          "inicio": 11.947,
+          "fin": 12.469
+        },
+        {
+          "texto": "En",
+          "inicio": 13.166,
+          "fin": 13.293
+        },
+        {
+          "texto": "el",
+          "inicio": 13.363,
+          "fin": 13.444
+        },
+        {
+          "texto": "centro",
+          "inicio": 13.491,
+          "fin": 13.781
+        },
+        {
+          "texto": "se",
+          "inicio": 13.827,
+          "fin": 13.908
+        },
+        {
+          "texto": "forma",
+          "inicio": 13.955,
+          "fin": 14.21
+        },
+        {
+          "texto": "una",
+          "inicio": 14.245,
+          "fin": 14.396
+        },
+        {
+          "texto": "zona",
+          "inicio": 14.442,
+          "fin": 14.651
+        },
+        {
+          "texto": "de",
+          "inicio": 14.698,
+          "fin": 14.756
+        },
+        {
+          "texto": "agotamiento",
+          "inicio": 14.779,
+          "fin": 15.429
+        },
+        {
+          "texto": "sin",
+          "inicio": 15.487,
+          "fin": 15.662
+        },
+        {
+          "texto": "cargas",
+          "inicio": 15.731,
+          "fin": 16.138
+        },
+        {
+          "texto": "libres:",
+          "inicio": 16.207,
+          "fin": 16.799
+        },
+        {
+          "texto": "solo",
+          "inicio": 17.182,
+          "fin": 17.449
+        },
+        {
+          "texto": "cuando",
+          "inicio": 17.496,
+          "fin": 17.717
+        },
+        {
+          "texto": "aplicamos",
+          "inicio": 17.74,
+          "fin": 18.262
+        },
+        {
+          "texto": "más",
+          "inicio": 18.332,
+          "fin": 18.494
+        },
+        {
+          "texto": "de",
+          "inicio": 18.541,
+          "fin": 18.61
+        },
+        {
+          "texto": "0.7",
+          "inicio": 18.727,
+          "fin": 19.597
+        },
+        {
+          "texto": "voltios",
+          "inicio": 19.725,
+          "fin": 20.189
+        },
+        {
+          "texto": "del",
+          "inicio": 20.236,
+          "fin": 20.352
+        },
+        {
+          "texto": "ánodo",
+          "inicio": 20.422,
+          "fin": 20.677
+        },
+        {
+          "texto": "al",
+          "inicio": 20.723,
+          "fin": 20.793
+        },
+        {
+          "texto": "cátodo",
+          "inicio": 20.874,
+          "fin": 21.35
+        },
+        {
+          "texto": "esa",
+          "inicio": 21.734,
+          "fin": 22.012
+        },
+        {
+          "texto": "barrera",
+          "inicio": 22.07,
+          "fin": 22.407
+        },
+        {
+          "texto": "colapsa",
+          "inicio": 22.465,
+          "fin": 23.045
+        },
+        {
+          "texto": "y",
+          "inicio": 23.173,
+          "fin": 23.243
+        },
+        {
+          "texto": "los",
+          "inicio": 23.324,
+          "fin": 23.463
+        },
+        {
+          "texto": "electrones",
+          "inicio": 23.522,
+          "fin": 24.09
+        },
+        {
+          "texto": "cruzan.",
+          "inicio": 24.16,
+          "fin": 25.495
+        }
+      ]
+    },
+    {
+      "id": "partes",
+      "archivo": "voz-diodo/es/partes.mp3",
+      "duracion": 16.021769,
+      "hash": "d900c5e97314a9fe2db385c3afda7f2d5c81badc",
+      "palabras": [
+        {
+          "texto": "La",
+          "inicio": 0,
+          "fin": 0.174
+        },
+        {
+          "texto": "flecha",
+          "inicio": 0.232,
+          "fin": 0.546
+        },
+        {
+          "texto": "del",
+          "inicio": 0.592,
+          "fin": 0.72
+        },
+        {
+          "texto": "símbolo",
+          "inicio": 0.778,
+          "fin": 1.289
+        },
+        {
+          "texto": "apunta",
+          "inicio": 1.533,
+          "fin": 2.113
+        },
+        {
+          "texto": "del",
+          "inicio": 2.171,
+          "fin": 2.299
+        },
+        {
+          "texto": "Ánodo",
+          "inicio": 2.38,
+          "fin": 2.786
+        },
+        {
+          "texto": "al",
+          "inicio": 2.902,
+          "fin": 3.077
+        },
+        {
+          "texto": "Cátodo,",
+          "inicio": 3.193,
+          "fin": 3.878
+        },
+        {
+          "texto": "indicando",
+          "inicio": 4.319,
+          "fin": 4.876
+        },
+        {
+          "texto": "el",
+          "inicio": 4.911,
+          "fin": 4.969
+        },
+        {
+          "texto": "sentido",
+          "inicio": 5.016,
+          "fin": 5.457
+        },
+        {
+          "texto": "permitido",
+          "inicio": 5.515,
+          "fin": 6.153
+        },
+        {
+          "texto": "de",
+          "inicio": 6.211,
+          "fin": 6.269
+        },
+        {
+          "texto": "la",
+          "inicio": 6.316,
+          "fin": 6.385
+        },
+        {
+          "texto": "corriente.",
+          "inicio": 6.444,
+          "fin": 7.187
+        },
+        {
+          "texto": "En",
+          "inicio": 7.79,
+          "fin": 7.93
+        },
+        {
+          "texto": "el",
+          "inicio": 7.999,
+          "fin": 8.069
+        },
+        {
+          "texto": "componente",
+          "inicio": 8.127,
+          "fin": 8.684
+        },
+        {
+          "texto": "físico,",
+          "inicio": 8.754,
+          "fin": 9.462
+        },
+        {
+          "texto": "una",
+          "inicio": 9.613,
+          "fin": 9.787
+        },
+        {
+          "texto": "franja",
+          "inicio": 9.834,
+          "fin": 10.17
+        },
+        {
+          "texto": "plateada",
+          "inicio": 10.228,
+          "fin": 10.832
+        },
+        {
+          "texto": "o",
+          "inicio": 10.913,
+          "fin": 10.948
+        },
+        {
+          "texto": "negra",
+          "inicio": 11.041,
+          "fin": 11.436
+        },
+        {
+          "texto": "marca",
+          "inicio": 11.68,
+          "fin": 12.04
+        },
+        {
+          "texto": "siempre",
+          "inicio": 12.098,
+          "fin": 12.492
+        },
+        {
+          "texto": "el",
+          "inicio": 12.516,
+          "fin": 12.597
+        },
+        {
+          "texto": "Cátodo,",
+          "inicio": 12.678,
+          "fin": 13.328
+        },
+        {
+          "texto": "que",
+          "inicio": 13.537,
+          "fin": 13.642
+        },
+        {
+          "texto": "actúa",
+          "inicio": 13.677,
+          "fin": 14.048
+        },
+        {
+          "texto": "como",
+          "inicio": 14.106,
+          "fin": 14.292
+        },
+        {
+          "texto": "la",
+          "inicio": 14.35,
+          "fin": 14.42
+        },
+        {
+          "texto": "puerta",
+          "inicio": 14.478,
+          "fin": 14.826
+        },
+        {
+          "texto": "de",
+          "inicio": 14.872,
+          "fin": 14.942
+        },
+        {
+          "texto": "salida.",
+          "inicio": 14.988,
+          "fin": 16.022
+        }
+      ]
+    },
+    {
+      "id": "circuito",
+      "archivo": "voz-diodo/es/circuito.mp3",
+      "duracion": 19.969161,
+      "hash": "ad811b15717865242ac06f638edfca4af0cb007b",
+      "palabras": [
+        {
+          "texto": "Cuando",
+          "inicio": 0,
+          "fin": 0.36
+        },
+        {
+          "texto": "combinamos",
+          "inicio": 0.43,
+          "fin": 0.987
+        },
+        {
+          "texto": "cuatro",
+          "inicio": 1.057,
+          "fin": 1.44
+        },
+        {
+          "texto": "diodos",
+          "inicio": 1.498,
+          "fin": 1.892
+        },
+        {
+          "texto": "en",
+          "inicio": 1.962,
+          "fin": 2.032
+        },
+        {
+          "texto": "un",
+          "inicio": 2.125,
+          "fin": 2.194
+        },
+        {
+          "texto": "Puente",
+          "inicio": 2.264,
+          "fin": 2.635
+        },
+        {
+          "texto": "de",
+          "inicio": 2.694,
+          "fin": 2.763
+        },
+        {
+          "texto": "Graetz,",
+          "inicio": 2.821,
+          "fin": 3.529
+        },
+        {
+          "texto": "logramos",
+          "inicio": 3.913,
+          "fin": 4.423
+        },
+        {
+          "texto": "rectificar",
+          "inicio": 4.54,
+          "fin": 5.178
+        },
+        {
+          "texto": "la",
+          "inicio": 5.248,
+          "fin": 5.317
+        },
+        {
+          "texto": "onda",
+          "inicio": 5.399,
+          "fin": 5.631
+        },
+        {
+          "texto": "alterna",
+          "inicio": 5.654,
+          "fin": 6.13
+        },
+        {
+          "texto": "completa:",
+          "inicio": 6.188,
+          "fin": 6.954
+        },
+        {
+          "texto": "en",
+          "inicio": 7.558,
+          "fin": 7.674
+        },
+        {
+          "texto": "el",
+          "inicio": 7.744,
+          "fin": 7.814
+        },
+        {
+          "texto": "semiciclo",
+          "inicio": 7.86,
+          "fin": 8.464
+        },
+        {
+          "texto": "positivo",
+          "inicio": 8.522,
+          "fin": 9.091
+        },
+        {
+          "texto": "conducen",
+          "inicio": 9.149,
+          "fin": 9.706
+        },
+        {
+          "texto": "dos",
+          "inicio": 9.764,
+          "fin": 9.961
+        },
+        {
+          "texto": "diodos,",
+          "inicio": 10.019,
+          "fin": 10.577
+        },
+        {
+          "texto": "y",
+          "inicio": 10.96,
+          "fin": 11.029
+        },
+        {
+          "texto": "en",
+          "inicio": 11.111,
+          "fin": 11.18
+        },
+        {
+          "texto": "el",
+          "inicio": 11.238,
+          "fin": 11.297
+        },
+        {
+          "texto": "semiciclo",
+          "inicio": 11.355,
+          "fin": 11.981
+        },
+        {
+          "texto": "negativo",
+          "inicio": 12.028,
+          "fin": 12.539
+        },
+        {
+          "texto": "conducen",
+          "inicio": 12.597,
+          "fin": 13.166
+        },
+        {
+          "texto": "los",
+          "inicio": 13.224,
+          "fin": 13.363
+        },
+        {
+          "texto": "otros",
+          "inicio": 13.444,
+          "fin": 13.758
+        },
+        {
+          "texto": "dos,",
+          "inicio": 13.804,
+          "fin": 14.28
+        },
+        {
+          "texto": "obligando",
+          "inicio": 14.791,
+          "fin": 15.325
+        },
+        {
+          "texto": "a",
+          "inicio": 15.36,
+          "fin": 15.383
+        },
+        {
+          "texto": "que",
+          "inicio": 15.418,
+          "fin": 15.499
+        },
+        {
+          "texto": "la",
+          "inicio": 15.546,
+          "fin": 15.616
+        },
+        {
+          "texto": "corriente",
+          "inicio": 15.674,
+          "fin": 16.161
+        },
+        {
+          "texto": "salga",
+          "inicio": 16.231,
+          "fin": 16.556
+        },
+        {
+          "texto": "siempre",
+          "inicio": 16.614,
+          "fin": 17.02
+        },
+        {
+          "texto": "con",
+          "inicio": 17.067,
+          "fin": 17.194
+        },
+        {
+          "texto": "la",
+          "inicio": 17.229,
+          "fin": 17.287
+        },
+        {
+          "texto": "misma",
+          "inicio": 17.345,
+          "fin": 17.682
+        },
+        {
+          "texto": "polaridad",
+          "inicio": 17.729,
+          "fin": 18.344
+        },
+        {
+          "texto": "hacia",
+          "inicio": 18.39,
+          "fin": 18.692
+        },
+        {
+          "texto": "la",
+          "inicio": 18.75,
+          "fin": 18.831
+        },
+        {
+          "texto": "carga.",
+          "inicio": 18.89,
+          "fin": 19.969
+        }
+      ]
+    },
+    {
+      "id": "regiones",
+      "archivo": "voz-diodo/es/regiones.mp3",
+      "duracion": 27.306667,
+      "hash": "b132c776918c39c49007febe36a81a0d4e39ab44",
+      "palabras": [
+        {
+          "texto": "Pero",
+          "inicio": 0,
+          "fin": 0.186
+        },
+        {
+          "texto": "no",
+          "inicio": 0.232,
+          "fin": 0.302
+        },
+        {
+          "texto": "todos",
+          "inicio": 0.36,
+          "fin": 0.627
+        },
+        {
+          "texto": "los",
+          "inicio": 0.662,
+          "fin": 0.789
+        },
+        {
+          "texto": "diodos",
+          "inicio": 0.813,
+          "fin": 1.103
+        },
+        {
+          "texto": "trabajan",
+          "inicio": 1.126,
+          "fin": 1.498
+        },
+        {
+          "texto": "igual",
+          "inicio": 1.544,
+          "fin": 1.776
+        },
+        {
+          "texto": "en",
+          "inicio": 1.811,
+          "fin": 1.869
+        },
+        {
+          "texto": "su",
+          "inicio": 1.916,
+          "fin": 2.02
+        },
+        {
+          "texto": "curva",
+          "inicio": 2.078,
+          "fin": 2.368
+        },
+        {
+          "texto": "característica:",
+          "inicio": 2.415,
+          "fin": 3.355
+        },
+        {
+          "texto": "el",
+          "inicio": 3.878,
+          "fin": 4.005
+        },
+        {
+          "texto": "1N4007",
+          "inicio": 4.11,
+          "fin": 5.248
+        },
+        {
+          "texto": "de",
+          "inicio": 5.352,
+          "fin": 5.41
+        },
+        {
+          "texto": "silicio",
+          "inicio": 5.457,
+          "fin": 5.863
+        },
+        {
+          "texto": "pierde",
+          "inicio": 5.921,
+          "fin": 6.211
+        },
+        {
+          "texto": "0.7",
+          "inicio": 6.316,
+          "fin": 6.978
+        },
+        {
+          "texto": "voltios",
+          "inicio": 7.082,
+          "fin": 7.442
+        },
+        {
+          "texto": "en",
+          "inicio": 7.5,
+          "fin": 7.558
+        },
+        {
+          "texto": "directa;",
+          "inicio": 7.593,
+          "fin": 8.115
+        },
+        {
+          "texto": "el",
+          "inicio": 8.649,
+          "fin": 8.777
+        },
+        {
+          "texto": "diodo",
+          "inicio": 8.835,
+          "fin": 9.091
+        },
+        {
+          "texto": "Schottky",
+          "inicio": 9.172,
+          "fin": 9.659
+        },
+        {
+          "texto": "1N5819",
+          "inicio": 9.938,
+          "fin": 11.262
+        },
+        {
+          "texto": "usa",
+          "inicio": 11.784,
+          "fin": 12.051
+        },
+        {
+          "texto": "una",
+          "inicio": 12.121,
+          "fin": 12.283
+        },
+        {
+          "texto": "unión",
+          "inicio": 12.341,
+          "fin": 12.597
+        },
+        {
+          "texto": "metal-semiconductor",
+          "inicio": 12.655,
+          "fin": 13.793
+        },
+        {
+          "texto": "que",
+          "inicio": 14.083,
+          "fin": 14.211
+        },
+        {
+          "texto": "cae",
+          "inicio": 14.292,
+          "fin": 14.489
+        },
+        {
+          "texto": "apenas",
+          "inicio": 14.512,
+          "fin": 14.884
+        },
+        {
+          "texto": "0.25",
+          "inicio": 14.988,
+          "fin": 16.091
+        },
+        {
+          "texto": "voltios",
+          "inicio": 16.219,
+          "fin": 16.648
+        },
+        {
+          "texto": "y",
+          "inicio": 17.032,
+          "fin": 17.113
+        },
+        {
+          "texto": "conmuta",
+          "inicio": 17.217,
+          "fin": 17.659
+        },
+        {
+          "texto": "en",
+          "inicio": 17.693,
+          "fin": 17.74
+        },
+        {
+          "texto": "nanosegundos;",
+          "inicio": 17.775,
+          "fin": 18.796
+        },
+        {
+          "texto": "y",
+          "inicio": 19.237,
+          "fin": 19.284
+        },
+        {
+          "texto": "el",
+          "inicio": 19.4,
+          "fin": 19.481
+        },
+        {
+          "texto": "diodo",
+          "inicio": 19.539,
+          "fin": 19.83
+        },
+        {
+          "texto": "Zener",
+          "inicio": 19.888,
+          "fin": 20.282
+        },
+        {
+          "texto": "se",
+          "inicio": 20.979,
+          "fin": 21.118
+        },
+        {
+          "texto": "diseña",
+          "inicio": 21.176,
+          "fin": 21.559
+        },
+        {
+          "texto": "para",
+          "inicio": 21.606,
+          "fin": 21.78
+        },
+        {
+          "texto": "conducir",
+          "inicio": 21.827,
+          "fin": 22.256
+        },
+        {
+          "texto": "en",
+          "inicio": 22.291,
+          "fin": 22.337
+        },
+        {
+          "texto": "inversa",
+          "inicio": 22.407,
+          "fin": 22.837
+        },
+        {
+          "texto": "a",
+          "inicio": 22.871,
+          "fin": 22.895
+        },
+        {
+          "texto": "un",
+          "inicio": 22.976,
+          "fin": 23.057
+        },
+        {
+          "texto": "voltaje",
+          "inicio": 23.104,
+          "fin": 23.626
+        },
+        {
+          "texto": "exacto",
+          "inicio": 23.684,
+          "fin": 24.346
+        },
+        {
+          "texto": "como",
+          "inicio": 24.625,
+          "fin": 24.892
+        },
+        {
+          "texto": "5.1",
+          "inicio": 25.019,
+          "fin": 25.786
+        },
+        {
+          "texto": "voltios.",
+          "inicio": 25.913,
+          "fin": 27.306
+        }
+      ]
+    },
+    {
+      "id": "cierre",
+      "archivo": "voz-diodo/es/cierre.mp3",
+      "duracion": 16.439728,
+      "hash": "18d31933e45708d9f5e7c79f23616565d7a61512",
+      "palabras": [
+        {
+          "texto": "Desde",
+          "inicio": 0,
+          "fin": 0.348
+        },
+        {
+          "texto": "el",
+          "inicio": 0.372,
+          "fin": 0.43
+        },
+        {
+          "texto": "1N4007",
+          "inicio": 0.546,
+          "fin": 1.8
+        },
+        {
+          "texto": "en",
+          "inicio": 1.95,
+          "fin": 2.09
+        },
+        {
+          "texto": "fuentes",
+          "inicio": 2.148,
+          "fin": 2.543
+        },
+        {
+          "texto": "rectificadoras",
+          "inicio": 2.624,
+          "fin": 3.518
+        },
+        {
+          "texto": "y",
+          "inicio": 3.796,
+          "fin": 3.889
+        },
+        {
+          "texto": "el",
+          "inicio": 3.959,
+          "fin": 4.04
+        },
+        {
+          "texto": "Schottky",
+          "inicio": 4.156,
+          "fin": 4.609
+        },
+        {
+          "texto": "en",
+          "inicio": 4.679,
+          "fin": 4.748
+        },
+        {
+          "texto": "fuentes",
+          "inicio": 4.795,
+          "fin": 5.155
+        },
+        {
+          "texto": "conmutadas",
+          "inicio": 5.224,
+          "fin": 5.933
+        },
+        {
+          "texto": "de",
+          "inicio": 5.979,
+          "fin": 6.037
+        },
+        {
+          "texto": "alta",
+          "inicio": 6.107,
+          "fin": 6.339
+        },
+        {
+          "texto": "velocidad,",
+          "inicio": 6.397,
+          "fin": 7.163
+        },
+        {
+          "texto": "hasta",
+          "inicio": 7.488,
+          "fin": 7.767
+        },
+        {
+          "texto": "el",
+          "inicio": 7.814,
+          "fin": 7.872
+        },
+        {
+          "texto": "diodo",
+          "inicio": 7.918,
+          "fin": 8.173
+        },
+        {
+          "texto": "Zener",
+          "inicio": 8.231,
+          "fin": 8.533
+        },
+        {
+          "texto": "de",
+          "inicio": 8.603,
+          "fin": 8.684
+        },
+        {
+          "texto": "vidrio",
+          "inicio": 8.742,
+          "fin": 9.137
+        },
+        {
+          "texto": "DO-35",
+          "inicio": 9.195,
+          "fin": 10.228
+        },
+        {
+          "texto": "para",
+          "inicio": 10.379,
+          "fin": 10.565
+        },
+        {
+          "texto": "referencias",
+          "inicio": 10.635,
+          "fin": 11.238
+        },
+        {
+          "texto": "de",
+          "inicio": 11.273,
+          "fin": 11.32
+        },
+        {
+          "texto": "tensión:",
+          "inicio": 11.378,
+          "fin": 12.051
+        },
+        {
+          "texto": "conocer",
+          "inicio": 12.562,
+          "fin": 13.015
+        },
+        {
+          "texto": "su",
+          "inicio": 13.084,
+          "fin": 13.201
+        },
+        {
+          "texto": "curva",
+          "inicio": 13.27,
+          "fin": 13.63
+        },
+        {
+          "texto": "exacta",
+          "inicio": 13.688,
+          "fin": 14.269
+        },
+        {
+          "texto": "define",
+          "inicio": 14.35,
+          "fin": 14.745
+        },
+        {
+          "texto": "el",
+          "inicio": 14.779,
+          "fin": 14.861
+        },
+        {
+          "texto": "éxito",
+          "inicio": 14.919,
+          "fin": 15.337
+        },
+        {
+          "texto": "de",
+          "inicio": 15.395,
+          "fin": 15.464
+        },
+        {
+          "texto": "tu",
+          "inicio": 15.511,
+          "fin": 15.581
+        },
+        {
+          "texto": "diseño.",
+          "inicio": 15.627,
+          "fin": 16.44
+        }
+      ]
+    }
+  ]
+}

@@ -78,6 +78,44 @@ export const CATALOGO_KICAD: ModeloKiCad[] = [
     rutaRelativa: "Heatsink.3dshapes/Heatsink_Stonecold_HS-132_32x14mm_2xFixation1.5mm.step",
     descripcion: "Disipador de aluminio extruido para encapsulado TO-220",
   },
+  // Episodio 04: Capacitores (Electrolítico Radial, Cerámico MLCC 0805 y Tántalo SMD)
+  {
+    id: "cap_electrolitico",
+    rutaRelativa: "Capacitor_THT.3dshapes/CP_Radial_D8.0mm_P3.50mm.step",
+    descripcion: "Capacitor electrolítico de aluminio radial 100 µF 25 V (D=8mm, P=3.5mm)",
+  },
+  {
+    id: "cap_ceramico",
+    rutaRelativa: "Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+    descripcion: "Capacitor cerámico multicapa SMD MLCC 0805 (100 nF X7R)",
+  },
+  {
+    id: "cap_tantalo",
+    rutaRelativa: "Capacitor_Tantalum_SMD.3dshapes/CP_EIA-3216-18_Kemet-A.step",
+    descripcion: "Capacitor de tántalo SMD EIA-3216 Case A (10 µF 16 V)",
+  },
+  // Episodio 05: Diodos (Rectificador DO-41, Zener de vidrio DO-35)
+  {
+    id: "diodo_zener",
+    rutaRelativa: "Diode_THT.3dshapes/D_DO-35_SOD27_P10.16mm_Horizontal.step",
+    descripcion: "Diodo Zener axial en encapsulado de vidrio DO-35 (1N4733A 5.1V / 1N4148)",
+  },
+  // Episodio 06: Inductores y Convertidor Buck (Radial, SMD Blindado Bourns, Toroidal EPCOS)
+  {
+    id: "inductor_radial",
+    rutaRelativa: "Inductor_THT.3dshapes/L_Radial_D10.0mm_P5.00mm_Fastron_07M.step",
+    descripcion: "Inductor de potencia radial en núcleo de ferrita Fastron 07M (100 µH)",
+  },
+  {
+    id: "inductor_smd",
+    rutaRelativa: "Inductor_SMD.3dshapes/L_Bourns_SRR1260.step",
+    descripcion: "Inductor de potencia SMD blindado Bourns SRR1260 para Convertidor Buck (33 µH 3A)",
+  },
+  {
+    id: "inductor_toroidal",
+    rutaRelativa: "Inductor_THT.3dshapes/Choke_EPCOS_B82722A.step",
+    descripcion: "Inductor toroidal de filtro y potencia EPCOS B82722A",
+  },
 ];
 
 function generarPcbTemporal(rutaModeloAbs: string): string {

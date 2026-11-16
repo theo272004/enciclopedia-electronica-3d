@@ -28,11 +28,6 @@ def crear_material_pbr(nombre, color_rgba, metalness=0.0, roughness=0.4, transmi
 
 
 def importar_y_normalizar_kicad(archivo_glb, centro_xy_mm, nombre_salida=None):
-    """
-    Importa un .glb crudo exportado de KiCad (en metros desde public/modelos/raw),
-    separa por materiales, centra en X/Y según centro_xy_mm, escala a milímetros
-    (1 unidad = 1 mm) y aplica materiales PBR limpios con origen en (0,0,0).
-    """
     limpiar_escena()
     ruta = os.path.join(RAW_DIR, archivo_glb)
     bpy.ops.import_scene.gltf(filepath=ruta)
@@ -60,7 +55,6 @@ def importar_y_normalizar_kicad(archivo_glb, centro_xy_mm, nombre_salida=None):
         v.co.z = v.co.z * 1000.0
     obj.data.update()
 
-    # Separar por material para poder controlar partes en Three.js
     bpy.ops.object.mode_set(mode="EDIT")
     bpy.ops.mesh.separate(type="MATERIAL")
     bpy.ops.object.mode_set(mode="OBJECT")
@@ -103,7 +97,6 @@ def importar_y_normalizar_kicad(archivo_glb, centro_xy_mm, nombre_salida=None):
 
 
 def agregar_bandas_resistencia():
-    """Agrega las 4 bandas de color reales (1 kΩ: marrón, negro, rojo, dorado) sobre la resistencia de KiCad."""
     importar_y_normalizar_kicad("resistencia_axial.glb", (5.08, 0.0))
     bandas = [
         ("Banda_1_Marron", -1.8, (0.38, 0.18, 0.07, 1.0), 0.0),
@@ -122,22 +115,6 @@ def agregar_bandas_resistencia():
     out_path = os.path.join(MODELOS_DIR, "resistencia_axial.glb")
     bpy.ops.export_scene.gltf(filepath=out_path, export_format="GLB", export_apply=True)
     print(f"✔ Resistencia KiCad con bandas 1kΩ exportada: {out_path}")
-
-
-def cortar_malla_bisect(obj, plane_co, plane_no, clear_outer=False, clear_inner=False):
-    bpy.ops.object.select_all(action="DESELECT")
-    bpy.context.view_layer.objects.active = obj
-    obj.select_set(True)
-    bpy.ops.object.mode_set(mode="EDIT")
-    bpy.ops.mesh.select_all(action="SELECT")
-    bpy.ops.mesh.bisect(
-        plane_co=plane_co,
-        plane_no=plane_no,
-        use_fill=True,
-        clear_inner=clear_inner,
-        clear_outer=clear_outer,
-    )
-    bpy.ops.object.mode_set(mode="OBJECT")
 
 
 def crear_hilo_oro(nombre, p_inicio, p_control, p_fin, radio=0.045, mat=None):
@@ -167,14 +144,18 @@ def crear_hilo_oro(nombre, p_inicio, p_control, p_fin, radio=0.045, mat=None):
     return obj
 
 
+def crear_bloque(nombre, loc, dim, mat):
+    bpy.ops.mesh.primitive_cube_add(size=1.0, location=loc)
+    b = bpy.context.active_object
+    b.scale = dim
+    bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+    b.name = nombre
+    b.data.name = nombre
+    b.data.materials.append(mat)
+    return b
+
+
 def construir_to92_autopsia():
-    """
-    Toma el modelo real TO-92 de KiCad, aplica un corte de sección transversal limpio (bisect)
-    para abrir el frente del encapsulado epóxico y modela en su interior:
-    - Leadframe interno de cobre estañado (pala de Colector y postes de Base y Emisor)
-    - Pastilla de silicio planar epitaxial N-P-N (Colector N, Base P, Emisor N+)
-    - Hilos de oro (bond wires) de 25 µm conectando el chip a los pines
-    """
     partes = importar_y_normalizar_kicad("to92.glb", (1.27, 0.0))
     carcasa = next(p for p in partes if p.name.startswith("Encapsulado"))
     pines = next(p for p in partes if p.name.startswith("Pines"))
@@ -183,80 +164,44 @@ def construir_to92_autopsia():
     pines.name = "Pines_Metal"
     pines.data.name = "Pines_Metal"
 
-    # Duplicar carcasa para crear la tapa frontal que se separa en la animación
     carcasa_tapa = carcasa.copy()
     carcasa_tapa.data = carcasa.data.copy()
     carcasa_tapa.name = "Carcasa_Corte"
     carcasa_tapa.data.name = "Carcasa_Corte"
     bpy.context.collection.objects.link(carcasa_tapa)
 
-    # Crear volumen de cavidad interna para tallar la cámara dentro del TO-92 (solver FLOAT)
     bpy.ops.mesh.primitive_cube_add(size=1.0, location=(0.0, -0.35, 4.95))
     cavidad = bpy.context.active_object
     cavidad.scale = (3.4, 2.3, 3.7)
     bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
 
-    mod_diff = carcasa.modifiers.new(name="Cavidad_Autopsia", type="BOOLEAN")
-    mod_diff.operation = "DIFFERENCE"
-    mod_diff.solver = "FLOAT"
-    mod_diff.object = cavidad
-    bpy.context.view_layer.objects.active = carcasa
-    bpy.ops.object.modifier_apply(modifier=mod_diff.name)
-
-    mod_int = carcasa_tapa.modifiers.new(name="Tapa_Autopsia", type="BOOLEAN")
-    mod_int.operation = "INTERSECT"
-    mod_int.solver = "FLOAT"
-    mod_int.object = cavidad
-    bpy.context.view_layer.objects.active = carcasa_tapa
-    bpy.ops.object.modifier_apply(modifier=mod_int.name)
+    for obj_target, op in [(carcasa, "DIFFERENCE"), (carcasa_tapa, "INTERSECT")]:
+        mod = obj_target.modifiers.new(name="Bool", type="BOOLEAN")
+        mod.operation = op
+        mod.solver = "FLOAT"
+        mod.object = cavidad
+        bpy.context.view_layer.objects.active = obj_target
+        bpy.ops.object.modifier_apply(modifier=mod.name)
 
     bpy.data.objects.remove(cavidad, do_unlink=True)
 
-    # Materiales internos de alta visibilidad
     mat_cobre = crear_material_pbr("Cobre_Leadframe", (0.85, 0.52, 0.30, 1.0), metalness=1.0, roughness=0.25)
     mat_oro = crear_material_pbr("Oro_BondWire", (1.0, 0.80, 0.28, 1.0), metalness=1.0, roughness=0.18)
     mat_silicio_n = crear_material_pbr("Silicio_N_Colector", (0.12, 0.62, 0.95, 1.0), metalness=0.25, roughness=0.2, emissive=(0.05, 0.35, 0.65), emissive_strength=0.45)
     mat_silicio_p = crear_material_pbr("Silicio_P_Base", (1.0, 0.62, 0.12, 1.0), metalness=0.2, roughness=0.2, emissive=(0.75, 0.38, 0.04), emissive_strength=0.65)
     mat_silicio_nplus = crear_material_pbr("Silicio_NPlus_Emisor", (0.22, 0.92, 1.0, 1.0), metalness=0.3, roughness=0.18, emissive=(0.12, 0.75, 0.95), emissive_strength=0.75)
 
-    def crear_bloque(nombre, loc, dim, mat):
-        bpy.ops.mesh.primitive_cube_add(size=1.0, location=loc)
-        b = bpy.context.active_object
-        b.scale = dim
-        bpy.ops.object.transform_apply(scale=True)
-        b.name = nombre
-        b.data.name = nombre
-        b.data.materials.append(mat)
-        return b
-
-    # 1. Leadframe interno (postes desde z=2.5 hasta z=4.2 dentro del epoxi)
     crear_bloque("Leadframe_Poste_C", (-1.27, 0.0, 3.35), (0.38, 0.22, 1.7), mat_cobre)
     crear_bloque("Leadframe_Paleta_C", (-0.15, 0.05, 4.2), (1.45, 0.95, 0.18), mat_cobre)
     crear_bloque("Leadframe_Poste_B", (0.0, -0.38, 3.35), (0.34, 0.22, 1.7), mat_cobre)
     crear_bloque("Leadframe_Poste_E", (1.27, 0.0, 3.35), (0.38, 0.22, 1.7), mat_cobre)
 
-    # 2. Pastilla de Silicio N-P-N (3 capas apiladas sobre la paleta del Colector)
     crear_bloque("Die_Colector_N", (-0.05, 0.05, 4.44), (1.12, 0.78, 0.28), mat_silicio_n)
     crear_bloque("Die_Base_P", (-0.05, 0.05, 4.66), (0.94, 0.64, 0.14), mat_silicio_p)
     crear_bloque("Die_Emisor_NPlus", (0.08, 0.05, 4.82), (0.58, 0.44, 0.16), mat_silicio_nplus)
 
-    # 3. Hilos de enlace de oro (Bond Wires de 25 µm)
-    crear_hilo_oro(
-        "Hilo_Oro_Base",
-        Vector((-0.34, -0.10, 4.73)),
-        Vector((-0.16, -0.32, 5.42)),
-        Vector((0.0, -0.38, 4.18)),
-        radio=0.04,
-        mat=mat_oro,
-    )
-    crear_hilo_oro(
-        "Hilo_Oro_Emisor",
-        Vector((0.15, 0.05, 4.90)),
-        Vector((0.75, 0.0, 5.62)),
-        Vector((1.27, 0.0, 4.18)),
-        radio=0.04,
-        mat=mat_oro,
-    )
+    crear_hilo_oro("Hilo_Oro_Base", Vector((-0.34, -0.10, 4.73)), Vector((-0.16, -0.32, 5.42)), Vector((0.0, -0.38, 4.18)), radio=0.04, mat=mat_oro)
+    crear_hilo_oro("Hilo_Oro_Emisor", Vector((0.15, 0.05, 4.90)), Vector((0.75, 0.0, 5.62)), Vector((1.27, 0.0, 4.18)), radio=0.04, mat=mat_oro)
 
     out_path = os.path.join(MODELOS_DIR, "to92_autopsia.glb")
     bpy.ops.export_scene.gltf(filepath=out_path, export_format="GLB", export_apply=True)
@@ -265,12 +210,14 @@ def construir_to92_autopsia():
 
 def construir_rele_autopsia():
     """
-    Toma el modelo real Omron G5LE-1 SPDT de KiCad 9.0, talla una ventana booleana
-    en su carcasa y modela el mecanismo electromecánico interno:
-    - Bobina_Cobre (devanado electromagnético)
-    - Nucleo_Hierro y Yugo_Hierro (circuito magnético)
-    - Armadura_Movil (palanca móvil que bascula al energizar la bobina)
-    - Contacto_NC y Contacto_NO (contactos fijos con remaches de plata AgSnO2)
+    Reconstruye el Relé Electromecánico fiel a la foto real (relé transparente con base negra):
+    - Base_Negra inferior donde se anclan los 5 pines THT.
+    - Carcasa_Base y Carcasa_Corte de policarbonato transparente tipo cristal.
+    - Lado derecho (x = +2.4 mm): Carrete negro con bridas + 22 espiras visibles de cobre esmaltado
+      + núcleo de hierro dulce + yugo metálico en L.
+    - Lado izquierdo (x = -5.4, -3.5, -1.6 mm): Las 3 láminas verticales paralelas de latón/cobre
+      (NC izquierda, COM móvil central empujada por la armadura superior, y NO derecha) con
+      sus remaches cilíndricos redondos de plata AgSnO2 enfrentados en la parte alta.
     """
     partes = importar_y_normalizar_kicad("rele_spdt.glb", (0.0, -8.7))
     carcasa = next(p for p in partes if p.name.startswith("Encapsulado"))
@@ -280,120 +227,149 @@ def construir_rele_autopsia():
     pines.name = "Pines_Metal"
     pines.data.name = "Pines_Metal"
 
-    mat_azul_omron = crear_material_pbr("Policarbonato_Omron", (0.06, 0.22, 0.42, 1.0), metalness=0.05, roughness=0.32)
-    carcasa.data.materials[0] = mat_azul_omron
+    mat_cristal = crear_material_pbr("Policarbonato_Cristal", (0.82, 0.92, 1.0, 0.35), metalness=0.0, roughness=0.08, transmission=0.82)
+    mat_base_negra = crear_material_pbr("Base_Termoplastico_Negro", (0.05, 0.06, 0.08, 1.0), metalness=0.05, roughness=0.45)
+    mat_bobina = crear_material_pbr("Cobre_Esmaltado", (0.88, 0.44, 0.16, 1.0), metalness=0.95, roughness=0.18, emissive=(0.65, 0.25, 0.04), emissive_strength=0.25)
+    mat_hierro = crear_material_pbr("Hierro_Dulce_Nucleo", (0.52, 0.56, 0.62, 1.0), metalness=0.95, roughness=0.28)
+    mat_laton = crear_material_pbr("Laton_Lamina_Contacto", (0.94, 0.72, 0.32, 1.0), metalness=0.95, roughness=0.18)
+    mat_plata = crear_material_pbr("Plata_AgSnO2_Remache", (0.96, 0.98, 1.0, 1.0), metalness=1.0, roughness=0.10)
 
+    carcasa.data.materials[0] = mat_cristal
     carcasa_tapa = carcasa.copy()
     carcasa_tapa.data = carcasa.data.copy()
     carcasa_tapa.name = "Carcasa_Corte"
     carcasa_tapa.data.name = "Carcasa_Corte"
     bpy.context.collection.objects.link(carcasa_tapa)
 
-    # Volumen cortador para abrir el frente y lateral derecho del relé (16.5 x 22.5 x 19 mm)
-    bpy.ops.mesh.primitive_cube_add(size=1.0, location=(1.2, -2.5, 10.2))
+    # Tallar cámara interna amplia dejando paredes finas de 0.9 mm como la caja acrílica real
+    bpy.ops.mesh.primitive_cube_add(size=1.0, location=(0.0, -1.2, 10.6))
     cavidad = bpy.context.active_object
-    cavidad.scale = (14.2, 18.5, 15.8)
+    cavidad.scale = (14.8, 19.2, 15.2)
     bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
 
-    mod_diff = carcasa.modifiers.new(name="Cavidad_Rele", type="BOOLEAN")
-    mod_diff.operation = "DIFFERENCE"
-    mod_diff.solver = "FLOAT"
-    mod_diff.object = cavidad
-    bpy.context.view_layer.objects.active = carcasa
-    bpy.ops.object.modifier_apply(modifier=mod_diff.name)
-
-    mod_int = carcasa_tapa.modifiers.new(name="Tapa_Rele", type="BOOLEAN")
-    mod_int.operation = "INTERSECT"
-    mod_int.solver = "FLOAT"
-    mod_int.object = cavidad
-    bpy.context.view_layer.objects.active = carcasa_tapa
-    bpy.ops.object.modifier_apply(modifier=mod_int.name)
+    for obj_target, op in [(carcasa, "DIFFERENCE"), (carcasa_tapa, "INTERSECT")]:
+        mod = obj_target.modifiers.new(name="Bool_Rele", type="BOOLEAN")
+        mod.operation = op
+        mod.solver = "FLOAT"
+        mod.object = cavidad
+        bpy.context.view_layer.objects.active = obj_target
+        bpy.ops.object.modifier_apply(modifier=mod.name)
 
     bpy.data.objects.remove(cavidad, do_unlink=True)
 
-    mat_bobina = crear_material_pbr("Cobre_Bobina", (0.85, 0.45, 0.18, 1.0), metalness=0.92, roughness=0.22, emissive=(0.65, 0.28, 0.05), emissive_strength=0.25)
-    mat_hierro = crear_material_pbr("Hierro_Nucleo", (0.45, 0.48, 0.52, 1.0), metalness=0.95, roughness=0.35)
-    mat_plata = crear_material_pbr("Plata_Contacto", (0.95, 0.96, 0.98, 1.0), metalness=1.0, roughness=0.14)
-    mat_cobre_lamina = crear_material_pbr("Cobre_Berilio_Armadura", (0.92, 0.68, 0.35, 1.0), metalness=0.95, roughness=0.2)
+    # 1. Zócalo / Base negra inferior + Carrete (Bobbin flanges)
+    b1 = crear_bloque("Zocalo_Base", (0.0, 0.0, 1.6), (16.2, 21.8, 3.0), mat_base_negra)
+    bpy.ops.mesh.primitive_cylinder_add(vertices=36, radius=4.3, depth=0.7, location=(2.6, 0.0, 3.6))
+    f_inf = bpy.context.active_object
+    bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+    bpy.ops.mesh.primitive_cylinder_add(vertices=36, radius=4.3, depth=0.7, location=(2.6, 0.0, 13.8))
+    f_sup = bpy.context.active_object
+    bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+    bpy.ops.object.select_all(action="DESELECT")
+    for o in [b1, f_inf, f_sup]:
+        o.select_set(True)
+    bpy.context.view_layer.objects.active = b1
+    bpy.ops.object.join()
+    b1.name = "Base_Carrete_Negro"
+    b1.data.name = "Base_Carrete_Negro"
+    b1.data.materials.clear()
+    b1.data.materials.append(mat_base_negra)
 
-    # 1. Núcleo ferromagnético central (hierro dulce)
-    bpy.ops.mesh.primitive_cylinder_add(vertices=32, radius=1.9, depth=12.2, location=(0.0, -2.2, 8.2))
+    # 2. Núcleo ferromagnético central + polo superior
+    bpy.ops.mesh.primitive_cylinder_add(vertices=32, radius=1.8, depth=12.2, location=(2.6, 0.0, 8.9))
     nucleo = bpy.context.active_object
     bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
     nucleo.name = "Nucleo_Hierro"
     nucleo.data.name = "Nucleo_Hierro"
     nucleo.data.materials.append(mat_hierro)
 
-    # 2. Bobina electromagnética de cobre esmaltado
-    bpy.ops.mesh.primitive_cylinder_add(vertices=40, radius=4.1, depth=9.8, location=(0.0, -2.2, 8.2))
-    bobina = bpy.context.active_object
+    # 3. Devanado de Cobre con 20 espiras toroidales reales apiladas (aspecto 100% real de alambre enrollado)
+    espiras = []
+    bpy.ops.mesh.primitive_cylinder_add(vertices=36, radius=3.65, depth=9.4, location=(2.6, 0.0, 8.7))
+    cuerpo_bob = bpy.context.active_object
     bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+    espiras.append(cuerpo_bob)
+    for k in range(18):
+        z_k = 4.2 + k * 0.52
+        bpy.ops.mesh.primitive_torus_add(major_radius=3.75, minor_radius=0.28, major_segments=36, minor_segments=12, location=(2.6, 0.0, z_k))
+        esp = bpy.context.active_object
+        bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+        espiras.append(esp)
+    bpy.ops.object.select_all(action="DESELECT")
+    for e in espiras:
+        e.select_set(True)
+    bpy.context.view_layer.objects.active = espiras[0]
+    bpy.ops.object.join()
+    bobina = bpy.context.active_object
     bobina.name = "Bobina_Cobre"
     bobina.data.name = "Bobina_Cobre"
+    bobina.data.materials.clear()
     bobina.data.materials.append(mat_bobina)
 
-    # 3. Yugo magnético en L (conduce el flujo magnético hacia el pivote superior)
-    bpy.ops.mesh.primitive_cube_add(size=1.0, location=(0.0, 3.2, 8.5))
-    yugo = bpy.context.active_object
-    yugo.scale = (4.6, 0.9, 12.6)
-    bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
-    yugo.name = "Yugo_Hierro"
-    yugo.data.name = "Yugo_Hierro"
-    yugo.data.materials.append(mat_hierro)
-
-    # 4. Armadura móvil (placa superior + lámina vertical con contacto móvil COM)
-    bpy.ops.mesh.primitive_cube_add(size=1.0, location=(0.0, -0.6, 15.2))
-    arm_top = bpy.context.active_object
-    arm_top.scale = (4.4, 8.2, 0.8)
-    bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
-
-    bpy.ops.mesh.primitive_cube_add(size=1.0, location=(0.0, -5.2, 10.6))
-    arm_leaf = bpy.context.active_object
-    arm_leaf.scale = (2.6, 0.45, 9.2)
-    bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
-
+    # 4. Yugo magnético en L en el costado derecho de la bobina
+    y1 = crear_bloque("Yugo_V", (6.5, 0.0, 9.2), (0.85, 5.8, 12.2), mat_hierro)
+    y2 = crear_bloque("Yugo_H", (4.2, 0.0, 3.3), (5.2, 5.8, 0.85), mat_hierro)
     bpy.ops.object.select_all(action="DESELECT")
-    arm_top.select_set(True)
-    arm_leaf.select_set(True)
-    bpy.context.view_layer.objects.active = arm_top
+    y1.select_set(True)
+    y2.select_set(True)
+    bpy.context.view_layer.objects.active = y1
     bpy.ops.object.join()
-    armadura = bpy.context.active_object
-    armadura.name = "Armadura_Movil"
-    armadura.data.name = "Armadura_Movil"
-    armadura.data.materials.append(mat_cobre_lamina)
+    y1.name = "Yugo_Hierro"
+    y1.data.name = "Yugo_Hierro"
 
-    # 5. Contactos fijos NC (Normalmente Cerrado) y NO (Normalmente Abierto)
-    bpy.ops.mesh.primitive_cube_add(size=1.0, location=(-2.4, -6.6, 6.2))
-    c_nc = bpy.context.active_object
-    c_nc.scale = (1.6, 0.8, 8.8)
+    # 5. Las 3 Láminas Verticales Paralelas de Contacto en el lado izquierdo (exactamente como la foto)
+    # 5a. Lámina izquierda fija: Contacto NC (x = -5.6 mm) + Remache de plata mirando hacia +X
+    l_nc = crear_bloque("Lamina_NC", (-5.6, 0.0, 9.2), (0.38, 3.6, 11.5), mat_laton)
+    bpy.ops.mesh.primitive_cylinder_add(vertices=24, radius=0.95, depth=0.75, location=(-5.2, 0.0, 12.8), rotation=(0.0, math.pi / 2.0, 0.0))
+    r_nc = bpy.context.active_object
     bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
-    c_nc.name = "Contacto_NC"
-    c_nc.data.name = "Contacto_NC"
-    c_nc.data.materials.append(mat_plata)
+    bpy.ops.object.select_all(action="DESELECT")
+    l_nc.select_set(True)
+    r_nc.select_set(True)
+    bpy.context.view_layer.objects.active = l_nc
+    bpy.ops.object.join()
+    l_nc.name = "Contacto_NC"
+    l_nc.data.name = "Contacto_NC"
+    l_nc.data.materials.clear()
+    l_nc.data.materials.append(mat_plata)
 
-    bpy.ops.mesh.primitive_cube_add(size=1.0, location=(2.4, -3.8, 6.2))
-    c_no = bpy.context.active_object
-    c_no.scale = (1.6, 0.8, 8.8)
+    # 5b. Lámina derecha fija: Contacto NO (x = -1.6 mm) + Remache de plata mirando hacia -X
+    l_no = crear_bloque("Lamina_NO", (-1.6, 0.0, 9.2), (0.38, 3.6, 11.5), mat_laton)
+    bpy.ops.mesh.primitive_cylinder_add(vertices=24, radius=0.95, depth=0.75, location=(-2.0, 0.0, 12.8), rotation=(0.0, math.pi / 2.0, 0.0))
+    r_no = bpy.context.active_object
     bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
-    c_no.name = "Contacto_NO"
-    c_no.data.name = "Contacto_NO"
-    c_no.data.materials.append(mat_plata)
+    bpy.ops.object.select_all(action="DESELECT")
+    l_no.select_set(True)
+    r_no.select_set(True)
+    bpy.context.view_layer.objects.active = l_no
+    bpy.ops.object.join()
+    l_no.name = "Contacto_NO"
+    l_no.data.name = "Contacto_NO"
+    l_no.data.materials.clear()
+    l_no.data.materials.append(mat_plata)
+
+    # 5c. Armadura Superior en L + Lámina Móvil Central COM (x = -3.6 mm) con remache doble
+    arm_h = crear_bloque("Arm_Sup", (1.6, 0.0, 15.6), (9.6, 5.4, 0.85), mat_laton)
+    lam_com = crear_bloque("Lam_Com", (-3.6, 0.0, 9.4), (0.35, 3.6, 12.0), mat_laton)
+    bpy.ops.mesh.primitive_cylinder_add(vertices=24, radius=1.0, depth=1.1, location=(-3.6, 0.0, 12.8), rotation=(0.0, math.pi / 2.0, 0.0))
+    r_com = bpy.context.active_object
+    bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+    bpy.ops.object.select_all(action="DESELECT")
+    for o in [arm_h, lam_com, r_com]:
+        o.select_set(True)
+    bpy.context.view_layer.objects.active = arm_h
+    bpy.ops.object.join()
+    arm_h.name = "Armadura_Movil"
+    arm_h.data.name = "Armadura_Movil"
+    arm_h.data.materials.clear()
+    arm_h.data.materials.append(mat_laton)
 
     out_path = os.path.join(MODELOS_DIR, "rele_autopsia.glb")
     bpy.ops.export_scene.gltf(filepath=out_path, export_format="GLB", export_apply=True)
-    print(f"✔ Modelo Relé Omron G5LE-1 con autopsia interna exportado: {out_path}")
+    print(f"✔ Modelo Relé Transparente con 3 láminas verticales y bobina en carrete exportado: {out_path}")
 
 
 def construir_mosfet_autopsia():
-    """
-    Toma el modelo real TO-220-3 de KiCad 9.0 (IRFZ44N), practica un corte booleano
-    en la resina frontal y modela la arquitectura interna de un MOSFET de potencia HEXFET:
-    - Sustrato_Drenador_N (unido térmicamente a la aleta metálica trasera)
-    - Cuerpo_P_Canal (región donde se induce el canal N por campo eléctrico)
-    - Oxido_SiO2_Compuerta (aislante dieléctrico SiO2 + polisilicio de Gate)
-    - Celdas_Fuente_NPlus (matriz hexagonal/celular superior de Source)
-    - Hilos gruesos de aluminio para soportar 49 A en Source y enlace a Gate
-    """
     partes = importar_y_normalizar_kicad("to220.glb", (2.54, 0.0))
     carcasa = next(p for p in partes if p.name.startswith("Encapsulado"))
     pines = next(p for p in partes if p.name.startswith("Pines"))
@@ -408,25 +384,18 @@ def construir_mosfet_autopsia():
     carcasa_tapa.data.name = "Carcasa_Corte"
     bpy.context.collection.objects.link(carcasa_tapa)
 
-    # El cuerpo epóxico del TO-220 va en X: -5.1..+5.1, Y: -1.3..+3.15, Z: 3.68..12.88 mm
     bpy.ops.mesh.primitive_cube_add(size=1.0, location=(0.2, -0.4, 8.3))
     cavidad = bpy.context.active_object
     cavidad.scale = (8.4, 3.2, 7.4)
     bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
 
-    mod_diff = carcasa.modifiers.new(name="Cavidad_Mosfet", type="BOOLEAN")
-    mod_diff.operation = "DIFFERENCE"
-    mod_diff.solver = "FLOAT"
-    mod_diff.object = cavidad
-    bpy.context.view_layer.objects.active = carcasa
-    bpy.ops.object.modifier_apply(modifier=mod_diff.name)
-
-    mod_int = carcasa_tapa.modifiers.new(name="Tapa_Mosfet", type="BOOLEAN")
-    mod_int.operation = "INTERSECT"
-    mod_int.solver = "FLOAT"
-    mod_int.object = cavidad
-    bpy.context.view_layer.objects.active = carcasa_tapa
-    bpy.ops.object.modifier_apply(modifier=mod_int.name)
+    for obj_target, op in [(carcasa, "DIFFERENCE"), (carcasa_tapa, "INTERSECT")]:
+        mod = obj_target.modifiers.new(name="Bool_Mosfet", type="BOOLEAN")
+        mod.operation = op
+        mod.solver = "FLOAT"
+        mod.object = cavidad
+        bpy.context.view_layer.objects.active = obj_target
+        bpy.ops.object.modifier_apply(modifier=mod.name)
 
     bpy.data.objects.remove(cavidad, do_unlink=True)
 
@@ -436,46 +405,242 @@ def construir_mosfet_autopsia():
     mat_fuente = crear_material_pbr("Celdas_Fuente_NPlus", (0.18, 0.95, 0.78, 1.0), metalness=0.35, roughness=0.18, emissive=(0.10, 0.85, 0.65), emissive_strength=0.75)
     mat_aluminio = crear_material_pbr("Aluminio_BondWire", (0.92, 0.95, 0.98, 1.0), metalness=1.0, roughness=0.16)
 
-    def crear_capa(nombre, loc, dim, mat):
-        bpy.ops.mesh.primitive_cube_add(size=1.0, location=loc)
-        c = bpy.context.active_object
-        c.scale = dim
-        bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
-        c.name = nombre
-        c.data.name = nombre
-        c.data.materials.append(mat)
-        return c
+    crear_bloque("Sustrato_Drenador_N", (0.0, 1.15, 8.2), (5.2, 0.45, 4.8), mat_drenador)
+    crear_bloque("Cuerpo_P_Canal", (0.0, 0.78, 8.2), (4.6, 0.30, 4.2), mat_canal_p)
+    crear_bloque("Oxido_SiO2_Compuerta", (-0.8, 0.52, 8.2), (2.8, 0.22, 3.6), mat_oxido)
+    crear_bloque("Celdas_Fuente_NPlus", (0.7, 0.32, 8.2), (2.6, 0.24, 3.4), mat_fuente)
 
-    # 1. Sustrato inferior N+ de Drenador (gran área para R_DS(on) = 17.5 mΩ)
-    crear_capa("Sustrato_Drenador_N", (0.0, 1.15, 8.2), (5.2, 0.45, 4.8), mat_drenador)
-    # 2. Región P-Body donde se induce el canal de inversión
-    crear_capa("Cuerpo_P_Canal", (0.0, 0.78, 8.2), (4.6, 0.30, 4.2), mat_canal_p)
-    # 3. Capa aislante de Óxido de Compuerta SiO2 + Polisilicio (Capacitor C_iss = 1470 pF)
-    crear_capa("Oxido_SiO2_Compuerta", (-0.8, 0.52, 8.2), (2.8, 0.22, 3.6), mat_oxido)
-    # 4. Matriz superior de celdas HEXFET de Fuente (Source N+)
-    crear_capa("Celdas_Fuente_NPlus", (0.7, 0.32, 8.2), (2.6, 0.24, 3.4), mat_fuente)
-
-    # 5. Enlaces internos: Hilo de Gate (Pin 1 en x=-2.54) y Cinta gruesa de Source (Pin 3 en x=+2.54)
-    crear_hilo_oro(
-        "Hilo_Gate",
-        Vector((-1.5, 0.40, 7.4)),
-        Vector((-2.1, -0.35, 6.2)),
-        Vector((-2.54, 0.0, 4.2)),
-        radio=0.09,
-        mat=mat_aluminio,
-    )
-    crear_hilo_oro(
-        "Cinta_Source_49A",
-        Vector((1.1, 0.20, 8.2)),
-        Vector((2.0, -0.45, 6.4)),
-        Vector((2.54, 0.0, 4.2)),
-        radio=0.18,
-        mat=mat_aluminio,
-    )
+    crear_hilo_oro("Hilo_Gate", Vector((-1.5, 0.40, 7.4)), Vector((-2.1, -0.35, 6.2)), Vector((-2.54, 0.0, 4.2)), radio=0.09, mat=mat_aluminio)
+    crear_hilo_oro("Cinta_Source_49A", Vector((1.1, 0.20, 8.2)), Vector((2.0, -0.45, 6.4)), Vector((2.54, 0.0, 4.2)), radio=0.18, mat=mat_aluminio)
 
     out_path = os.path.join(MODELOS_DIR, "mosfet_autopsia.glb")
     bpy.ops.export_scene.gltf(filepath=out_path, export_format="GLB", export_apply=True)
     print(f"✔ Modelo MOSFET TO-220 IRFZ44N con autopsia interna HEXFET exportado: {out_path}")
+
+
+def construir_cap_autopsia():
+    """
+    Episodio 04: Toma el capacitor electrolítico radial 8mm de KiCad 9.0, corta una ventana
+    en el cilindro de aluminio y modela el rollo interno de láminas de aluminio anodizado
+    + óxido Al2O3 + papel impregnado en electrolito y el tapón de goma inferior.
+    """
+    partes = importar_y_normalizar_kicad("cap_electrolitico.glb", (1.75, 0.0))
+    pines = next(p for p in partes if p.name.startswith("Pines"))
+    pines.name = "Pines_Metal"
+    pines.data.name = "Pines_Metal"
+
+    encapsulados = [p for p in partes if p.name.startswith("Encapsulado")]
+    carcasa = encapsulados[0]
+    carcasa.name = "Carcasa_Base"
+    carcasa.data.name = "Carcasa_Base"
+
+    carcasa_tapa = carcasa.copy()
+    carcasa_tapa.data = carcasa.data.copy()
+    carcasa_tapa.name = "Carcasa_Corte"
+    carcasa_tapa.data.name = "Carcasa_Corte"
+    bpy.context.collection.objects.link(carcasa_tapa)
+
+    bpy.ops.mesh.primitive_cube_add(size=1.0, location=(2.2, -2.2, 6.2))
+    cavidad = bpy.context.active_object
+    cavidad.scale = (5.2, 5.2, 9.2)
+    bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+
+    objetos_bool = [(e_obj, "DIFFERENCE") for e_obj in encapsulados] + [(pines, "DIFFERENCE"), (carcasa_tapa, "INTERSECT")]
+    for obj_target, op in objetos_bool:
+        mod = obj_target.modifiers.new(name="Bool_Cap", type="BOOLEAN")
+        mod.operation = op
+        mod.solver = "FLOAT"
+        mod.object = cavidad
+        bpy.context.view_layer.objects.active = obj_target
+        bpy.ops.object.modifier_apply(modifier=mod.name)
+
+    bpy.data.objects.remove(cavidad, do_unlink=True)
+
+    mat_anodo = crear_material_pbr("Lamina_Anodo_Al", (0.85, 0.90, 0.96, 1.0), metalness=0.95, roughness=0.2)
+    mat_oxido = crear_material_pbr("Dielectrico_Al2O3", (0.20, 0.85, 1.0, 1.0), metalness=0.2, roughness=0.18, emissive=(0.10, 0.65, 0.95), emissive_strength=0.6)
+    mat_papel = crear_material_pbr("Papel_Electrolito", (0.88, 0.68, 0.36, 1.0), metalness=0.0, roughness=0.5, emissive=(0.55, 0.35, 0.08), emissive_strength=0.35)
+
+    # Capas cilíndricas concéntricas del rollo interno con corte escalonado (wedge cutaway)
+    for idx_c, (nombre, rad, alt, mat) in enumerate([
+        ("Rollo_Anodo_Al", 3.15, 7.6, mat_anodo),
+        ("Capa_Dielectrico_Al2O3", 2.60, 7.8, mat_oxido),
+        ("Rollo_Papel_Electrolito", 2.00, 8.0, mat_papel),
+        ("Nucleo_Catodo_Al", 1.30, 8.2, mat_anodo),
+    ]):
+        bpy.ops.mesh.primitive_cylinder_add(vertices=48, radius=rad, depth=alt, location=(0.0, 0.0, 5.4))
+        c = bpy.context.active_object
+        bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+        if idx_c < 3:
+            # Cortar cuadrante escalonado para dejar ver cada capa concéntrica interna
+            offset_c = 0.35 * idx_c
+            bpy.ops.mesh.primitive_cube_add(size=1.0, location=(2.2 + offset_c, -2.2 - offset_c, 5.4))
+            corte_c = bpy.context.active_object
+            corte_c.scale = (5.0, 5.0, 9.5)
+            bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+            mod_c = c.modifiers.new(name="Bool_Layer", type="BOOLEAN")
+            mod_c.operation = "DIFFERENCE"
+            mod_c.solver = "FLOAT"
+            mod_c.object = corte_c
+            bpy.context.view_layer.objects.active = c
+            bpy.ops.object.modifier_apply(modifier=mod_c.name)
+            bpy.data.objects.remove(corte_c, do_unlink=True)
+        c.name = nombre
+        c.data.name = nombre
+        c.data.materials.append(mat)
+
+    out_path = os.path.join(MODELOS_DIR, "cap_autopsia.glb")
+    bpy.ops.export_scene.gltf(filepath=out_path, export_format="GLB", export_apply=True)
+    print(f"✔ Modelo Capacitor Electrolítico con autopsia interna exportado: {out_path}")
+
+
+def construir_diodo_autopsia():
+    """
+    Episodio 05: Toma el diodo DO-41 1N4007 de KiCad 9.0, abre la mitad frontal del cilindro
+    epóxico y modela los dos cabezales térmicos de cobre (slugs), la unión de silicio P-N
+    y la banda de agotamiento central.
+    """
+    partes = importar_y_normalizar_kicad("diodo_1n4007.glb", (5.08, 0.0))
+    carcasa = next(p for p in partes if p.name.startswith("Encapsulado"))
+    carcasa.name = "Carcasa_Base"
+    carcasa.data.name = "Carcasa_Base"
+
+    carcasa_tapa = carcasa.copy()
+    carcasa_tapa.data = carcasa.data.copy()
+    carcasa_tapa.name = "Carcasa_Corte"
+    carcasa_tapa.data.name = "Carcasa_Corte"
+    bpy.context.collection.objects.link(carcasa_tapa)
+
+    bpy.ops.mesh.primitive_cube_add(size=1.0, location=(0.0, -0.9, 1.85))
+    cavidad = bpy.context.active_object
+    cavidad.scale = (4.4, 2.0, 2.6)
+    bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+
+    for obj_target, op in [(carcasa, "DIFFERENCE"), (carcasa_tapa, "INTERSECT")]:
+        mod = obj_target.modifiers.new(name="Bool_Diodo", type="BOOLEAN")
+        mod.operation = op
+        mod.solver = "FLOAT"
+        mod.object = cavidad
+        bpy.context.view_layer.objects.active = obj_target
+        bpy.ops.object.modifier_apply(modifier=mod.name)
+
+    bpy.data.objects.remove(cavidad, do_unlink=True)
+
+    mat_cobre = crear_material_pbr("Cobre_Slug", (0.88, 0.50, 0.25, 1.0), metalness=0.95, roughness=0.22)
+    mat_p = crear_material_pbr("Silicio_P_Anodo", (1.0, 0.55, 0.15, 1.0), metalness=0.2, roughness=0.2, emissive=(0.85, 0.35, 0.05), emissive_strength=0.65)
+    mat_n = crear_material_pbr("Silicio_N_Catodo", (0.15, 0.85, 1.0, 1.0), metalness=0.2, roughness=0.2, emissive=(0.08, 0.65, 0.95), emissive_strength=0.65)
+    mat_barrera = crear_material_pbr("Barrera_Agotamiento", (0.95, 0.25, 0.45, 1.0), metalness=0.1, roughness=0.15, emissive=(0.95, 0.15, 0.35), emissive_strength=0.9)
+
+    for nombre, x_pos, largo, radio, mat in [
+        ("Slug_Cobre_Catodo", -1.25, 1.3, 0.85, mat_cobre),
+        ("Silicio_N_Catodo", -0.35, 0.48, 0.82, mat_n),
+        ("Barrera_Agotamiento", 0.0, 0.22, 0.84, mat_barrera),
+        ("Silicio_P_Anodo", 0.35, 0.48, 0.82, mat_p),
+        ("Slug_Cobre_Anodo", 1.25, 1.3, 0.85, mat_cobre),
+    ]:
+        bpy.ops.mesh.primitive_cylinder_add(vertices=32, radius=radio, depth=largo, location=(x_pos, 0.0, 1.85), rotation=(0.0, math.pi / 2.0, 0.0))
+        s = bpy.context.active_object
+        bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+        s.name = nombre
+        s.data.name = nombre
+        s.data.materials.append(mat)
+
+    out_path = os.path.join(MODELOS_DIR, "diodo_autopsia.glb")
+    bpy.ops.export_scene.gltf(filepath=out_path, export_format="GLB", export_apply=True)
+    print(f"✔ Modelo Diodo DO-41 1N4007 con autopsia P-N exportado: {out_path}")
+
+
+def construir_inductor_autopsia():
+    """
+    Episodio 06: Toma el inductor de potencia blindado Bourns SRR1260 de KiCad 9.0,
+    abre su escudo magnético de ferrita mediante corte booleano y modela el tambor
+    central de ferrita, el devanado de cobre grueso y los anillos toroidales de campo magnético.
+    """
+    partes = importar_y_normalizar_kicad("inductor_smd.glb", (0.0, 0.0))
+    carcasa = next(p for p in partes if p.name.startswith("Encapsulado"))
+    carcasa.name = "Carcasa_Base"
+    carcasa.data.name = "Carcasa_Base"
+
+    carcasa_tapa = carcasa.copy()
+    carcasa_tapa.data = carcasa.data.copy()
+    carcasa_tapa.name = "Carcasa_Corte"
+    carcasa_tapa.data.name = "Carcasa_Corte"
+    bpy.context.collection.objects.link(carcasa_tapa)
+
+    bpy.ops.mesh.primitive_cube_add(size=1.0, location=(2.2, -2.2, 3.2))
+    cavidad = bpy.context.active_object
+    cavidad.scale = (9.5, 9.5, 5.8)
+    bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+
+    for obj_target, op in [(carcasa, "DIFFERENCE"), (carcasa_tapa, "INTERSECT")]:
+        mod = obj_target.modifiers.new(name="Bool_Ind", type="BOOLEAN")
+        mod.operation = op
+        mod.solver = "FLOAT"
+        mod.object = cavidad
+        bpy.context.view_layer.objects.active = obj_target
+        bpy.ops.object.modifier_apply(modifier=mod.name)
+
+    bpy.data.objects.remove(cavidad, do_unlink=True)
+
+    mat_ferrita = crear_material_pbr("Nucleo_Ferrita_MnZn", (0.22, 0.24, 0.28, 1.0), metalness=0.4, roughness=0.45)
+    mat_cobre = crear_material_pbr("Cobre_Devanado", (0.90, 0.48, 0.18, 1.0), metalness=0.95, roughness=0.2, emissive=(0.65, 0.28, 0.05), emissive_strength=0.35)
+    mat_campo = crear_material_pbr("Flujo_Magnetico", (0.20, 0.90, 1.0, 1.0), metalness=0.1, roughness=0.15, emissive=(0.12, 0.82, 1.0), emissive_strength=0.9)
+
+    bpy.ops.mesh.primitive_cylinder_add(vertices=36, radius=2.4, depth=4.6, location=(0.0, 0.0, 3.1))
+    nuc = bpy.context.active_object
+    bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+    nuc.name = "Nucleo_Ferrita"
+    nuc.data.name = "Nucleo_Ferrita"
+    nuc.data.materials.append(mat_ferrita)
+
+    espiras = []
+    for k in range(8):
+        z_k = 1.4 + k * 0.48
+        bpy.ops.mesh.primitive_torus_add(major_radius=3.5, minor_radius=0.32, major_segments=36, minor_segments=12, location=(0.0, 0.0, z_k))
+        e = bpy.context.active_object
+        bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+        espiras.append(e)
+    bpy.ops.object.select_all(action="DESELECT")
+    for e in espiras:
+        e.select_set(True)
+    bpy.context.view_layer.objects.active = espiras[0]
+    bpy.ops.object.join()
+    bob = bpy.context.active_object
+    bob.name = "Bobina_Cobre"
+    bob.data.name = "Bobina_Cobre"
+    bob.data.materials.clear()
+    bob.data.materials.append(mat_cobre)
+
+    # Anillos de Flujo Magnético 3D
+    anillos = []
+    for ang_deg in [0, 60, 120, 180, 240, 300]:
+        rad_a = math.radians(ang_deg)
+        x_a = math.cos(rad_a) * 3.5
+        y_a = math.sin(rad_a) * 3.5
+        bpy.ops.mesh.primitive_torus_add(
+            major_radius=1.8,
+            minor_radius=0.11,
+            major_segments=32,
+            minor_segments=10,
+            location=(x_a, y_a, 3.1),
+            rotation=(math.pi / 2.0, 0.0, rad_a + math.pi / 2.0),
+        )
+        a = bpy.context.active_object
+        bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+        anillos.append(a)
+    bpy.ops.object.select_all(action="DESELECT")
+    for a in anillos:
+        a.select_set(True)
+    bpy.context.view_layer.objects.active = anillos[0]
+    bpy.ops.object.join()
+    flujo = bpy.context.active_object
+    flujo.name = "Campo_Magnetico"
+    flujo.data.name = "Campo_Magnetico"
+    flujo.data.materials.clear()
+    flujo.data.materials.append(mat_campo)
+
+    out_path = os.path.join(MODELOS_DIR, "inductor_autopsia.glb")
+    bpy.ops.export_scene.gltf(filepath=out_path, export_format="GLB", export_apply=True)
+    print(f"✔ Modelo Inductor Bourns SRR1260 con autopsia y flujo magnético exportado: {out_path}")
 
 
 if __name__ == "__main__":
@@ -490,7 +655,17 @@ if __name__ == "__main__":
     importar_y_normalizar_kicad("diodo_1n4007.glb", (5.08, 0.0), "diodo_1n4007.glb")
     importar_y_normalizar_kicad("dpak.glb", (0.0, 0.0), "dpak.glb")
     importar_y_normalizar_kicad("disipador_to220.glb", (16.0, 0.0), "disipador_to220.glb")
+    importar_y_normalizar_kicad("cap_electrolitico.glb", (1.75, 0.0), "cap_electrolitico.glb")
+    importar_y_normalizar_kicad("cap_ceramico.glb", (0.0, 0.0), "cap_ceramico.glb")
+    importar_y_normalizar_kicad("cap_tantalo.glb", (0.0, 0.0), "cap_tantalo.glb")
+    importar_y_normalizar_kicad("diodo_zener.glb", (5.08, 0.0), "diodo_zener.glb")
+    importar_y_normalizar_kicad("inductor_radial.glb", (2.5, 0.0), "inductor_radial.glb")
+    importar_y_normalizar_kicad("inductor_smd.glb", (0.0, 0.0), "inductor_smd.glb")
+    importar_y_normalizar_kicad("inductor_toroidal.glb", (0.0, 0.0), "inductor_toroidal.glb")
     agregar_bandas_resistencia()
     construir_to92_autopsia()
     construir_rele_autopsia()
     construir_mosfet_autopsia()
+    construir_cap_autopsia()
+    construir_diodo_autopsia()
+    construir_inductor_autopsia()

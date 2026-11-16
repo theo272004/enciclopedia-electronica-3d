@@ -846,16 +846,17 @@
         <div class="visor-stage">
           <div class="visor-window">
             <div class="seg-bar" role="tablist">
-              <button class="seg-btn active" data-model="to92_autopsia">Autopsia TO-92</button>
-              <button class="seg-btn" data-model="rele_autopsia">Autopsia Relé G5LE</button>
-              <button class="seg-btn" data-model="mosfet_autopsia">Autopsia MOSFET IRFZ44N</button>
-              <button class="seg-btn" data-model="to92">TO-92 (THT)</button>
+              <button class="seg-btn active" data-model="to92_autopsia">#01 Autopsia TO-92</button>
+              <button class="seg-btn" data-model="rele_autopsia">#02 Autopsia Relé Transparente</button>
+              <button class="seg-btn" data-model="mosfet_autopsia">#03 Autopsia MOSFET IRFZ44N</button>
+              <button class="seg-btn" data-model="cap_autopsia">#04 Autopsia Capacitor</button>
+              <button class="seg-btn" data-model="diodo_autopsia">#05 Autopsia Diodo P-N</button>
+              <button class="seg-btn" data-model="inductor_autopsia">#06 Autopsia Inductor Buck</button>
               <button class="seg-btn" data-model="sot23">SOT-23 (SMD)</button>
-              <button class="seg-btn" data-model="to220">TO-220 (Potencia)</button>
-              <button class="seg-btn" data-model="dpak">SOT-223 / DPAK (SMD)</button>
-              <button class="seg-btn" data-model="disipador_to220">Disipador TO-220</button>
-              <button class="seg-btn" data-model="rele_dpdt">Relé DPDT</button>
-              <button class="seg-btn" data-model="diodo_1n4007">Diodo 1N4007</button>
+              <button class="seg-btn" data-model="to220">TO-220</button>
+              <button class="seg-btn" data-model="cap_ceramico">MLCC 0805</button>
+              <button class="seg-btn" data-model="cap_tantalo">Tántalo Case-A</button>
+              <button class="seg-btn" data-model="inductor_toroidal">Toroidal EPCOS</button>
             </div>
 
             <div id="three-mount"></div>
@@ -1433,6 +1434,78 @@
           { txt: "Disipador 3D (.GLB)", href: "descargas/03-mosfet/disipador_to220.glb", primary: true },
         ],
       },
+      cap_autopsia: {
+        sub: "EPISODIO 04 · AUTOPSIA CAPACITOR ELECTROLÍTICO (100 µF / 25 V)",
+        title: "Rollo Interno de Aluminio y Óxido Al2O3",
+        desc: "Corte booleano escalonado que revela el rollo concéntrico de lámina de ánodo de aluminio grabado, la película nanométrica de óxido dieléctrico Al2O3, el papel separador impregnado en electrolito y el núcleo de cátodo.",
+        pinout: "<strong>Polaridad Estricta (Nichicon UWT):</strong><br>• <strong>Ánodo (+):</strong> Terminal largo conectado a la lámina con óxido Al2O3.<br>• <strong>Cátodo (−):</strong> Franja lateral y terminal corto.<br>• <strong>ESR:</strong> ~0,18 Ω @ 100 kHz.",
+        img: "img/cap_03_partes.png",
+        escala: 0.25,
+        links: [
+          { txt: "Autopsia Capacitor (.GLB)", href: "descargas/04-capacitor/cap_autopsia.glb", primary: true },
+          { txt: "Modelo CAD (.STEP)", href: "descargas/04-capacitor/CP_Radial_8mm_Nichicon_100uF.step", primary: false },
+        ],
+      },
+      cap_ceramico: {
+        sub: "EPISODIO 04 · CAPACITOR CERÁMICO MULTICAPA MLCC SMD 0805",
+        title: "Murata MLCC 100 nF (X7R)",
+        desc: "Capacitor no polarizado de ultra-baja resistencia serie equivalente (ESR ≈ 0,01 Ω) e inductancia parásita mínima. Indispensable junto al pin VCC de cada microcontrolador para filtrar picos de alta frecuencia.",
+        pinout: "<strong>Especificaciones MLCC 0805:</strong><br>• <strong>Polaridad:</strong> No polarizado (simétrico)<br>• <strong>Dieléctrico:</strong> Cerámico X7R (±15% de −55 a +125 °C)",
+        img: "img/cap_02_autopsia.png",
+        escala: 0.75,
+        links: [
+          { txt: "Modelo CAD (.STEP)", href: "descargas/04-capacitor/C_0805_MLCC_Murata_100nF.step", primary: true },
+          { txt: "Modelo Web (.GLB)", href: "descargas/04-capacitor/cap_ceramico.glb", primary: false },
+        ],
+      },
+      cap_tantalo: {
+        sub: "EPISODIO 04 · CAPACITOR DE TÁNTALO SÓLIDO KEMET CASE-A (EIA-3216)",
+        title: "Tántalo SMD 10 µF (Banda = Positivo +)",
+        desc: "Alta densidad volumétrica y estabilidad térmica sin electrolito líquido que se seque. Atención crítica: en los capacitores de tántalo SMD, la franja impresa marca el terminal POSITIVO (+).",
+        pinout: "<strong>Identificación de Polaridad:</strong><br>• <strong>Banda / Bisel superior:</strong> Terminal POSITIVO (+) — ¡opuesto al electrolítico de aluminio!",
+        img: "img/cap_02_autopsia.png",
+        escala: 0.55,
+        links: [
+          { txt: "Modelo CAD (.STEP)", href: "descargas/04-capacitor/CP_Tantalo_Kemet_CaseA_10uF.step", primary: true },
+          { txt: "Modelo Web (.GLB)", href: "descargas/04-capacitor/cap_tantalo.glb", primary: false },
+        ],
+      },
+      diodo_autopsia: {
+        sub: "EPISODIO 05 · AUTOPSIA DIODO DO-41 VISHAY 1N4007 (BLENDER 5.0)",
+        title: "Unión P-N y Cabezales Térmicos de Cobre",
+        desc: "Corte longitudinal del encapsulado DO-41 mostrando los dos gruesos cilindros térmicos de cobre (slugs) que prensan el cristal de silicio P-N y su zona de agotamiento central de 0,7 V.",
+        pinout: "<strong>Estructura DO-41 (1N4007):</strong><br>• <strong>Ánodo (Derecha):</strong> Silicio tipo P (Huecos)<br>• <strong>Cátodo (Banda plateada):</strong> Silicio tipo N (Electrones)<br>• <strong>Bloqueo inverso:</strong> V_RRM = 1.000 V / I_F = 1,0 A",
+        img: "img/diodo_03_partes.png",
+        escala: 0.42,
+        links: [
+          { txt: "Autopsia Diodo (.GLB)", href: "descargas/05-diodo/diodo_autopsia.glb", primary: true },
+          { txt: "Modelo CAD (.STEP)", href: "descargas/05-diodo/D_DO-41_1N4007_1N5819.step", primary: false },
+        ],
+      },
+      inductor_autopsia: {
+        sub: "EPISODIO 06 · AUTOPSIA INDUCTOR BLINDADO BOURNS SRR1260 (33 µH)",
+        title: "Núcleo de Ferrita MnZn y Flujo Magnético 3D",
+        desc: "Corte en cuadrante del escudo magnético de ferrita sinterizada que revela el núcleo de tambor central, las espiras de alambre de cobre esmaltado (DCR = 39 mΩ) y los anillos toroidales de campo magnético.",
+        pinout: "<strong>Datasheet Bourns SRR1260-330M:</strong><br>• <strong>Inductancia:</strong> 33 µH ±20%<br>• <strong>Corriente Térmica (I_rms):</strong> 3,0 A<br>• <strong>Corriente de Saturación (I_sat):</strong> 3,5 A",
+        img: "img/inductor_03_partes.png",
+        escala: 0.22,
+        links: [
+          { txt: "Autopsia Inductor (.GLB)", href: "descargas/06-inductor/inductor_autopsia.glb", primary: true },
+          { txt: "Modelo CAD (.STEP)", href: "descargas/06-inductor/L_Bourns_SRR1260_33uH.step", primary: false },
+        ],
+      },
+      inductor_toroidal: {
+        sub: "EPISODIO 06 · INDUCTOR TOROIDAL DE POTENCIA EPCOS B82622",
+        title: "Toroide Magnético de Flujo Cerrado",
+        desc: "Geometría anular donde las líneas de flujo magnético quedan confinadas al 100% dentro del anillo de ferrita, minimizando la radiación electromagnética (EMI) en filtros de potencia.",
+        pinout: "<strong>Ventaja Toroidal:</strong><br>• Confinamiento magnético natural sin necesidad de carcasa blindada externa.",
+        img: "img/inductor_02_autopsia.png",
+        escala: 0.18,
+        links: [
+          { txt: "Modelo CAD (.STEP)", href: "descargas/06-inductor/L_Toroid_EPCOS_B82622.step", primary: true },
+          { txt: "Modelo Web (.GLB)", href: "descargas/06-inductor/inductor_toroidal.glb", primary: false },
+        ],
+      },
     };
 
     const mount = document.getElementById("three-mount");
@@ -1499,7 +1572,7 @@
       document.getElementById("info-3d-pinout").innerHTML = info.pinout;
       document.getElementById("info-3d-img").src = info.img;
       document.getElementById("autopsia-slider-wrap").style.display =
-        id === "to92_autopsia" || id === "rele_autopsia" || id === "mosfet_autopsia" ? "flex" : "none";
+        id.endsWith("_autopsia") ? "flex" : "none";
 
       const linksEl = document.getElementById("info-3d-links");
       linksEl.innerHTML = info.links
@@ -1518,24 +1591,24 @@
         root.traverse((ch) => {
           if (!ch.isMesh) return;
           const n = ch.name;
-          if (n === "Carcasa_Corte") {
+          if (n === "Carcasa_Corte" || n === "Cubierta_Transparente") {
             ch.material = matTapa;
             mallaTapaAutopsia = ch;
-          } else if (n === "Carcasa_Base" || n.startsWith("Encapsulado")) {
+          } else if (n === "Carcasa_Base" || n.startsWith("Encapsulado") || n === "Carrete_Bobina" || n === "Nucleo_Ferrita") {
             ch.material = matEpoxi;
-          } else if (n.startsWith("Pines") || n.startsWith("Contacto")) {
+          } else if (n.startsWith("Pines") || n.startsWith("Remache") || n === "Rollo_Anodo_Al" || n === "Nucleo_Catodo_Al") {
             ch.material = matEstano;
-          } else if (n.startsWith("Leadframe") || n === "Bobina_Cobre") {
+          } else if (n.startsWith("Leadframe") || n === "Bobina_Cobre" || n.startsWith("Slug_Cobre")) {
             ch.material = matCobre;
           } else if (n === "Nucleo_Hierro" || n === "Yugo_Hierro") {
             ch.material = matEstano;
-          } else if (n === "Die_Colector_N" || n === "Sustrato_Drenador_N") {
+          } else if (n === "Die_Colector_N" || n === "Sustrato_Drenador_N" || n === "Silicio_N_Catodo") {
             ch.material = matSilicioN;
-          } else if (n === "Die_Base_P" || n === "Cuerpo_P_Canal") {
+          } else if (n === "Die_Base_P" || n === "Cuerpo_P_Canal" || n === "Silicio_P_Anodo" || n === "Rollo_Papel_Electrolito") {
             ch.material = matSilicioP;
-          } else if (n === "Die_Emisor_NPlus" || n === "Celdas_Fuente_NPlus" || n === "Oxido_SiO2_Compuerta") {
+          } else if (n === "Die_Emisor_NPlus" || n === "Celdas_Fuente_NPlus" || n === "Oxido_SiO2_Compuerta" || n === "Capa_Dielectrico_Al2O3" || n === "Campo_Magnetico" || n === "Barrera_Agotamiento") {
             ch.material = matSilicioNPlus;
-          } else if (n.startsWith("Hilo_Oro") || n === "Armadura_Movil" || n === "Hilo_Gate" || n === "Cinta_Source_49A") {
+          } else if (n.startsWith("Hilo_Oro") || n === "Armadura_Movil" || n.startsWith("Contacto_") || n === "Hilo_Gate" || n === "Cinta_Source_49A") {
             ch.material = matOro;
           }
         });
@@ -1543,7 +1616,7 @@
         grupoActual = root;
         scene.add(root);
 
-        if (id === "to92_autopsia" || id === "rele_autopsia" || id === "mosfet_autopsia") {
+        if (id.endsWith("_autopsia")) {
           const val = Number(document.getElementById("slider-apertura").value) / 100;
           actualizarTapaAutopsia(val);
         }

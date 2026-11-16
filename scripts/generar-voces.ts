@@ -8,6 +8,9 @@ import { createHash } from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { ESCENAS, GUION, type Idioma } from "../src/guion";
+import { GUION_CAPACITOR } from "../src/guion-capacitor";
+import { GUION_DIODO } from "../src/guion-diodo";
+import { GUION_INDUCTOR } from "../src/guion-inductor";
 import { GUION_MOSFET } from "../src/guion-mosfet";
 import { GUION_RELE } from "../src/guion-rele";
 import type { EscenaAudio, Manifest, Palabra } from "../src/tiempo";
@@ -33,6 +36,9 @@ const EPISODIOS = [
   { clave: "transistor", carpeta: "voz", guion: GUION },
   { clave: "rele", carpeta: "voz-rele", guion: GUION_RELE },
   { clave: "mosfet", carpeta: "voz-mosfet", guion: GUION_MOSFET },
+  { clave: "capacitor", carpeta: "voz-capacitor", guion: GUION_CAPACITOR },
+  { clave: "diodo", carpeta: "voz-diodo", guion: GUION_DIODO },
+  { clave: "inductor", carpeta: "voz-inductor", guion: GUION_INDUCTOR },
 ];
 
 const aPalabras = (a: {
