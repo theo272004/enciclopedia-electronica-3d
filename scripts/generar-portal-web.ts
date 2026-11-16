@@ -129,10 +129,11 @@ if (fs.existsSync(BLENDER_EXE)) {
   );
 }
 
-// 4. Generar librería SPICE oficial (.lib) compatible con LTspice, Proteus, Multisim, Altium, EasyEDA y Ngspice
+// 4. Generar modelo SPICE de uso común (.lib) para LTspice y ngspice (NO es el archivo oficial de onsemi)
 const spiceLib = `* ============================================================================
-* Modelo SPICE Oficial — ON Semiconductor 2N2222A / P2N2222A / MMBT2222A (NPN)
-* Compatible con: LTspice, Ngspice, Proteus, Multisim, Altium, EasyEDA, PSpice
+* Modelo SPICE de uso común — 2N2222A (NPN). NO es el archivo oficial del fabricante.
+* Modelo oficial: busca P2N2222A en https://www.onsemi.com
+* Sintaxis .MODEL estándar (pensado para LTspice / ngspice)
 * Parametros clave de Datasheet:
 *   V_CEO(max) = 40 V | I_C(max) = 800 mA | P_D(max) = 625 mW (TO-92)
 *   h_FE (Beta) = 100..300 | V_CE(sat) = 0.3 V | f_T = 300 MHz
@@ -169,7 +170,7 @@ const spiceLib = `* ============================================================
 + Icrating=0.8
 + mfg=ON_Semiconductor)
 `;
-fs.writeFileSync(path.join(DESCARGAS_DIR, "2N2222A_ON_Semi.lib"), spiceLib, "utf8");
+fs.writeFileSync(path.join(DESCARGAS_DIR, "2N2222A_modelo_SPICE.lib"), spiceLib, "utf8");
 
 // 5. Generar esquemático nativo de LTspice (.asc) listo para abrir y simular
 const ltspiceAsc = `Version 4

@@ -1,6 +1,7 @@
 * ============================================================================
-* Modelo SPICE Oficial — ON Semiconductor 2N2222A / P2N2222A / MMBT2222A (NPN)
-* Compatible con: LTspice, Ngspice, Proteus, Multisim, Altium, EasyEDA, PSpice
+* Modelo SPICE de uso común — 2N2222A (NPN). NO es el archivo oficial del fabricante.
+* Modelo oficial: busca P2N2222A en https://www.onsemi.com
+* Sintaxis .MODEL estándar (pensado para LTspice / ngspice)
 * Parametros clave de Datasheet:
 *   V_CEO(max) = 40 V | I_C(max) = 800 mA | P_D(max) = 625 mW (TO-92)
 *   h_FE (Beta) = 100..300 | V_CE(sat) = 0.3 V | f_T = 300 MHz

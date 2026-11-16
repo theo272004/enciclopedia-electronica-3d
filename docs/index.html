@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>El Transistor 2N2222A — Guía de Ingeniería, Esquemático y Modelos 3D</title>
-  <meta name="description" content="Enciclopedia interactiva de electrónica. Anatomía interna en 3D, curvas reales de datasheet, simulador de punto de operación y archivos CAD para KiCad, Blender, Altium y LTspice.">
+  <meta name="description" content="Enciclopedia interactiva de electrónica. Anatomía interna en 3D, curvas reales de datasheet, simulador de punto de operación y modelos 3D, esquemáticos de KiCad, simulación LTspice y código para Arduino y ESP32, con fuentes citadas.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -718,6 +718,10 @@
     .final-panel h2 { color: var(--paper); max-width: 18ch; }
     .final-panel h2 .dim { color: rgba(255, 255, 255, .48); }
     .final-panel p { color: #A8A8B0; font-size: 14px; margin-top: 8px; }
+    .final-panel .creditos { margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, .12); max-width: 72ch; }
+    .final-panel .creditos p { font-size: 12.5px; line-height: 1.6; }
+    .final-panel .creditos strong { color: var(--paper); }
+    .me-card p a, .dl-box p a, .final-panel .creditos a { text-decoration: underline; text-underline-offset: 2px; }
   </style>
 </head>
 <body>
@@ -791,8 +795,8 @@
               <span>SILICIO PLANAR EPITAXIAL<br>TO-92 · SOT-23 · TO-220</span>
             </div>
             <div>
-              <h3>Física real, cero alucinaciones.</h3>
-              <p>Todos los parámetros, curvas y geometrías 3D de esta guía provienen de la hoja de datos oficial de ON Semiconductor y de las librerías CAD de KiCad 9.0.</p>
+              <h3>Datos con fuente, no de memoria.</h3>
+              <p>Los parámetros vienen de la hoja de datos del P2N2222A (onsemi) y la geometría 3D de las librerías oficiales de KiCad 9.0. Cada valor indica si es máximo o típico y bajo qué condición. ¿Encontraste un error? <a href="https://github.com/theo272004/enciclopedia-electronica-3d/issues" target="_blank" rel="noopener">Repórtalo</a> y lo corregimos con crédito.</p>
             </div>
           </div>
 
@@ -802,7 +806,7 @@
               <div class="stat-num" style="margin-top:8px;">40<small>V máx</small></div>
             </div>
             <div>
-              <p>Bloqueo garantizado en región de corte con base abierta ($V_{CEO}$).</p>
+              <p>Tensión máxima entre colector y emisor con la base abierta ($V_{CEO}$). Es un límite absoluto: diseña con margen.</p>
               <div class="meter"><i style="width:82%"></i></div>
             </div>
           </div>
@@ -821,7 +825,7 @@
           <div class="stat-card lift">
             <div>
               <div class="label">Caída en Saturación</div>
-              <div class="stat-num" style="margin-top:8px;">0,3<small>V típ</small></div>
+              <div class="stat-num" style="margin-top:8px;">0,3<small>V máx</small></div>
             </div>
             <div>
               <p>Tensión $V_{CE(\text{sat})}$ al operar como interruptor cerrado ($I_C = 150\text{ mA}, I_B = 15\text{ mA}$).</p>
@@ -1064,7 +1068,7 @@
               <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
             </summary>
             <p>
-              La ganancia $h_{FE}$ de 100 a 300 solo se cumple en la Región Activa ($V_{CE} = 10\text{ V}$). Cuando el voltaje $V_{CE}$ cae por debajo de 1 V hacia la saturación, la ganancia efectiva disminuye drásticamente. Forzar $I_B = I_C / 10$ garantiza $V_{CE(\text{sat})} \le 0,3\text{ V}$ con cualquier unidad y temperatura.
+              La ganancia $h_{FE}$ de 100 a 300 solo se cumple en la Región Activa ($V_{CE} = 10\text{ V}$). Cuando el voltaje $V_{CE}$ cae por debajo de 1 V hacia la saturación, la ganancia efectiva disminuye drásticamente. $I_B = I_C / 10$ es justamente la condición de prueba del datasheet ($I_C = 150\text{ mA}$, $I_B = 15\text{ mA}$, 25 °C) con la que se especifica $V_{CE(\text{sat})} \le 0,3\text{ V}$ máximo. Usarla te deja dentro de lo que el fabricante garantiza.
             </p>
           </details>
         </div>
@@ -1198,16 +1202,16 @@
             <h2>Modelos 3D, esquemáticos <span class="dim">y código de control.</span></h2>
           </div>
           <p class="sub" style="margin:0;max-width:38ch;">
-            Descarga directa sin registro para tus proyectos en KiCad, Altium, Blender, LTspice y microcontroladores.
+            Descarga directa sin registro para tus proyectos en KiCad, LTspice, Blender, impresión 3D y microcontroladores.
           </p>
         </div>
 
         <div class="dl-bento">
           <div class="dl-box lift">
             <div>
-              <span class="label" style="color:var(--violet-text)">KiCad 9.0 · Altium · EasyEDA · Fusion 360</span>
-              <h3>Modelos CAD Mecánicos (.STEP y .WRL)</h3>
-              <p>Geometría métrica ISO-10303 lista para asignar a huellas de PCB y verificar colisiones mecánicas en 3D, más esquemático nativo de KiCad 9.0.</p>
+              <span class="label" style="color:var(--violet-text)">Vista 3D: cualquier CAD que importe STEP · Esquemático: KiCad 9.0</span>
+              <h3>Modelos CAD Mecánicos (.STEP)</h3>
+              <p>Geometría métrica ISO-10303 para asignar a una huella existente y revisar colisiones mecánicas en 3D, más un esquemático nativo de KiCad 9.0. <strong>Solo incluye el modelo 3D:</strong> no trae símbolo ni huella. Los archivos <code>.WRL</code> están en la ficha de cada encapsulado.</p>
             </div>
             <div class="dl-links">
               <a class="btn btn-ink btn-sm" href="descargas/01-transistor/TO-92_2N2222A.step" download>TO-92 (.STEP)</a>
@@ -1234,13 +1238,13 @@
 
           <div class="dl-box lift">
             <div>
-              <span class="label" style="color:var(--violet-text)">LTspice · Proteus · Multisim · Ngspice</span>
-              <h3>Simulación SPICE Oficial ON Semiconductor</h3>
-              <p>Circuito de conmutación nativo para LTspice (<code>.asc</code>) y modelo matemático <code>.MODEL Q2N2222A NPN</code> con parámetros reales de capacitancia de unión y ganancia.</p>
+              <span class="label" style="color:var(--violet-text)">LTspice · ngspice</span>
+              <h3>Simulación SPICE del 2N2222A</h3>
+              <p>Circuito de conmutación nativo para LTspice (<code>.asc</code>) y un modelo <code>.MODEL Q2N2222A NPN</code> de uso común. <strong>No es el archivo oficial del fabricante:</strong> para el modelo oficial, busca el P2N2222A en <a href="https://www.onsemi.com" target="_blank" rel="noopener">onsemi.com</a>.</p>
             </div>
             <div class="dl-links">
               <a class="btn btn-ink btn-sm" href="descargas/01-transistor/Circuito_2N2222A_LTspice.asc" download>Circuito LTspice (.ASC)</a>
-              <a class="btn btn-mist btn-sm" href="descargas/01-transistor/2N2222A_ON_Semi.lib" download>Modelo SPICE (.LIB)</a>
+              <a class="btn btn-mist btn-sm" href="descargas/01-transistor/2N2222A_modelo_SPICE.lib" download>Modelo SPICE (.LIB)</a>
             </div>
           </div>
 
@@ -1261,9 +1265,14 @@
       <!-- CIERRE OSCURO ESTILO KAIVA -->
       <footer class="final-panel">
         <div>
-          <span class="label" style="color:var(--violet-light)">Código Abierto · Ingeniería verificada</span>
+          <span class="label" style="color:var(--violet-light)">Código abierto · Fuentes citadas</span>
           <h2 style="margin-top:8px;">Cada componente, <span class="dim">modelado desde su hoja de datos.</span></h2>
           <p>Proyecto generado 100 % con código combinando KiCad 9.0, Blender 5.0, Three.js y Remotion.</p>
+          <div class="creditos">
+            <p><strong>Créditos y licencias.</strong> Los modelos 3D <code>.STEP</code>/<code>.WRL</code> provienen de las <a href="https://www.kicad.org/libraries/license/" target="_blank" rel="noopener">librerías oficiales de KiCad</a> (CC-BY-SA 4.0, con excepción para usarlos en tus propios diseños). Los modelos <code>.GLB</code> y <code>.STL</code> derivados de ellos se comparten bajo la misma licencia CC-BY-SA 4.0.</p>
+            <p>Las hojas de datos y nombres de producto pertenecen a sus fabricantes (onsemi, Omron, Infineon, TI, ST, entre otros). Las cifras citadas se toman de ellas; consulta siempre la versión vigente del datasheet antes de diseñar.</p>
+            <p><strong>Fe de erratas:</strong> si encuentras un dato incorrecto, <a href="https://github.com/theo272004/enciclopedia-electronica-3d/issues" target="_blank" rel="noopener">abre un reporte en GitHub</a>. Corregimos y damos crédito.</p>
+          </div>
         </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap;">
           <a href="https://github.com/theo272004/enciclopedia-electronica-3d" target="_blank" rel="noopener" class="btn" style="background:var(--paper);color:var(--ink);">
@@ -1310,7 +1319,7 @@
       sot23: {
         sub: "MONTAJE SUPERFICIAL (SMD) · 2,9 × 1,3 × 1,0 MM",
         title: "Encapsulado SOT-23 (MMBT2222A)",
-        desc: "Aloja exactamente el mismo chip de silicio que el 2N2222A en una fracción de su volumen para soldadura superficial automatizada en PCBs modernas.",
+        desc: "Versión de montaje superficial (MMBT2222A) con características eléctricas equivalentes al 2N2222A en una fracción de su volumen. Por su tamaño disipa menos potencia que el TO-92: revisa su propio datasheet.",
         pinout: "<strong>Pinout estándar SOT-23 (Marca 1P):</strong><br>• <strong>Pin 1 (Izquierda abajo):</strong> Base (B)<br>• <strong>Pin 2 (Derecha abajo):</strong> Emisor (E)<br>• <strong>Pin 3 (Arriba centro):</strong> Colector (C) · P_D = 350 mW",
         img: "img/frame_cierre.png",
         escala: 1.15,
@@ -1393,7 +1402,7 @@
       diodo_1n4007: {
         sub: "EPISODIO 02 · PROTECCIÓN FLYBACK DO-41 (1000 V / 1 A)",
         title: "Diodo Rectificador 1N4007",
-        desc: "Colocado en antiparalelo con la bobina del relé, absorbe el pico inductivo inverso (> 300 V) al apagar el transistor, clampeando el voltaje a solo VCC + 0,7 V.",
+        desc: "Colocado en antiparalelo con la bobina del relé, absorbe el pico inductivo inverso (puede llegar a cientos de voltios sin protección) al apagar el transistor, limitando el voltaje a aproximadamente VCC + 0,7 V.",
         pinout: "<strong>Conexión Flyback (Rueda Libre):</strong><br>• <strong>Cátodo (Banda plateada):</strong> Conectado a +VCC.<br>• <strong>Ánodo:</strong> Conectado al Colector del transistor NPN.",
         img: "img/rele_05_regiones.png",
         escala: 0.36,
@@ -1411,7 +1420,7 @@
         escala: 0.22,
         links: [
           { txt: "Autopsia MOSFET (.GLB)", href: "descargas/03-mosfet/mosfet_autopsia.glb", primary: true },
-          { txt: "TO-220 CAD (.STEP)", href: "descargas/01-transistor/TO-220_TIP31C.step", primary: false },
+          { txt: "Encapsulado TO-220 genérico (.STEP)", href: "descargas/01-transistor/TO-220_TIP31C.step", primary: false },
         ],
       },
       dpak: {
@@ -1451,7 +1460,7 @@
       cap_ceramico: {
         sub: "EPISODIO 04 · CAPACITOR CERÁMICO MULTICAPA MLCC SMD 0805",
         title: "Murata MLCC 100 nF (X7R)",
-        desc: "Capacitor no polarizado de ultra-baja resistencia serie equivalente (ESR ≈ 0,01 Ω) e inductancia parásita mínima. Indispensable junto al pin VCC de cada microcontrolador para filtrar picos de alta frecuencia.",
+        desc: "Capacitor no polarizado con resistencia serie equivalente (ESR) muy baja, del orden de miliohmios cerca de su frecuencia de resonancia, e inductancia parásita mínima. Indispensable junto al pin VCC de cada microcontrolador para filtrar picos de alta frecuencia.",
         pinout: "<strong>Especificaciones MLCC 0805:</strong><br>• <strong>Polaridad:</strong> No polarizado (simétrico)<br>• <strong>Dieléctrico:</strong> Cerámico X7R (±15% de −55 a +125 °C)",
         img: "img/cap_02_autopsia.png",
         escala: 0.75,
@@ -1499,19 +1508,18 @@
       inductor_toroidal: {
         sub: "EPISODIO 06 · INDUCTOR TOROIDAL DE POTENCIA EPCOS B82622",
         title: "Toroide Magnético de Flujo Cerrado",
-        desc: "Geometría anular donde las líneas de flujo magnético quedan confinadas al 100% dentro del anillo de ferrita, minimizando la radiación electromagnética (EMI) en filtros de potencia.",
+        desc: "Geometría anular donde las líneas de flujo magnético quedan confinadas casi por completo dentro del anillo de ferrita, minimizando la radiación electromagnética (EMI) en filtros de potencia.",
         pinout: "<strong>Ventaja Toroidal:</strong><br>• Confinamiento magnético natural sin necesidad de carcasa blindada externa.",
         img: "img/inductor_02_autopsia.png",
         escala: 0.18,
         links: [
-          { txt: "Modelo CAD (.STEP)", href: "descargas/06-inductor/L_Toroid_EPCOS_B82622.step", primary: true },
-          { txt: "Modelo Web (.GLB)", href: "descargas/06-inductor/inductor_toroidal.glb", primary: false },
+          { txt: "Modelo Web (.GLB)", href: "descargas/06-inductor/inductor_toroidal.glb", primary: true },
         ],
       },
       puente_h_autopsia: {
         sub: "EPISODIO 07 · AUTOPSIA PUENTE H L298N (BLENDER 5.0)",
         title: "Matriz Interna de 4 Transistores BJT de Potencia",
-        desc: "Corte frontal del driver L298N mostrando los 4 dies de potencia (High-Side Q1/Q3 y Low-Side Q4/Q2) soldados sobre el sustrato térmico de cobre, responsables de la caída de 1,8 a 3,2 V en conducción.",
+        desc: "Corte frontal del driver L298N: un solo chip con dos puentes H (8 transistores bipolares) sobre la lengüeta térmica de cobre. Aquí se resaltan los 4 transistores de un puente (High-Side Q1/Q3 y Low-Side Q4/Q2), responsables de la caída de 1,8 a 3,2 V en conducción (datasheet, @ 1 A).",
         pinout: "<strong>Comparativa de Ingeniería:</strong><br>• <strong>L298N (BJT):</strong> ~2,5 W perdidos en calor @ 1 A.<br>• <strong>Precaución:</strong> Nunca activar Q1+Q4 a la vez (cortocircuito shoot-through).",
         img: "img/puente_h_02_autopsia.png",
         escala: 0.18,
