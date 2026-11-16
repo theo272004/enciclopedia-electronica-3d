@@ -3,3 +3,6 @@ out
 .env
 .env.*
 !.env.example
+
+# Material de bancos de imágenes (las licencias no permiten redistribuir los originales)
+public/broll
