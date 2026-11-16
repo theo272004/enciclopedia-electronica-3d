@@ -20,14 +20,15 @@ export type P2 = [number, number]; // (x, z) en el plano de la placa
 export const ALTO_PLACA = 0.08;
 
 // ---------- Placa PCB ----------
-export const Placa: React.FC<{ ancho: number; fondo: number; x?: number; z?: number }> = ({
+export const Placa: React.FC<{ ancho: number; fondo: number; x?: number; z?: number; color?: string }> = ({
   ancho,
   fondo,
   x = 0,
   z = 0,
+  color,
 }) => (
   <RoundedBox args={[ancho, 0.16, fondo]} radius={0.06} smoothness={4} position={[x, 0, z]} receiveShadow>
-    <primitive object={MAT.placa} attach="material" />
+    {color ? <meshLambertMaterial color={color} /> : <primitive object={MAT.placa} attach="material" />}
   </RoundedBox>
 );
 
@@ -315,7 +316,9 @@ export type TipoModeloKiCad =
   | "diodo_zener"
   | "inductor_radial"
   | "inductor_smd"
-  | "inductor_toroidal";
+  | "inductor_toroidal"
+  | "l298n"
+  | "drv8833";
 
 export const EncapsuladoKiCad: React.FC<{
   tipo: TipoModeloKiCad;
@@ -983,3 +986,89 @@ useGLTF.preload(staticFile("modelos/inductor_radial.glb"));
 useGLTF.preload(staticFile("modelos/inductor_smd.glb"));
 useGLTF.preload(staticFile("modelos/inductor_toroidal.glb"));
 useGLTF.preload(staticFile("modelos/inductor_autopsia.glb"));
+useGLTF.preload(staticFile("modelos/l298n.glb"));
+useGLTF.preload(staticFile("modelos/drv8833.glb"));
+useGLTF.preload(staticFile("modelos/puente_h_autopsia.glb"));
+
+/**
+ * Motor DC 3D simple con eje rotatorio para visualizar giro directo, reversa y frenado en Puente H.
+ */
+export const MotorDC3D: React.FC<{
+  posicion?: [number, number, number];
+  anguloEje?: number;
+  escala?: number;
+}> = ({ posicion = [0, 0.55, 0], anguloEje = 0, escala = 1 }) => {
+  return (
+    <group position={posicion} scale={escala}>
+      {/* Carcasa cilíndrica del motor */}
+      <mesh rotation={[0, 0, Math.PI / 2]} castShadow>
+        <cylinderGeometry args={[0.45, 0.45, 1.1, 28]} />
+        <meshStandardMaterial color="#b4becb" metalness={0.85} roughness={0.28} />
+      </mesh>
+      {/* Tapa plástica trasera */}
+      <mesh position={[-0.6, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
+        <cylinderGeometry args={[0.44, 0.44, 0.16, 24]} />
+        <meshStandardMaterial color="#181c24" roughness={0.5} />
+      </mesh>
+      {/* Eje y hélice/indicador de giro */}
+      <group position={[0.7, 0, 0]} rotation={[anguloEje, 0, 0]}>
+        <mesh rotation={[0, 0, Math.PI / 2]}>
+          <cylinderGeometry args={[0.07, 0.07, 0.45, 16]} />
+          <meshStandardMaterial color="#e2e8f0" metalness={0.95} roughness={0.18} />
+        </mesh>
+        <mesh position={[0.16, 0, 0]}>
+          <boxGeometry args={[0.06, 0.72, 0.14]} />
+          <meshStandardMaterial color="#ffb547" roughness={0.3} />
+        </mesh>
+      </group>
+    </group>
+  );
+};
+
+/**
+ * Autopsia 3D del Driver Puente H L298N (Blender 5.0): muestra los 4 transistores
+ * bipolares de potencia (Q1/Q3 High-Side y Q4/Q2 Low-Side) sobre el sustrato de cobre.
+ */
+export const PuenteHAutopsia: React.FC<{
+  posicion?: [number, number, number];
+  escala?: number;
+  apertura?: number;
+  diagonalActiva?: 0 | 1 | 2 | 3; // 0: reposo, 1: Q1+Q2 directa, 2: Q3+Q4 reversa, 3: shoot-through Q1+Q4!
+}> = ({ posicion = [0, 0, 0], escala = 0.22, apertura = 1, diagonalActiva = 1 }) => {
+  const { scene } = useGLTF(staticFile("modelos/puente_h_autopsia.glb"));
+  const clon = useMemo(() => scene.clone(true), [scene]);
+
+  const mallas = useMemo(() => {
+    const out: Record<string, THREE.Mesh> = {};
+    clon.traverse((o) => {
+      if ((o as THREE.Mesh).isMesh) out[o.name] = o as THREE.Mesh;
+    });
+    return out;
+  }, [clon]);
+
+  const tapa = mallas["Carcasa_Corte"];
+  if (tapa) {
+    tapa.position.set(apertura * 2.5, apertura * 1.4, -apertura * 5.2);
+    tapa.rotation.set(apertura * -0.18, apertura * 0.28, 0);
+  }
+
+  const activar = (nombre: string, activo: boolean, colorHex: string, falla = false) => {
+    const m = mallas[nombre];
+    if (!m) return;
+    const mat = (m.material as THREE.MeshStandardMaterial).clone();
+    mat.emissive = new THREE.Color(falla ? "#ff2222" : colorHex);
+    mat.emissiveIntensity = activo ? (falla ? 2.4 : 1.4) : 0.2;
+    m.material = mat;
+  };
+
+  activar("Q1_HighSide_Izq", diagonalActiva === 1 || diagonalActiva === 3, "#ff7b29", diagonalActiva === 3);
+  activar("Q2_LowSide_Der", diagonalActiva === 1, "#3de0ff", false);
+  activar("Q3_HighSide_Der", diagonalActiva === 2, "#ff7b29", false);
+  activar("Q4_LowSide_Izq", diagonalActiva === 2 || diagonalActiva === 3, "#3de0ff", diagonalActiva === 3);
+
+  return (
+    <group position={posicion} scale={escala}>
+      <primitive object={clon} />
+    </group>
+  );
+};

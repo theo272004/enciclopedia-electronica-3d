@@ -27,6 +27,8 @@
     "render:diodo:short:es": "remotion render Diodo-Short-ES out/diodo-short-es.mp4",
     "render:inductor:es": "remotion render Inductor-ES out/inductor-es.mp4",
     "render:inductor:short:es": "remotion render Inductor-Short-ES out/inductor-short-es.mp4",
+    "render:puente_h:es": "remotion render PuenteH-ES out/puente-h-es.mp4",
+    "render:puente_h:short:es": "remotion render PuenteH-Short-ES out/puente-h-short-es.mp4",
     "youtube:kit": "tsx scripts/generar-kit-youtube.ts",
     "typecheck": "tsc --noEmit"
   },

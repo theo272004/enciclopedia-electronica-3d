@@ -116,6 +116,17 @@ export const CATALOGO_KICAD: ModeloKiCad[] = [
     rutaRelativa: "Inductor_THT.3dshapes/Choke_EPCOS_B82722A.step",
     descripcion: "Inductor toroidal de filtro y potencia EPCOS B82722A",
   },
+  // Episodio 07: Puente H (L298N BJT vs DRV8833 MOSFET)
+  {
+    id: "l298n",
+    rutaRelativa: "Package_TO_SOT_THT.3dshapes/TO-220-11_P3.4x5.08mm_StaggerEven_Lead4.58mm_Vertical.step",
+    descripcion: "Encapsulado de potencia multipin vertical (Driver Puente H L298N / Multiwatt)",
+  },
+  {
+    id: "drv8833",
+    rutaRelativa: "Package_SO.3dshapes/HTSSOP-16-1EP_4.4x5mm_P0.65mm_EP3.4x5mm.step",
+    descripcion: "Encapsulado SMD HTSSOP-16 con pad térmico expuesto (TI DRV8833 MOSFET Puente H)",
+  },
 ];
 
 function generarPcbTemporal(rutaModeloAbs: string): string {

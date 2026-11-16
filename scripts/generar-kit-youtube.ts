@@ -83,6 +83,15 @@ const capEp06 = formatearCapitulos(construirEscenas("es", leerManifest("voz-indu
   cierre: "Familias de inductores en KiCad 9.0: Tambor Radial, Blindado SMD SRR1260 y Toroidal EPCOS",
 });
 
+const capEp07 = formatearCapitulos(construirEscenas("es", leerManifest("voz-puente-h", "es"), "16:9"), {
+  intro: "Por qué tu módulo rojo L298N arde y pierde 3 V antes de llegar al motor",
+  autopsia: "Autopsia 3D Blender 5.0: Matriz interna de 4 transistores BJT sobre sustrato de cobre",
+  partes: "Analogía de 4 válvulas hidráulicas en cruz: inversión electrónica de giro CW / CCW",
+  circuito: "La trampa del cortocircuito shoot-through (Q1 + Q4 encendidos a la vez)",
+  regiones: "Datasheet comparado a 1 A: L298N (2.50 W en calor) vs. TI DRV8833 MOSFET (0.36 W)",
+  cierre: "Cuándo elegir L298N (12–35 V) vs. DRV8833 HTSSOP-16 para robots a batería",
+});
+
 const contenidoMd = `# Plan de Publicación en YouTube y Kit SEO Completo (6 Episodios · 12 Videos MP4)
 
 > [!IMPORTANT]
@@ -191,6 +200,23 @@ Cortamos en 3D un inductor blindado Bourns SRR1260 de 33 µH (núcleo de ferrita
 
 ⏱️ CAPÍTULOS DEL VIDEO:
 ${capEp06}
+\`\`\`
+
+---
+
+## EPISODIO #07: El Puente H (\`L298N\` vs. \`DRV8833\`) — *Estreno Formato Anti-IA / Alto Ritmo*
+- **Video Horizontal \`16:9\`:** \`out/puente-h-es.mp4\` (\`1920x1080\`, 60 fps)
+- **YouTube Short \`9:16\`:** \`out/puente-h-short-es.mp4\` (\`1080x1920\`, 60 fps, < 60 s)
+- **Título Recomendado:** \`Por Qué Tu L298N Se Calienta y Pierde Potencia (Autopsia 3D y DRV8833 MOSFET)\`
+
+\`\`\`text
+Analizamos por qué el clásico módulo rojo L298N desperdicia hasta 3 V en calor (2.5 W @ 1 A), abrimos su encapsulado en 3D para inspeccionar sus 4 transistores de potencia, explicamos el cortocircuito shoot-through y lo comparamos contra el driver MOSFET TI DRV8833 (360 mΩ).
+
+🔬 ENCICLOPEDIA 3D INTERACTIVA Y MODELOS CAD:
+👉 https://theo272004.github.io/enciclopedia-electronica-3d/
+
+⏱️ CAPÍTULOS DEL VIDEO:
+${capEp07}
 \`\`\`
 `;
 

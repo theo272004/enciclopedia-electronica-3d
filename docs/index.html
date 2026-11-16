@@ -852,6 +852,8 @@
               <button class="seg-btn" data-model="cap_autopsia">#04 Autopsia Capacitor</button>
               <button class="seg-btn" data-model="diodo_autopsia">#05 Autopsia Diodo P-N</button>
               <button class="seg-btn" data-model="inductor_autopsia">#06 Autopsia Inductor Buck</button>
+              <button class="seg-btn" data-model="puente_h_autopsia">#07 Autopsia Puente H L298N</button>
+              <button class="seg-btn" data-model="drv8833">DRV8833 (MOSFET)</button>
               <button class="seg-btn" data-model="sot23">SOT-23 (SMD)</button>
               <button class="seg-btn" data-model="to220">TO-220</button>
               <button class="seg-btn" data-model="cap_ceramico">MLCC 0805</button>
@@ -1504,6 +1506,30 @@
         links: [
           { txt: "Modelo CAD (.STEP)", href: "descargas/06-inductor/L_Toroid_EPCOS_B82622.step", primary: true },
           { txt: "Modelo Web (.GLB)", href: "descargas/06-inductor/inductor_toroidal.glb", primary: false },
+        ],
+      },
+      puente_h_autopsia: {
+        sub: "EPISODIO 07 · AUTOPSIA PUENTE H L298N (BLENDER 5.0)",
+        title: "Matriz Interna de 4 Transistores BJT de Potencia",
+        desc: "Corte frontal del driver L298N mostrando los 4 dies de potencia (High-Side Q1/Q3 y Low-Side Q4/Q2) soldados sobre el sustrato térmico de cobre, responsables de la caída de 1,8 a 3,2 V en conducción.",
+        pinout: "<strong>Comparativa de Ingeniería:</strong><br>• <strong>L298N (BJT):</strong> ~2,5 W perdidos en calor @ 1 A.<br>• <strong>Precaución:</strong> Nunca activar Q1+Q4 a la vez (cortocircuito shoot-through).",
+        img: "img/puente_h_02_autopsia.png",
+        escala: 0.18,
+        links: [
+          { txt: "Autopsia Puente H (.GLB)", href: "descargas/07-puente-h/puente_h_autopsia.glb", primary: true },
+          { txt: "Modelo CAD (.STEP)", href: "descargas/07-puente-h/L298N_TO-220-11.step", primary: false },
+        ],
+      },
+      drv8833: {
+        sub: "EPISODIO 07 · DRIVER PUENTE H MOSFET TI DRV8833 (HTSSOP-16)",
+        title: "Alternativa Moderna de Ultra-Baja Pérdida",
+        desc: "Doble puente H basado en MOSFETs con R_DS(on) total de 360 mΩ (High-Side + Low-Side). A 1 A solo disipa 0,36 W (7 veces menos calor que el L298N), ideal para robots a batería LiPo.",
+        pinout: "<strong>Especificaciones TI DRV8833:</strong><br>• <strong>Tensión:</strong> 2,7 V a 10,8 V · <strong>Corriente:</strong> 1,5 A RMS (2 A pico).",
+        img: "img/puente_h_01_intro.png",
+        escala: 0.55,
+        links: [
+          { txt: "Modelo CAD (.STEP)", href: "descargas/07-puente-h/DRV8833_HTSSOP-16.step", primary: true },
+          { txt: "Modelo Web (.GLB)", href: "descargas/07-puente-h/drv8833.glb", primary: false },
         ],
       },
     };

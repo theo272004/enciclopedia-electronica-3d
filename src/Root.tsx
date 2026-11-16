@@ -4,6 +4,7 @@ import { GUION_CAPACITOR } from "./guion-capacitor";
 import { GUION_DIODO } from "./guion-diodo";
 import { GUION_INDUCTOR } from "./guion-inductor";
 import { GUION_MOSFET } from "./guion-mosfet";
+import { GUION_PUENTE_H } from "./guion-puente-h";
 import { GUION_RELE } from "./guion-rele";
 import { construirEscenas, duracionTotal, FPS, type Manifest } from "./tiempo";
 import { Video, type VideoProps } from "./Video";
@@ -11,6 +12,7 @@ import { VideoCapacitor } from "./VideoCapacitor";
 import { VideoDiodo } from "./VideoDiodo";
 import { VideoInductor } from "./VideoInductor";
 import { VideoMosfet } from "./VideoMosfet";
+import { VideoPuenteH } from "./VideoPuenteH";
 import { VideoRele } from "./VideoRele";
 
 const crearCalculador =
@@ -34,6 +36,7 @@ const calcularMosfet = crearCalculador("voz-mosfet", GUION_MOSFET);
 const calcularCapacitor = crearCalculador("voz-capacitor", GUION_CAPACITOR);
 const calcularDiodo = crearCalculador("voz-diodo", GUION_DIODO);
 const calcularInductor = crearCalculador("voz-inductor", GUION_INDUCTOR);
+const calcularPuenteH = crearCalculador("voz-puente-h", GUION_PUENTE_H);
 
 const composiciones: {
   id: string;
@@ -74,6 +77,11 @@ const composiciones: {
   { id: "Inductor-EN", idioma: "en", formato: "16:9", width: 1920, height: 1080, component: VideoInductor, calculateMetadata: calcularInductor },
   { id: "Inductor-Short-ES", idioma: "es", formato: "9:16", width: 1080, height: 1920, component: VideoInductor, calculateMetadata: calcularInductor },
   { id: "Inductor-Short-EN", idioma: "en", formato: "9:16", width: 1080, height: 1920, component: VideoInductor, calculateMetadata: calcularInductor },
+  // Episodio 07: El Puente H (L298N BJT vs DRV8833 MOSFET — Estilo Anti-IA / Alto Ritmo)
+  { id: "PuenteH-ES", idioma: "es", formato: "16:9", width: 1920, height: 1080, component: VideoPuenteH, calculateMetadata: calcularPuenteH },
+  { id: "PuenteH-EN", idioma: "en", formato: "16:9", width: 1920, height: 1080, component: VideoPuenteH, calculateMetadata: calcularPuenteH },
+  { id: "PuenteH-Short-ES", idioma: "es", formato: "9:16", width: 1080, height: 1920, component: VideoPuenteH, calculateMetadata: calcularPuenteH },
+  { id: "PuenteH-Short-EN", idioma: "en", formato: "9:16", width: 1080, height: 1920, component: VideoPuenteH, calculateMetadata: calcularPuenteH },
 ];
 
 export const Root: React.FC = () => (

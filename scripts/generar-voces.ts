@@ -12,6 +12,7 @@ import { GUION_CAPACITOR } from "../src/guion-capacitor";
 import { GUION_DIODO } from "../src/guion-diodo";
 import { GUION_INDUCTOR } from "../src/guion-inductor";
 import { GUION_MOSFET } from "../src/guion-mosfet";
+import { GUION_PUENTE_H } from "../src/guion-puente-h";
 import { GUION_RELE } from "../src/guion-rele";
 import type { EscenaAudio, Manifest, Palabra } from "../src/tiempo";
 
@@ -27,18 +28,20 @@ const VOCES: Record<Idioma, string | undefined> = {
   en: process.env.VOICE_ID_EN?.trim(),
 };
 const AJUSTES = { stability: 0.5, similarityBoost: 0.75, style: 0.1, useSpeakerBoost: true };
+const AJUSTES_DINAMICOS = { stability: 0.36, similarityBoost: 0.80, style: 0.38, useSpeakerBoost: true };
 
 const client = new ElevenLabsClient({ apiKey });
 const idiomas = (process.argv[2] ? [process.argv[2]] : ["es", "en"]) as Idioma[];
 const filtroEp = process.argv[3]; // opcional: "transistor" | "rele"
 
 const EPISODIOS = [
-  { clave: "transistor", carpeta: "voz", guion: GUION },
-  { clave: "rele", carpeta: "voz-rele", guion: GUION_RELE },
-  { clave: "mosfet", carpeta: "voz-mosfet", guion: GUION_MOSFET },
-  { clave: "capacitor", carpeta: "voz-capacitor", guion: GUION_CAPACITOR },
-  { clave: "diodo", carpeta: "voz-diodo", guion: GUION_DIODO },
-  { clave: "inductor", carpeta: "voz-inductor", guion: GUION_INDUCTOR },
+  { clave: "transistor", carpeta: "voz", guion: GUION, ajustes: AJUSTES },
+  { clave: "rele", carpeta: "voz-rele", guion: GUION_RELE, ajustes: AJUSTES },
+  { clave: "mosfet", carpeta: "voz-mosfet", guion: GUION_MOSFET, ajustes: AJUSTES },
+  { clave: "capacitor", carpeta: "voz-capacitor", guion: GUION_CAPACITOR, ajustes: AJUSTES },
+  { clave: "diodo", carpeta: "voz-diodo", guion: GUION_DIODO, ajustes: AJUSTES },
+  { clave: "inductor", carpeta: "voz-inductor", guion: GUION_INDUCTOR, ajustes: AJUSTES },
+  { clave: "puente_h", carpeta: "voz-puente-h", guion: GUION_PUENTE_H, ajustes: AJUSTES_DINAMICOS },
 ];
 
 const aPalabras = (a: {
@@ -91,7 +94,7 @@ for (const ep of EPISODIOS) {
     const escenas: EscenaAudio[] = [];
     for (const [i, id] of ESCENAS.entries()) {
       const texto = ep.guion[idioma][id];
-      const hash = createHash("sha1").update(`${voiceId}|${MODELO}|${JSON.stringify(AJUSTES)}|${texto}`).digest("hex");
+      const hash = createHash("sha1").update(`${voiceId}|${MODELO}|${JSON.stringify(ep.ajustes)}|${texto}`).digest("hex");
       const archivoLocal = path.join(dir, `${id}.mp3`);
 
       const cache = anterior?.escenas.find((e) => e.id === id && e.hash === hash);
@@ -106,7 +109,7 @@ for (const ep of EPISODIOS) {
         text: texto,
         modelId: MODELO,
         outputFormat: "mp3_44100_128",
-        voiceSettings: AJUSTES,
+        voiceSettings: ep.ajustes,
         previousText: i > 0 ? ep.guion[idioma][ESCENAS[i - 1]] : undefined,
         nextText: i < ESCENAS.length - 1 ? ep.guion[idioma][ESCENAS[i + 1]] : undefined,
         ...(MODELO.includes("multilingual_v2") ? {} : { languageCode: idioma }),

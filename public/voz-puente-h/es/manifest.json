@@ -1,0 +1,1183 @@
+{
+  "idioma": "es",
+  "escenas": [
+    {
+      "id": "intro",
+      "archivo": "voz-puente-h/es/intro.mp3",
+      "duracion": 17.740045,
+      "hash": "388482243c5552dec452b895e543638ec2fca59c",
+      "palabras": [
+        {
+          "texto": "Si",
+          "inicio": 0,
+          "fin": 0.163
+        },
+        {
+          "texto": "alguna",
+          "inicio": 0.209,
+          "fin": 0.499
+        },
+        {
+          "texto": "vez",
+          "inicio": 0.546,
+          "fin": 0.673
+        },
+        {
+          "texto": "armaste",
+          "inicio": 0.731,
+          "fin": 1.103
+        },
+        {
+          "texto": "un",
+          "inicio": 1.149,
+          "fin": 1.207
+        },
+        {
+          "texto": "robot",
+          "inicio": 1.265,
+          "fin": 1.602
+        },
+        {
+          "texto": "con",
+          "inicio": 1.66,
+          "fin": 1.8
+        },
+        {
+          "texto": "este",
+          "inicio": 1.869,
+          "fin": 2.067
+        },
+        {
+          "texto": "módulo",
+          "inicio": 2.136,
+          "fin": 2.519
+        },
+        {
+          "texto": "rojo",
+          "inicio": 2.601,
+          "fin": 2.972
+        },
+        {
+          "texto": "L298N",
+          "inicio": 3.1,
+          "fin": 4.551
+        },
+        {
+          "texto": "y",
+          "inicio": 5.062,
+          "fin": 5.178
+        },
+        {
+          "texto": "viste",
+          "inicio": 5.259,
+          "fin": 5.526
+        },
+        {
+          "texto": "que",
+          "inicio": 5.596,
+          "fin": 5.677
+        },
+        {
+          "texto": "el",
+          "inicio": 5.7,
+          "fin": 5.747
+        },
+        {
+          "texto": "disipador",
+          "inicio": 5.805,
+          "fin": 6.327
+        },
+        {
+          "texto": "arde",
+          "inicio": 6.374,
+          "fin": 6.583
+        },
+        {
+          "texto": "mientras",
+          "inicio": 6.641,
+          "fin": 7.001
+        },
+        {
+          "texto": "tus",
+          "inicio": 7.036,
+          "fin": 7.163
+        },
+        {
+          "texto": "motores",
+          "inicio": 7.233,
+          "fin": 7.686
+        },
+        {
+          "texto": "giran",
+          "inicio": 7.732,
+          "fin": 7.999
+        },
+        {
+          "texto": "lento,",
+          "inicio": 8.057,
+          "fin": 8.568
+        },
+        {
+          "texto": "aquí",
+          "inicio": 8.777,
+          "fin": 9.033
+        },
+        {
+          "texto": "está",
+          "inicio": 9.079,
+          "fin": 9.242
+        },
+        {
+          "texto": "la",
+          "inicio": 9.3,
+          "fin": 9.346
+        },
+        {
+          "texto": "razón",
+          "inicio": 9.416,
+          "fin": 9.718
+        },
+        {
+          "texto": "real:",
+          "inicio": 9.799,
+          "fin": 10.275
+        },
+        {
+          "texto": "el",
+          "inicio": 10.716,
+          "fin": 10.844
+        },
+        {
+          "texto": "L298N",
+          "inicio": 10.971,
+          "fin": 12.446
+        },
+        {
+          "texto": "pierde",
+          "inicio": 12.829,
+          "fin": 13.282
+        },
+        {
+          "texto": "hasta",
+          "inicio": 13.305,
+          "fin": 13.526
+        },
+        {
+          "texto": "tres",
+          "inicio": 13.584,
+          "fin": 13.804
+        },
+        {
+          "texto": "voltios",
+          "inicio": 13.874,
+          "fin": 14.234
+        },
+        {
+          "texto": "completos",
+          "inicio": 14.292,
+          "fin": 14.849
+        },
+        {
+          "texto": "en",
+          "inicio": 14.93,
+          "fin": 15.012
+        },
+        {
+          "texto": "calor",
+          "inicio": 15.058,
+          "fin": 15.453
+        },
+        {
+          "texto": "antes",
+          "inicio": 15.662,
+          "fin": 16.08
+        },
+        {
+          "texto": "de",
+          "inicio": 16.103,
+          "fin": 16.161
+        },
+        {
+          "texto": "llegar",
+          "inicio": 16.184,
+          "fin": 16.509
+        },
+        {
+          "texto": "al",
+          "inicio": 16.544,
+          "fin": 16.602
+        },
+        {
+          "texto": "motor.",
+          "inicio": 16.649,
+          "fin": 17.74
+        }
+      ]
+    },
+    {
+      "id": "autopsia",
+      "archivo": "voz-puente-h/es/autopsia.mp3",
+      "duracion": 17.693605,
+      "hash": "5cb933e03d8cbed36bef13061b9c0be896c8666d",
+      "palabras": [
+        {
+          "texto": "Al",
+          "inicio": 0,
+          "fin": 0.197
+        },
+        {
+          "texto": "abrir",
+          "inicio": 0.255,
+          "fin": 0.534
+        },
+        {
+          "texto": "su",
+          "inicio": 0.58,
+          "fin": 0.673
+        },
+        {
+          "texto": "encapsulado",
+          "inicio": 0.72,
+          "fin": 1.312
+        },
+        {
+          "texto": "de",
+          "inicio": 1.358,
+          "fin": 1.428
+        },
+        {
+          "texto": "potencia",
+          "inicio": 1.474,
+          "fin": 1.974
+        },
+        {
+          "texto": "encontramos",
+          "inicio": 2.02,
+          "fin": 2.635
+        },
+        {
+          "texto": "cuatro",
+          "inicio": 2.705,
+          "fin": 3.019
+        },
+        {
+          "texto": "transistores",
+          "inicio": 3.065,
+          "fin": 3.762
+        },
+        {
+          "texto": "bipolares",
+          "inicio": 3.808,
+          "fin": 4.447
+        },
+        {
+          "texto": "dispuestos",
+          "inicio": 4.83,
+          "fin": 5.433
+        },
+        {
+          "texto": "en",
+          "inicio": 5.492,
+          "fin": 5.55
+        },
+        {
+          "texto": "forma",
+          "inicio": 5.608,
+          "fin": 5.886
+        },
+        {
+          "texto": "de",
+          "inicio": 5.933,
+          "fin": 6.014
+        },
+        {
+          "texto": "H",
+          "inicio": 6.06,
+          "fin": 6.235
+        },
+        {
+          "texto": "sobre",
+          "inicio": 6.745,
+          "fin": 7.047
+        },
+        {
+          "texto": "un",
+          "inicio": 7.105,
+          "fin": 7.163
+        },
+        {
+          "texto": "sustrato",
+          "inicio": 7.221,
+          "fin": 7.721
+        },
+        {
+          "texto": "de",
+          "inicio": 7.779,
+          "fin": 7.837
+        },
+        {
+          "texto": "cobre.",
+          "inicio": 7.906,
+          "fin": 8.475
+        },
+        {
+          "texto": "El",
+          "inicio": 9.288,
+          "fin": 9.439
+        },
+        {
+          "texto": "problema",
+          "inicio": 9.497,
+          "fin": 9.903
+        },
+        {
+          "texto": "es",
+          "inicio": 9.95,
+          "fin": 10.019
+        },
+        {
+          "texto": "físico:",
+          "inicio": 10.089,
+          "fin": 10.797
+        },
+        {
+          "texto": "cada",
+          "inicio": 11.18,
+          "fin": 11.517
+        },
+        {
+          "texto": "transistor",
+          "inicio": 11.575,
+          "fin": 12.179
+        },
+        {
+          "texto": "bipolar",
+          "inicio": 12.237,
+          "fin": 12.655
+        },
+        {
+          "texto": "en",
+          "inicio": 12.713,
+          "fin": 12.759
+        },
+        {
+          "texto": "conducción",
+          "inicio": 12.817,
+          "fin": 13.468
+        },
+        {
+          "texto": "pierde",
+          "inicio": 13.851,
+          "fin": 14.269
+        },
+        {
+          "texto": "más",
+          "inicio": 14.315,
+          "fin": 14.501
+        },
+        {
+          "texto": "de",
+          "inicio": 14.536,
+          "fin": 14.594
+        },
+        {
+          "texto": "un",
+          "inicio": 14.652,
+          "fin": 14.722
+        },
+        {
+          "texto": "voltio",
+          "inicio": 14.768,
+          "fin": 15.151
+        },
+        {
+          "texto": "en",
+          "inicio": 15.198,
+          "fin": 15.256
+        },
+        {
+          "texto": "su",
+          "inicio": 15.314,
+          "fin": 15.43
+        },
+        {
+          "texto": "unión",
+          "inicio": 15.499,
+          "fin": 15.79
+        },
+        {
+          "texto": "colector-emisor.",
+          "inicio": 15.859,
+          "fin": 17.694
+        }
+      ]
+    },
+    {
+      "id": "partes",
+      "archivo": "voz-puente-h/es/partes.mp3",
+      "duracion": 15.60381,
+      "hash": "7d0bf17e1e6fa7de037de91a7eb7e12e473e4243",
+      "palabras": [
+        {
+          "texto": "Piénsalo",
+          "inicio": 0,
+          "fin": 0.522
+        },
+        {
+          "texto": "como",
+          "inicio": 0.58,
+          "fin": 0.778
+        },
+        {
+          "texto": "cuatro",
+          "inicio": 0.836,
+          "fin": 1.231
+        },
+        {
+          "texto": "válvulas",
+          "inicio": 1.277,
+          "fin": 1.73
+        },
+        {
+          "texto": "hidráulicas",
+          "inicio": 1.765,
+          "fin": 2.438
+        },
+        {
+          "texto": "en",
+          "inicio": 2.519,
+          "fin": 2.589
+        },
+        {
+          "texto": "cruz.",
+          "inicio": 2.635,
+          "fin": 3.146
+        },
+        {
+          "texto": "Si",
+          "inicio": 3.529,
+          "fin": 3.68
+        },
+        {
+          "texto": "abres",
+          "inicio": 3.75,
+          "fin": 4.029
+        },
+        {
+          "texto": "la",
+          "inicio": 4.075,
+          "fin": 4.133
+        },
+        {
+          "texto": "válvula",
+          "inicio": 4.191,
+          "fin": 4.516
+        },
+        {
+          "texto": "superior",
+          "inicio": 4.563,
+          "fin": 4.946
+        },
+        {
+          "texto": "izquierda",
+          "inicio": 5.004,
+          "fin": 5.515
+        },
+        {
+          "texto": "y",
+          "inicio": 5.596,
+          "fin": 5.654
+        },
+        {
+          "texto": "la",
+          "inicio": 5.77,
+          "fin": 5.828
+        },
+        {
+          "texto": "inferior",
+          "inicio": 5.863,
+          "fin": 6.269
+        },
+        {
+          "texto": "derecha,",
+          "inicio": 6.339,
+          "fin": 6.966
+        },
+        {
+          "texto": "el",
+          "inicio": 7.175,
+          "fin": 7.326
+        },
+        {
+          "texto": "agua",
+          "inicio": 7.407,
+          "fin": 7.628
+        },
+        {
+          "texto": "gira",
+          "inicio": 7.674,
+          "fin": 7.93
+        },
+        {
+          "texto": "la",
+          "inicio": 7.988,
+          "fin": 8.057
+        },
+        {
+          "texto": "turbina",
+          "inicio": 8.115,
+          "fin": 8.615
+        },
+        {
+          "texto": "hacia",
+          "inicio": 8.638,
+          "fin": 8.882
+        },
+        {
+          "texto": "adelante.",
+          "inicio": 8.928,
+          "fin": 9.659
+        },
+        {
+          "texto": "Cierras",
+          "inicio": 10.043,
+          "fin": 10.612
+        },
+        {
+          "texto": "esas",
+          "inicio": 10.728,
+          "fin": 11.088
+        },
+        {
+          "texto": "y",
+          "inicio": 11.331,
+          "fin": 11.424
+        },
+        {
+          "texto": "abres",
+          "inicio": 11.54,
+          "fin": 11.865
+        },
+        {
+          "texto": "la",
+          "inicio": 11.923,
+          "fin": 11.981
+        },
+        {
+          "texto": "diagonal",
+          "inicio": 12.028,
+          "fin": 12.469
+        },
+        {
+          "texto": "contraria:",
+          "inicio": 12.527,
+          "fin": 13.282
+        },
+        {
+          "texto": "el",
+          "inicio": 13.607,
+          "fin": 13.734
+        },
+        {
+          "texto": "flujo",
+          "inicio": 13.781,
+          "fin": 14.036
+        },
+        {
+          "texto": "se",
+          "inicio": 14.083,
+          "fin": 14.152
+        },
+        {
+          "texto": "invierte",
+          "inicio": 14.187,
+          "fin": 14.57
+        },
+        {
+          "texto": "al",
+          "inicio": 14.617,
+          "fin": 14.686
+        },
+        {
+          "texto": "instante.",
+          "inicio": 14.756,
+          "fin": 15.604
+        }
+      ]
+    },
+    {
+      "id": "circuito",
+      "archivo": "voz-puente-h/es/circuito.mp3",
+      "duracion": 15.55737,
+      "hash": "3d2b8f72b9ea60e2bf4ab0524badd4573db81f4a",
+      "palabras": [
+        {
+          "texto": "¿Y",
+          "inicio": 0,
+          "fin": 0.255
+        },
+        {
+          "texto": "qué",
+          "inicio": 0.348,
+          "fin": 0.43
+        },
+        {
+          "texto": "pasa",
+          "inicio": 0.499,
+          "fin": 0.789
+        },
+        {
+          "texto": "si",
+          "inicio": 0.836,
+          "fin": 0.929
+        },
+        {
+          "texto": "por",
+          "inicio": 0.987,
+          "fin": 1.103
+        },
+        {
+          "texto": "un",
+          "inicio": 1.161,
+          "fin": 1.219
+        },
+        {
+          "texto": "error",
+          "inicio": 1.265,
+          "fin": 1.486
+        },
+        {
+          "texto": "de",
+          "inicio": 1.544,
+          "fin": 1.614
+        },
+        {
+          "texto": "código",
+          "inicio": 1.683,
+          "fin": 2.206
+        },
+        {
+          "texto": "activas",
+          "inicio": 2.299,
+          "fin": 2.844
+        },
+        {
+          "texto": "los",
+          "inicio": 2.902,
+          "fin": 3.065
+        },
+        {
+          "texto": "dos",
+          "inicio": 3.111,
+          "fin": 3.262
+        },
+        {
+          "texto": "transistores",
+          "inicio": 3.309,
+          "fin": 3.994
+        },
+        {
+          "texto": "del",
+          "inicio": 4.029,
+          "fin": 4.168
+        },
+        {
+          "texto": "mismo",
+          "inicio": 4.226,
+          "fin": 4.574
+        },
+        {
+          "texto": "lado",
+          "inicio": 4.644,
+          "fin": 4.911
+        },
+        {
+          "texto": "a",
+          "inicio": 4.934,
+          "fin": 4.957
+        },
+        {
+          "texto": "la",
+          "inicio": 4.992,
+          "fin": 5.062
+        },
+        {
+          "texto": "vez?",
+          "inicio": 5.12,
+          "fin": 5.631
+        },
+        {
+          "texto": "Creas",
+          "inicio": 6.327,
+          "fin": 6.641
+        },
+        {
+          "texto": "un",
+          "inicio": 6.734,
+          "fin": 6.803
+        },
+        {
+          "texto": "cortocircuito",
+          "inicio": 6.861,
+          "fin": 7.721
+        },
+        {
+          "texto": "directo",
+          "inicio": 7.779,
+          "fin": 8.162
+        },
+        {
+          "texto": "llamado",
+          "inicio": 8.197,
+          "fin": 8.731
+        },
+        {
+          "texto": "shoot-through:",
+          "inicio": 8.824,
+          "fin": 9.659
+        },
+        {
+          "texto": "la",
+          "inicio": 10.17,
+          "fin": 10.263
+        },
+        {
+          "texto": "batería",
+          "inicio": 10.31,
+          "fin": 10.762
+        },
+        {
+          "texto": "se",
+          "inicio": 10.82,
+          "fin": 10.902
+        },
+        {
+          "texto": "descarga",
+          "inicio": 10.948,
+          "fin": 11.413
+        },
+        {
+          "texto": "directo",
+          "inicio": 11.471,
+          "fin": 11.877
+        },
+        {
+          "texto": "a",
+          "inicio": 11.935,
+          "fin": 11.958
+        },
+        {
+          "texto": "tierra",
+          "inicio": 12.028,
+          "fin": 12.457
+        },
+        {
+          "texto": "y",
+          "inicio": 12.539,
+          "fin": 12.608
+        },
+        {
+          "texto": "destruye",
+          "inicio": 12.69,
+          "fin": 13.154
+        },
+        {
+          "texto": "el",
+          "inicio": 13.189,
+          "fin": 13.259
+        },
+        {
+          "texto": "silicio",
+          "inicio": 13.328,
+          "fin": 13.92
+        },
+        {
+          "texto": "en",
+          "inicio": 13.967,
+          "fin": 14.036
+        },
+        {
+          "texto": "milisegundos.",
+          "inicio": 14.094,
+          "fin": 15.557
+        }
+      ]
+    },
+    {
+      "id": "regiones",
+      "archivo": "voz-puente-h/es/regiones.mp3",
+      "duracion": 18.715283,
+      "hash": "648d3c4c9ac3839907028056f3bf1b1fb40e05e1",
+      "palabras": [
+        {
+          "texto": "Compara",
+          "inicio": 0,
+          "fin": 0.453
+        },
+        {
+          "texto": "los",
+          "inicio": 0.488,
+          "fin": 0.615
+        },
+        {
+          "texto": "números",
+          "inicio": 0.662,
+          "fin": 0.987
+        },
+        {
+          "texto": "del",
+          "inicio": 1.01,
+          "fin": 1.115
+        },
+        {
+          "texto": "datasheet",
+          "inicio": 1.184,
+          "fin": 1.765
+        },
+        {
+          "texto": "con",
+          "inicio": 1.834,
+          "fin": 1.985
+        },
+        {
+          "texto": "un",
+          "inicio": 2.055,
+          "fin": 2.101
+        },
+        {
+          "texto": "puente",
+          "inicio": 2.136,
+          "fin": 2.473
+        },
+        {
+          "texto": "H",
+          "inicio": 2.496,
+          "fin": 2.694
+        },
+        {
+          "texto": "moderno",
+          "inicio": 2.798,
+          "fin": 3.251
+        },
+        {
+          "texto": "de",
+          "inicio": 3.32,
+          "fin": 3.39
+        },
+        {
+          "texto": "MOSFETs",
+          "inicio": 3.471,
+          "fin": 4.249
+        },
+        {
+          "texto": "como",
+          "inicio": 4.412,
+          "fin": 4.621
+        },
+        {
+          "texto": "el",
+          "inicio": 4.667,
+          "fin": 4.725
+        },
+        {
+          "texto": "DRV8833.",
+          "inicio": 4.795,
+          "fin": 7.117
+        },
+        {
+          "texto": "A",
+          "inicio": 7.674,
+          "fin": 7.779
+        },
+        {
+          "texto": "un",
+          "inicio": 7.883,
+          "fin": 7.976
+        },
+        {
+          "texto": "amperio,",
+          "inicio": 8.011,
+          "fin": 8.615
+        },
+        {
+          "texto": "el",
+          "inicio": 8.777,
+          "fin": 8.893
+        },
+        {
+          "texto": "L298N",
+          "inicio": 8.986,
+          "fin": 9.996
+        },
+        {
+          "texto": "desperdicia",
+          "inicio": 10.112,
+          "fin": 10.716
+        },
+        {
+          "texto": "dos",
+          "inicio": 10.762,
+          "fin": 10.913
+        },
+        {
+          "texto": "coma",
+          "inicio": 10.995,
+          "fin": 11.227
+        },
+        {
+          "texto": "cinco",
+          "inicio": 11.262,
+          "fin": 11.587
+        },
+        {
+          "texto": "vatios",
+          "inicio": 11.645,
+          "fin": 12.016
+        },
+        {
+          "texto": "en",
+          "inicio": 12.098,
+          "fin": 12.156
+        },
+        {
+          "texto": "calor,",
+          "inicio": 12.214,
+          "fin": 12.701
+        },
+        {
+          "texto": "mientras",
+          "inicio": 12.899,
+          "fin": 13.305
+        },
+        {
+          "texto": "el",
+          "inicio": 13.386,
+          "fin": 13.456
+        },
+        {
+          "texto": "DRV8833",
+          "inicio": 13.526,
+          "fin": 15.348
+        },
+        {
+          "texto": "apenas",
+          "inicio": 15.65,
+          "fin": 16.045
+        },
+        {
+          "texto": "disipa",
+          "inicio": 16.068,
+          "fin": 16.428
+        },
+        {
+          "texto": "cero",
+          "inicio": 16.474,
+          "fin": 16.683
+        },
+        {
+          "texto": "coma",
+          "inicio": 16.753,
+          "fin": 17.02
+        },
+        {
+          "texto": "treinta",
+          "inicio": 17.066,
+          "fin": 17.38
+        },
+        {
+          "texto": "y",
+          "inicio": 17.415,
+          "fin": 17.438
+        },
+        {
+          "texto": "seis",
+          "inicio": 17.484,
+          "fin": 17.682
+        },
+        {
+          "texto": "vatios.",
+          "inicio": 17.751,
+          "fin": 18.715
+        }
+      ]
+    },
+    {
+      "id": "cierre",
+      "archivo": "voz-puente-h/es/cierre.mp3",
+      "duracion": 16.021769,
+      "hash": "b869da876f489d1112500c91d6f4355c02fd6f68",
+      "palabras": [
+        {
+          "texto": "Por",
+          "inicio": 0,
+          "fin": 0.209
+        },
+        {
+          "texto": "eso,",
+          "inicio": 0.267,
+          "fin": 0.697
+        },
+        {
+          "texto": "si",
+          "inicio": 0.94,
+          "fin": 1.068
+        },
+        {
+          "texto": "usas",
+          "inicio": 1.138,
+          "fin": 1.405
+        },
+        {
+          "texto": "baterías",
+          "inicio": 1.451,
+          "fin": 1.927
+        },
+        {
+          "texto": "de",
+          "inicio": 1.974,
+          "fin": 2.02
+        },
+        {
+          "texto": "litio",
+          "inicio": 2.067,
+          "fin": 2.496
+        },
+        {
+          "texto": "o",
+          "inicio": 2.519,
+          "fin": 2.543
+        },
+        {
+          "texto": "robots",
+          "inicio": 2.612,
+          "fin": 2.972
+        },
+        {
+          "texto": "portátiles,",
+          "inicio": 3.042,
+          "fin": 3.889
+        },
+        {
+          "texto": "cambia",
+          "inicio": 4.272,
+          "fin": 4.748
+        },
+        {
+          "texto": "el",
+          "inicio": 4.83,
+          "fin": 4.923
+        },
+        {
+          "texto": "L298N",
+          "inicio": 5.166,
+          "fin": 6.432
+        },
+        {
+          "texto": "por",
+          "inicio": 6.757,
+          "fin": 6.931
+        },
+        {
+          "texto": "un",
+          "inicio": 6.989,
+          "fin": 7.036
+        },
+        {
+          "texto": "puente",
+          "inicio": 7.082,
+          "fin": 7.454
+        },
+        {
+          "texto": "H",
+          "inicio": 7.57,
+          "fin": 7.779
+        },
+        {
+          "texto": "MOSFET",
+          "inicio": 7.93,
+          "fin": 8.452
+        },
+        {
+          "texto": "en",
+          "inicio": 8.533,
+          "fin": 8.707
+        },
+        {
+          "texto": "HTSSOP-16",
+          "inicio": 8.835,
+          "fin": 10.286
+        },
+        {
+          "texto": "y",
+          "inicio": 10.797,
+          "fin": 10.89
+        },
+        {
+          "texto": "guarda",
+          "inicio": 10.971,
+          "fin": 11.285
+        },
+        {
+          "texto": "el",
+          "inicio": 11.308,
+          "fin": 11.355
+        },
+        {
+          "texto": "L298N",
+          "inicio": 11.482,
+          "fin": 12.678
+        },
+        {
+          "texto": "solo",
+          "inicio": 12.794,
+          "fin": 13.015
+        },
+        {
+          "texto": "para",
+          "inicio": 13.061,
+          "fin": 13.224
+        },
+        {
+          "texto": "cargas",
+          "inicio": 13.282,
+          "fin": 13.653
+        },
+        {
+          "texto": "de",
+          "inicio": 13.711,
+          "fin": 13.781
+        },
+        {
+          "texto": "doce",
+          "inicio": 13.839,
+          "fin": 14.129
+        },
+        {
+          "texto": "a",
+          "inicio": 14.187,
+          "fin": 14.222
+        },
+        {
+          "texto": "treinta",
+          "inicio": 14.28,
+          "fin": 14.629
+        },
+        {
+          "texto": "y",
+          "inicio": 14.663,
+          "fin": 14.698
+        },
+        {
+          "texto": "cinco",
+          "inicio": 14.733,
+          "fin": 15.07
+        },
+        {
+          "texto": "voltios.",
+          "inicio": 15.139,
+          "fin": 16.022
+        }
+      ]
+    }
+  ]
+}

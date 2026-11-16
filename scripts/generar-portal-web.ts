@@ -13,6 +13,7 @@ const DESCARGAS_MOSFET_DIR = path.join(DOCS_DIR, "descargas", "03-mosfet");
 const DESCARGAS_CAP_DIR = path.join(DOCS_DIR, "descargas", "04-capacitor");
 const DESCARGAS_DIODO_DIR = path.join(DOCS_DIR, "descargas", "05-diodo");
 const DESCARGAS_INDUCTOR_DIR = path.join(DOCS_DIR, "descargas", "06-inductor");
+const DESCARGAS_PUENTE_H_DIR = path.join(DOCS_DIR, "descargas", "07-puente-h");
 
 fs.mkdirSync(MODELOS_WEB_DIR, { recursive: true });
 fs.mkdirSync(DESCARGAS_DIR, { recursive: true });
@@ -21,6 +22,7 @@ fs.mkdirSync(DESCARGAS_MOSFET_DIR, { recursive: true });
 fs.mkdirSync(DESCARGAS_CAP_DIR, { recursive: true });
 fs.mkdirSync(DESCARGAS_DIODO_DIR, { recursive: true });
 fs.mkdirSync(DESCARGAS_INDUCTOR_DIR, { recursive: true });
+fs.mkdirSync(DESCARGAS_PUENTE_H_DIR, { recursive: true });
 
 // 1. Copiar modelos GLB optimizados para el visor 3D web y para descarga
 const glbs = [
@@ -49,6 +51,9 @@ const glbs = [
   "inductor_radial.glb",
   "inductor_smd.glb",
   "inductor_toroidal.glb",
+  "puente_h_autopsia.glb",
+  "l298n.glb",
+  "drv8833.glb",
 ];
 
 for (const archivo of glbs) {
@@ -64,9 +69,11 @@ for (const archivo of glbs) {
             ? DESCARGAS_DIODO_DIR
             : archivo.startsWith("inductor_")
               ? DESCARGAS_INDUCTOR_DIR
-              : archivo.startsWith("rele") || archivo.startsWith("diodo")
-                ? DESCARGAS_RELE_DIR
-                : DESCARGAS_DIR;
+              : archivo.startsWith("puente_h") || archivo === "l298n.glb" || archivo === "drv8833.glb"
+                ? DESCARGAS_PUENTE_H_DIR
+                : archivo.startsWith("rele") || archivo.startsWith("diodo")
+                  ? DESCARGAS_RELE_DIR
+                  : DESCARGAS_DIR;
     fs.copyFileSync(origen, path.join(destCarpeta, archivo));
   }
 }
@@ -95,6 +102,9 @@ const cadFiles = [
   { orig: "Inductor_SMD.3dshapes/L_Bourns_SRR1260.step", dest: path.join(DESCARGAS_INDUCTOR_DIR, "L_Bourns_SRR1260_33uH.step") },
   { orig: "Inductor_THT.3dshapes/L_Radial_D8.7mm_P5.00mm_Fastron_07HCP.step", dest: path.join(DESCARGAS_INDUCTOR_DIR, "L_Radial_Fastron_07HCP.step") },
   { orig: "Inductor_THT.3dshapes/L_Toroid_Vertical_L14.0mm_W7.0mm_P5.58mm_EPCOS_B82622.step", dest: path.join(DESCARGAS_INDUCTOR_DIR, "L_Toroid_EPCOS_B82622.step") },
+  // Episodio 07: Puente H
+  { orig: "Package_TO_SOT_THT.3dshapes/TO-220-11_P3.4x5.08mm_StaggerEven_Lead4.58mm_Vertical.step", dest: path.join(DESCARGAS_PUENTE_H_DIR, "L298N_TO-220-11.step") },
+  { orig: "Package_SO.3dshapes/HTSSOP-16-1EP_4.4x5mm_P0.65mm_EP3.4x5mm.step", dest: path.join(DESCARGAS_PUENTE_H_DIR, "DRV8833_HTSSOP-16.step") },
 ];
 
 for (const c of cadFiles) {

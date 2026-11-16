@@ -643,6 +643,82 @@ def construir_inductor_autopsia():
     print(f"✔ Modelo Inductor Bourns SRR1260 con autopsia y flujo magnético exportado: {out_path}")
 
 
+def construir_puente_h_autopsia():
+    """
+    Episodio 07: Toma el driver de potencia multipin L298N (TO-220-11), abre la cara
+    frontal del epóxico con corte booleano y modela los 4 transistores de potencia
+    en matriz H (Q1/Q4 y Q2/Q3) sobre el sustrato térmico de cobre + hilos de oro.
+    """
+    partes = importar_y_normalizar_kicad("l298n.glb", (0.0, 0.0))
+    carcasa = next(p for p in partes if p.name.startswith("Encapsulado"))
+    carcasa.name = "Carcasa_Base"
+    carcasa.data.name = "Carcasa_Base"
+
+    carcasa_tapa = carcasa.copy()
+    carcasa_tapa.data = carcasa.data.copy()
+    carcasa_tapa.name = "Carcasa_Corte"
+    carcasa_tapa.data.name = "Carcasa_Corte"
+    bpy.context.collection.objects.link(carcasa_tapa)
+
+    # Ventana frontal sobre el bloque epóxico para dejar ver los 4 transistores internos
+    bpy.ops.mesh.primitive_cube_add(size=1.0, location=(0.0, -1.6, 11.0))
+    cavidad = bpy.context.active_object
+    cavidad.scale = (14.0, 3.8, 7.6)
+    bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+
+    for obj_target, op in [(carcasa, "DIFFERENCE"), (carcasa_tapa, "INTERSECT")]:
+        mod = obj_target.modifiers.new(name="Bool_PuenteH", type="BOOLEAN")
+        mod.operation = op
+        mod.solver = "FLOAT"
+        mod.object = cavidad
+        bpy.context.view_layer.objects.active = obj_target
+        bpy.ops.object.modifier_apply(modifier=mod.name)
+
+    bpy.data.objects.remove(cavidad, do_unlink=True)
+
+    mat_cobre = crear_material_pbr("Sustrato_Cobre_H", (0.85, 0.48, 0.24, 1.0), metalness=0.95, roughness=0.22)
+    mat_alta = crear_material_pbr("Transistor_HighSide", (1.0, 0.42, 0.12, 1.0), metalness=0.2, roughness=0.2, emissive=(0.95, 0.35, 0.05), emissive_strength=0.65)
+    mat_baja = crear_material_pbr("Transistor_LowSide", (0.12, 0.85, 1.0, 1.0), metalness=0.2, roughness=0.2, emissive=(0.05, 0.65, 0.95), emissive_strength=0.65)
+    mat_oro = crear_material_pbr("Hilo_Oro_H", (1.0, 0.82, 0.25, 1.0), metalness=1.0, roughness=0.15)
+
+    # Sustrato térmico central de cobre
+    bpy.ops.mesh.primitive_cube_add(size=1.0, location=(0.0, -0.35, 11.0))
+    sub = bpy.context.active_object
+    sub.scale = (12.0, 0.45, 6.4)
+    bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+    sub.name = "Sustrato_Termico_Cobre"
+    sub.data.name = "Sustrato_Termico_Cobre"
+    sub.data.materials.append(mat_cobre)
+
+    # 4 Dies de Potencia dispuestos en Puente H (2 High-Side arriba, 2 Low-Side abajo)
+    dies = [
+        ("Q1_HighSide_Izq", -3.2, 12.6, mat_alta),
+        ("Q3_HighSide_Der", 3.2, 12.6, mat_alta),
+        ("Q4_LowSide_Izq", -3.2, 9.4, mat_baja),
+        ("Q2_LowSide_Der", 3.2, 9.4, mat_baja),
+    ]
+    for nombre, x_d, z_d, mat in dies:
+        bpy.ops.mesh.primitive_cube_add(size=1.0, location=(x_d, -0.72, z_d))
+        d = bpy.context.active_object
+        d.scale = (4.0, 0.35, 2.2)
+        bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+        d.name = nombre
+        d.data.name = nombre
+        d.data.materials.append(mat)
+
+        # Hilo de oro hacia pines inferiores
+        bpy.ops.mesh.primitive_cylinder_add(vertices=10, radius=0.09, depth=2.6, location=(x_d, -0.95, z_d - 1.3), rotation=(0.15, 0.0, 0.0))
+        h = bpy.context.active_object
+        bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+        h.name = f"Hilo_{nombre}"
+        h.data.name = f"Hilo_{nombre}"
+        h.data.materials.append(mat_oro)
+
+    out_path = os.path.join(MODELOS_DIR, "puente_h_autopsia.glb")
+    bpy.ops.export_scene.gltf(filepath=out_path, export_format="GLB", export_apply=True)
+    print(f"✔ Modelo Puente H L298N con autopsia interna 4xBJT exportado: {out_path}")
+
+
 if __name__ == "__main__":
     importar_y_normalizar_kicad("to92.glb", (1.27, 0.0), "to92.glb")
     importar_y_normalizar_kicad("to220.glb", (2.54, 0.0), "to220.glb")
@@ -662,6 +738,8 @@ if __name__ == "__main__":
     importar_y_normalizar_kicad("inductor_radial.glb", (2.5, 0.0), "inductor_radial.glb")
     importar_y_normalizar_kicad("inductor_smd.glb", (0.0, 0.0), "inductor_smd.glb")
     importar_y_normalizar_kicad("inductor_toroidal.glb", (0.0, 0.0), "inductor_toroidal.glb")
+    importar_y_normalizar_kicad("l298n.glb", (0.0, 0.0), "l298n.glb")
+    importar_y_normalizar_kicad("drv8833.glb", (0.0, 0.0), "drv8833.glb")
     agregar_bandas_resistencia()
     construir_to92_autopsia()
     construir_rele_autopsia()
@@ -669,3 +747,4 @@ if __name__ == "__main__":
     construir_cap_autopsia()
     construir_diodo_autopsia()
     construir_inductor_autopsia()
+    construir_puente_h_autopsia()
