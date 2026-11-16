@@ -67,6 +67,17 @@ export const CATALOGO_KICAD: ModeloKiCad[] = [
     rutaRelativa: "Diode_THT.3dshapes/D_DO-41_SOD81_P10.16mm_Horizontal.step",
     descripcion: "Diodo rectificador flyback 1N4007 en encapsulado axial DO-41 (1000V 1A)",
   },
+  // Episodio 03: BJT vs. MOSFET de Potencia (IRFZ44N / SOT-223 / Disipador)
+  {
+    id: "dpak",
+    rutaRelativa: "Package_TO_SOT_SMD.3dshapes/SOT-223.step",
+    descripcion: "Encapsulado SMD de potencia con aleta térmica SOT-223 (BSP295, IRFL014N)",
+  },
+  {
+    id: "disipador_to220",
+    rutaRelativa: "Heatsink.3dshapes/Heatsink_Stonecold_HS-132_32x14mm_2xFixation1.5mm.step",
+    descripcion: "Disipador de aluminio extruido para encapsulado TO-220",
+  },
 ];
 
 function generarPcbTemporal(rutaModeloAbs: string): string {

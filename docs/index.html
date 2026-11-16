@@ -847,14 +847,15 @@
           <div class="visor-window">
             <div class="seg-bar" role="tablist">
               <button class="seg-btn active" data-model="to92_autopsia">Autopsia TO-92</button>
+              <button class="seg-btn" data-model="rele_autopsia">Autopsia Relé G5LE</button>
+              <button class="seg-btn" data-model="mosfet_autopsia">Autopsia MOSFET IRFZ44N</button>
               <button class="seg-btn" data-model="to92">TO-92 (THT)</button>
               <button class="seg-btn" data-model="sot23">SOT-23 (SMD)</button>
               <button class="seg-btn" data-model="to220">TO-220 (Potencia)</button>
-              <button class="seg-btn" data-model="rele_autopsia">Autopsia Relé G5LE</button>
-              <button class="seg-btn" data-model="rele_dpdt">Relé Industrial DPDT</button>
+              <button class="seg-btn" data-model="dpak">SOT-223 / DPAK (SMD)</button>
+              <button class="seg-btn" data-model="disipador_to220">Disipador TO-220</button>
+              <button class="seg-btn" data-model="rele_dpdt">Relé DPDT</button>
               <button class="seg-btn" data-model="diodo_1n4007">Diodo 1N4007</button>
-              <button class="seg-btn" data-model="resistencia_axial">Resistencia 1 kΩ</button>
-              <button class="seg-btn" data-model="led5mm">LED 5 mm</button>
             </div>
 
             <div id="three-mount"></div>
@@ -1398,6 +1399,40 @@
           { txt: "Modelo Web (.GLB)", href: "descargas/02-rele/diodo_1n4007.glb", primary: false },
         ],
       },
+      mosfet_autopsia: {
+        sub: "EPISODIO 03 · AUTOPSIA MOSFET HEXFET IRFZ44N (BLENDER 5.0)",
+        title: "MOSFET de Potencia IRFZ44N Abierto",
+        desc: "Corte booleano del encapsulado TO-220 mostrando el sustrato de Drenador N+ sobre la lengüeta térmica, la región P-Body, el óxido aislante de compuerta SiO2 (C_iss = 1470 pF) y la cinta gruesa de aluminio de 49 A.",
+        pinout: "<strong>Pinout IRFZ44N (TO-220):</strong><br>• <strong>Pin 1:</strong> Gate (Compuerta aislada, V_GS = 10 V)<br>• <strong>Pin 2 y Aleta:</strong> Drain (Drenador, 55 V / 49 A)<br>• <strong>Pin 3:</strong> Source (Fuente, R_DS(on) = 17,5 mΩ)",
+        img: "img/frame_cierre.png",
+        escala: 0.22,
+        links: [
+          { txt: "Autopsia MOSFET (.GLB)", href: "descargas/03-mosfet/mosfet_autopsia.glb", primary: true },
+          { txt: "TO-220 CAD (.STEP)", href: "descargas/01-transistor/TO-220_TIP31C.step", primary: false },
+        ],
+      },
+      dpak: {
+        sub: "EPISODIO 03 · POTENCIA EN MONTAJE SUPERFICIAL SOT-223 / DPAK",
+        title: "MOSFET SMD con Lengüeta Térmica",
+        desc: "Transistor de potencia para montaje superficial donde la aleta trasera se suelda directamente a un plano de cobre en la PCB para disipar calor sin tornillos.",
+        pinout: "<strong>Terminales SMD Potencia:</strong><br>• <strong>Pin 1:</strong> Gate · <strong>Pin 2 / Tab:</strong> Drain · <strong>Pin 3:</strong> Source",
+        img: "img/frame_cierre.png",
+        escala: 0.52,
+        links: [
+          { txt: "Modelo Web (.GLB)", href: "descargas/03-mosfet/dpak.glb", primary: true },
+        ],
+      },
+      disipador_to220: {
+        sub: "EPISODIO 03 · GESTIÓN TÉRMICA DE ALUMINIO EXTRUIDO HS-132",
+        title: "Disipador Térmico para TO-220",
+        desc: "Reduce la resistencia térmica con el ambiente para permitir disipaciones superiores a 2 W en transistores BJT y MOSFET en encapsulado TO-220.",
+        pinout: "<strong>Regla de Montaje:</strong><br>• Como la aleta del TO-220 está conectada al Drenador/Colector, usa almohadilla de silicona o mica aislante si el disipador toca chasis o varios transistores.",
+        img: "img/frame_cierre.png",
+        escala: 0.14,
+        links: [
+          { txt: "Disipador 3D (.GLB)", href: "descargas/03-mosfet/disipador_to220.glb", primary: true },
+        ],
+      },
     };
 
     const mount = document.getElementById("three-mount");
@@ -1464,7 +1499,7 @@
       document.getElementById("info-3d-pinout").innerHTML = info.pinout;
       document.getElementById("info-3d-img").src = info.img;
       document.getElementById("autopsia-slider-wrap").style.display =
-        id === "to92_autopsia" || id === "rele_autopsia" ? "flex" : "none";
+        id === "to92_autopsia" || id === "rele_autopsia" || id === "mosfet_autopsia" ? "flex" : "none";
 
       const linksEl = document.getElementById("info-3d-links");
       linksEl.innerHTML = info.links
@@ -1494,13 +1529,13 @@
             ch.material = matCobre;
           } else if (n === "Nucleo_Hierro" || n === "Yugo_Hierro") {
             ch.material = matEstano;
-          } else if (n === "Die_Colector_N") {
+          } else if (n === "Die_Colector_N" || n === "Sustrato_Drenador_N") {
             ch.material = matSilicioN;
-          } else if (n === "Die_Base_P") {
+          } else if (n === "Die_Base_P" || n === "Cuerpo_P_Canal") {
             ch.material = matSilicioP;
-          } else if (n === "Die_Emisor_NPlus") {
+          } else if (n === "Die_Emisor_NPlus" || n === "Celdas_Fuente_NPlus" || n === "Oxido_SiO2_Compuerta") {
             ch.material = matSilicioNPlus;
-          } else if (n.startsWith("Hilo_Oro") || n === "Armadura_Movil") {
+          } else if (n.startsWith("Hilo_Oro") || n === "Armadura_Movil" || n === "Hilo_Gate" || n === "Cinta_Source_49A") {
             ch.material = matOro;
           }
         });
@@ -1508,7 +1543,7 @@
         grupoActual = root;
         scene.add(root);
 
-        if (id === "to92_autopsia" || id === "rele_autopsia") {
+        if (id === "to92_autopsia" || id === "rele_autopsia" || id === "mosfet_autopsia") {
           const val = Number(document.getElementById("slider-apertura").value) / 100;
           actualizarTapaAutopsia(val);
         }

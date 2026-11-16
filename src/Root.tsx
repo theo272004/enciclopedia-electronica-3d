@@ -1,8 +1,10 @@
 import { Composition, staticFile, type CalculateMetadataFunction } from "remotion";
 import { GUION, type FormatoVideo, type Idioma } from "./guion";
+import { GUION_MOSFET } from "./guion-mosfet";
 import { GUION_RELE } from "./guion-rele";
 import { construirEscenas, duracionTotal, FPS, type Manifest } from "./tiempo";
 import { Video, type VideoProps } from "./Video";
+import { VideoMosfet } from "./VideoMosfet";
 import { VideoRele } from "./VideoRele";
 
 const crearCalculador =
@@ -22,6 +24,7 @@ const crearCalculador =
 
 const calcularTransistor = crearCalculador("voz", GUION);
 const calcularRele = crearCalculador("voz-rele", GUION_RELE);
+const calcularMosfet = crearCalculador("voz-mosfet", GUION_MOSFET);
 
 const composiciones: {
   id: string;
@@ -42,6 +45,11 @@ const composiciones: {
   { id: "Rele-EN", idioma: "en", formato: "16:9", width: 1920, height: 1080, component: VideoRele, calculateMetadata: calcularRele },
   { id: "Rele-Short-ES", idioma: "es", formato: "9:16", width: 1080, height: 1920, component: VideoRele, calculateMetadata: calcularRele },
   { id: "Rele-Short-EN", idioma: "en", formato: "9:16", width: 1080, height: 1920, component: VideoRele, calculateMetadata: calcularRele },
+  // Episodio 03: BJT vs. MOSFET de Potencia (IRFZ44N)
+  { id: "Mosfet-ES", idioma: "es", formato: "16:9", width: 1920, height: 1080, component: VideoMosfet, calculateMetadata: calcularMosfet },
+  { id: "Mosfet-EN", idioma: "en", formato: "16:9", width: 1920, height: 1080, component: VideoMosfet, calculateMetadata: calcularMosfet },
+  { id: "Mosfet-Short-ES", idioma: "es", formato: "9:16", width: 1080, height: 1920, component: VideoMosfet, calculateMetadata: calcularMosfet },
+  { id: "Mosfet-Short-EN", idioma: "en", formato: "9:16", width: 1080, height: 1920, component: VideoMosfet, calculateMetadata: calcularMosfet },
 ];
 
 export const Root: React.FC = () => (

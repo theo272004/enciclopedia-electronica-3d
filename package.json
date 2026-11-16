@@ -17,6 +17,10 @@
     "render:rele:en": "remotion render Rele-EN out/rele-en.mp4",
     "render:rele:short:es": "remotion render Rele-Short-ES out/rele-short-es.mp4",
     "render:rele:short:en": "remotion render Rele-Short-EN out/rele-short-en.mp4",
+    "render:mosfet:es": "remotion render Mosfet-ES out/mosfet-es.mp4",
+    "render:mosfet:en": "remotion render Mosfet-EN out/mosfet-en.mp4",
+    "render:mosfet:short:es": "remotion render Mosfet-Short-ES out/mosfet-short-es.mp4",
+    "render:mosfet:short:en": "remotion render Mosfet-Short-EN out/mosfet-short-en.mp4",
     "youtube:kit": "tsx scripts/generar-kit-youtube.ts",
     "typecheck": "tsc --noEmit"
   },

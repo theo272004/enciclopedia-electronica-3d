@@ -298,7 +298,7 @@ export const TransistorAutopsia: React.FC<{
   );
 };
 
-// ---------- Encapsulados Reales de KiCad 9.0 (TO-92, SOT-23, TO-220, Relés y Diodo) ----------
+// ---------- Encapsulados Reales de KiCad 9.0 (TO-92, SOT-23, TO-220, Relés, Diodo, MOSFETs y Disipador) ----------
 export type TipoModeloKiCad =
   | "to92"
   | "sot23"
@@ -306,7 +306,9 @@ export type TipoModeloKiCad =
   | "rele_spdt"
   | "rele_dpdt"
   | "rele_smd"
-  | "diodo_1n4007";
+  | "diodo_1n4007"
+  | "dpak"
+  | "disipador_to220";
 
 export const EncapsuladoKiCad: React.FC<{
   tipo: TipoModeloKiCad;
@@ -334,11 +336,106 @@ export const EncapsuladoKiCad: React.FC<{
     <group position={posicion} scale={escala} rotation-y={rotacionY}>
       {mallas.map((m) => {
         let mat: THREE.Material = MAT.resina;
-        if (m.name.startsWith("Pines")) mat = MAT.estano;
+        if (m.name.startsWith("Pines") || tipo === "disipador_to220") mat = MAT.estano;
         else if (m.name.startsWith("Lente")) mat = MAT.cobre;
         else if (tipo === "rele_spdt" || tipo === "rele_dpdt") mat = matAzulRele;
         return <mesh key={m.name} geometry={m.geometry} material={mat} castShadow receiveShadow />;
       })}
+    </group>
+  );
+};
+
+// ---------- Autopsia 3D del MOSFET HEXFET IRFZ44N (TO-220 en Blender 5.0) ----------
+export type CapaMosfet = "todas" | "oxido" | "canal" | "drenador" | "fuente";
+
+export const MosfetAutopsia: React.FC<{
+  posicion?: [number, number, number];
+  escala?: number;
+  apertura: number;
+  campoGate: number; // 0..1 voltaje en compuerta formando el canal N
+  resaltar?: CapaMosfet;
+}> = ({ posicion = [0, 0, 0], escala = 0.24, apertura, campoGate, resaltar = "todas" }) => {
+  const gltf = useGLTF(staticFile("modelos/mosfet_autopsia.glb"));
+  const partes = useMemo(() => {
+    const mapa: Record<string, THREE.BufferGeometry> = {};
+    gltf.scene.traverse((child) => {
+      if ((child as THREE.Mesh).isMesh) {
+        mapa[child.name] = (child as THREE.Mesh).geometry;
+      }
+    });
+    return mapa;
+  }, [gltf]);
+
+  const matTapa = useMemo(
+    () =>
+      new THREE.MeshPhysicalMaterial({
+        color: "#161920",
+        roughness: 0.3,
+        clearcoat: 0.35,
+        transparent: true,
+        opacity: Math.max(0.16, 1 - apertura * 0.76),
+      }),
+    [apertura],
+  );
+  const matOxido = useMemo(
+    () =>
+      new THREE.MeshPhysicalMaterial({
+        color: "#a855f7",
+        roughness: 0.15,
+        emissive: new THREE.Color("#9333ea"),
+        emissiveIntensity: (resaltar === "oxido" ? 2.8 : 0.6) + campoGate * 1.6,
+      }),
+    [resaltar, campoGate],
+  );
+  const matCanal = useMemo(
+    () =>
+      new THREE.MeshPhysicalMaterial({
+        color: "#ff9f1c",
+        roughness: 0.2,
+        emissive: new THREE.Color(campoGate > 0.5 ? "#3de0ff" : "#ff8c00"),
+        emissiveIntensity: (resaltar === "canal" ? 2.6 : 0.5) + campoGate * 1.8,
+      }),
+    [resaltar, campoGate],
+  );
+  const matDrenador = useMemo(
+    () =>
+      new THREE.MeshPhysicalMaterial({
+        color: "#1f9eff",
+        roughness: 0.2,
+        emissive: new THREE.Color("#0284c7"),
+        emissiveIntensity: resaltar === "drenador" ? 2.6 : 0.55 + campoGate * 1.2,
+      }),
+    [resaltar, campoGate],
+  );
+  const matFuente = useMemo(
+    () =>
+      new THREE.MeshPhysicalMaterial({
+        color: "#2ee59d",
+        roughness: 0.18,
+        emissive: new THREE.Color("#10b981"),
+        emissiveIntensity: resaltar === "fuente" ? 2.8 : 0.7 + campoGate * 1.4,
+      }),
+    [resaltar, campoGate],
+  );
+
+  return (
+    <group position={posicion} scale={escala}>
+      {partes.Pines_Metal && <mesh geometry={partes.Pines_Metal} material={MAT.estano} castShadow />}
+      {partes.Carcasa_Base && <mesh geometry={partes.Carcasa_Base} material={MAT.resina} castShadow receiveShadow />}
+      {partes.Carcasa_Corte && (
+        <mesh
+          geometry={partes.Carcasa_Corte}
+          material={matTapa}
+          position={[apertura * 3.8, apertura * 1.2, apertura * 4.5]}
+          rotation={[apertura * -0.16, apertura * 0.28, 0]}
+        />
+      )}
+      {partes.Sustrato_Drenador_N && <mesh geometry={partes.Sustrato_Drenador_N} material={matDrenador} />}
+      {partes.Cuerpo_P_Canal && <mesh geometry={partes.Cuerpo_P_Canal} material={matCanal} />}
+      {partes.Oxido_SiO2_Compuerta && <mesh geometry={partes.Oxido_SiO2_Compuerta} material={matOxido} />}
+      {partes.Celdas_Fuente_NPlus && <mesh geometry={partes.Celdas_Fuente_NPlus} material={matFuente} />}
+      {partes.Hilo_Gate && <mesh geometry={partes.Hilo_Gate} material={MAT.aluminio} />}
+      {partes.Cinta_Source_49A && <mesh geometry={partes.Cinta_Source_49A} material={MAT.aluminio} />}
     </group>
   );
 };
@@ -662,3 +759,6 @@ useGLTF.preload(staticFile("modelos/rele_autopsia.glb"));
 useGLTF.preload(staticFile("modelos/rele_dpdt.glb"));
 useGLTF.preload(staticFile("modelos/rele_smd.glb"));
 useGLTF.preload(staticFile("modelos/diodo_1n4007.glb"));
+useGLTF.preload(staticFile("modelos/mosfet_autopsia.glb"));
+useGLTF.preload(staticFile("modelos/dpak.glb"));
+useGLTF.preload(staticFile("modelos/disipador_to220.glb"));

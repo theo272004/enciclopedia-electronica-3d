@@ -9,10 +9,12 @@ const DOCS_DIR = path.resolve("docs");
 const MODELOS_WEB_DIR = path.join(DOCS_DIR, "modelos");
 const DESCARGAS_DIR = path.join(DOCS_DIR, "descargas", "01-transistor");
 const DESCARGAS_RELE_DIR = path.join(DOCS_DIR, "descargas", "02-rele");
+const DESCARGAS_MOSFET_DIR = path.join(DOCS_DIR, "descargas", "03-mosfet");
 
 fs.mkdirSync(MODELOS_WEB_DIR, { recursive: true });
 fs.mkdirSync(DESCARGAS_DIR, { recursive: true });
 fs.mkdirSync(DESCARGAS_RELE_DIR, { recursive: true });
+fs.mkdirSync(DESCARGAS_MOSFET_DIR, { recursive: true });
 
 // 1. Copiar modelos GLB optimizados para el visor 3D web y para descarga
 const glbs = [
@@ -28,13 +30,21 @@ const glbs = [
   "rele_dpdt.glb",
   "rele_smd.glb",
   "diodo_1n4007.glb",
+  "mosfet_autopsia.glb",
+  "dpak.glb",
+  "disipador_to220.glb",
 ];
 
 for (const archivo of glbs) {
   const origen = path.resolve("public/modelos", archivo);
   if (fs.existsSync(origen)) {
     fs.copyFileSync(origen, path.join(MODELOS_WEB_DIR, archivo));
-    const destCarpeta = archivo.startsWith("rele") || archivo.startsWith("diodo") ? DESCARGAS_RELE_DIR : DESCARGAS_DIR;
+    const destCarpeta =
+      archivo.startsWith("mosfet") || archivo === "dpak.glb" || archivo === "disipador_to220.glb"
+        ? DESCARGAS_MOSFET_DIR
+        : archivo.startsWith("rele") || archivo.startsWith("diodo")
+          ? DESCARGAS_RELE_DIR
+          : DESCARGAS_DIR;
     fs.copyFileSync(origen, path.join(destCarpeta, archivo));
   }
 }

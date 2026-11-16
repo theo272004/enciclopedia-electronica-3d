@@ -384,6 +384,100 @@ def construir_rele_autopsia():
     print(f"✔ Modelo Relé Omron G5LE-1 con autopsia interna exportado: {out_path}")
 
 
+def construir_mosfet_autopsia():
+    """
+    Toma el modelo real TO-220-3 de KiCad 9.0 (IRFZ44N), practica un corte booleano
+    en la resina frontal y modela la arquitectura interna de un MOSFET de potencia HEXFET:
+    - Sustrato_Drenador_N (unido térmicamente a la aleta metálica trasera)
+    - Cuerpo_P_Canal (región donde se induce el canal N por campo eléctrico)
+    - Oxido_SiO2_Compuerta (aislante dieléctrico SiO2 + polisilicio de Gate)
+    - Celdas_Fuente_NPlus (matriz hexagonal/celular superior de Source)
+    - Hilos gruesos de aluminio para soportar 49 A en Source y enlace a Gate
+    """
+    partes = importar_y_normalizar_kicad("to220.glb", (2.54, 0.0))
+    carcasa = next(p for p in partes if p.name.startswith("Encapsulado"))
+    pines = next(p for p in partes if p.name.startswith("Pines"))
+    carcasa.name = "Carcasa_Base"
+    carcasa.data.name = "Carcasa_Base"
+    pines.name = "Pines_Metal"
+    pines.data.name = "Pines_Metal"
+
+    carcasa_tapa = carcasa.copy()
+    carcasa_tapa.data = carcasa.data.copy()
+    carcasa_tapa.name = "Carcasa_Corte"
+    carcasa_tapa.data.name = "Carcasa_Corte"
+    bpy.context.collection.objects.link(carcasa_tapa)
+
+    # El cuerpo epóxico del TO-220 va en X: -5.1..+5.1, Y: -1.3..+3.15, Z: 3.68..12.88 mm
+    bpy.ops.mesh.primitive_cube_add(size=1.0, location=(0.2, -0.4, 8.3))
+    cavidad = bpy.context.active_object
+    cavidad.scale = (8.4, 3.2, 7.4)
+    bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+
+    mod_diff = carcasa.modifiers.new(name="Cavidad_Mosfet", type="BOOLEAN")
+    mod_diff.operation = "DIFFERENCE"
+    mod_diff.solver = "FLOAT"
+    mod_diff.object = cavidad
+    bpy.context.view_layer.objects.active = carcasa
+    bpy.ops.object.modifier_apply(modifier=mod_diff.name)
+
+    mod_int = carcasa_tapa.modifiers.new(name="Tapa_Mosfet", type="BOOLEAN")
+    mod_int.operation = "INTERSECT"
+    mod_int.solver = "FLOAT"
+    mod_int.object = cavidad
+    bpy.context.view_layer.objects.active = carcasa_tapa
+    bpy.ops.object.modifier_apply(modifier=mod_int.name)
+
+    bpy.data.objects.remove(cavidad, do_unlink=True)
+
+    mat_drenador = crear_material_pbr("Silicio_Drenador_N", (0.10, 0.55, 0.95, 1.0), metalness=0.3, roughness=0.2, emissive=(0.05, 0.35, 0.75), emissive_strength=0.45)
+    mat_canal_p = crear_material_pbr("Silicio_Canal_P", (1.0, 0.58, 0.12, 1.0), metalness=0.2, roughness=0.2, emissive=(0.80, 0.38, 0.05), emissive_strength=0.65)
+    mat_oxido = crear_material_pbr("Oxido_SiO2_Gate", (0.68, 0.32, 1.0, 1.0), metalness=0.1, roughness=0.12, emissive=(0.55, 0.20, 0.95), emissive_strength=0.85)
+    mat_fuente = crear_material_pbr("Celdas_Fuente_NPlus", (0.18, 0.95, 0.78, 1.0), metalness=0.35, roughness=0.18, emissive=(0.10, 0.85, 0.65), emissive_strength=0.75)
+    mat_aluminio = crear_material_pbr("Aluminio_BondWire", (0.92, 0.95, 0.98, 1.0), metalness=1.0, roughness=0.16)
+
+    def crear_capa(nombre, loc, dim, mat):
+        bpy.ops.mesh.primitive_cube_add(size=1.0, location=loc)
+        c = bpy.context.active_object
+        c.scale = dim
+        bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+        c.name = nombre
+        c.data.name = nombre
+        c.data.materials.append(mat)
+        return c
+
+    # 1. Sustrato inferior N+ de Drenador (gran área para R_DS(on) = 17.5 mΩ)
+    crear_capa("Sustrato_Drenador_N", (0.0, 1.15, 8.2), (5.2, 0.45, 4.8), mat_drenador)
+    # 2. Región P-Body donde se induce el canal de inversión
+    crear_capa("Cuerpo_P_Canal", (0.0, 0.78, 8.2), (4.6, 0.30, 4.2), mat_canal_p)
+    # 3. Capa aislante de Óxido de Compuerta SiO2 + Polisilicio (Capacitor C_iss = 1470 pF)
+    crear_capa("Oxido_SiO2_Compuerta", (-0.8, 0.52, 8.2), (2.8, 0.22, 3.6), mat_oxido)
+    # 4. Matriz superior de celdas HEXFET de Fuente (Source N+)
+    crear_capa("Celdas_Fuente_NPlus", (0.7, 0.32, 8.2), (2.6, 0.24, 3.4), mat_fuente)
+
+    # 5. Enlaces internos: Hilo de Gate (Pin 1 en x=-2.54) y Cinta gruesa de Source (Pin 3 en x=+2.54)
+    crear_hilo_oro(
+        "Hilo_Gate",
+        Vector((-1.5, 0.40, 7.4)),
+        Vector((-2.1, -0.35, 6.2)),
+        Vector((-2.54, 0.0, 4.2)),
+        radio=0.09,
+        mat=mat_aluminio,
+    )
+    crear_hilo_oro(
+        "Cinta_Source_49A",
+        Vector((1.1, 0.20, 8.2)),
+        Vector((2.0, -0.45, 6.4)),
+        Vector((2.54, 0.0, 4.2)),
+        radio=0.18,
+        mat=mat_aluminio,
+    )
+
+    out_path = os.path.join(MODELOS_DIR, "mosfet_autopsia.glb")
+    bpy.ops.export_scene.gltf(filepath=out_path, export_format="GLB", export_apply=True)
+    print(f"✔ Modelo MOSFET TO-220 IRFZ44N con autopsia interna HEXFET exportado: {out_path}")
+
+
 if __name__ == "__main__":
     importar_y_normalizar_kicad("to92.glb", (1.27, 0.0), "to92.glb")
     importar_y_normalizar_kicad("to220.glb", (2.54, 0.0), "to220.glb")
@@ -394,6 +488,9 @@ if __name__ == "__main__":
     importar_y_normalizar_kicad("rele_dpdt.glb", (11.5, -3.75), "rele_dpdt.glb")
     importar_y_normalizar_kicad("rele_smd.glb", (0.0, 0.0), "rele_smd.glb")
     importar_y_normalizar_kicad("diodo_1n4007.glb", (5.08, 0.0), "diodo_1n4007.glb")
+    importar_y_normalizar_kicad("dpak.glb", (0.0, 0.0), "dpak.glb")
+    importar_y_normalizar_kicad("disipador_to220.glb", (16.0, 0.0), "disipador_to220.glb")
     agregar_bandas_resistencia()
     construir_to92_autopsia()
     construir_rele_autopsia()
+    construir_mosfet_autopsia()

@@ -1,0 +1,1453 @@
+{
+  "idioma": "es",
+  "escenas": [
+    {
+      "id": "intro",
+      "archivo": "voz-mosfet/es/intro.mp3",
+      "duracion": 19.876281,
+      "hash": "4b241ab8c0e35efbf487dc9519dce615d2aa8c06",
+      "palabras": [
+        {
+          "texto": "Por",
+          "inicio": 0,
+          "fin": 0.221
+        },
+        {
+          "texto": "fuera",
+          "inicio": 0.279,
+          "fin": 0.499
+        },
+        {
+          "texto": "lucen",
+          "inicio": 0.546,
+          "fin": 0.813
+        },
+        {
+          "texto": "idénticos",
+          "inicio": 0.871,
+          "fin": 1.463
+        },
+        {
+          "texto": "en",
+          "inicio": 1.521,
+          "fin": 1.567
+        },
+        {
+          "texto": "el",
+          "inicio": 1.625,
+          "fin": 1.683
+        },
+        {
+          "texto": "mismo",
+          "inicio": 1.741,
+          "fin": 2.055
+        },
+        {
+          "texto": "encapsulado",
+          "inicio": 2.09,
+          "fin": 2.798
+        },
+        {
+          "texto": "TO-220,",
+          "inicio": 2.914,
+          "fin": 4.412
+        },
+        {
+          "texto": "pero",
+          "inicio": 4.853,
+          "fin": 5.039
+        },
+        {
+          "texto": "por",
+          "inicio": 5.097,
+          "fin": 5.248
+        },
+        {
+          "texto": "dentro",
+          "inicio": 5.306,
+          "fin": 5.608
+        },
+        {
+          "texto": "pertenecen",
+          "inicio": 5.666,
+          "fin": 6.223
+        },
+        {
+          "texto": "a",
+          "inicio": 6.281,
+          "fin": 6.304
+        },
+        {
+          "texto": "dos",
+          "inicio": 6.351,
+          "fin": 6.513
+        },
+        {
+          "texto": "mundos",
+          "inicio": 6.594,
+          "fin": 6.978
+        },
+        {
+          "texto": "distintos.",
+          "inicio": 7.001,
+          "fin": 7.802
+        },
+        {
+          "texto": "Mientras",
+          "inicio": 8.499,
+          "fin": 8.963
+        },
+        {
+          "texto": "un",
+          "inicio": 9.044,
+          "fin": 9.102
+        },
+        {
+          "texto": "transistor",
+          "inicio": 9.137,
+          "fin": 9.671
+        },
+        {
+          "texto": "BJT",
+          "inicio": 9.752,
+          "fin": 10.275
+        },
+        {
+          "texto": "exige",
+          "inicio": 10.449,
+          "fin": 10.925
+        },
+        {
+          "texto": "corriente",
+          "inicio": 10.995,
+          "fin": 11.447
+        },
+        {
+          "texto": "continua",
+          "inicio": 11.505,
+          "fin": 12.086
+        },
+        {
+          "texto": "y",
+          "inicio": 12.156,
+          "fin": 12.225
+        },
+        {
+          "texto": "se",
+          "inicio": 12.307,
+          "fin": 12.388
+        },
+        {
+          "texto": "calienta",
+          "inicio": 12.446,
+          "fin": 12.852
+        },
+        {
+          "texto": "con",
+          "inicio": 12.899,
+          "fin": 13.026
+        },
+        {
+          "texto": "cargas",
+          "inicio": 13.084,
+          "fin": 13.433
+        },
+        {
+          "texto": "grandes,",
+          "inicio": 13.479,
+          "fin": 14.083
+        },
+        {
+          "texto": "el",
+          "inicio": 14.362,
+          "fin": 14.512
+        },
+        {
+          "texto": "MOSFET",
+          "inicio": 14.582,
+          "fin": 15.128
+        },
+        {
+          "texto": "controla",
+          "inicio": 15.511,
+          "fin": 15.987
+        },
+        {
+          "texto": "casi",
+          "inicio": 16.057,
+          "fin": 16.37
+        },
+        {
+          "texto": "50",
+          "inicio": 16.486,
+          "fin": 17.008
+        },
+        {
+          "texto": "amperios",
+          "inicio": 17.078,
+          "fin": 17.612
+        },
+        {
+          "texto": "usando",
+          "inicio": 17.682,
+          "fin": 18.018
+        },
+        {
+          "texto": "solo",
+          "inicio": 18.088,
+          "fin": 18.355
+        },
+        {
+          "texto": "un",
+          "inicio": 18.413,
+          "fin": 18.471
+        },
+        {
+          "texto": "campo",
+          "inicio": 18.552,
+          "fin": 18.877
+        },
+        {
+          "texto": "eléctrico.",
+          "inicio": 18.912,
+          "fin": 19.876
+        }
+      ]
+    },
+    {
+      "id": "autopsia",
+      "archivo": "voz-mosfet/es/autopsia.mp3",
+      "duracion": 25.913469,
+      "hash": "963a3a9499fa165d4f9c59e9dfc0baa23998fea2",
+      "palabras": [
+        {
+          "texto": "Si",
+          "inicio": 0,
+          "fin": 0.197
+        },
+        {
+          "texto": "abrimos",
+          "inicio": 0.244,
+          "fin": 0.639
+        },
+        {
+          "texto": "un",
+          "inicio": 0.755,
+          "fin": 0.882
+        },
+        {
+          "texto": "MOSFET",
+          "inicio": 0.964,
+          "fin": 1.579
+        },
+        {
+          "texto": "IRFZ44N,",
+          "inicio": 1.695,
+          "fin": 3.959
+        },
+        {
+          "texto": "vemos",
+          "inicio": 4.203,
+          "fin": 4.528
+        },
+        {
+          "texto": "por",
+          "inicio": 4.598,
+          "fin": 4.737
+        },
+        {
+          "texto": "qué",
+          "inicio": 4.807,
+          "fin": 4.923
+        },
+        {
+          "texto": "es",
+          "inicio": 4.981,
+          "fin": 5.05
+        },
+        {
+          "texto": "tan",
+          "inicio": 5.097,
+          "fin": 5.224
+        },
+        {
+          "texto": "eficiente:",
+          "inicio": 5.259,
+          "fin": 6.084
+        },
+        {
+          "texto": "su",
+          "inicio": 6.525,
+          "fin": 6.676
+        },
+        {
+          "texto": "compuerta",
+          "inicio": 6.745,
+          "fin": 7.245
+        },
+        {
+          "texto": "está",
+          "inicio": 7.279,
+          "fin": 7.442
+        },
+        {
+          "texto": "separada",
+          "inicio": 7.5,
+          "fin": 7.941
+        },
+        {
+          "texto": "del",
+          "inicio": 7.988,
+          "fin": 8.104
+        },
+        {
+          "texto": "silicio",
+          "inicio": 8.162,
+          "fin": 8.638
+        },
+        {
+          "texto": "por",
+          "inicio": 8.696,
+          "fin": 8.835
+        },
+        {
+          "texto": "una",
+          "inicio": 8.882,
+          "fin": 9.021
+        },
+        {
+          "texto": "capa",
+          "inicio": 9.079,
+          "fin": 9.381
+        },
+        {
+          "texto": "nanométrica",
+          "inicio": 9.427,
+          "fin": 10.159
+        },
+        {
+          "texto": "de",
+          "inicio": 10.217,
+          "fin": 10.286
+        },
+        {
+          "texto": "dióxido",
+          "inicio": 10.356,
+          "fin": 10.844
+        },
+        {
+          "texto": "de",
+          "inicio": 10.902,
+          "fin": 10.971
+        },
+        {
+          "texto": "silicio",
+          "inicio": 11.018,
+          "fin": 11.505
+        },
+        {
+          "texto": "aislante.",
+          "inicio": 11.529,
+          "fin": 12.307
+        },
+        {
+          "texto": "Al",
+          "inicio": 12.817,
+          "fin": 12.968
+        },
+        {
+          "texto": "aplicar",
+          "inicio": 13.015,
+          "fin": 13.421
+        },
+        {
+          "texto": "voltaje",
+          "inicio": 13.479,
+          "fin": 14.013
+        },
+        {
+          "texto": "en",
+          "inicio": 14.06,
+          "fin": 14.106
+        },
+        {
+          "texto": "la",
+          "inicio": 14.164,
+          "fin": 14.234
+        },
+        {
+          "texto": "compuerta,",
+          "inicio": 14.292,
+          "fin": 15
+        },
+        {
+          "texto": "el",
+          "inicio": 15.209,
+          "fin": 15.36
+        },
+        {
+          "texto": "campo",
+          "inicio": 15.418,
+          "fin": 15.685
+        },
+        {
+          "texto": "eléctrico",
+          "inicio": 15.72,
+          "fin": 16.208
+        },
+        {
+          "texto": "atrae",
+          "inicio": 16.266,
+          "fin": 16.625
+        },
+        {
+          "texto": "electrones",
+          "inicio": 16.66,
+          "fin": 17.334
+        },
+        {
+          "texto": "y",
+          "inicio": 17.508,
+          "fin": 17.589
+        },
+        {
+          "texto": "crea",
+          "inicio": 17.67,
+          "fin": 17.891
+        },
+        {
+          "texto": "un",
+          "inicio": 17.937,
+          "fin": 18.007
+        },
+        {
+          "texto": "canal",
+          "inicio": 18.065,
+          "fin": 18.344
+        },
+        {
+          "texto": "conductor",
+          "inicio": 18.402,
+          "fin": 18.924
+        },
+        {
+          "texto": "con",
+          "inicio": 18.994,
+          "fin": 19.122
+        },
+        {
+          "texto": "apenas",
+          "inicio": 19.18,
+          "fin": 19.574
+        },
+        {
+          "texto": "17.5",
+          "inicio": 19.644,
+          "fin": 20.852
+        },
+        {
+          "texto": "miliohmios",
+          "inicio": 21.002,
+          "fin": 21.815
+        },
+        {
+          "texto": "de",
+          "inicio": 21.85,
+          "fin": 21.908
+        },
+        {
+          "texto": "resistencia",
+          "inicio": 21.978,
+          "fin": 22.709
+        },
+        {
+          "texto": "y",
+          "inicio": 22.988,
+          "fin": 23.104
+        },
+        {
+          "texto": "cero",
+          "inicio": 23.22,
+          "fin": 23.522
+        },
+        {
+          "texto": "corriente",
+          "inicio": 23.591,
+          "fin": 24.056
+        },
+        {
+          "texto": "continua",
+          "inicio": 24.126,
+          "fin": 24.625
+        },
+        {
+          "texto": "de",
+          "inicio": 24.66,
+          "fin": 24.729
+        },
+        {
+          "texto": "control.",
+          "inicio": 24.776,
+          "fin": 25.913
+        }
+      ]
+    },
+    {
+      "id": "partes",
+      "archivo": "voz-mosfet/es/partes.mp3",
+      "duracion": 22.198277,
+      "hash": "ed60d736dba81cbc906865b178919e5538bbd900",
+      "palabras": [
+        {
+          "texto": "Sus",
+          "inicio": 0,
+          "fin": 0.29
+        },
+        {
+          "texto": "tres",
+          "inicio": 0.337,
+          "fin": 0.546
+        },
+        {
+          "texto": "terminales",
+          "inicio": 0.592,
+          "fin": 1.219
+        },
+        {
+          "texto": "son",
+          "inicio": 1.242,
+          "fin": 1.544
+        },
+        {
+          "texto": "Compuerta,",
+          "inicio": 1.66,
+          "fin": 2.531
+        },
+        {
+          "texto": "Drenador",
+          "inicio": 2.624,
+          "fin": 3.216
+        },
+        {
+          "texto": "y",
+          "inicio": 3.332,
+          "fin": 3.425
+        },
+        {
+          "texto": "Fuente.",
+          "inicio": 3.529,
+          "fin": 4.168
+        },
+        {
+          "texto": "Pero",
+          "inicio": 4.481,
+          "fin": 4.702
+        },
+        {
+          "texto": "cuidado",
+          "inicio": 4.737,
+          "fin": 5.085
+        },
+        {
+          "texto": "con",
+          "inicio": 5.143,
+          "fin": 5.248
+        },
+        {
+          "texto": "la",
+          "inicio": 5.283,
+          "fin": 5.329
+        },
+        {
+          "texto": "trampa",
+          "inicio": 5.375,
+          "fin": 5.7
+        },
+        {
+          "texto": "más",
+          "inicio": 5.759,
+          "fin": 5.956
+        },
+        {
+          "texto": "común",
+          "inicio": 6.026,
+          "fin": 6.351
+        },
+        {
+          "texto": "de",
+          "inicio": 6.397,
+          "fin": 6.467
+        },
+        {
+          "texto": "su",
+          "inicio": 6.513,
+          "fin": 6.618
+        },
+        {
+          "texto": "hoja",
+          "inicio": 6.699,
+          "fin": 6.896
+        },
+        {
+          "texto": "de",
+          "inicio": 6.954,
+          "fin": 7.024
+        },
+        {
+          "texto": "datos:",
+          "inicio": 7.082,
+          "fin": 7.663
+        },
+        {
+          "texto": "aunque",
+          "inicio": 8.162,
+          "fin": 8.417
+        },
+        {
+          "texto": "su",
+          "inicio": 8.475,
+          "fin": 8.557
+        },
+        {
+          "texto": "voltaje",
+          "inicio": 8.615,
+          "fin": 9.056
+        },
+        {
+          "texto": "umbral",
+          "inicio": 9.125,
+          "fin": 9.497
+        },
+        {
+          "texto": "dice",
+          "inicio": 9.543,
+          "fin": 9.845
+        },
+        {
+          "texto": "2",
+          "inicio": 9.961,
+          "fin": 10.089
+        },
+        {
+          "texto": "a",
+          "inicio": 10.205,
+          "fin": 10.252
+        },
+        {
+          "texto": "4",
+          "inicio": 10.356,
+          "fin": 10.53
+        },
+        {
+          "texto": "voltios,",
+          "inicio": 10.646,
+          "fin": 11.285
+        },
+        {
+          "texto": "ahí",
+          "inicio": 11.529,
+          "fin": 11.726
+        },
+        {
+          "texto": "apenas",
+          "inicio": 11.784,
+          "fin": 12.132
+        },
+        {
+          "texto": "conduce",
+          "inicio": 12.19,
+          "fin": 12.632
+        },
+        {
+          "texto": "microamperios.",
+          "inicio": 12.713,
+          "fin": 13.793
+        },
+        {
+          "texto": "Un",
+          "inicio": 14.292,
+          "fin": 14.524
+        },
+        {
+          "texto": "IRFZ44N",
+          "inicio": 14.594,
+          "fin": 16.626
+        },
+        {
+          "texto": "estándar",
+          "inicio": 16.742,
+          "fin": 17.253
+        },
+        {
+          "texto": "exige",
+          "inicio": 17.334,
+          "fin": 17.81
+        },
+        {
+          "texto": "10",
+          "inicio": 17.903,
+          "fin": 18.147
+        },
+        {
+          "texto": "voltios",
+          "inicio": 18.228,
+          "fin": 18.646
+        },
+        {
+          "texto": "en",
+          "inicio": 18.704,
+          "fin": 18.75
+        },
+        {
+          "texto": "la",
+          "inicio": 18.797,
+          "fin": 18.855
+        },
+        {
+          "texto": "compuerta",
+          "inicio": 18.913,
+          "fin": 19.459
+        },
+        {
+          "texto": "para",
+          "inicio": 19.517,
+          "fin": 19.702
+        },
+        {
+          "texto": "abrir",
+          "inicio": 19.726,
+          "fin": 20.004
+        },
+        {
+          "texto": "su",
+          "inicio": 20.051,
+          "fin": 20.167
+        },
+        {
+          "texto": "canal",
+          "inicio": 20.213,
+          "fin": 20.538
+        },
+        {
+          "texto": "al",
+          "inicio": 20.596,
+          "fin": 20.678
+        },
+        {
+          "texto": "cien",
+          "inicio": 20.736,
+          "fin": 20.968
+        },
+        {
+          "texto": "por",
+          "inicio": 21.038,
+          "fin": 21.2
+        },
+        {
+          "texto": "ciento.",
+          "inicio": 21.247,
+          "fin": 22.199
+        }
+      ]
+    },
+    {
+      "id": "circuito",
+      "archivo": "voz-mosfet/es/circuito.mp3",
+      "duracion": 24.845351,
+      "hash": "e8f9f21c2ddc9b2c8304a56721327455840efa43",
+      "palabras": [
+        {
+          "texto": "Además,",
+          "inicio": 0,
+          "fin": 0.801
+        },
+        {
+          "texto": "esa",
+          "inicio": 1.01,
+          "fin": 1.254
+        },
+        {
+          "texto": "capa",
+          "inicio": 1.312,
+          "fin": 1.579
+        },
+        {
+          "texto": "aislante",
+          "inicio": 1.602,
+          "fin": 2.09
+        },
+        {
+          "texto": "convierte",
+          "inicio": 2.159,
+          "fin": 2.601
+        },
+        {
+          "texto": "la",
+          "inicio": 2.647,
+          "fin": 2.705
+        },
+        {
+          "texto": "compuerta",
+          "inicio": 2.752,
+          "fin": 3.251
+        },
+        {
+          "texto": "en",
+          "inicio": 3.274,
+          "fin": 3.332
+        },
+        {
+          "texto": "un",
+          "inicio": 3.425,
+          "fin": 3.495
+        },
+        {
+          "texto": "capacitor",
+          "inicio": 3.553,
+          "fin": 4.18
+        },
+        {
+          "texto": "interno",
+          "inicio": 4.238,
+          "fin": 4.714
+        },
+        {
+          "texto": "de",
+          "inicio": 4.772,
+          "fin": 4.853
+        },
+        {
+          "texto": "1,470",
+          "inicio": 4.969,
+          "fin": 6.223
+        },
+        {
+          "texto": "picofaradios.",
+          "inicio": 6.316,
+          "fin": 7.372
+        },
+        {
+          "texto": "Al",
+          "inicio": 8.069,
+          "fin": 8.231
+        },
+        {
+          "texto": "conmutar",
+          "inicio": 8.29,
+          "fin": 8.754
+        },
+        {
+          "texto": "por",
+          "inicio": 8.824,
+          "fin": 8.975
+        },
+        {
+          "texto": "PWM",
+          "inicio": 9.067,
+          "fin": 9.741
+        },
+        {
+          "texto": "a",
+          "inicio": 9.892,
+          "fin": 9.961
+        },
+        {
+          "texto": "miles",
+          "inicio": 10.043,
+          "fin": 10.414
+        },
+        {
+          "texto": "de",
+          "inicio": 10.461,
+          "fin": 10.53
+        },
+        {
+          "texto": "hercios,",
+          "inicio": 10.577,
+          "fin": 11.262
+        },
+        {
+          "texto": "necesitas",
+          "inicio": 11.436,
+          "fin": 11.97
+        },
+        {
+          "texto": "una",
+          "inicio": 12.04,
+          "fin": 12.167
+        },
+        {
+          "texto": "resistencia",
+          "inicio": 12.214,
+          "fin": 12.783
+        },
+        {
+          "texto": "de",
+          "inicio": 12.829,
+          "fin": 12.899
+        },
+        {
+          "texto": "compuerta",
+          "inicio": 12.945,
+          "fin": 13.456
+        },
+        {
+          "texto": "de",
+          "inicio": 13.502,
+          "fin": 13.572
+        },
+        {
+          "texto": "bajo",
+          "inicio": 13.618,
+          "fin": 13.862
+        },
+        {
+          "texto": "valor",
+          "inicio": 13.909,
+          "fin": 14.234
+        },
+        {
+          "texto": "o",
+          "inicio": 14.675,
+          "fin": 14.803
+        },
+        {
+          "texto": "un",
+          "inicio": 14.85,
+          "fin": 14.942
+        },
+        {
+          "texto": "driver",
+          "inicio": 14.977,
+          "fin": 15.407
+        },
+        {
+          "texto": "dedicado",
+          "inicio": 15.477,
+          "fin": 15.987
+        },
+        {
+          "texto": "para",
+          "inicio": 16.045,
+          "fin": 16.231
+        },
+        {
+          "texto": "cargar",
+          "inicio": 16.289,
+          "fin": 16.696
+        },
+        {
+          "texto": "y",
+          "inicio": 16.754,
+          "fin": 16.777
+        },
+        {
+          "texto": "descargar",
+          "inicio": 16.847,
+          "fin": 17.334
+        },
+        {
+          "texto": "ese",
+          "inicio": 17.392,
+          "fin": 17.532
+        },
+        {
+          "texto": "capacitor",
+          "inicio": 17.59,
+          "fin": 18.286
+        },
+        {
+          "texto": "rápido,",
+          "inicio": 18.367,
+          "fin": 19.006
+        },
+        {
+          "texto": "más",
+          "inicio": 19.331,
+          "fin": 19.54
+        },
+        {
+          "texto": "otra",
+          "inicio": 19.621,
+          "fin": 19.842
+        },
+        {
+          "texto": "resistencia",
+          "inicio": 19.912,
+          "fin": 20.515
+        },
+        {
+          "texto": "pull-down",
+          "inicio": 20.585,
+          "fin": 21.142
+        },
+        {
+          "texto": "a",
+          "inicio": 21.2,
+          "fin": 21.223
+        },
+        {
+          "texto": "tierra",
+          "inicio": 21.305,
+          "fin": 21.711
+        },
+        {
+          "texto": "para",
+          "inicio": 22.036,
+          "fin": 22.234
+        },
+        {
+          "texto": "que",
+          "inicio": 22.28,
+          "fin": 22.35
+        },
+        {
+          "texto": "no",
+          "inicio": 22.396,
+          "fin": 22.477
+        },
+        {
+          "texto": "se",
+          "inicio": 22.535,
+          "fin": 22.593
+        },
+        {
+          "texto": "encienda",
+          "inicio": 22.617,
+          "fin": 23.151
+        },
+        {
+          "texto": "solo",
+          "inicio": 23.232,
+          "fin": 23.534
+        },
+        {
+          "texto": "por",
+          "inicio": 23.592,
+          "fin": 23.754
+        },
+        {
+          "texto": "ruido.",
+          "inicio": 23.789,
+          "fin": 24.846
+        }
+      ]
+    },
+    {
+      "id": "regiones",
+      "archivo": "voz-mosfet/es/regiones.mp3",
+      "duracion": 20.851519,
+      "hash": "2ed1fb1b3a57b651f829291442b100accc1031d9",
+      "palabras": [
+        {
+          "texto": "Mira",
+          "inicio": 0,
+          "fin": 0.197
+        },
+        {
+          "texto": "la",
+          "inicio": 0.232,
+          "fin": 0.29
+        },
+        {
+          "texto": "diferencia",
+          "inicio": 0.337,
+          "fin": 0.743
+        },
+        {
+          "texto": "térmica",
+          "inicio": 0.801,
+          "fin": 1.219
+        },
+        {
+          "texto": "conduciendo",
+          "inicio": 1.265,
+          "fin": 1.811
+        },
+        {
+          "texto": "10",
+          "inicio": 1.869,
+          "fin": 2.032
+        },
+        {
+          "texto": "amperios:",
+          "inicio": 2.09,
+          "fin": 2.752
+        },
+        {
+          "texto": "un",
+          "inicio": 3.135,
+          "fin": 3.193
+        },
+        {
+          "texto": "BJT",
+          "inicio": 3.228,
+          "fin": 3.564
+        },
+        {
+          "texto": "de",
+          "inicio": 3.646,
+          "fin": 3.692
+        },
+        {
+          "texto": "potencia",
+          "inicio": 3.738,
+          "fin": 4.156
+        },
+        {
+          "texto": "cae",
+          "inicio": 4.214,
+          "fin": 4.458
+        },
+        {
+          "texto": "al",
+          "inicio": 4.481,
+          "fin": 4.551
+        },
+        {
+          "texto": "menos",
+          "inicio": 4.609,
+          "fin": 4.876
+        },
+        {
+          "texto": "1.2",
+          "inicio": 4.969,
+          "fin": 5.538
+        },
+        {
+          "texto": "voltios",
+          "inicio": 5.619,
+          "fin": 6.049
+        },
+        {
+          "texto": "y",
+          "inicio": 6.432,
+          "fin": 6.502
+        },
+        {
+          "texto": "disipa",
+          "inicio": 6.571,
+          "fin": 6.943
+        },
+        {
+          "texto": "12",
+          "inicio": 6.966,
+          "fin": 7.152
+        },
+        {
+          "texto": "vatios",
+          "inicio": 7.245,
+          "fin": 7.581
+        },
+        {
+          "texto": "en",
+          "inicio": 7.639,
+          "fin": 7.697
+        },
+        {
+          "texto": "puro",
+          "inicio": 7.767,
+          "fin": 7.988
+        },
+        {
+          "texto": "calor;",
+          "inicio": 8.034,
+          "fin": 8.487
+        },
+        {
+          "texto": "en",
+          "inicio": 8.87,
+          "fin": 8.998
+        },
+        {
+          "texto": "cambio,",
+          "inicio": 9.044,
+          "fin": 9.555
+        },
+        {
+          "texto": "el",
+          "inicio": 9.706,
+          "fin": 9.868
+        },
+        {
+          "texto": "MOSFET",
+          "inicio": 9.927,
+          "fin": 10.379
+        },
+        {
+          "texto": "IRFZ44N",
+          "inicio": 10.507,
+          "fin": 11.981
+        },
+        {
+          "texto": "en",
+          "inicio": 12.109,
+          "fin": 12.214
+        },
+        {
+          "texto": "región",
+          "inicio": 12.283,
+          "fin": 12.574
+        },
+        {
+          "texto": "óhmica",
+          "inicio": 12.632,
+          "fin": 12.934
+        },
+        {
+          "texto": "con",
+          "inicio": 12.992,
+          "fin": 13.131
+        },
+        {
+          "texto": "17.5",
+          "inicio": 13.177,
+          "fin": 14.222
+        },
+        {
+          "texto": "miliohmios",
+          "inicio": 14.373,
+          "fin": 14.942
+        },
+        {
+          "texto": "cae",
+          "inicio": 15.325,
+          "fin": 15.592
+        },
+        {
+          "texto": "solo",
+          "inicio": 15.639,
+          "fin": 15.929
+        },
+        {
+          "texto": "0.17",
+          "inicio": 16.033,
+          "fin": 16.904
+        },
+        {
+          "texto": "voltios",
+          "inicio": 16.997,
+          "fin": 17.392
+        },
+        {
+          "texto": "y",
+          "inicio": 17.496,
+          "fin": 17.543
+        },
+        {
+          "texto": "disipa",
+          "inicio": 17.624,
+          "fin": 17.995
+        },
+        {
+          "texto": "apenas",
+          "inicio": 18.03,
+          "fin": 18.518
+        },
+        {
+          "texto": "1.75",
+          "inicio": 18.611,
+          "fin": 19.76
+        },
+        {
+          "texto": "vatios.",
+          "inicio": 19.876,
+          "fin": 20.851
+        }
+      ]
+    },
+    {
+      "id": "cierre",
+      "archivo": "voz-mosfet/es/cierre.mp3",
+      "duracion": 18.018685,
+      "hash": "53e2f0176e614019e63d86254d799a378e56e05e",
+      "palabras": [
+        {
+          "texto": "Desde",
+          "inicio": 0,
+          "fin": 0.302
+        },
+        {
+          "texto": "el",
+          "inicio": 0.325,
+          "fin": 0.395
+        },
+        {
+          "texto": "clásico",
+          "inicio": 0.453,
+          "fin": 0.964
+        },
+        {
+          "texto": "TO-220",
+          "inicio": 1.103,
+          "fin": 2.229
+        },
+        {
+          "texto": "con",
+          "inicio": 2.322,
+          "fin": 2.45
+        },
+        {
+          "texto": "disipador",
+          "inicio": 2.496,
+          "fin": 3.053
+        },
+        {
+          "texto": "de",
+          "inicio": 3.111,
+          "fin": 3.158
+        },
+        {
+          "texto": "aluminio",
+          "inicio": 3.181,
+          "fin": 3.773
+        },
+        {
+          "texto": "hasta",
+          "inicio": 3.889,
+          "fin": 4.168
+        },
+        {
+          "texto": "los",
+          "inicio": 4.214,
+          "fin": 4.331
+        },
+        {
+          "texto": "encapsulados",
+          "inicio": 4.4,
+          "fin": 5.074
+        },
+        {
+          "texto": "superficiales",
+          "inicio": 5.097,
+          "fin": 5.898
+        },
+        {
+          "texto": "DPAK",
+          "inicio": 5.956,
+          "fin": 6.397
+        },
+        {
+          "texto": "y",
+          "inicio": 6.536,
+          "fin": 6.618
+        },
+        {
+          "texto": "D2PAK",
+          "inicio": 6.711,
+          "fin": 7.314
+        },
+        {
+          "texto": "en",
+          "inicio": 7.546,
+          "fin": 7.686
+        },
+        {
+          "texto": "placas",
+          "inicio": 7.744,
+          "fin": 8.15
+        },
+        {
+          "texto": "madre",
+          "inicio": 8.22,
+          "fin": 8.545
+        },
+        {
+          "texto": "y",
+          "inicio": 8.568,
+          "fin": 8.591
+        },
+        {
+          "texto": "variadores:",
+          "inicio": 8.661,
+          "fin": 9.474
+        },
+        {
+          "texto": "usa",
+          "inicio": 10.054,
+          "fin": 10.356
+        },
+        {
+          "texto": "BJT",
+          "inicio": 10.437,
+          "fin": 10.937
+        },
+        {
+          "texto": "para",
+          "inicio": 11.099,
+          "fin": 11.285
+        },
+        {
+          "texto": "señales",
+          "inicio": 11.343,
+          "fin": 11.703
+        },
+        {
+          "texto": "pequeñas",
+          "inicio": 11.773,
+          "fin": 12.307
+        },
+        {
+          "texto": "de",
+          "inicio": 12.33,
+          "fin": 12.376
+        },
+        {
+          "texto": "bajo",
+          "inicio": 12.434,
+          "fin": 12.666
+        },
+        {
+          "texto": "costo",
+          "inicio": 12.725,
+          "fin": 13.108
+        },
+        {
+          "texto": "y",
+          "inicio": 13.224,
+          "fin": 13.282
+        },
+        {
+          "texto": "elige",
+          "inicio": 13.351,
+          "fin": 13.688
+        },
+        {
+          "texto": "MOSFET",
+          "inicio": 13.769,
+          "fin": 14.489
+        },
+        {
+          "texto": "para",
+          "inicio": 15.07,
+          "fin": 15.29
+        },
+        {
+          "texto": "conmutar",
+          "inicio": 15.348,
+          "fin": 15.79
+        },
+        {
+          "texto": "potencia",
+          "inicio": 15.848,
+          "fin": 16.312
+        },
+        {
+          "texto": "con",
+          "inicio": 16.37,
+          "fin": 16.509
+        },
+        {
+          "texto": "máxima",
+          "inicio": 16.567,
+          "fin": 16.951
+        },
+        {
+          "texto": "eficiencia.",
+          "inicio": 16.985,
+          "fin": 18.019
+        }
+      ]
+    }
+  ]
+}
