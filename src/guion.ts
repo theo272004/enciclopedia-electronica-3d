@@ -18,7 +18,7 @@ export const DATASHEET_2N2222A = {
   fabricante: "ON Semiconductor",
   encapsulado: "TO-92 (SOT-23: MMBT2222A)",
   vceoMax: "40 V",
-  icMax: "800 mA",
+  icMax: "600 mA",
   pdMax: "625 mW @ 25°C",
   hfeRango: "100 – 300",
   vbeSat: "0.7 V",

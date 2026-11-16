@@ -3,7 +3,7 @@
 * Modelo oficial: busca P2N2222A en https://www.onsemi.com
 * Sintaxis .MODEL estándar (pensado para LTspice / ngspice)
 * Parametros clave de Datasheet:
-*   V_CEO(max) = 40 V | I_C(max) = 800 mA | P_D(max) = 625 mW (TO-92)
+*   V_CEO(max) = 40 V | I_C(max) = 600 mA | P_D(max) = 625 mW (TO-92)
 *   h_FE (Beta) = 100..300 | V_CE(sat) = 0.3 V | f_T = 300 MHz
 * ============================================================================
 .MODEL Q2N2222A NPN(
@@ -35,5 +35,5 @@
 + XTF=3
 + RB=10
 + Vceo=40
-+ Icrating=0.8
++ Icrating=0.6
 + mfg=ON_Semiconductor)

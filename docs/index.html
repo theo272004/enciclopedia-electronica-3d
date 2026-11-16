@@ -10,6 +10,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
   <!-- Regla de la casa: ningún texto termina con una palabra sola en la última línea -->
   <script>document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('p,li,dd,figcaption,blockquote,small,label,td,h1,h2,h3,.desc').forEach(function(e){var w=document.createTreeWalker(e,4),n,l=null;while(n=w.nextNode())if(n.nodeValue.trim())l=n;if(!l||e.textContent.trim().split(/\s+/).length<3)return;var o=l.nodeValue;l.nodeValue=o.replace(/ (\S+\s*)$/,'\u00a0$1');if(e.scrollWidth>e.clientWidth+1)l.nodeValue=o})})</script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$',right:'$',display:false}],throwOnError:false})"></script>
   <script type="importmap">
     {
       "imports": {
@@ -35,8 +38,8 @@
       --f-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
       --f-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-      --r-panel: 20px;
-      --r-card: 22px;
+      --r-panel: 16px;
+      --r-card: 14px;
       --wrap: 1180px;
       --gutter: 16px;
       --ease: cubic-bezier(.2, .8, .2, 1);
@@ -718,6 +721,35 @@
     .final-panel h2 { color: var(--paper); max-width: 18ch; }
     .final-panel h2 .dim { color: rgba(255, 255, 255, .48); }
     .final-panel p { color: #A8A8B0; font-size: 14px; margin-top: 8px; }
+
+    /* Riel de episodios */
+    .ep-rail-title { flex: none; font-family: var(--f-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); margin-right: 4px; }
+    button.ep-pill { border: 0; cursor: pointer; font-family: inherit; }
+    button.ep-pill:hover { background: #E4E4E8; color: var(--ink); }
+    button.ep-pill.on:hover { background: var(--ink); color: var(--paper); }
+    button.ep-pill:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+    /* Ficha técnica tipo datasheet */
+    .spec-card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+    .spec-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 40px; padding: 20px 24px; border-bottom: 1px solid var(--line); background: var(--paper); }
+    .spec-meta p { margin-top: 4px; font-size: 14px; color: var(--ink); }
+    .spec-meta .btn { margin-left: auto; }
+    .spec-scroll { overflow-x: auto; }
+    .spec-table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 760px; }
+    .spec-table th, .spec-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--mist); vertical-align: top; }
+    .spec-table thead th { font-family: var(--f-mono); font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); }
+    .spec-table tbody th { font-weight: 500; color: var(--ink); }
+    .spec-table tbody tr:hover { background: var(--paper); }
+    .spec-table .sym { font-family: var(--f-mono); font-size: 13px; white-space: nowrap; }
+    .spec-table .cond { color: var(--ink-2); font-size: 13px; }
+    .spec-table .num { text-align: right; font-family: var(--f-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .spec-table .src { white-space: nowrap; color: var(--ink-2); font-size: 13px; }
+    .seal { display: inline-block; padding: 2px 7px; margin-right: 8px; border: 1px solid var(--line); border-radius: 4px; font-family: var(--f-mono); font-size: 10.5px; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-2); }
+    .spec-note { padding: 16px 24px 20px; font-size: 13px; line-height: 1.6; color: var(--ink-2); max-width: 90ch; }
+    @media (max-width: 720px) { .spec-meta .btn { margin-left: 0; } .spec-meta { padding: 16px; } }
+
+    /* Tono más sobrio */
+    .chrome-bar i { display: none; }
     .final-panel .creditos { margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, .12); max-width: 72ch; }
     .final-panel .creditos p { font-size: 12.5px; line-height: 1.6; }
     .final-panel .creditos strong { color: var(--paper); }
@@ -735,6 +767,7 @@
           <span>Enciclopedia de Electrónica</span>
         </a>
         <ul>
+          <li><a href="#ficha">Ficha técnica</a></li>
           <li><a href="#visor">Modelo 3D</a></li>
           <li><a href="#anatomia">Guía y Pinout</a></li>
           <li><a href="#simulador">Simulador</a></li>
@@ -746,13 +779,16 @@
         </a>
       </nav>
 
-      <!-- Riel de componentes de la serie -->
-      <div class="ep-rail" role="tablist" aria-label="Componentes de la serie">
-        <div class="ep-pill on" role="tab" aria-selected="true"><b>01</b><span>El Transistor BJT · 2N2222A</span></div>
-        <div class="ep-pill" role="tab" aria-selected="false"><b>02</b><span>Relé Electromecánico vs. SSR</span></div>
-        <div class="ep-pill" role="tab" aria-selected="false"><b>03</b><span>BJT vs. MOSFET · IRFZ44N</span></div>
-        <div class="ep-pill" role="tab" aria-selected="false"><b>04</b><span>Capacitores MLCC y Electrolíticos</span></div>
-        <div class="ep-pill" role="tab" aria-selected="false"><b>05</b><span>El Timer NE555 por Dentro</span></div>
+      <!-- Riel de episodios: abre la autopsia 3D de cada uno -->
+      <div class="ep-rail" aria-label="Episodios de la serie">
+        <span class="ep-rail-title">Autopsias de la serie</span>
+        <button type="button" class="ep-pill on" data-model="to92_autopsia" aria-pressed="true"><b>01</b><span>Transistor BJT · 2N2222A</span></button>
+        <button type="button" class="ep-pill" data-model="rele_autopsia" aria-pressed="false"><b>02</b><span>Relé electromecánico · G5LE</span></button>
+        <button type="button" class="ep-pill" data-model="mosfet_autopsia" aria-pressed="false"><b>03</b><span>MOSFET de potencia · IRFZ44N</span></button>
+        <button type="button" class="ep-pill" data-model="cap_autopsia" aria-pressed="false"><b>04</b><span>Capacitor electrolítico</span></button>
+        <button type="button" class="ep-pill" data-model="diodo_autopsia" aria-pressed="false"><b>05</b><span>Diodo rectificador · 1N4007</span></button>
+        <button type="button" class="ep-pill" data-model="inductor_autopsia" aria-pressed="false"><b>06</b><span>Inductor de potencia</span></button>
+        <button type="button" class="ep-pill" data-model="puente_h_autopsia" aria-pressed="false"><b>07</b><span>Puente H · L298N vs DRV8833</span></button>
       </div>
 
       <!-- HERO PRINCIPAL -->
@@ -814,7 +850,7 @@
           <div class="stat-card lift">
             <div>
               <div class="label">Corriente y Disipación</div>
-              <div class="stat-num" style="margin-top:8px;">800<small>mA</small></div>
+              <div class="stat-num" style="margin-top:8px;">600<small>mA máx</small></div>
             </div>
             <div>
               <p>Corriente continua máxima de colector ($I_C$) con límite térmico de 625 mW en TO-92.</p>
@@ -835,11 +871,56 @@
         </div>
       </header>
 
-      <!-- SECCIÓN 1: VISOR 3D INTERACTIVO -->
+      <!-- SECCIÓN 1: FICHA TÉCNICA CON FUENTE -->
+      <section id="ficha" class="block">
+        <div class="block-head">
+          <div class="block-head-left">
+            <span class="label">01 / Ficha técnica verificada</span>
+            <h2>Los números del fabricante, <span class="dim">con página y condición.</span></h2>
+          </div>
+          <p class="sub" style="margin:0;max-width:44ch;">
+            Valores a T<sub>A</sub> = 25 °C copiados de la hoja de datos oficial. Los máximos absolutos son límites de daño, no condiciones de trabajo: diseña con margen.
+          </p>
+        </div>
+
+        <div class="spec-card">
+          <div class="spec-meta">
+            <div><span class="label">Fuente</span><p>onsemi · <strong>P2N2222A/D Rev. 7</strong> (enero de 2013)</p></div>
+            <div><span class="label">Encapsulado</span><p>TO-92 · Case 29 · Style 17</p></div>
+            <div><span class="label">Revisado</span><p>16 de noviembre de 2026</p></div>
+            <a class="btn btn-mist btn-sm" href="https://www.onsemi.com/pdf/datasheet/p2n2222a-d.pdf" target="_blank" rel="noopener">Abrir datasheet (PDF)</a>
+          </div>
+          <div class="spec-scroll" tabindex="0" role="region" aria-label="Tabla de especificaciones del P2N2222A">
+            <table class="spec-table">
+              <thead>
+                <tr><th scope="col">Parámetro</th><th scope="col">Símbolo</th><th scope="col">Condición</th><th scope="col" class="num">Mín.</th><th scope="col" class="num">Máx.</th><th scope="col">Unidad</th><th scope="col">Fuente</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Tensión colector-emisor</th><td class="sym">V<sub>CEO</sub></td><td class="cond">Base abierta</td><td class="num">—</td><td class="num">40</td><td>V</td><td class="src"><span class="seal">Datasheet</span>pág. 1</td></tr>
+                <tr><th scope="row">Tensión colector-base</th><td class="sym">V<sub>CBO</sub></td><td class="cond">Emisor abierto</td><td class="num">—</td><td class="num">75</td><td>V</td><td class="src"><span class="seal">Datasheet</span>pág. 1</td></tr>
+                <tr><th scope="row">Tensión emisor-base</th><td class="sym">V<sub>EBO</sub></td><td class="cond">Colector abierto</td><td class="num">—</td><td class="num">6,0</td><td>V</td><td class="src"><span class="seal">Datasheet</span>pág. 1</td></tr>
+                <tr><th scope="row">Corriente de colector continua</th><td class="sym">I<sub>C</sub></td><td class="cond">—</td><td class="num">—</td><td class="num">600</td><td>mA</td><td class="src"><span class="seal">Datasheet</span>pág. 1</td></tr>
+                <tr><th scope="row">Disipación total</th><td class="sym">P<sub>D</sub></td><td class="cond">T<sub>A</sub> = 25 °C · reducir 5,0 mW/°C</td><td class="num">—</td><td class="num">625</td><td>mW</td><td class="src"><span class="seal">Datasheet</span>pág. 1</td></tr>
+                <tr><th scope="row">Resistencia térmica unión-ambiente</th><td class="sym">R<sub>θJA</sub></td><td class="cond">—</td><td class="num">—</td><td class="num">200</td><td>°C/W</td><td class="src"><span class="seal">Datasheet</span>pág. 1</td></tr>
+                <tr><th scope="row">Temperatura de unión</th><td class="sym">T<sub>J</sub></td><td class="cond">Operación y almacenamiento</td><td class="num">−55</td><td class="num">+150</td><td>°C</td><td class="src"><span class="seal">Datasheet</span>pág. 1</td></tr>
+                <tr><th scope="row">Ganancia DC</th><td class="sym">h<sub>FE</sub></td><td class="cond">I<sub>C</sub> = 150 mA · V<sub>CE</sub> = 10 V</td><td class="num">100</td><td class="num">300</td><td>—</td><td class="src"><span class="seal">Datasheet</span>pág. 2</td></tr>
+                <tr><th scope="row">Ganancia DC</th><td class="sym">h<sub>FE</sub></td><td class="cond">I<sub>C</sub> = 500 mA · V<sub>CE</sub> = 10 V</td><td class="num">40</td><td class="num">—</td><td>—</td><td class="src"><span class="seal">Datasheet</span>pág. 2</td></tr>
+                <tr><th scope="row">Saturación colector-emisor</th><td class="sym">V<sub>CE(sat)</sub></td><td class="cond">I<sub>C</sub> = 150 mA · I<sub>B</sub> = 15 mA</td><td class="num">—</td><td class="num">0,3</td><td>V</td><td class="src"><span class="seal">Datasheet</span>pág. 2</td></tr>
+                <tr><th scope="row">Saturación colector-emisor</th><td class="sym">V<sub>CE(sat)</sub></td><td class="cond">I<sub>C</sub> = 500 mA · I<sub>B</sub> = 50 mA</td><td class="num">—</td><td class="num">1,0</td><td>V</td><td class="src"><span class="seal">Datasheet</span>pág. 2</td></tr>
+                <tr><th scope="row">Saturación base-emisor</th><td class="sym">V<sub>BE(sat)</sub></td><td class="cond">I<sub>C</sub> = 150 mA · I<sub>B</sub> = 15 mA</td><td class="num">0,6</td><td class="num">1,2</td><td>V</td><td class="src"><span class="seal">Datasheet</span>pág. 2</td></tr>
+                <tr><th scope="row">Producto ganancia-ancho de banda</th><td class="sym">f<sub>T</sub></td><td class="cond">I<sub>C</sub> = 20 mA · V<sub>CE</sub> = 20 V</td><td class="num">300</td><td class="num">—</td><td>MHz</td><td class="src"><span class="seal">Datasheet</span>pág. 2</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="spec-note">El datasheet no publica un V<sub>BE</sub> fijo de 0,7 V: es la aproximación habitual para silicio. Lo garantizado es V<sub>BE(sat)</sub> entre 0,6 y 1,2 V. Otros fabricantes del 2N2222A publican límites distintos: revisa siempre la hoja de la marca de tu pieza.</p>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 2: VISOR 3D INTERACTIVO -->
       <section id="visor" class="block">
         <div class="block-head">
           <div class="block-head-left">
-            <span class="label">01 / Geometría CAD en tiempo real</span>
+            <span class="label">02 / Geometría CAD en tiempo real</span>
             <h2>Inspecciona cada encapsulado <span class="dim">desde cualquier ángulo.</span></h2>
           </div>
           <p class="sub" style="margin:0;max-width:38ch;">
@@ -916,7 +997,7 @@
       <section id="anatomia" class="block">
         <div class="block-head">
           <div class="block-head-left">
-            <span class="label">02 / Guía visual de componentes</span>
+            <span class="label">03 / Guía visual de componentes</span>
             <h2>Cada pieza del circuito, <span class="dim">explicada al detalle.</span></h2>
           </div>
           <p class="sub" style="margin:0;max-width:40ch;">
@@ -1019,7 +1100,7 @@
               </div>
               <h3>Corte, Saturación y Región Activa</h3>
               <p>
-                Para conmutar cargas digitales sin calentar el componente, jamás te quedes a mitad de camino. Opera en <strong>Corte</strong> ($V_{BE} &lt; 0,7\text{ V}$, interruptor abierto) o en <strong>Saturación profunda</strong> ($V_{CE(\text{sat})} \approx 0,3\text{ V}$, interruptor cerrado). Reserva la <strong>Región Activa</strong> para amplificadores lineales.
+                Para conmutar cargas digitales sin calentar el componente, jamás te quedes a mitad de camino. Opera en <strong>Corte</strong> ($V_{BE} &lt; 0{,}7\text{ V}$, interruptor abierto) o en <strong>Saturación profunda</strong> ($V_{CE(\text{sat})} \approx 0{,}3\text{ V}$, interruptor cerrado). Reserva la <strong>Región Activa</strong> para amplificadores lineales.
               </p>
               <ul class="ticks">
                 <li>Corte: I_C = 0</li>
@@ -1058,7 +1139,7 @@
               <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
             </summary>
             <p>
-              Si colocas la carga entre el Emisor y GND (configuración seguidor de emisor), el voltaje en el Emisor subirá junto con el de la carga. Si controlas la Base con un microcontrolador de 3,3 V, el Emisor nunca podrá superar ~2,6 V ($3,3\text{ V} - 0,7\text{ V}$), el transistor no saturará y se calentará.
+              Si colocas la carga entre el Emisor y GND (configuración seguidor de emisor), el voltaje en el Emisor subirá junto con el de la carga. Si controlas la Base con un microcontrolador de 3,3 V, el Emisor nunca podrá superar ~2,6 V ($3{,}3\text{ V} - 0{,}7\text{ V}$), el transistor no saturará y se calentará.
             </p>
           </details>
 
@@ -1068,7 +1149,7 @@
               <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
             </summary>
             <p>
-              La ganancia $h_{FE}$ de 100 a 300 solo se cumple en la Región Activa ($V_{CE} = 10\text{ V}$). Cuando el voltaje $V_{CE}$ cae por debajo de 1 V hacia la saturación, la ganancia efectiva disminuye drásticamente. $I_B = I_C / 10$ es justamente la condición de prueba del datasheet ($I_C = 150\text{ mA}$, $I_B = 15\text{ mA}$, 25 °C) con la que se especifica $V_{CE(\text{sat})} \le 0,3\text{ V}$ máximo. Usarla te deja dentro de lo que el fabricante garantiza.
+              La ganancia $h_{FE}$ de 100 a 300 solo se cumple en la Región Activa ($V_{CE} = 10\text{ V}$). Cuando el voltaje $V_{CE}$ cae por debajo de 1 V hacia la saturación, la ganancia efectiva disminuye drásticamente. $I_B = I_C / 10$ es justamente la condición de prueba del datasheet ($I_C = 150\text{ mA}$, $I_B = 15\text{ mA}$, 25 °C) con la que se especifica $V_{CE(\text{sat})} \le 0{,}3\text{ V}$ máximo. Usarla te deja dentro de lo que el fabricante garantiza.
             </p>
           </details>
         </div>
@@ -1078,7 +1159,7 @@
       <section id="simulador" class="block">
         <div class="block-head">
           <div class="block-head-left">
-            <span class="label">03 / Calculadora interactiva de ingeniería</span>
+            <span class="label">04 / Calculadora interactiva de ingeniería</span>
             <h2>Calcula tu punto de operación <span class="dim">antes de soldar.</span></h2>
           </div>
           <p class="sub" style="margin:0;max-width:38ch;">
@@ -1198,7 +1279,7 @@
       <section id="archivos" class="block">
         <div class="block-head">
           <div class="block-head-left">
-            <span class="label">04 / Repositorio abierto de ingeniería</span>
+            <span class="label">05 / Repositorio abierto de ingeniería</span>
             <h2>Modelos 3D, esquemáticos <span class="dim">y código de control.</span></h2>
           </div>
           <p class="sub" style="margin:0;max-width:38ch;">
@@ -1306,7 +1387,7 @@
       to92: {
         sub: "ENCAPSULADO THROUGH-HOLE · PASO 1,27 / 2,54 MM",
         title: "Encapsulado TO-92 (2N2222A)",
-        desc: "Encapsulado clásico moldeado en resina epóxica para montaje de agujero pasante (THT). Estándar en protoboards y diseño general hasta 800 mA y 625 mW.",
+        desc: "Encapsulado clásico moldeado en resina epóxica para montaje de agujero pasante (THT). Estándar en protoboards y diseño general hasta 600 mA continuos y 625 mW (P2N2222A).",
         pinout: "<strong>Pinout mirando la cara plana:</strong><br>• <strong>2N2222A / PN2222A:</strong> 1: Emisor · 2: Base · 3: Colector<br>• <strong>P2N2222A / BC547:</strong> 1: Colector · 2: Base · 3: Emisor",
         img: "img/01_intro_to92.png",
         escala: 0.42,
@@ -1656,6 +1737,17 @@
         }
       });
     }
+
+    document.querySelectorAll(".ep-pill[data-model]").forEach((pill) => {
+      pill.addEventListener("click", () => {
+        document.querySelectorAll(".ep-pill").forEach((x) => { x.classList.remove("on"); x.setAttribute("aria-pressed", "false"); });
+        pill.classList.add("on");
+        pill.setAttribute("aria-pressed", "true");
+        const seg = document.querySelector(`.seg-btn[data-model="${pill.dataset.model}"]`);
+        if (seg) seg.click();
+        document.getElementById("visor").scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
 
     document.querySelectorAll(".seg-btn").forEach((btn) => {
       btn.addEventListener("click", () => {

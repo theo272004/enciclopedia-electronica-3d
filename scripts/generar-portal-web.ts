@@ -135,7 +135,7 @@ const spiceLib = `* ============================================================
 * Modelo oficial: busca P2N2222A en https://www.onsemi.com
 * Sintaxis .MODEL estándar (pensado para LTspice / ngspice)
 * Parametros clave de Datasheet:
-*   V_CEO(max) = 40 V | I_C(max) = 800 mA | P_D(max) = 625 mW (TO-92)
+*   V_CEO(max) = 40 V | I_C(max) = 600 mA | P_D(max) = 625 mW (TO-92)
 *   h_FE (Beta) = 100..300 | V_CE(sat) = 0.3 V | f_T = 300 MHz
 * ============================================================================
 .MODEL Q2N2222A NPN(
@@ -167,7 +167,7 @@ const spiceLib = `* ============================================================
 + XTF=3
 + RB=10
 + Vceo=40
-+ Icrating=0.8
++ Icrating=0.6
 + mfg=ON_Semiconductor)
 `;
 fs.writeFileSync(path.join(DESCARGAS_DIR, "2N2222A_modelo_SPICE.lib"), spiceLib, "utf8");
@@ -214,7 +214,7 @@ SYMATTR Value PULSE(0 9 2m 10u 10u 5m 10m)
 FLAG 208 512 0
 WIRE 208 496 208 512
 TEXT 144 64 Left 2 !.tran 20m
-TEXT 144 92 Left 2 !.model Q2N2222A NPN(IS=14.34f VAF=74.03 BF=255.9 IKF=0.2847 RC=1 RB=10 CJC=7.3p CJE=22p TF=411p TR=46.9n Vceo=40 Icrating=0.8)
+TEXT 144 92 Left 2 !.model Q2N2222A NPN(IS=14.34f VAF=74.03 BF=255.9 IKF=0.2847 RC=1 RB=10 CJC=7.3p CJE=22p TF=411p TR=46.9n Vceo=40 Icrating=0.6)
 `;
 fs.writeFileSync(path.join(DESCARGAS_DIR, "Circuito_2N2222A_LTspice.asc"), ltspiceAsc, "utf8");
 
@@ -230,7 +230,7 @@ const kicadSch = `(kicad_sch
     (date "2026-11-15")
     (rev "1.0")
     (company "Canal de Electronica — 100% Codigo")
-    (comment 1 "Datasheet: ON Semiconductor P2N2222A / 2N2222A (Vceo=40V, Ic=800mA, Pd=625mW)")
+    (comment 1 "Datasheet: ON Semiconductor P2N2222A / 2N2222A (Vceo=40V, Ic=600mA, Pd=625mW)")
     (comment 2 "Calculo de Saturacion: Vcc=9V, Rb=1k, Ib=8.3mA, Vce(sat)=0.3V, Ic=20mA")
   )
 )
